@@ -24,12 +24,7 @@ var cfg;
 var videoCfg;
 
 if(env === "production"){
-	if(process.platform === "darwin"){
-		nodePath = "../Resources/app.asar.unpacked/__build__/";
-	}
-	else{
-		nodePath = "resources/app.asar.unpacked/__build__";
-	}
+	nodePath = "app/__build__";
 }
 
 
@@ -64,16 +59,22 @@ cfg = merge([
 						// 	}
 						// },
 						{
-							loader: "node-addon-loader",
+							loader: 'native-addon-loader',
 							options: {
-								// 加上 basePath 后，最终路径 = output.path join basePath join name
-								// basePath: "./",
-								rewritePath: nodePath,
-								// rewritePath: "../Resources/app.asar.unpacked/__build__/",
-								// relativePath: false,
-								name: "addon/[name].[hash:8].[ext]",
+								name: "../addon/[name].[ext]",
 							}
-						},
+						}
+						// {
+						// 	loader: "node-addon-loader",
+						// 	options: {
+						// 		// 加上 basePath 后，最终路径 = output.path join basePath join name
+						// 		// basePath: "./",
+						// 		rewritePath: nodePath,
+						// 		// rewritePath: "../Resources/app.asar.unpacked/__build__/",
+						// 		// relativePath: false,
+						// 		name: "addon/[name].[hash:8].[ext]",
+						// 	}
+						// },
 						// {
 						// 	loader: "file-loader",
 						// 	options: {
@@ -164,15 +165,15 @@ cfg = merge([
 			new CopyWebpackPlugin([{
 				from: path.resolve(__dirname, "./../app/easemob/LIBCURL.LIB"),
 				force: true,
-				to: "addon/LIBCURL.LIB"
+				to: "../addon/LIBCURL.LIB"
 			}, {
 				from: path.resolve(__dirname, "./../app/easemob/LIBCURL.DLL"),
 				force: true,
-				to: "addon/LIBCURL.DLL"
+				to: "../addon/LIBCURL.DLL"
 			}, {
 				from: path.resolve(__dirname, "./../app/easemob/libcrypto.1.0.0.dylib"),
 				force: true,
-				to: "addon/libcrypto.1.0.0.dylib"
+				to: "../addon/libcrypto.1.0.0.dylib"
 			}]),
 			// for bindings package, see https://github.com/rwaldron/johnny-five/issues/1101#issuecomment-213581938
 			new webpack.ContextReplacementPlugin(/bindings$/, /^$/),

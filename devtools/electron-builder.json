@@ -35,6 +35,9 @@
 		"main.js",
 		"package.json"
 	],
+	"extraFiles": [
+		"./app/server.json"
+	],
 	"directories": {
 		"buildResources": "resources",
 		"output": "release",
@@ -42,9 +45,15 @@
 	},
 	/* 文档可不是这么写的 */
 	"asar": true,
-	"asarUnpack": [
-		"./__build__/addon",
-	],
+	// "asarUnpack": [
+	// 	"./__build__/addon",
+	// ],
+	"extraResources": [
+    {
+      "from": "./app/addon/",
+      "to": "addon"
+    }
+  ],
 	"win": {
 		"target": [
 			"nsis"

@@ -1,7 +1,14 @@
 const fs = require("fs-extra");
-const { remote } = require("electron");
+const { remote, ipcRenderer } = require("electron");
 let configDir = remote.app.getPath("userData");
 const easemob = require('../node/index');
+let privateServerConfig = {};
+
+ipcRenderer.on("privateServerConfig", (event, data) => {
+	console.log("privateServerConfig event", data);
+	privateServerConfig = data;
+});
+
 const utils = {
 	latestFunc(){
 		var callback;
@@ -40,10 +47,20 @@ const utils = {
 		fs.ensureDir(`${configDir}/easemob/pasteImage`, function(err){
 			console.log(err);
 		});
-		this.chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, (userInfo && userInfo.user.appkey), 0);
+		const appKey = privateServerConfig.usePrivateConfig ? privateServerConfig.appKey : (userInfo && userInfo.user.appkey)
+		this.chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
 		this.chatConfigs.setDeleteMessageAsExitGroup(true);
-
 		const emclient = new easemob.EMClient(this.chatConfigs);
+		console.log(emclient, privateServerConfig);
+		if(privateServerConfig.usePrivateConfig){
+			let config = emclient.getChatConfigs();
+			let privateconfigs = config.privateConfigs();
+			privateconfigs.enableDns = false;
+			privateconfigs.chatServer = privateServerConfig.chatServer;
+			privateconfigs.chatPort = privateServerConfig.chatPort;
+			privateconfigs.restServer = privateServerConfig.restServer;
+		}
+		// privateconfigs.resolverServer = "http://192.168.1.101:5002";
 		return emclient;
 	}
 };

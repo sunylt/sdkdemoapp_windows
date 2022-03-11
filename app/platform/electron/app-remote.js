@@ -1,3 +1,5 @@
+import path from "path";
+import fs from "fs";
 import
 electron,
 {
@@ -251,6 +253,17 @@ class AppRemote {
 			if(options.onLoad){
 				options.onLoad(browserWindow);
 			}
+			const devPath = path.resolve(__dirname, "../../server.json");
+			const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
+			let privateConfig = {};
+
+			if(fs.existsSync(devPath)){
+				privateConfig = fs.readFileSync(devPath, "utf-8");
+			}
+			else if(fs.existsSync(prodPath)){
+				privateConfig = fs.readFileSync(prodPath, "utf-8");
+			}
+			browserWindow.webContents.send("privateServerConfig", typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig);
 		});
 
 		let url = options.url;
