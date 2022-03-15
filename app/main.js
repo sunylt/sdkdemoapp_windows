@@ -310,9 +310,9 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var fs = __webpack_require__(28)
-var polyfills = __webpack_require__(535)
-var legacy = __webpack_require__(537)
-var clone = __webpack_require__(539)
+var polyfills = __webpack_require__(536)
+var legacy = __webpack_require__(538)
+var clone = __webpack_require__(540)
 
 var util = __webpack_require__(81)
 
@@ -1123,8 +1123,8 @@ if (typeof /./ != 'function' && typeof Int8Array != 'object' && typeof nodelist 
 "use strict";
 
 const u = __webpack_require__(23).fromCallback
-const mkdirs = u(__webpack_require__(543))
-const mkdirsSync = __webpack_require__(544)
+const mkdirs = u(__webpack_require__(544))
+const mkdirsSync = __webpack_require__(545)
 
 module.exports = {
   mkdirs: mkdirs,
@@ -3580,7 +3580,7 @@ function group(behavior, partition) {
 
 
 const u = __webpack_require__(23).fromCallback
-const rimraf = __webpack_require__(547)
+const rimraf = __webpack_require__(548)
 
 module.exports = {
   remove: u(rimraf),
@@ -5288,7 +5288,7 @@ module.exports = require("os");
 
 
 const u = __webpack_require__(23).fromCallback
-const jsonFile = __webpack_require__(549)
+const jsonFile = __webpack_require__(550)
 
 module.exports = {
   // jsonfile exports
@@ -5312,7 +5312,7 @@ var path = (function () { try { return __webpack_require__(4) } catch (e) {}}())
 minimatch.sep = path.sep
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
-var expand = __webpack_require__(588)
+var expand = __webpack_require__(589)
 
 var plTypes = {
   '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
@@ -8461,7 +8461,7 @@ exports.write = function (fd, buffer, a, b, c, callback) {
 
 var fs = __webpack_require__(12)
 var path = __webpack_require__(4)
-var utimes = __webpack_require__(542)
+var utimes = __webpack_require__(543)
 
 function ncp (source, dest, options, callback) {
   if (!callback) {
@@ -8730,7 +8730,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  copySync: __webpack_require__(545)
+  copySync: __webpack_require__(546)
 }
 
 
@@ -8765,7 +8765,7 @@ module.exports = function (size) {
 var base64VLQ = __webpack_require__(239);
 var util = __webpack_require__(83);
 var ArraySet = __webpack_require__(240).ArraySet;
-var MappingList = __webpack_require__(565).MappingList;
+var MappingList = __webpack_require__(566).MappingList;
 
 /**
  * An instance of the SourceMapGenerator represents a source map which is
@@ -9214,7 +9214,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var base64 = __webpack_require__(564);
+var base64 = __webpack_require__(565);
 
 // A single base 64 digit can contain 6 bits of data. For the base 64 variable
 // length quantities we use in the source map spec, the first bit is the sign,
@@ -9469,7 +9469,7 @@ function setup(env) {
 	createDebug.disable = disable;
 	createDebug.enable = enable;
 	createDebug.enabled = enabled;
-	createDebug.humanize = __webpack_require__(577);
+	createDebug.humanize = __webpack_require__(578);
 	createDebug.destroy = destroy;
 
 	Object.keys(env).forEach(key => {
@@ -9793,16 +9793,16 @@ module.exports = glob
 var rp = __webpack_require__(245)
 var minimatch = __webpack_require__(146)
 var Minimatch = minimatch.Minimatch
-var inherits = __webpack_require__(591)
-var EE = __webpack_require__(593).EventEmitter
+var inherits = __webpack_require__(592)
+var EE = __webpack_require__(594).EventEmitter
 var path = __webpack_require__(4)
 var assert = __webpack_require__(82)
 var isAbsolute = __webpack_require__(147)
-var globSync = __webpack_require__(594)
+var globSync = __webpack_require__(595)
 var common = __webpack_require__(246)
 var setopts = common.setopts
 var ownProp = common.ownProp
-var inflight = __webpack_require__(595)
+var inflight = __webpack_require__(596)
 var util = __webpack_require__(81)
 var childrenIgnored = common.childrenIgnored
 var isIgnored = common.isIgnored
@@ -10554,7 +10554,7 @@ var origRealpathSync = fs.realpathSync
 
 var version = process.version
 var ok = /^v[0-5]\./.test(version)
-var old = __webpack_require__(587)
+var old = __webpack_require__(588)
 
 function newError (er) {
   return er && er.syscall === 'realpath' && (
@@ -10962,7 +10962,7 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _https = __webpack_require__(599);
+var _https = __webpack_require__(600);
 
 var _https2 = _interopRequireDefault(_https);
 
@@ -16592,7 +16592,7 @@ var _appRemote = __webpack_require__(455);
 
 var _appRemote2 = _interopRequireDefault(_appRemote);
 
-var _lang = __webpack_require__(530);
+var _lang = __webpack_require__(531);
 
 var _lang2 = _interopRequireDefault(_lang);
 
@@ -16600,7 +16600,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var fs = __webpack_require__(533);
+var fs = __webpack_require__(534);
 var os = __webpack_require__(144);
 
 _electron.app.commandLine.appendSwitch("ignore-certificate-errors");
@@ -16608,12 +16608,12 @@ _electron.app.commandLine.appendSwitch("ignore-certificate-errors");
 _appRemote2.default.init(__dirname);
 
 if (true) {
-	var sourceMapSupport = __webpack_require__(562); // eslint-disable-line
+	var sourceMapSupport = __webpack_require__(563); // eslint-disable-line
 	sourceMapSupport.install();
 }
 
 if (_debug2.default && _debug2.default !== "production") {
-	__webpack_require__(570)(); // eslint-disable-line global-require
+	__webpack_require__(571)(); // eslint-disable-line global-require
 	var path = __webpack_require__(4); // eslint-disable-line
 	var p = path.join(__dirname, '..', 'app', 'node_modules'); // eslint-disable-line
 	__webpack_require__(241).globalPaths.push(p); // eslint-disable-line
@@ -16661,7 +16661,7 @@ var installExtensions = function () {
 							break;
 						}
 
-						installer = __webpack_require__(583); // eslint-disable-line global-require
+						installer = __webpack_require__(584); // eslint-disable-line global-require
 
 						extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 						forceDownload = !!Object({"NODE_ENV":"production"}).UPGRADE_EXTENSIONS;
@@ -17181,6 +17181,8 @@ var IS_MAC_OSX = process.platform === "darwin";
 if (false) {
 	console.error("AppRemote must run in main process.");
 }
+
+!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 var AppRemote = function () {
 	function AppRemote() {
@@ -19461,6 +19463,18 @@ module.exports = {"name":"DesktopDemo","productName":"IM-SDK桌面端Demo","vers
 
 /***/ }),
 /* 530 */
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = 530;
+
+/***/ }),
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19470,11 +19484,11 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _zhCn = __webpack_require__(531);
+var _zhCn = __webpack_require__(532);
 
 var _zhCn2 = _interopRequireDefault(_zhCn);
 
-var _stringHelper = __webpack_require__(532);
+var _stringHelper = __webpack_require__(533);
 
 var _stringHelper2 = _interopRequireDefault(_stringHelper);
 
@@ -19574,13 +19588,13 @@ exports.default = lang;
 module.exports = exports["default"];
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, exports) {
 
 module.exports = {"app.title":"环信","login.btn.label":"登录","register.btn.label":"注册","login.account.hint":"用户名","login.password.label":"密码","login.nickName.label":"昵称","login.account.required":"用户名不能为空!","login.password.required":"密码不能为空!","login.nickName.required":"昵称不能为空!","common.search":"搜索","common.confirm":"确定","common.cancel":"取消","common.about":"关于","common.open":"打开","common.close":"关闭","common.exit":"退出","common.setting":"设置","common.save":"保存","common.rename":"重命名","common.selectAll":"全选","common.selectInverse":"反选","common.refresh":"刷新","common.remove":"移除","common.delete":"删除","common.download":"下载","common.settings":"设置","common.copyrightFormat":"版权所有 ©️ {year} {name}","common.comfirmQuiteIM":"是否立即关闭窗口并退出？","common.exitIM":"立即退出","common.waiting":"正在操作，请稍后…","common.loading":"正在加载，请稍后…","common.clickShowMoreFormat":"还有 {0} 项…","common.copyCode":"复制代码","common.copy":"复制","common.copied":"已复制","common.openLink":"打开链接","common.copyLink":"复制链接","common.copyText":"复制文本","common.copyFormat":"复制 “{0}”","common.shareMenu":"共享…","common.required":"必填项","common.requiredField.format":"【{0}】为必填项","common.littlexx":"小环信","common.littlexxSubname":"通知中心","common.viewDetail":"查看详情","menu.about":"关于","menu.hideCurrentWindow":"隐藏当前窗口","menu.hideOtherWindows":"隐藏其他窗口","menu.showAllWindows":"显示所有窗口","menu.quit":"退出","menu.help":"帮助","menu.issues":"问题反馈","menu.website":"官方网站","menu.project":"项目","menu.community":"社区讨论","menu.edit":"编辑","menu.undo":"撤销","menu.redo":"重做","menu.cut":"剪切","menu.copy":"复制","menu.copyImage":"复制图片","menu.paste":"粘贴","menu.selectAll":"选择所有","menu.view":"查看","menu.reload":"刷新","menu.toggleFullscreen":"切换全屏","menu.toggleDeveloperTool":"切换开发者工具","menu.window":"窗口","menu.minimize":"最小化","menu.close":"关闭","menu.bringAllToFront":"全部置于顶层","menu.image.view":"查看","menu.image.copy":"复制","menu.image.saveAs":"另存为","menu.image.open":"打开","time.today":"今天","time.yestoday":"昨天","time.oneWeek":"最近一周","time.oneMonth":"一个月内","time.threeMonth":"三个月内","time.halfYear":"半年内","time.oneYear":"一年内","time.twoYear":"两年内","time.all":"所有时间","time.format.full":"yyyy年M月d日","time.format.month":"M月d日","time.format.day":"d日","pager.prev":"上一页","pager.next":"下一页","file.download":"下载","file.uploadFailed":"上传失败","file.downloadFailed":"下载失败","file.fileSavedAt.format":"文件已保存至 {0}","file.open":"打开","file.openFolder":"打开文件夹","file.title.format":"文件：{0}","file.image.title":"图片","file.downloading":"正在下载…","file.uploading":"正在上传…","file.loading":"正在加载…","file.sending":"正在发送…","notification.receviedMessages.format":"收到 {0} 条新消息。","notification.memberSays.format":"{0} 说：","notification.memberSaysInGroup.format":"{0} 在 {1} 说：","error.UNSUPPORT_VERSION":"此服务器版本不受支持。","error.WRONG_CONNECT":"无法连接到服务器，请检查网络连接是否通畅。","error.LOGIN_FAILED":"暂时无法登录到服务器。","error.WRONG_ACCOUNT":"账号或密码错误。","error.WRONG_DATA":"服务器返回的数据不正确。","error.WRONG_STATUS":"服务器操作失败。","error.SOCKET_CLOSE":"服务器连接已断开，请重新登录。","error.SOCKET_ERROR":"服务器连接失败，发生了未知错误。","error.SOCKET_TIMEOUT":"服务器连接超时。","error.NET_OFFLINE":"互联网连接已断开。","error.KICKOFF":"当前账号已在其他地方登录。如果不是本人操作，请及时修改密码","error.USER_DATA_PATH_DENY":"暂时无法使用用户目录，请重试。","error.USER_DENY_ATTACT_UPLOAD":"你没有权限上传文件到服务器，请联系管理员。","error.IMAGE_NOT_FIND":"无法打开图片，找不到图片或图片已损坏。位置 {0}。","error.UPLOAD_FILE_IS_TOO_LARGE":"文件上传失败，只支持发送小于 {0} 的文件","error.CANNOT_HANDLE_IMAGE":"无法处理此图片。","error.SERVER_DISABLED_UPLOAD":"文件上传失败，因为服务器禁止了文件上传功能","error.TIMEOUT":"网络连接超时。","error.SERVER_IS_BUSY":"服务器正忙，请稍后重试。","error.STATUS_401":"需要提供正确的用户和密码。","error.USER_INFO_REQUIRED":"用户信息不可用。","error.SOCKET_AbnormalClosure":"与服务器的连接意外终止。","error.Unauthorized":"用户验证失败，用户名或密码不正确。","error.SERVER_VERSION_UNKNOWN":"未知的服务器版本。","error.SERVER_VERSION_NOT_SUPPORT":"当前客户端（{0}）不支持所连接服务器版本 {1}，需要服务器版本为 {2} 以上。","error.SERVER_VERSION_NOT_SUPPORT_IN_BROWSER":"浏览器端（{0}）不支持所连接服务器版本 {1}，需要服务器版本为 {2} 以上。","error.RANZHI_SERVER_NOTSET":"没有找到然之服务器设置。","error.COMMON_ERROR":"操作失败，请稍后重试。","login.serverUrl.label":"服务器","login.serverUrl.hint":"https://xuanxuan.chat","login.account.label":"账号","login.btn.logining":"正在登录…","login.swapUser":"切换用户","login.signed":"今日已签到","login.retry":"重新登录","login.rememberPassword":"记住密码","login.autoLogin":"自动登录","login.autoConnet.wait":"你已离线，{0} 秒后自动登录。","login.autoConnet.connecting":"正在尝试重新登录…","login.autoConnet.faildAndWait":"登录失败，{0} 秒后重新尝试。","login.autoConnet.conectIM":"立即重试","login.autoConnet.logout":"注销","login.autoConnet.errorDetail":"了解详情","login.nonSecurity.confirm":"即将通过 http 协议非安全模式连接到服务器 {0}，这样可能泄露你的关键信息。是否继续？","login.nonSecurity.detail":"环信与服务器的通信支持全程加密，如果要启用安全加密功能，请联系管理员开启 https 支持。非安全模式仅适合测试时使用。","login.nonSecurity.btn":"继续使用非安全模式连接","chats.create.label":"新建聊天…","chats.drapNDropFileMessage":"拖放文件或图片到此处来发送","chats.search.recents":"搜索","chats.search.groups":"搜索讨论组","chats.search.contacts":"搜索联系人","chats.menu.switchView":"切换视图","chats.menu.groupType.normal":"平铺（默认）","chats.menu.groupType.category":"自定义分组","chats.menu.groupType.role":"按角色分组","chats.menu.groupType.dept":"按部门分组","chats.menu.group.other":"其他","chats.menu.group.stared":"已收藏","chats.menu.group.default":"默认组","chats.menu.group.current":"当前","chats.menu.group.rename":"重命名组","chats.menu.group.renameTip":"重命名分组","chats.menu.group.add":"添加到分组","chats.menu.group.delete":"删除分组","chats.menu.group.deleted":"已删除","chats.menu.group.create":"新建分组","chats.menu.group.addExist":"添加到已有分组","chats.menu.group.noCategoryToAdd":"没有分组可供添加","chats.menu.group.createTip":"输入新建分组名称","chats.menu.group.existsTip":"此分组已存在，请使用一个不同的分组名称。","chats.menu.group.requiredNewName":"请输入新建分组名称。","chats.menu.group.delete.confirm.format":"确定删除分组【{0}】？","chats.menu.group.delete.tip.format":"删除后会将原组内的会话移到默认分组【{0}】中。","chats.menu.group.dismissed":"已解散","chats.history.title":"消息记录","chats.history.group.contacts":"联系人","chats.history.group.groups":"讨论组","chats.history.selectChatTip":"请从左侧选择一个聊天会话。","chats.history.fetchFromServer":"从云端同步此会话的消息记录","chats.history.fetchAllFromServer":"从云端同步所有消息记录","chats.history.fetchAll":"云端同步","chats.history.selectFetchTime":"选择要同步的时间范围","chats.history.sync.slow":"慢","chats.history.sync.fast":"快","chats.history.fetchingMessages":"正在同步…","chats.history.fetchFinish":"即将完成","chats.history.noMessages":"该会话在本地没有消息，你可以尝试从云端下载本地没有的消息。","chats.history.localChat":"这个会话没有消息。","chats.history.search.placeholder":"搜索消息记录","chats.history.search.type.contacts":"联系人","chats.history.search.type.groups":"讨论组","chats.history.search.type.choosed":"选中聊天","chats.history.search.type.all":"所有聊天","chats.history.searching":"正在搜索…","chats.history.searching.format":"正在 “{0}” 中搜索…","chats.history.search.result.format":"共找到 {0} 个结果","chats.history.search.result.selectTip":"点击结果查看聊天内容上下文","chats.history.search.result.toMany":"搜索结果过多，建议增加搜索条件和关键字来缩小搜索范围。多个关键字使用空格分隔。","chats.history.search.result.notShow.format":"有 {0} 项结果没有显示。","chats.chat.search.result.format":"在 “{0}” 中找到 {1} 个结果","chat.groupName.format":"{0}（{1}人）","chat.systemGroup.name":"系统","chat.all":"所有","chat.deleted":"已删除","chat.deletedOne2OneTip":"对方账号已被从系统移除，你无法在此发送消息。","chat.inviteMembersJoinChat.format":"{0} 邀请了 {1} 加入了会话。","chat.createNewChat.format":"{0} 创建了讨论组 {1}。","chat.inviteAndCreateNewChat.format":"{0} 邀请你并创建了新的讨论组 {0}，点击讨论组名称，立即加入讨论吧。","chat.membersCount.format":"{0}人","chat.tempChat.name":"临时会话","chat.group.name":"讨论组","chat.rename.title":"重命名讨论组","chat.rename.newTitle":"新的讨论组名称","chat.rename.newTitleRequired":"需要填写新的讨论组名称。","chat.rename.someRenameGroup.format":"{0} 将讨论组名称更改为 {1}。","chat.public.label":"公开","chat.public.setPublic":"设为公开","chat.public.setPrivate":"设为私密","chat.create.title":"新建聊天","chat.create.join":"加入","chat.create.chatWith.format":"和 “{0}” 开聊","chat.create.group.format":"创建 {0} 人讨论组","chat.create.chatTypeTip":"选择一种聊天类型","chat.create.chatType.normal":"联系人或多人讨论组","chat.create.chatType.public":"公开讨论组","chat.create.groupsTip":"选择参与会话的联系人","chat.create.mustInclueYourself":"新聊天会话必须包含自己。","chat.create.newChatNameTip":"为新讨论组起名…","chat.create.joinGroupTip":"选择一个公开讨论组","chat.create.joinGroup.format":"加入 “{0}”","chat.invite.title":"邀请参与聊天的联系人","chat.invite":"邀请","chat.invite.choosed":"已选择","chat.invite.removeAll":"清除所有","chat.exit.message":"{0} 退出了当前讨论组。","chat.join.message":"我加入了讨论组。","chat.kickOffFromGroup":"从讨论组移除","chat.kickOffFromGroup.confirm":"确定从讨论组移除成员 {0}？","chat.committers.setCommitters":"设置白名单","chat.committers.setCommittersFormat":"设置会话【{0}】的白名单","chat.committers.committersSettingTip":"通过设置白名单来决定哪些人可以在该会话中发言。","chat.committers.type.all":"所有人","chat.committers.type.admins":"仅管理员","chat.committers.type.whitelist":"仅指定的成员","chat.committers.blocked":"已禁言","chat.committers.blockedTip":"该会话设置为只读，暂时你无法发送消息。","chat.role.admin":"管理员","chat.group.exit":"退出讨论组","chat.group.exitConfirm":"确定退出讨论组【{0}】？","chat.group.dismiss":"解散","chat.group.dismissed":"已解散","chat.group.dismissConfirm":"是否解散讨论组【{0}】？","chat.group.dismiss.message":"{0} 解散了讨论组。","chat.group.dismissTip":"当前讨论组已被解散，无法再发送消息，但仍然可以在 {0} 之前浏览消息记录。","chat.toolbor.star":"收藏","chat.toolbor.unstar":"取消收藏","chat.toolbor.invite":"邀请其他人","chat.toolbor.history":"消息记录","chat.toolbor.sidebar":"打开侧边栏","chat.toolbor.more":"更多","chat.sendbox.toolbar.send":"发送消息","chat.sendbox.toolbar.emoticon":"表情","chat.sendbox.toolbar.image":"图片","chat.sendbox.toolbar.file":"文件","chat.sendbox.toolbar.captureScreen":"截取屏幕","chat.sendbox.toolbar.setFontSize":"设置字体大小","chat.sendbox.toolbar.tips":"小技巧","chat.sendbox.toolbar.previewDraft":"预览草稿","chat.sendbox.placeholder.sendMessage":"发送消息","chat.sendbox.placeholder.memberIsOffline":"发送消息（{0}现在不在线，你发送的消息将在对方下次上线时送达）","chat.atHim":"@她/他","chat.atHim.f":"@她","chat.atHim.m":"@他","chat.sendMessage":"发送消息","chat.fontSize.current.format":"当前 {0}","chat.fontSize.resetDefault":"恢复默认","chat.message.atAll":"所有人","chat.message.copy":"复制消息内容","chat.message.copyMarkdown":"复制 Markdown","chat.noMoreMessage":"没有更多消息","chat.sidebar.tab.profile.label":"资料","chat.sidebar.tab.peoples.label":"成员","chat.sidebar.tab.files.label":"文件","chat.sidebar.tab.files.noFilesHere":"还没有人分享文件","chat.sidebar.tab.files.loading":"正在查找文件…","chat.sidebar.close":"关闭侧边栏","chat.message.resend":"重新发送","todo.create":"创建待办","todo.edit":"编辑待办","todo.label.name":"名称","todo.label.desc":"描述","todo.input.desc.hint":"支持 Markdown","todo.label.date":"日期","todo.label.pri":"优先级","todo.label.begin":"开始时间","todo.label.end":"结束时间","todo.createSuccess":"待办已添加。","todo.beginAndEndBothRequired":"起始时间和结束时间必须同时填写完整，如果不设定时间请全部留空。","todo.beginMustBeforeEnd":"结束时间必须晚于起始时间。","navbar.chats.label":"最近聊天","navbar.contacts.label":"联系人","navbar.groups.label":"讨论组","navbar.exts.label":"扩展应用","exts.home.label":"应用","exts.home.desc":"浏览和管理我的应用。","exts.extensions.label":"扩展","exts.extensions.desc":"管理我的扩展，包括应用、主题和插件。","exts.themes.label":"主题","exts.themes.desc":"浏览我安装的主题，更换当前使用的主题外观。","exts.files.label":"文件","exts.files.desc":"管理我在聊天中发送和接收的文件。","exts.firefoxSend.label":"火狐传送","exts.firefoxSend.desc":"帮助你发送大文件给任何人","exts.appNotFound.format":"没有找到你要打开的应用（{0}）。","exts.appNoView":"无法显示此应用。","exts.installWarning":"即将安装扩展【{0}】，此扩展有权访问你的账号信息及全部聊天数据，请确保所安装的扩展来源安全。是否继续安装？","exts.continuneInsatll":"继续安装","ext.home.appsCount.format":"共 {0} 个应用","ext.home.findAppsCount.format":"找到 {0} 个应用","ext.home.manageInExtensionsApp":"在扩展中管理","ext.home.addMoreApps":"添加更多应用","ext.app.open":"打开","ext.app.about":"关于","ext.app.openInBrowser":"在浏览器中打开","ext.app.close":"关闭","ext.app.refresh":"刷新","ext.app.goBack":"后退","ext.app.goForward":"前进","ext.app.openDevTools":"开发者工具","ext.themes.count.format":"共 {0} 个主题","ext.themes.default":"默认主题","ext.themes.inside":"内置主题","ext.themes.current":"当前","ext.extensions.all":"全部","ext.extensions.apps":"应用","ext.extensions.plugins":"插件","ext.extensions.themes":"主题","ext.extensions.installExtension":"安装扩展","ext.extensions.installLocalExtension":"安装本地扩展","ext.extensions.installLocalExtTip":"选择一个 .xext 扩展文件进行安装","ext.extensions.installDevExtension":"从本地目录加载开发中的扩展","ext.extensions.installConfirm":"从本地目录加载开发中的扩展","ext.extensions.installed":"已安装","ext.extensions.searchResult":"搜索结果","ext.extensions.moreActions":"更多操作","ext.extensions.developing":"开发中","ext.extensions.reload":"重新载入","ext.extensions.reloadFinish":"扩展已重新载入完成","ext.extensions.showFolder":"打开文件位置","ext.extension.pkgHasError":"此扩展配置文件（package.json）中包含有错误：","ext.extension.loadPath":"加载位置","ext.extension.installTime":"安装时间","ext.extension.updateTime":"更新时间","ext.extension.loadTime":"模块加载耗时","ext.extension.needRestart":"需要重启","ext.extension.needRestartTip":"此扩展刚刚安装或者发生更改，需要重新启动程序后生效","ext.extensions.needRestartTip.format":"有 {0} 个扩展需要重启环信后生效。","ext.extensions.restart":"重启环信","ext.disable":"禁用","ext.enable":"启用","ext.disabled":"已禁用","ext.files.all":"全部","ext.files.docs":"文档","ext.files.images":"图片","ext.files.programs":"程序","ext.files.others":"其他","ext.files.findCount.format":"找到 {0} 个文件","ext.files.findToMany.format":"共找到 {0} 个文件，已显示 {1} 个，还有 {2} 个没有显示；请增加更多的检索条件，缩小显示的结果数目。","ext.type.app":"应用","ext.type.plugin":"插件","ext.type.theme":"主题","ext.author":"作者","ext.publisher":"发布者","ext.publisher.format":"由 {0} 发布","ext.homepage":"官方网站","ext.license":"许可证","ext.repository":"代码库","ext.bugs":"问题反馈","ext.uninstall":"卸载","ext.install":"安装","ext.openApp":"打开应用","ext.buildIn":"内置扩展","ext.cannotUninstallBuidIn":"内置扩展无法卸载","ext.uninstallConfirm.format":"确定卸载扩展 【{0}】？","ext.installSuccess.format":"扩展 【{0}】 安装成功。","ext.installFail":"安装失败。","ext.uninstallSuccess.format":"扩展 【{0}】 已卸载","ext.overrideInstall.format":"你已安装有相同名称的扩展【{0}】（版本为 {1}），当前即将安装的【{2}】版本为 {3}，如果继续将会覆盖原来的版本。是否继续？","ext.updateInstall.format":"是否将扩展【{0}】从版本 {1} 升级到 {2}？","error.EXT_NAME_ALREADY_INSTALLED":"已安装有相同名称的扩展。","error.EXT_NOT_FOUND":"此扩展没有安装。","error.EXT_UNZIP_ERROR":"读取扩展文件时出错。","error.EXT_NOT_EXT_SOURCE":"所选目标是有效的 xext 文件或者 package.json 文件。","error.THEME_HAS_NO_CSS_FILE":"所选的主题没有找到可用的 CSS 样式文件。","usermenu.openProfile":"个人资料","usermenu.changePassword":"修改密码","usermenu.about":"关于","usermenu.setting":"设置","usermenu.logout":"注销","usermenu.exit":"退出","user.changePassword.heading":"修改密码","user.changePassword.newPassword":"新密码","user.changePassword.newPasswordRepeat":"重复新密码","user.changePassword.btn.confirm":"更改密码","user.changePassword.inputRequired":"需要填写“{0}”","user.changePassword.passwordNotSame":"两次填写的密码不一样","user.changePassword.notChanged":"新密码与旧密码相同","user.changePassword.denySimplePassword":"密码太简单，应该至少包含6个以上（包括）字符","user.changePassword.failed":"密码更改失败。","user.changePassword.success":"密码修改成功。","member.status.unverified":"未登录","member.status.disconnect":"掉线了","member.status.logined":"登录成功","member.status.online":"在线","member.status.busy":"忙碌","member.status.away":"离开","member.status.offline":"离线","member.gender.f":"女","member.gender.m":"男","member.him":"他/她","member.him.f":"她","member.him.m":"他","member.role.dev":"研发","member.role.po":"产品经理","member.role.pm":"项目经理","member.role.qa":"测试","member.role.qd":"测试经理","member.role.market":"市场","member.role.sale":"销售","member.role.office":"行政","member.profile.sendMessage":"开聊","member.profile.contactInfo":"联系方式","member.profile.phone":"电话","member.profile.email":"邮箱","member.profile.mobile":"手机","member.profile.site":"网站","member.profile.view":"查看资料","setting.section.chats":"聊天","setting.section.notification":"通知","setting.section.navigation":"导航","setting.section.windows":"窗口","setting.section.hotkeys":"快捷键","setting.chats.showMeOnMenu":"在联系人列表上显示我自己","setting.chats.sendHDEmoticon":"当消息只包含一个表情符时直接发送高清表情","setting.chats.showMessageTip":"在消息发送框工具栏显示消息框小技巧按钮","setting.chats.enableSearchInEmojionePicker":"表情面板启用搜索（重新载入后生效）","setting.chats.enableAnimate":"启用动画效果","setting.notification.enableSoundNotification":"启用声音提醒","setting.notification.muteOnUserIsBusy":"当用户状态为忙碌时不使用声音提醒","setting.notification.onNeed":"收到新消息时","setting.notification.onWindowBlur":"收到新消息且窗口失去焦点时","setting.notification.onWindowHide":"收到新消息且窗口隐藏时","setting.notification.playSoundCondition":"播放声音时机：","setting.notification.flashTrayIcon":"启用通知栏图标提醒","setting.notification.flashTrayIconCondition":"闪烁通知栏图标：","setting.notification.enableWindowNotification":"启用弹窗通知","setting.notification.windowNotificationCondition":"弹窗通知时机：","setting.notification.safeWindowNotificationTip":"不在弹窗上显示消息具体内容","setting.navigation.navbarShowRecents":"在导航上显示最近会话","setting.navigation.onlyShowNoticeCountOnRecents":"仅仅在最近会话标签上显示未读消息数目","setting.navigation.showAvatarOnBottom":"将用户头像显示在导航底部","setting.windows.hideWindowOnBlur":"窗口失去焦点时自动最小化窗口","setting.windows.removeFromTaskbarOnHide":"最小化窗口时不在任务栏显示","setting.windows.onClickCloseButton":"当点击窗口关闭按钮时","setting.windows.askEveryTime":"每次询问我操作","setting.windows.minimizeMainWindow":"最小化窗口到通知栏","setting.windows.quitApp":"关闭窗口并退出应用","setting.hotkeys.globalCaptureScreen":"全局截图快捷键","setting.btn.reset":"重置为默认设置","setting.message.reset":"已重置为默认，保存后生效。","emoji.category.people":"表情与人物","emoji.category.nature":"动物与自然","emoji.category.food":"食物与饮料","emoji.category.activity":"活动","emoji.category.travel":"旅行与地点","emoji.category.objects":"物体","emoji.category.symbols":"符号","emoji.category.flags":"旗帜","dialog.fileSaveTo":"保存文件","dialog.openFile":"打开文件","dialog.appClose.title":"你要做什么？","dialog.appClose.rememberOption":"记住我的选择，不再询问","dialog.appClose.minimizeMainWindow":"最小化窗口","dialog.appClose.quitApp":"关闭并退出","dialog.appClose.cancelAction":"取消本次操作","dialog.reloadWindowConfirm":"确定重新启动环信？","dialog.reloadWindowConfirmTip":"这将注销当前登录的用户并需要重新登录。","imageCutter.captureScreen":"截取屏幕","imageCutter.hideCurrentWindowAndCaptureScreen":"隐藏当前窗口并截图","imageCutter.setGlobalHotkey":"设置截图全局快捷键","debug.inspectElement":"审查元素"}
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19686,36 +19700,36 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 533 */
+/* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const assign = __webpack_require__(534)
+const assign = __webpack_require__(535)
 
 const fs = {}
 
 // Export graceful-fs:
 assign(fs, __webpack_require__(233))
 // Export extra methods:
-assign(fs, __webpack_require__(540))
+assign(fs, __webpack_require__(541))
 assign(fs, __webpack_require__(236))
 assign(fs, __webpack_require__(31))
 assign(fs, __webpack_require__(101))
-assign(fs, __webpack_require__(548))
-assign(fs, __webpack_require__(552))
+assign(fs, __webpack_require__(549))
 assign(fs, __webpack_require__(553))
 assign(fs, __webpack_require__(554))
 assign(fs, __webpack_require__(555))
-assign(fs, __webpack_require__(561))
+assign(fs, __webpack_require__(556))
+assign(fs, __webpack_require__(562))
 assign(fs, __webpack_require__(47))
 
 module.exports = fs
 
 
 /***/ }),
-/* 534 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19738,10 +19752,10 @@ module.exports = assign
 
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constants = __webpack_require__(536)
+var constants = __webpack_require__(537)
 
 var origCwd = process.cwd
 var cwd = null
@@ -20092,16 +20106,16 @@ function patch (fs) {
 
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, exports) {
 
 module.exports = require("constants");
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stream = __webpack_require__(538).Stream
+var Stream = __webpack_require__(539).Stream
 
 module.exports = legacy
 
@@ -20222,13 +20236,13 @@ function legacy (fs) {
 
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, exports) {
 
 module.exports = require("stream");
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20258,17 +20272,17 @@ function clone (obj) {
 
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const u = __webpack_require__(23).fromCallback
 module.exports = {
-  copy: u(__webpack_require__(541))
+  copy: u(__webpack_require__(542))
 }
 
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20329,7 +20343,7 @@ module.exports = copy
 
 
 /***/ }),
-/* 542 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20408,7 +20422,7 @@ module.exports = {
 
 
 /***/ }),
-/* 543 */
+/* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20478,7 +20492,7 @@ module.exports = mkdirs
 
 
 /***/ }),
-/* 544 */
+/* 545 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20544,7 +20558,7 @@ module.exports = mkdirsSync
 
 
 /***/ }),
-/* 545 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20552,7 +20566,7 @@ module.exports = mkdirsSync
 
 const fs = __webpack_require__(12)
 const path = __webpack_require__(4)
-const copyFileSync = __webpack_require__(546)
+const copyFileSync = __webpack_require__(547)
 const mkdir = __webpack_require__(31)
 
 function copySync (src, dest, options) {
@@ -20613,7 +20627,7 @@ module.exports = copySync
 
 
 /***/ }),
-/* 546 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20661,7 +20675,7 @@ module.exports = copyFileSync
 
 
 /***/ }),
-/* 547 */
+/* 548 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20982,7 +20996,7 @@ rimraf.sync = rimrafSync
 
 
 /***/ }),
-/* 548 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20991,8 +21005,8 @@ rimraf.sync = rimrafSync
 const u = __webpack_require__(23).fromCallback
 const jsonFile = __webpack_require__(145)
 
-jsonFile.outputJson = u(__webpack_require__(550))
-jsonFile.outputJsonSync = __webpack_require__(551)
+jsonFile.outputJson = u(__webpack_require__(551))
+jsonFile.outputJsonSync = __webpack_require__(552)
 // aliases
 jsonFile.outputJSON = jsonFile.outputJson
 jsonFile.outputJSONSync = jsonFile.outputJsonSync
@@ -21005,7 +21019,7 @@ module.exports = jsonFile
 
 
 /***/ }),
-/* 549 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _fs
@@ -21145,7 +21159,7 @@ module.exports = jsonfile
 
 
 /***/ }),
-/* 550 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21179,7 +21193,7 @@ module.exports = outputJson
 
 
 /***/ }),
-/* 551 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21204,7 +21218,7 @@ module.exports = outputJsonSync
 
 
 /***/ }),
-/* 552 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21381,7 +21395,7 @@ module.exports = {
 
 
 /***/ }),
-/* 553 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21506,7 +21520,7 @@ module.exports = {
 
 
 /***/ }),
-/* 554 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21561,15 +21575,15 @@ module.exports = {
 
 
 /***/ }),
-/* 555 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const file = __webpack_require__(556)
-const link = __webpack_require__(557)
-const symlink = __webpack_require__(558)
+const file = __webpack_require__(557)
+const link = __webpack_require__(558)
+const symlink = __webpack_require__(559)
 
 module.exports = {
   // file
@@ -21591,7 +21605,7 @@ module.exports = {
 
 
 /***/ }),
-/* 556 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21647,7 +21661,7 @@ module.exports = {
 
 
 /***/ }),
-/* 557 */
+/* 558 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21715,7 +21729,7 @@ module.exports = {
 
 
 /***/ }),
-/* 558 */
+/* 559 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21728,11 +21742,11 @@ const _mkdirs = __webpack_require__(31)
 const mkdirs = _mkdirs.mkdirs
 const mkdirsSync = _mkdirs.mkdirsSync
 
-const _symlinkPaths = __webpack_require__(559)
+const _symlinkPaths = __webpack_require__(560)
 const symlinkPaths = _symlinkPaths.symlinkPaths
 const symlinkPathsSync = _symlinkPaths.symlinkPathsSync
 
-const _symlinkType = __webpack_require__(560)
+const _symlinkType = __webpack_require__(561)
 const symlinkType = _symlinkType.symlinkType
 const symlinkTypeSync = _symlinkType.symlinkTypeSync
 
@@ -21788,7 +21802,7 @@ module.exports = {
 
 
 /***/ }),
-/* 559 */
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21894,7 +21908,7 @@ module.exports = {
 
 
 /***/ }),
-/* 560 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21932,7 +21946,7 @@ module.exports = {
 
 
 /***/ }),
-/* 561 */
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21979,10 +21993,10 @@ module.exports = {
 
 
 /***/ }),
-/* 562 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SourceMapConsumer = __webpack_require__(563).SourceMapConsumer;
+var SourceMapConsumer = __webpack_require__(564).SourceMapConsumer;
 var path = __webpack_require__(4);
 
 var fs;
@@ -22512,7 +22526,7 @@ exports.install = function(options) {
 
 
 /***/ }),
-/* 563 */
+/* 564 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -22521,12 +22535,12 @@ exports.install = function(options) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 exports.SourceMapGenerator = __webpack_require__(238).SourceMapGenerator;
-exports.SourceMapConsumer = __webpack_require__(566).SourceMapConsumer;
-exports.SourceNode = __webpack_require__(569).SourceNode;
+exports.SourceMapConsumer = __webpack_require__(567).SourceMapConsumer;
+exports.SourceNode = __webpack_require__(570).SourceNode;
 
 
 /***/ }),
-/* 564 */
+/* 565 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22599,7 +22613,7 @@ exports.decode = function (charCode) {
 
 
 /***/ }),
-/* 565 */
+/* 566 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22684,7 +22698,7 @@ exports.MappingList = MappingList;
 
 
 /***/ }),
-/* 566 */
+/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22695,10 +22709,10 @@ exports.MappingList = MappingList;
  */
 
 var util = __webpack_require__(83);
-var binarySearch = __webpack_require__(567);
+var binarySearch = __webpack_require__(568);
 var ArraySet = __webpack_require__(240).ArraySet;
 var base64VLQ = __webpack_require__(239);
-var quickSort = __webpack_require__(568).quickSort;
+var quickSort = __webpack_require__(569).quickSort;
 
 function SourceMapConsumer(aSourceMap) {
   var sourceMap = aSourceMap;
@@ -23772,7 +23786,7 @@ exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
 
 
 /***/ }),
-/* 567 */
+/* 568 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -23889,7 +23903,7 @@ exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
 
 
 /***/ }),
-/* 568 */
+/* 569 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -24009,7 +24023,7 @@ exports.quickSort = function (ary, comparator) {
 
 
 /***/ }),
-/* 569 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -24428,14 +24442,14 @@ exports.SourceNode = SourceNode;
 
 
 /***/ }),
-/* 570 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 const electron = __webpack_require__(59);
-const localShortcut = __webpack_require__(571);
-const isDev = __webpack_require__(582);
+const localShortcut = __webpack_require__(572);
+const isDev = __webpack_require__(583);
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -24532,16 +24546,16 @@ module.exports.openDevTools = openDevTools;
 
 
 /***/ }),
-/* 571 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 const {app, BrowserWindow} = __webpack_require__(59);
-const isAccelerator = __webpack_require__(572);
-const equals = __webpack_require__(573);
-const {toKeyEvent} = __webpack_require__(574);
-const _debug = __webpack_require__(575);
+const isAccelerator = __webpack_require__(573);
+const equals = __webpack_require__(574);
+const {toKeyEvent} = __webpack_require__(575);
+const _debug = __webpack_require__(576);
 
 const debug = _debug('electron-localshortcut');
 
@@ -24863,7 +24877,7 @@ module.exports = {
 
 
 /***/ }),
-/* 572 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24891,7 +24905,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 573 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24937,7 +24951,7 @@ module.exports = areEqual;
 
 
 /***/ }),
-/* 574 */
+/* 575 */
 /***/ (function(module, exports) {
 
 const modifiers = /^(CommandOrControl|CmdOrCtrl|Command|Cmd|Control|Ctrl|AltGr|Option|Alt|Shift|Super)/i;
@@ -25235,7 +25249,7 @@ module.exports = {
 
 
 /***/ }),
-/* 575 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -25244,14 +25258,14 @@ module.exports = {
  */
 
 if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
-	module.exports = __webpack_require__(576);
+	module.exports = __webpack_require__(577);
 } else {
-	module.exports = __webpack_require__(578);
+	module.exports = __webpack_require__(579);
 }
 
 
 /***/ }),
-/* 576 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-env browser */
@@ -25526,7 +25540,7 @@ formatters.j = function (v) {
 
 
 /***/ }),
-/* 577 */
+/* 578 */
 /***/ (function(module, exports) {
 
 /**
@@ -25694,14 +25708,14 @@ function plural(ms, msAbs, n, name) {
 
 
 /***/ }),
-/* 578 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-const tty = __webpack_require__(579);
+const tty = __webpack_require__(580);
 const util = __webpack_require__(81);
 
 /**
@@ -25728,7 +25742,7 @@ exports.colors = [6, 2, 3, 4, 5, 1];
 try {
 	// Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
 	// eslint-disable-next-line import/no-extraneous-dependencies
-	const supportsColor = __webpack_require__(580);
+	const supportsColor = __webpack_require__(581);
 
 	if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
 		exports.colors = [
@@ -25963,19 +25977,19 @@ formatters.O = function (v) {
 
 
 /***/ }),
-/* 579 */
+/* 580 */
 /***/ (function(module, exports) {
 
 module.exports = require("tty");
 
 /***/ }),
-/* 580 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 const os = __webpack_require__(144);
-const hasFlag = __webpack_require__(581);
+const hasFlag = __webpack_require__(582);
 
 const env = Object({"NODE_ENV":"production"});
 
@@ -26107,7 +26121,7 @@ module.exports = {
 
 
 /***/ }),
-/* 581 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26122,7 +26136,7 @@ module.exports = (flag, argv) => {
 
 
 /***/ }),
-/* 582 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26134,7 +26148,7 @@ module.exports = isEnvSet ? getFromEnv : (process.defaultApp || /node_modules[\\
 
 
 /***/ }),
-/* 583 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26159,11 +26173,11 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _semver = __webpack_require__(584);
+var _semver = __webpack_require__(585);
 
 var _semver2 = _interopRequireDefault(_semver);
 
-var _downloadChromeExtension = __webpack_require__(585);
+var _downloadChromeExtension = __webpack_require__(586);
 
 var _downloadChromeExtension2 = _interopRequireDefault(_downloadChromeExtension);
 
@@ -26270,7 +26284,7 @@ var MOBX_DEVTOOLS = exports.MOBX_DEVTOOLS = {
 };
 
 /***/ }),
-/* 584 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = SemVer
@@ -27759,7 +27773,7 @@ function coerce (version) {
 
 
 /***/ }),
-/* 585 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27777,11 +27791,11 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _rimraf = __webpack_require__(586);
+var _rimraf = __webpack_require__(587);
 
 var _rimraf2 = _interopRequireDefault(_rimraf);
 
-var _crossUnzip = __webpack_require__(596);
+var _crossUnzip = __webpack_require__(597);
 
 var _crossUnzip2 = _interopRequireDefault(_crossUnzip);
 
@@ -27830,7 +27844,7 @@ var downloadChromeExtension = function downloadChromeExtension(chromeStoreID, fo
 exports.default = downloadChromeExtension;
 
 /***/ }),
-/* 586 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = rimraf
@@ -28208,7 +28222,7 @@ function rmkidsSync (p, options) {
 
 
 /***/ }),
-/* 587 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -28517,11 +28531,11 @@ exports.realpath = function realpath(p, cache, cb) {
 
 
 /***/ }),
-/* 588 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var concatMap = __webpack_require__(589);
-var balanced = __webpack_require__(590);
+var concatMap = __webpack_require__(590);
+var balanced = __webpack_require__(591);
 
 module.exports = expandTop;
 
@@ -28724,7 +28738,7 @@ function expand(str, isTop) {
 
 
 /***/ }),
-/* 589 */
+/* 590 */
 /***/ (function(module, exports) {
 
 module.exports = function (xs, fn) {
@@ -28743,7 +28757,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 590 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28812,7 +28826,7 @@ function range(a, b, str) {
 
 
 /***/ }),
-/* 591 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
@@ -28822,12 +28836,12 @@ try {
   module.exports = util.inherits;
 } catch (e) {
   /* istanbul ignore next */
-  module.exports = __webpack_require__(592);
+  module.exports = __webpack_require__(593);
 }
 
 
 /***/ }),
-/* 592 */
+/* 593 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -28860,13 +28874,13 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 593 */
+/* 594 */
 /***/ (function(module, exports) {
 
 module.exports = require("events");
 
 /***/ }),
-/* 594 */
+/* 595 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = globSync
@@ -29355,7 +29369,7 @@ GlobSync.prototype._makeAbs = function (f) {
 
 
 /***/ }),
-/* 595 */
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var wrappy = __webpack_require__(247)
@@ -29415,7 +29429,7 @@ function slice (args) {
 
 
 /***/ }),
-/* 596 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29431,7 +29445,7 @@ module.exports = unzip
 
 // https://github.com/fritx/win-7zip
 function forWin32 (inPath, outPath, callback) {
-  var _7z = __webpack_require__(597)['7z']
+  var _7z = __webpack_require__(598)['7z']
 
   // very 奇葩
   // eg. 7z x archive.zip -oc:\Doc
@@ -29474,11 +29488,11 @@ function onceify (fn) {
 
 
 /***/ }),
-/* 597 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var resolve = __webpack_require__(4).resolve
-var bin = __webpack_require__(598).bin
+var bin = __webpack_require__(599).bin
 
 module.exports = map_obj(bin, function(v){
   return resolve(__dirname, v)
@@ -29493,13 +29507,13 @@ function map_obj(obj, fn){
 
 
 /***/ }),
-/* 598 */
+/* 599 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Fri Mar 11 2022 14:02:28 GMT+0800 (China Standard Time)","_from":"7zip@0.0.6","_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz"}
 
 /***/ }),
-/* 599 */
+/* 600 */
 /***/ (function(module, exports) {
 
 module.exports = require("https");
