@@ -103,8 +103,29 @@ class AppRemote {
 			console.log("receive-client-upgrade");
 		});
 
+    ipcMain.on("syncPrivateServerConfig", (event, data) => {
+      const config = me.getPrivateConfig();
+      console.log('syncPrivateServerConfig', config);
+      me.mainWindow.webContents.send("privateServerConfig", config);
+      event.returnValue = config;
+    });
+
 	}
 
+  getPrivateConfig(){
+    const devPath = path.resolve(__dirname, "../../server.json");
+    const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
+    let privateConfig = {};
+
+    if(fs.existsSync(devPath)){
+      privateConfig = fs.readFileSync(devPath, "utf-8");
+    }
+    else if(fs.existsSync(prodPath)){
+      privateConfig = fs.readFileSync(prodPath, "utf-8");
+    }
+    return typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig
+  }
+  
 	init(entryPath){
 		if(!entryPath){
 			throw new Error("Argument entryPath must be set on init app-remote.");
@@ -253,17 +274,8 @@ class AppRemote {
 			if(options.onLoad){
 				options.onLoad(browserWindow);
 			}
-			const devPath = path.resolve(__dirname, "../../server.json");
-			const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
-			let privateConfig = {};
-
-			if(fs.existsSync(devPath)){
-				privateConfig = fs.readFileSync(devPath, "utf-8");
-			}
-			else if(fs.existsSync(prodPath)){
-				privateConfig = fs.readFileSync(prodPath, "utf-8");
-			}
-			browserWindow.webContents.send("privateServerConfig", typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig);
+			const config = this.getPrivateConfig();
+			browserWindow.webContents.send("privateServerConfig", config);
 		});
 
 		let url = options.url;

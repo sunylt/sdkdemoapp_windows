@@ -13,6 +13,7 @@ import api from "@/api";
 import _ from "underscore";
 import ROUTES from "../common/routes";
 import { conversationOfSelect } from "../../stores/actions";
+import { ipcRenderer } from "electron";
 // var fs = require("fs-extra");
 
 // const { remote } = require("electron");
@@ -63,11 +64,13 @@ class MainView extends PureComponent {
 		} = this.props;
 		if(userInfo && userInfo.user && userInfo.user.id){
 			if(globals.emclient){
+				console.warn("globals emclient")
 				this.emclient = globals.emclient;
 			}
 			else{
 				console.log("new emclient");
-				this.emclient = utils.initEmclient();
+				const privateConfig = ipcRenderer.sendSync("syncPrivateServerConfig");
+				this.emclient = utils.initEmclient(privateConfig);
 			}
 			this.log = new easemob.EMLog();
 			this.error = new easemob.EMError();
@@ -374,6 +377,8 @@ class MainView extends PureComponent {
 			// 	this.emclient.logout();
 			// 	logout();
 			// }
+
+      console.log("userinfo", JSON.stringify(userInfo));
 		this.emclient.login( userInfo.user.easemobName, userInfo.user.easemobPwd).then((res) => {
 			console.log(`loginCode:${res.code}`);
 			// 获取好友列表

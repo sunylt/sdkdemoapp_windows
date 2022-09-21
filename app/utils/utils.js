@@ -4,10 +4,10 @@ let configDir = remote.app.getPath("userData");
 const easemob = require('../node/index');
 let privateServerConfig = {};
 
-ipcRenderer.on("privateServerConfig", (event, data) => {
-	console.log("privateServerConfig event", data);
-	privateServerConfig = data;
-});
+// ipcRenderer.on("privateServerConfig", (event, data) => {
+// 	console.log("privateServerConfig event", data);
+// 	privateServerConfig = data;
+// });
 
 const utils = {
 	latestFunc(){
@@ -19,7 +19,8 @@ const utils = {
 			};
 		};
 	},
-	initEmclient(){
+	initEmclient(config){
+		const _privateConfig = config ? config : privateServerConfig;
 		let userInfo = {
 				"user":{
 					"id":1,
@@ -47,18 +48,19 @@ const utils = {
 		fs.ensureDir(`${configDir}/easemob/pasteImage`, function(err){
 			console.log(err);
 		});
-		const appKey = privateServerConfig.usePrivateConfig ? privateServerConfig.appKey : (userInfo && userInfo.user.appkey)
+		const appKey = _privateConfig.usePrivateConfig ? _privateConfig.appKey : (userInfo && userInfo.user.appkey);
 		this.chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
 		this.chatConfigs.setDeleteMessageAsExitGroup(true);
 		const emclient = new easemob.EMClient(this.chatConfigs);
-		console.log(emclient, privateServerConfig);
-		if(privateServerConfig.usePrivateConfig){
+		console.warn("util init emclient", emclient, _privateConfig);
+		if(Object.keys(_privateConfig).length && _privateConfig.usePrivateConfig){
+			console.warn("use private config", _privateConfig);
 			let config = emclient.getChatConfigs();
 			let privateconfigs = config.privateConfigs();
 			privateconfigs.enableDns = false;
-			privateconfigs.chatServer = privateServerConfig.chatServer;
-			privateconfigs.chatPort = privateServerConfig.chatPort;
-			privateconfigs.restServer = privateServerConfig.restServer;
+			privateconfigs.chatServer = _privateConfig.chatServer;
+			privateconfigs.chatPort = _privateConfig.chatPort;
+			privateconfigs.restServer = _privateConfig.restServer;
 		}
 		// privateconfigs.resolverServer = "http://192.168.1.101:5002";
 		return emclient;

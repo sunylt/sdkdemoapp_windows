@@ -366,6 +366,10 @@ class ChatSendBoxView extends PureComponent {
 		this.sendMsg(videoMsgBody);
 	}
 
+	handleVideoCall = () => {
+		alert("invite");
+	}
+
 	// handleTest(){
 	// 	console.log("Aaa");
 	// 	// toastr.info("Are you the 6 fingered man?");
@@ -389,8 +393,12 @@ class ChatSendBoxView extends PureComponent {
 					{/* 上传文件 */}
 					<div title="文件"><Upload { ...uploadProps } data={ this.uploadAttachmentData }><Icon type="file" /></Upload></div>
 					{/* 上传视频 */}
-		            <div title="名片" onClick={this.clickCard} ></div>
+					{/* <div title="名片" onClick={this.clickCard} ></div> */}
 					{/* <div title="视频"><Upload { ...uploadProps } data={ this.uploadVideoData } accept="video/*"><Icon type="video-camera" /></Upload></div> */}
+					<div title="视频通话" onClick={ this.handleVideoCall }>
+						<Icon type="video-camera" />
+					</div>
+
 				</div>
 				<TextArea
 					placeholder="请输入..."
