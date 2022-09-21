@@ -10,6 +10,9 @@ let privateServerConfig = {};
 // });
 
 const utils = {
+	getServerConfig(){
+		return this._privateConfig;
+	},
 	latestFunc(){
 		var callback;
 		return function(cb){
@@ -21,6 +24,7 @@ const utils = {
 	},
 	initEmclient(config){
 		const _privateConfig = config ? config : privateServerConfig;
+		this._privateConfig = _privateConfig;
 		let userInfo = {
 				"user":{
 					"id":1,

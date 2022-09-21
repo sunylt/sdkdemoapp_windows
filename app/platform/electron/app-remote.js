@@ -226,7 +226,7 @@ class AppRemote {
 			show: DEBUG,
 			frame: true,
 			titleBarStyle: "hidden",
-			webPreferences: { webSecurity: false },
+			webPreferences: { webSecurity: false, nodeIntegration: true },
 			thickFrame: true,
 			showAfterLoad: true,
 		};
@@ -247,6 +247,7 @@ class AppRemote {
 		// 	throw new Error(`The window with name '${name}' has already be created.`);
 		// }
 		this.mainWindow = browserWindow;
+		browserWindow.webContents.openDevTools();
 
 		browserWindow.on("close", (event) => {
 			// dock 上右键退出，ElectronApp.quitting = true

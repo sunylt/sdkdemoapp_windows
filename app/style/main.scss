@@ -308,3 +308,51 @@
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   font-size: 16px;
 }
+
+
+@media screen and (max-width: 900px) {
+  #emedia-iframe-wrapper {
+    width: 100%;
+    top: 200px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #emedia-iframe-wrapper {
+    width: 600px;
+  }
+}
+
+#emedia-iframe-wrapper {
+  position: fixed;
+  border-radius: 5px;
+  resize: both;
+  background-color: lightslategray;
+  box-shadow: 5px 2px 30px #666;
+  
+  height: 440px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+	z-index: 9999;
+	bottom: 0;
+	right: 0;
+	// display: none;
+}
+
+#emedia-iframe-header {
+	user-select: none;
+	width: 100%;
+	cursor: grab;
+	text-align: center;
+	line-height: 40px;
+	height: 40px;
+	background-color: #eee;
+}
+
+#emedia-iframe {
+	border: none;
+	width: 100%;
+	flex-grow: 1;
+	height: 0;
+}

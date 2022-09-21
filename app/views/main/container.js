@@ -6,7 +6,7 @@ import ROUTES from "../common/routes";
 import ContactView from "../chats/contacts";
 import ConversationListView from "../chats/conversation";
 import GroupsView from "../chats/groups";
-import {Icon} from "antd"
+import { Icon } from "antd";
 import { ipcRenderer } from "electron";
 import { setsession } from "../../stores/actions";
 
@@ -54,19 +54,19 @@ class Container extends Component {
 	render(){
 		return (
 			<div className="app-main-container dock">
-			<Switch>
-				{
-					mainViews.map((item) => {
-						return (
-							<Route
-								path={ item.path } key={ item.path } exact={ true }
-								render={ () => {
-									return <item.view { ...this.props } />;
-								} }
-							/>);
-					})
-				}
-			</Switch>
+				<Switch>
+					{
+						mainViews.map((item) => {
+							return (
+								<Route
+									path={ item.path } key={ item.path } exact={ true }
+									render={ () => {
+										return <item.view { ...this.props } />;
+									} }
+								/>);
+						})
+					}
+				</Switch>
 			</div>
 		);
 	}

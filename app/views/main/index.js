@@ -6,6 +6,7 @@ import Navbar from "./navbar";
 import Container from "./container";
 import * as actionCreators from "@/stores/actions";
 import TopNav from "./topnav";
+import RtcView from "./rtc_view";
 import moment from "moment";
 import { utils } from "@/utils/utils";
 import { userChange } from "./receive_notice";
@@ -1032,6 +1033,7 @@ class MainView extends PureComponent {
 				<div className="nav-container">
 					<Navbar className="dock-left primary shadow-2" />
 					<Container />
+					<RtcView { ...this.props } />
 				</div>
 			</div>);
 
