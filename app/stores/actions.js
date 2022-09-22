@@ -400,3 +400,13 @@ export const addvideocontrol = payload => ({
 	type: "app/addvideocontrol",
 	payload
 })
+
+export const setRtcStatus = payload => ({
+	type: "rtc/setRtcStatus",
+	payload
+});
+
+export const setRtcData = payload => ({
+	type: "rtc/setRtcData",
+	payload
+});

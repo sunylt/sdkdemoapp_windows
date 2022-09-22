@@ -15,6 +15,7 @@ import _ from "underscore";
 import ROUTES from "../common/routes";
 import { conversationOfSelect } from "../../stores/actions";
 import { ipcRenderer } from "electron";
+import rtcHelper from "../../utils/rtc-helper";
 // var fs = require("fs-extra");
 
 // const { remote } = require("electron");
@@ -933,7 +934,10 @@ class MainView extends PureComponent {
 			setGroupChats,
 			globals,
 			selectNav,
-			unReadMsgCountAction
+			unReadMsgCountAction,
+			rtcInfo,
+			setRtcStatus,
+			setRtcData
 		} = this.props;
 		var conversation;
 		var conversationType;
@@ -960,6 +964,40 @@ class MainView extends PureComponent {
 			msg = message.bodies()[0];
 			console.log("type:" + msg.type());
 			switch(msg.type()){
+			case 0:
+				console.log("new txt message>>", message.ext(), msg);
+				const msgExt = Object.fromEntries(message.ext().map(item => [item.attr, item.value]));
+				console.log("new ext message", msgExt);
+				msgExt.conferenceNotice = message.getAttribute("conferenceNotice"); // value 是int ext()读取不到
+				if(msgExt.conferenceNotice){
+					if(msgExt.conferenceNotice == 1){ // 收到新的音视频邀请
+						if(rtcInfo.setRtcStatus == 0){ // 无音视频通话才处理
+							setRtcStatus(3);
+							setRtcData(msgExt);
+						}
+						else{
+							// todo 通知对方当前在忙
+						}
+					}
+					else if(msgExt.conferenceNotice == 2){ // 被邀请人同意加入
+						if(msgExt.conferenceId === rtcInfo.conferenceId){
+							setRtcStatus(2);
+						}
+					}
+					else if(msgExt.conferenceNotice == 3){ // 被邀请人拒绝加入
+						if(msgExt.conferenceId === rtcInfo.conferenceId){
+							setRtcStatus(0);
+							rtcHelper.service.exit();
+						}
+					}
+					else if(msgExt.conferenceNotice == 4){ // 邀请人取消发起音视频
+						if(msgExt.conferenceId === rtcInfo.conferenceId){
+							setRtcStatus(0);
+							setRtcData({});
+						}
+					}
+				}
+				break;
 			case 1: // image message
 				me.chatManager.downloadMessageAttachments(message);
 				me.chatManager.downloadMessageThumbnail(message);
@@ -1033,7 +1071,7 @@ class MainView extends PureComponent {
 				<div className="nav-container">
 					<Navbar className="dock-left primary shadow-2" />
 					<Container />
-					<RtcView { ...this.props } />
+					<RtcView />
 				</div>
 			</div>);
 
@@ -1049,6 +1087,7 @@ const mapStateToProps = state => ({
 	selectMember: state.selectMember,
 	memberOfSelect: state.memberOfSelect,
 	msgsOfConversation: state.msgsOfConversation,
-	selectNav:state.selectNav
+	selectNav:state.selectNav,
+	rtcInfo: state.rtcInfo
 });
 export default withRouter(connect(mapStateToProps, actionCreators)(MainView));

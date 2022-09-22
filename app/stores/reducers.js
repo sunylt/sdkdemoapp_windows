@@ -612,6 +612,19 @@ export const publicGroup = (state = [], { type, payload, meta }) => {
 	}
 };
 
+
+// status 0无音视频  1发起邀请中 2通话中 3被邀请中
+export const rtcInfo = (state = { status: 0, data: {} }, { type, payload }) => {
+	switch(type){
+	case "rtc/setRtcStatus":
+		return { ...state, status: payload };
+	case "rtc/setRtcData":
+		return { ...state, data: payload };
+	default:
+		return state;
+	}
+};
+
 export default combineReducers({
 	globals,
 	networkConnection,
@@ -640,5 +653,6 @@ export default combineReducers({
 	allContacts,
 	allGroupChats,
 	isSelectCovGroup,
-	publicGroup
+	publicGroup,
+	rtcInfo
 });

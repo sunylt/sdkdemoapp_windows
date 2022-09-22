@@ -1,152 +1,203 @@
 import React from "react";
 import { connect } from "react-redux";
-import EmediaPlugin from "@/utils/EmediaPlugin";
+import * as actionCreators from "@/stores/actions";
 import { utils } from "../../utils/utils";
-
-// import MultiAVActions from "@/redux/MultiAVRedux";
-// import MessageActions from "@/redux/MessageRedux";
-
-export const RtcManager = {
-	config: {},
-	userId: "", // 当前用户id
-	userSig: "", // 当前用户sig
-
-	/*
-	userId 用户id
-	chatType 聊天类型
-	*/
-	inviteeInfo: null, // 当前被邀请人信息，结构如上
-
-	/*
-	conferenceNotice，int类型，1，会议邀请；2，用户加入（1v1）；1邀请，2加入，3拒接，4取消;
-	conferenceId,String类型,会议roomId;
-	isGroupChat，boolean类型true/false；
-	isVideoOff，boolean类型true/false；
-	fromNickName，String类型，邀请人昵称；
-	*/
-
-	rtcInfo: null, // 当前接受到的会议信息， 结构如上
-
-	init(userId, token){
-		this.userId = userId;
-		this.token = token;
-		this.getUserSig(userId).then((res) => {
-			this.userSig = res;
-		});
-		this.emediaPlugin = new EmediaPlugin({
-			mode: "iframe",
-			iframeSrc: `${this.config.rtcServer}/emedia-app/plugin.html`,
-			serviceURL: this.config.rtcServer,
-			// success: function(){},
-			listeners: {
-				onMeExit: () => {
-					document.querySelector("#emedia-iframe-wrapper").style.display = "none";
-				},
-				onAddMember(){
-					console.log("some one ad。。。d");
-				},
-				onRemoveMemeber(){
-					console.log("some one remove");
-				}
-			}
-		});
-		this.setButtons();
-	},
-	showIframe(){
-		document.querySelector("#emedia-iframe-wrapper").style.display = "flex";
-	},
-	hideIframe(){
-		document.querySelector("#emedia-iframe-wrapper").style.display = "none";
-	},
-	setButtons(){
-		const me = this;
-		const button = document.createElement("span");
-		button.style.position = "absolute";
-		button.style.right = "10px";
-		button.style.top = "6px";
-		button.style.fontSize = "20px";
-		button.style.cursor = "pointer";
-		button.innerText = "☒";
-		button.title = "退出当前房间";
-		document.querySelector("#emedia-iframe-wrapper").appendChild(button);
-		button.addEventListener("click", function(){
-			me.emediaPlugin.exit();
-			me.hideIframe();
-		});
-	},
-	getUserSig(userId){
-		const { rtcSigUrl, rtcServer, rtcAppID, rtcAppKey } = this.config;
-		return fetch(`${rtcSigUrl || rtcServer}/management/room/player/usersig?name=${userId}&sdkAppId=${rtcAppID}&sdkAppKey=${rtcAppKey}`)
-		.then(res => res.text());
-	},
-	// getUserSig: function(userId){
-	// 	const {rtcSigUrl, rtcServer, rtcAppID, rtcAppKey, restServer, appkey} = WebIM.config
-	// 	const [orgName, appName] = appkey.split("#")
-	// 	return fetch(`${rtcSigUrl || rtcServer}/emedia/get_usersig_for_im?orgName=${orgName}&appName=${appName}&restDomain=${restServer}&userId=${userId}&token=${this.token}`)
-	// 	.then(res => res.json()).then(res => res.userSig)
-	// },
-	createConference(callback){
-		const me = this;
-		const roomId = `rtc_room_${this.userId}_${+new Date()}`;
-		me.emediaPlugin.joinRoom({
-			room_id: roomId,
-			user_sig: this.userSig,
-			user_id: this.userId,
-			app_id: this.config.rtcAppID
-		})
-		.then((res) => {
-			callback(roomId, this.userId);
-		})
-		.catch((e) => {
-			console.log("加入房间失败", e);
-		});
-	},
-	joinConference(callback){
-		const me = this;
-		console.log(this.rtcInfo);
-		me.emediaPlugin.joinRoom({
-			room_id: this.rtcInfo.conferenceId,
-			user_sig: this.userSig,
-			user_id: this.userId,
-			app_id: this.config.rtcAppID
-		}).then((res) => {
-			callback(res);
-		})
-		.catch((e) => {
-			console.log("加入房间失败", e);
-		});
-	}
-};
-
+import rtc from "../../utils/rtc-helper";
 
 class RtcView extends React.Component {
+
+	state = {
+		aoff: false,
+		voff: false,
+		isShare: false
+	}
+
+	sendTextMsg(conversationId, chatType, msg, ext){
+		const {
+			globals,
+			sendMsg,
+			userInfo,
+			setNotice,
+			networkStatus,
+			conversations
+		} = this.props;
+		let me = this;
+		if(networkStatus){
+			setNotice("网络连接已断开，无法发送消息，请检查网络状态后再次尝试。", "fail");
+			return;
+		}
+		let atListEasemobName = [];
+		let atList;
+		let conversation;
+
+		let emCallback = globals.emCallback;
+		const textMsgBody = new globals.easemob.EMTextMessageBody(msg);
+		let sendMessage = globals.easemob.createSendMessage((userInfo && userInfo.user.easemobName), conversationId, textMsgBody);
+		let textareaVal = this.input ? this.input.textAreaRef.value : "";
+		
+		if(ext && Object.keys(ext).length){
+			Object.keys(ext).forEach(
+				attr => sendMessage[typeof ext[attr] === "object" ? "setJsonAttribute" : "setAttribute"](attr, ext[attr])
+			);
+		}
+		// 群聊需要设置 setChatType(1) 和 setTo(groupId)
+		if(chatType == 1){
+			if(textareaVal.indexOf("@所有成员") > -1){
+				sendMessage.setAttribute("em_at_list", "all");
+			}
+			else{
+				let atMembersOfGroup;
+				let admins = globals.groupManager.groupWithId(conversationId).groupAdmins();
+				let members = globals.groupManager.groupWithId(conversationId).groupMembers();
+				atMembersOfGroup = admins.concat(members);
+				_.map(textareaVal.split("@"), function(member){
+					atList = _.find(atMembersOfGroup, function(m){
+						return m == member.split(" ")[0];
+					});
+					atList && atListEasemobName.push(`"${atList.id}"`);
+				});
+				atListEasemobName.length && sendMessage.setJsonAttribute("em_at_list", `[${atListEasemobName}]`);
+			}
+			sendMessage.setChatType(1);
+			sendMessage.setTo(conversationId);
+		}
+
+		emCallback.onSuccess(() => {
+			console.log("emCallback call back success");
+			if(me.cfr){
+				console.log(sendMessage);
+				console.log(sendMessage.msgId());
+				conversation = globals.chatManager.conversationWithType(conversationId, chatType);
+				conversation.removeMessage(sendMessage.msgId());
+			}
+			return true;
+		});
+		emCallback.onFail((error) => {
+			console.log("emCallback call back fail");
+			console.log(error.description);
+			console.log(error.errorCode);
+			return true;
+		});
+		emCallback.onProgress((progress) => {
+			console.log(progress);
+			console.log("call back progress");
+		});
+		sendMessage.setCallback(emCallback);
+		globals.chatManager.sendMessage(sendMessage);
+		sendMsg({ id: conversationId, msg: sendMessage, conversation: conversations[conversationId] });
+	}
+
+	handleAccept = ({ conferenceId, conversationId, isGroupChat }) => {
+		rtc.joinRoom(conferenceId).then(() => {
+			this.props.setRtcStatus(2);
+			this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+		});
+	}
+
+	handleRefuse =  ({ conferenceId, conversationId, isGroupChat }) => {
+		this.props.setRtcStatus(0);
+		this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "拒接接受视频邀请", { conferenceNotice: 3 });
+	}
+
+	handleLeaveRoom = ({ invitee, chatType, conferenceId, fromNickName }) => {
+		rtc.service.exit();
+		if(this.props.rtcInfo.status == 1){
+			this.sendTextMsg(invitee, chatType, "取消音视频", {
+				conferenceNotice: 4,
+				conferenceId,
+				isGroupChat: !!chatType,
+				fromNickName
+			});
+		}
+
+		// eslint-disable-next-line no-invalid-this
+		this.props.setRtcStatus(0);
+	}
+
+	handleDestroyRoom = () => {
+		rtc.service.exit(true);
+	}
+
+	handleShareDesktopToggle = () => {
+		rtc.shareDesktopToggle();
+	}
+
+	handleToggleVideo = () => {
+		const result = rtc.toggleVideo();
+		// eslint-disable-next-line no-invalid-this
+		this.setState({
+			voff: result
+		});
+	}
+
+	handleToggleAudio = () => {
+		const result = rtc.toggleAudio();
+		// eslint-disable-next-line no-invalid-this
+		this.setState({
+			aoff: result
+		});
+	}
+
 	componentDidMount(){
-		const privateConfig = utils.getServerConfig();
-		RtcManager.config = { ...privateConfig };
-		console.log(this.props, RtcManager);
-		RtcManager.init(this.props.userInfo.user.easemobName, "");
+		const { easemobName } = this.props.userInfo.user;
+		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
+		rtc.init({ userId: easemobName, rtcAppId, rtcAppKey, rtcServer });
+		rtc.render(document.querySelector(".rtc-meeting-view"));
 	}
 	render(){
-		return <div>he;l</div>;
+		console.log("rtc-view>>>", this.props);
+		const { rtcInfo } = this.props;
+		const { voff, aoff } = this.state;
+		return (
+			<div style={ { display: !rtcInfo.status ? "none" : "block" } }>
+				{
+					rtcInfo.status === 3 ? <div className="rtc-invite-view">
+						<p>{rtcInfo.data.fromNickName} 邀请您进行音视频通话</p>
+						<button onClick={ () => this.handleRefuse(rtcInfo.data) }>拒绝</button>
+						<button onClick={ () => this.handleAccept(rtcInfo.data) }>接听</button>
+					</div> : ""
+				}
+				<div className="rtc-meeting-view" style={ { display: [1, 2].includes(rtcInfo.status) ? "block" : "none" } }>
+					{rtcInfo.status === 1 ? <div className="invite-tip">正在邀请 {rtcInfo.data.invitee} 进行音视频通话</div> : ""}
+					<div id="rtc-toolbar">
+						<button onClick={ this.handleToggleAudio }>{aoff ? "取消" : ""}静音</button>
+						<button onClick={ this.handleToggleVideo }>{voff ? "打开" : "关闭"}图像</button>
+						<button onClick={ this.handleShareDesktopToggle }>共享/停止桌面</button>
+						<button onClick={ () => this.handleLeaveRoom(rtcInfo.data) }>挂断</button>
+						{/* <button onClick={ this.handleDestroyRoom }>解散会议</button> */}
+					</div>
+				</div>
+			</div>);
 	}
 }
 
-export default connect()(RtcView);
-
+const mapStateToProps = state => ({
+	globals: state.globals,
+	networkStatus: state.networkConnection,
+	conversations: state.conversations,
+	rtcInfo: state.rtcInfo,
+	userInfo: state.userInfo
+});
+const mapActionToProps = dispatch => ({
+	setRtcStatus: status => dispatch(actionCreators.setRtcStatus(status)),
+	sendMsg: payload => dispatch(actionCreators.sendMsg(payload)),
+	setNotice: payload => dispatch(actionCreators.setNotice(payload))
+});
+export default connect(mapStateToProps, mapActionToProps)(RtcView);
 
 // class RtcInviteView extends React.Component {
 	
 // 	componentDidMount(){
 // 		const { username, token } = this.props;
-// 		RtcManager.init(username, token);
+// 		rtc.init(username, token);
 // 	}
 
 // 	accept = () => {
 // 		const _this = this;
-// 		const { rtcInfo } = RtcManager;
+// 		const { rtcInfo } = rtc;
 // 		_this.props.hideInviteView();
 // 		document.querySelector("#emedia-iframe-wrapper").style.display = "flex";
-// 		RtcManager.joinConference(() => {
+// 		rtc.joinConference(() => {
 // 			if(!rtcInfo.isGroupChat){
 // 				_this.props.sendTxtMessage(rtcInfo.isGroupChat ? "groupchat" : "chat", rtcInfo.fromNickName, {
 // 					msg: "已接受音视频邀请",
@@ -159,7 +210,7 @@ export default connect()(RtcView);
 // 	}
 
 // 	refuse = () => {
-// 		const { isGroupChat, fromNickName } = RtcManager.rtcInfo;
+// 		const { isGroupChat, fromNickName } = rtc.rtcInfo;
 // 		if(!isGroupChat){
 // 			this.props.sendTxtMessage(isGroupChat ? "groupchat" : "chat", fromNickName, {
 // 				msg: "拒绝接受音视频",
@@ -173,7 +224,7 @@ export default connect()(RtcView);
 
 // 	cancel = () => {
 // 		const me = this;
-// 		const { userId, chatType } = RtcManager.inviteeInfo;
+// 		const { userId, chatType } = rtc.inviteeInfo;
 // 		this.props.sendTxtMessage(chatType, userId, {
 // 			msg: "取消音视频",
 // 			ext: {
@@ -183,7 +234,7 @@ export default connect()(RtcView);
 // 				fromNickName: this.props.username
 // 			}
 // 		});
-// 		RtcManager.emediaPlugin.exit(true);
+// 		rtc.emediaPlugin.exit(true);
 // 	}
 
 // 	close = () => {

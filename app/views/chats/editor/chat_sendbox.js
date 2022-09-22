@@ -8,6 +8,7 @@ import uuid from "uuid";
 import _ from "underscore";
 import { ipcRenderer } from "electron";
 import { audioAndVideo } from "@/views/main/receive_audio_video";
+import rtc from "../../../utils/rtc-helper";
 // import $ from "jquery";
 const { remote } = require("electron");
 let configDir = remote.app.getPath("userData");
@@ -193,7 +194,7 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	// 发送消息
-	sendMsg(msg, conversationId, cfr){
+	sendMsg(msg, conversationId, cfr, ext){
 		var {
 			globals,
 			selectConversationId,
@@ -221,6 +222,18 @@ class ChatSendBoxView extends PureComponent {
 		let textareaVal = this.input ? this.input.textAreaRef.value : "";
 		let chatType = isSelectCovGroup;
 		this.cfr = cfr;
+		if(ext && Object.keys(ext).length){
+			// "conferenceNotice";//1,邀请；2，加入；3,拒接；4,取消；5.异常；
+			// conferenceNotice: 1,//int类型，1，会议邀请；2，用户加入（1v1）；
+			// conferenceId: roomId, ///String类型,会议roomId;
+			// isGroupChat: true, //boolean类型true/false；
+			// isVideoOff: false, //boolean类型true/false；
+			// fromNickName: fromUser,//String类型，邀请人昵称；
+			// conversationId: gid
+			Object.keys(ext).forEach(
+				attr => sendMessage[typeof ext[attr] === "object" ? "setJsonAttribute" : "setAttribute"](attr, ext[attr])
+			);
+		}
 		// 群聊需要设置 setChatType(1) 和 setTo(groupId)
 		if(chatType == 1){
 			if(textareaVal.indexOf("@所有成员") > -1){
@@ -367,7 +380,29 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	handleVideoCall = () => {
-		alert("invite");
+		// eslint-disable-next-line no-invalid-this
+		const { easemobName } = this.props.userInfo.user;
+		// eslint-disable-next-line no-invalid-this
+		const { globals, selectConversationId } = this.props;
+		const roomId = `rtc_room_${easemobName}_${+new Date()}`;
+		// eslint-disable-next-line no-invalid-this
+		this.props.setRtcStatus(1);
+		// eslint-disable-next-line no-invalid-this
+		this.props.setRtcData({ invitee: selectConversationId,  chatType: this.props.isSelectCovGroup, conferenceId: roomId, fromNickName: easemobName });
+		rtc.joinRoom(roomId).then(() => {
+			// eslint-disable-next-line no-invalid-this
+			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
+			// eslint-disable-next-line no-invalid-this
+			this.sendMsg(textMsgBody, "", "", {
+				conferenceNotice: 1, // int类型，1，会议邀请；2，用户加入（1v1）；
+				conferenceId: roomId, // String类型,会议roomId;
+				isGroupChat: false, // boolean类型true/false；
+				isVideoOff: false, // boolean类型true/false；
+				fromNickName: easemobName, // String类型，邀请人昵称；
+				conversationId: easemobName
+			});
+		});
+		
 	}
 
 	// handleTest(){
@@ -432,13 +467,15 @@ class ChatSendBoxView extends PureComponent {
 
 	}
 }
+
+console.log(actionCreators)
 const mapStateToProps = state => ({
 	selectConversationId: state.selectConversationId,
 	isSelectCovGroup: state.isSelectCovGroup,
 	globals: state.globals,
 	userInfo: state.userInfo,
 	allMembersInfo: state.allMembersInfo,
-	userInfo: state.userInfo,
+	// userInfo: state.userInfo,
 	// memberInfo: selectors.getGroupMembers(state),
 	networkStatus: state.networkConnection,
 	conversations: state.conversations
