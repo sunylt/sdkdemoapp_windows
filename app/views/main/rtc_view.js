@@ -112,6 +112,7 @@ class RtcView extends React.Component {
 
 		// eslint-disable-next-line no-invalid-this
 		this.props.setRtcStatus(0);
+		this.props.setRtcData({});
 	}
 
 	handleDestroyRoom = () => {
@@ -180,102 +181,8 @@ const mapStateToProps = state => ({
 });
 const mapActionToProps = dispatch => ({
 	setRtcStatus: status => dispatch(actionCreators.setRtcStatus(status)),
+	setRtcData: status => dispatch(actionCreators.setRtcData(status)),
 	sendMsg: payload => dispatch(actionCreators.sendMsg(payload)),
 	setNotice: payload => dispatch(actionCreators.setNotice(payload))
 });
 export default connect(mapStateToProps, mapActionToProps)(RtcView);
-
-// class RtcInviteView extends React.Component {
-	
-// 	componentDidMount(){
-// 		const { username, token } = this.props;
-// 		rtc.init(username, token);
-// 	}
-
-// 	accept = () => {
-// 		const _this = this;
-// 		const { rtcInfo } = rtc;
-// 		_this.props.hideInviteView();
-// 		document.querySelector("#emedia-iframe-wrapper").style.display = "flex";
-// 		rtc.joinConference(() => {
-// 			if(!rtcInfo.isGroupChat){
-// 				_this.props.sendTxtMessage(rtcInfo.isGroupChat ? "groupchat" : "chat", rtcInfo.fromNickName, {
-// 					msg: "已接受音视频邀请",
-// 					ext: {
-// 						conferenceNotice: 2
-// 					}
-// 				});
-// 			}
-// 		});
-// 	}
-
-// 	refuse = () => {
-// 		const { isGroupChat, fromNickName } = rtc.rtcInfo;
-// 		if(!isGroupChat){
-// 			this.props.sendTxtMessage(isGroupChat ? "groupchat" : "chat", fromNickName, {
-// 				msg: "拒绝接受音视频",
-// 				ext: {
-// 					conferenceNotice: 3
-// 				}
-// 			});
-// 		}
-// 		this.props.hideInviteView();
-// 	}
-
-// 	cancel = () => {
-// 		const me = this;
-// 		const { userId, chatType } = rtc.inviteeInfo;
-// 		this.props.sendTxtMessage(chatType, userId, {
-// 			msg: "取消音视频",
-// 			ext: {
-// 				conferenceNotice: 4,
-// 				conferenceId: this.props.username,
-// 				isGroupChat: chatType !== "chat",
-// 				fromNickName: this.props.username
-// 			}
-// 		});
-// 		rtc.emediaPlugin.exit(true);
-// 	}
-
-// 	close = () => {
-// 		this.props.rtcStat === 1 ? this.cancel() : this.refuse();
-// 		this.props.hideInviteView();
-// 	}
-
-// 	render(){
-// 		const titleTop = ["", "等待对方接受音视频邀请", "邀请您进行音视频通话"];
-// 		return (
-// 			<div className="rtc-plugin" style={ { display: [1, 2].includes(this.props.rtcStat) ? "block" : "none" } }>
-// 				<div className="webim-rtc-video" style={ { width: "360px", height: "360px" } }>
-// 					<span>{titleTop[this.props.rtcStat]}</span>
-// 					<i
-// 						key="accept" onClick={ this.accept } className="font small accept"
-// 						style={ {
-// 							display: this.props.rtcStat === 2 ? "block" : "none",
-// 							left: "6px",
-// 							right: "auto",
-// 							top: "auto",
-// 							bottom: "6px"
-// 						} }
-// 					>z</i>
-// 					<i
-// 						key="close" onClick={ this.close } className="font small close"
-// 						style={ { left: "auto", right: "6px", top: "auto", bottom: "6px" } }
-// 					>Q</i>
-// 				</div>
-// 			</div>
-// 		);
-// 	}
-// }
-
-// export default connect(
-// 	(state, props) => ({
-// 		username: state.login.username,
-// 		token: state.login.token,
-// 		rtcStat: state.multiAV.rtcStat
-// 	}),
-// 	dispatch => ({
-// 		sendTxtMessage: (chatType, id, message) => dispatch(MessageActions.sendTxtMessage(chatType, id, message)),
-// 		hideInviteView: () => dispatch(MultiAVActions.setRtcStat(0)),
-// 	})
-// )(RtcInviteView)
