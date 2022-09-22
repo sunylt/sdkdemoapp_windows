@@ -971,27 +971,24 @@ class MainView extends PureComponent {
 				msgExt.conferenceNotice = message.getAttribute("conferenceNotice"); // value 是int ext()读取不到
 				if(msgExt.conferenceNotice){
 					if(msgExt.conferenceNotice == 1){ // 收到新的音视频邀请
-						if(rtcInfo.setRtcStatus == 0){ // 无音视频通话才处理
+						if(rtcInfo.status == 0){ // 无音视频通话才处理
 							setRtcStatus(3);
 							setRtcData(msgExt);
 						}
 						else{
 							// todo 通知对方当前在忙
+							console.log("notice inviter busy");
 						}
 					}
 					else if(msgExt.conferenceNotice == 2){ // 被邀请人同意加入
-						if(msgExt.conferenceId === rtcInfo.conferenceId){
-							setRtcStatus(2);
-						}
+						setRtcStatus(2);
 					}
 					else if(msgExt.conferenceNotice == 3){ // 被邀请人拒绝加入
-						if(msgExt.conferenceId === rtcInfo.conferenceId){
-							setRtcStatus(0);
-							rtcHelper.service.exit();
-						}
+						setRtcStatus(0);
+						rtcHelper.service.exit();
 					}
 					else if(msgExt.conferenceNotice == 4){ // 邀请人取消发起音视频
-						if(msgExt.conferenceId === rtcInfo.conferenceId){
+						if(msgExt.conferenceId === rtcInfo.data.conferenceId){
 							setRtcStatus(0);
 							setRtcData({});
 						}
