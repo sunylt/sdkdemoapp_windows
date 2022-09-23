@@ -40,6 +40,7 @@ cfg = merge([
 				"babel-polyfill",
 				"./app/index"
 			],
+			test: "./app/test"
 		},
 
 		output: {
