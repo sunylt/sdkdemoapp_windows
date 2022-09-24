@@ -13,6 +13,30 @@ const utils = {
 	getServerConfig(){
 		return this._privateConfig;
 	},
+	initRtcWindow(userId){
+		
+		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
+		return new Promise((resolve, reject) => {
+			const { winId, isNew } = ipcRenderer.sendSync("initRtcWindow");
+			const rtcWindow = remote.BrowserWindow.fromId(winId);
+
+			rtcWindow.webContents.once("did-finish-load", () => {
+				rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+				rtcWindow.show();
+				resolve(rtcWindow);
+			});
+			
+			if(!isNew){
+				rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+				rtcWindow.show();
+				resolve(rtcWindow);
+			}
+
+			if(!winId){
+				reject({ msg: "init rtc window fail." });
+			}
+		});
+	},
 	latestFunc(){
 		var callback;
 		return function(cb){

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "@/stores/actions";
 import { utils } from "../../utils/utils";
 import rtc from "../../utils/rtc-helper";
+import { ipcRenderer } from "electron";
 
 class RtcView extends React.Component {
 
@@ -88,62 +89,67 @@ class RtcView extends React.Component {
 	}
 
 	handleAccept = ({ conferenceId, conversationId, isGroupChat }) => {
-		rtc.joinRoom(conferenceId).then(() => {
+		// rtc.joinRoom(conferenceId).then(() => {
+		// 	this.props.setRtcStatus(2);
+		// 	this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+		// });
+		const { easemobName } = this.props.userInfo.user;
+		utils.initRtcWindow(easemobName).then((rtcWin) => {
+			rtcWin.webContents.send("joinRoom", { roomId: conferenceId });
 			this.props.setRtcStatus(2);
 			this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
 		});
 	}
 
-	handleRefuse =  ({ conferenceId, conversationId, isGroupChat }) => {
+	handleRefuse = ({ conferenceId, conversationId, isGroupChat }) => {
 		this.props.setRtcStatus(0);
 		this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "拒接接受视频邀请", { conferenceNotice: 3 });
 	}
 
-	handleLeaveRoom = ({ invitee, chatType, conferenceId, fromNickName }) => {
-		rtc.service.exit();
-		if(this.props.rtcInfo.status == 1){
-			this.sendTextMsg(invitee, chatType, "取消音视频", {
+	handleLeaveRoom = () => {
+		const { status, data } = this.props.rtcInfo;
+		
+		if(status == 1){
+			this.sendTextMsg(data.invitee, data.chatType, "取消音视频", {
 				conferenceNotice: 4,
-				conferenceId,
-				isGroupChat: !!chatType,
-				fromNickName
+				conferenceId: data.conferenceId,
+				isGroupChat: !!data.chatType,
+				fromNickName: data.fromNickName
 			});
 		}
-
-		// eslint-disable-next-line no-invalid-this
 		this.props.setRtcStatus(0);
 		this.props.setRtcData({});
+		ipcRenderer.send("closeRtcWindow");
 	}
 
-	handleDestroyRoom = () => {
-		rtc.service.exit(true);
-	}
+	// handleDestroyRoom = () => {
+	// 	rtc.service.exit(true);
+	// }
 
-	handleShareDesktopToggle = () => {
-		rtc.shareDesktopToggle();
-	}
+	// handleShareDesktopToggle = () => {
+	// 	rtc.shareDesktopToggle();
+	// }
 
-	handleToggleVideo = () => {
-		const result = rtc.toggleVideo();
-		// eslint-disable-next-line no-invalid-this
-		this.setState({
-			voff: result
-		});
-	}
+	// handleToggleVideo = () => {
+	// 	const result = rtc.toggleVideo();
+	// 	this.setState({
+	// 		voff: result
+	// 	});
+	// }
 
-	handleToggleAudio = () => {
-		const result = rtc.toggleAudio();
-		// eslint-disable-next-line no-invalid-this
-		this.setState({
-			aoff: result
-		});
-	}
+	// handleToggleAudio = () => {
+	// 	const result = rtc.toggleAudio();
+	// 	this.setState({
+	// 		aoff: result
+	// 	});
+	// }
 
-	componentDidMount(){
-		const { easemobName } = this.props.userInfo.user;
-		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
-		rtc.init({ userId: easemobName, rtcAppId, rtcAppKey, rtcServer });
-		rtc.render(document.querySelector(".rtc-meeting-view"));
+	componentDidMount = () => {
+		// const { easemobName } = this.props.userInfo.user;
+		// const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
+		// rtc.init({ userId: easemobName, rtcAppId, rtcAppKey, rtcServer });
+		// rtc.render(document.querySelector(".rtc-meeting-view"));
+		ipcRenderer.on("leaveRtcRoom", this.handleLeaveRoom);
 	}
 	render(){
 		console.log("rtc-view>>>", this.props);
@@ -158,16 +164,6 @@ class RtcView extends React.Component {
 						<button onClick={ () => this.handleAccept(rtcInfo.data) }>接听</button>
 					</div> : ""
 				}
-				<div className="rtc-meeting-view" style={ { display: [1, 2].includes(rtcInfo.status) ? "block" : "none" } }>
-					{rtcInfo.status === 1 ? <div className="invite-tip">正在邀请 {rtcInfo.data.invitee} 进行音视频通话</div> : ""}
-					<div id="rtc-toolbar">
-						<button onClick={ this.handleToggleAudio }>{aoff ? "取消" : ""}静音</button>
-						<button onClick={ this.handleToggleVideo }>{voff ? "打开" : "关闭"}图像</button>
-						<button onClick={ this.handleShareDesktopToggle }>共享/停止桌面</button>
-						<button onClick={ () => this.handleLeaveRoom(rtcInfo.data) }>挂断</button>
-						{/* <button onClick={ this.handleDestroyRoom }>解散会议</button> */}
-					</div>
-				</div>
 			</div>);
 	}
 }

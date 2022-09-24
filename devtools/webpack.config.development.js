@@ -40,7 +40,7 @@ cfg = merge([
 				"babel-polyfill",
 				"./app/index"
 			],
-			test: "./app/test"
+			rtc: "./app/rtc"
 		},
 
 		output: {

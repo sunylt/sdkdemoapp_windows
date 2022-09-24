@@ -32,6 +32,7 @@
 		"media/",
 		"index.html",
 		"video.html",
+		"rtc.html",
 		"main.js",
 		"package.json"
 	],

@@ -10,18 +10,35 @@ export default {
 	localSharedDesktopStream: null,
 	currentMainScreenItem: null,
 	cachedPlayers: [],
+	_isInited: false,
+	_handles: {},
 
+	on(eventType, handle){
+		this._handles[eventType] = handle;
+	},
+	off(eventType){
+		this._handles.delete(eventType);
+	},
+	emit(eventType, ...args){
+		if(this._handles[eventType]){
+			this._handles[eventType].apply(null, args);
+		}
+	},
 	query(selector){
 		var root = this.root || document;
 		return root.querySelector(selector);
 	},
-	async init({ rtcAppId, rtcAppKey, userId, rtcServer, userSig }){
+	init({ rtcAppId, rtcAppKey, userId, rtcServer, userSig }){
+		if(this._isInited){
+			return;
+		}
 		this.rtcServer = rtcServer;
 		this.rtcAppId = rtcAppId;
 		this.rtcAppKey = rtcAppKey;
 		this.userId = userId;
-		this.userSig = userSig || await this._fetchUserSig(userId);
+		this.userSig = userSig;
 		this.initRtcSDK();
+		this._isInited = true;
 	},
 	async _fetchUserSig(userId){
 		const { rtcServer, rtcAppId, rtcAppKey } = this;
@@ -41,11 +58,14 @@ export default {
 		}
 		const item = document.createElement("div");
 		const videoTag = document.createElement("video");
-		const nameTag = document.createElement("span");
 		item.id = id;
 		videoTag.autoplay = true;
 		videoTag.playsInline = true;
-		nameTag.innerText = name;
+		if(name){
+			const nameTag = document.createElement("span");
+			nameTag.innerText = name;
+			item.appendChild(nameTag);
+		}
 		if(id === "localstream"){
 			videoTag.muted = true;
 		}
@@ -53,7 +73,6 @@ export default {
 			this.swithVideoToMain(item.id);
 		});
 		item.appendChild(videoTag);
-		item.appendChild(nameTag);
 		this.videoList.appendChild(item);
 		return item;
 	},
@@ -71,7 +90,6 @@ export default {
 		this.currentMainScreenItem = item;
 	},
 	pushStream(containts, success = () => {}, fail = () => {}){
-
 		const _pubS = new this.service.AVPubstream({
 			containts,
 			aoff: 0,
@@ -83,10 +101,14 @@ export default {
 		);
 	},
 	joinRoom(roomId){
-		if(!roomId){
-			return false;
-		}
 		return new Promise(async (resolve, reject) => {
+			if(!roomId){
+				reject({ msg: "roomId error." });
+				return;
+			}
+			if(!this.userSig){
+				this.userSig = await this._fetchUserSig(this.userId);
+			}
 			const result = await this.getTicket(roomId);
 			if(result && result.ticket){
 				this.service.setup(result.ticket, this.userExtInfo || {});
@@ -133,10 +155,12 @@ export default {
 		const name = member.ext.nickname || member.nickName || member.name || member.memName;
 		// 成员播放器创建
 		this.createMiniPlayer(member.id, name);
+		this.emit("onAddMember", member);
 	},
 	onRemoveMember(member){
 		console.log("member remove>>>>", member);
 		this.removeVideoPlayer(member.id);
+		this.emit("onRemoveMember", member);
 	},
 	// 流的增加，仅用于统计人数，不处理流
 	onAddStream(stream){
@@ -144,7 +168,7 @@ export default {
 		console.log(`${new Date()}stream add >>>> `, stream);
 		const nickname = stream.located() ? "我" : stream.owner.ext.nickname || stream.owner.name;
 		if(stream.located() && stream.type == 0){
-			this.createMiniPlayer("localstream", `我(${nickname})`);
+			this.createMiniPlayer("localstream");
 			this.swithVideoToMain("localstream");
 		}
 		// 针对桌面共享单独处理

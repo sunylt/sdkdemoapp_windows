@@ -9,6 +9,7 @@ import _ from "underscore";
 import { ipcRenderer } from "electron";
 import { audioAndVideo } from "@/views/main/receive_audio_video";
 import rtc from "../../../utils/rtc-helper";
+import { utils } from "../../../utils/utils";
 // import $ from "jquery";
 const { remote } = require("electron");
 let configDir = remote.app.getPath("userData");
@@ -380,15 +381,34 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	handleVideoCall = () => {
-		// eslint-disable-next-line no-invalid-this
 		const { easemobName } = this.props.userInfo.user;
-		// eslint-disable-next-line no-invalid-this
 		const { globals, selectConversationId } = this.props;
 		const roomId = `rtc_room_${easemobName}_${+new Date()}`;
+
+		utils.initRtcWindow(easemobName).then((rtcWin) => {
+			console.log(`init rtc window done${new Date().getTime()}`, rtcWin);
+			rtcWin.webContents.send("joinRoom", { roomId, invitee: selectConversationId });
+			console.log(this);
+			this.props.setRtcStatus(1);
+			this.props.setRtcData({ invitee: selectConversationId,  chatType: this.props.isSelectCovGroup, conferenceId: roomId, fromNickName: easemobName });
+
+			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
+			
+			this.sendMsg(textMsgBody, "", "", {
+				conferenceNotice: 1, // int类型，1，会议邀请；2，用户加入（1v1）；
+				conferenceId: roomId, // String类型,会议roomId;
+				isGroupChat: false, // boolean类型true/false；
+				isVideoOff: false, // boolean类型true/false；
+				fromNickName: easemobName, // String类型，邀请人昵称；
+				conversationId: easemobName
+			});
+		});
+	
+		return;
 		// eslint-disable-next-line no-invalid-this
-		this.props.setRtcStatus(1);
+		
 		// eslint-disable-next-line no-invalid-this
-		this.props.setRtcData({ invitee: selectConversationId,  chatType: this.props.isSelectCovGroup, conferenceId: roomId, fromNickName: easemobName });
+		
 		rtc.joinRoom(roomId).then(() => {
 			// eslint-disable-next-line no-invalid-this
 			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");

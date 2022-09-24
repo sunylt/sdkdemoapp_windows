@@ -135,7 +135,7 @@ module.exports = {
         "no-eq-null":                   1,                  // null 必须 ===
         "vars-on-top":                  1,                  // 建议变量都定义在 scope 顶部
         "radix":                        1,                  // 建议 parseInt 带上进制参数
-        "no-invalid-this":              1,                  // 限制 this 的使用
+        "no-invalid-this":              0,                  // 限制 this 的使用
         "consistent-return":            1,                  // 建议统一 return
         "no-else-return":               1,                  // 建议统一 return
         "no-useless-return":            1,                  // 建议删除、合并没有意义的 return

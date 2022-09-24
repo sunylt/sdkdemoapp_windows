@@ -103,21 +103,74 @@ class AppRemote {
 			console.log("receive-client-upgrade");
 		});
 
-    ipcMain.on("syncPrivateServerConfig", (event, data) => {
-      const config = me.getPrivateConfig();
-      console.log('syncPrivateServerConfig', config);
-      me.mainWindow.webContents.send("privateServerConfig", config);
-      event.returnValue = config;
-    });
+		ipcMain.on("syncPrivateServerConfig", (event, data) => {
+			const config = me.getPrivateConfig();
+			console.log("syncPrivateServerConfig", config);
+			me.mainWindow.webContents.send("privateServerConfig", config);
+			event.returnValue = config;
+		});
 
+		ipcMain.on("initRtcWindow", (event, data) => {
+			console.log(me.rtcWindow);
+			if(!me.rtcWindow || me.rtcWindow.isDestroyed()){
+				console.log("create  new rtc window.");
+				this.createRtcWindow(data);
+				event.returnValue = { winId: me.rtcWindow.id, isNew: true };
+			}
+			else{
+				console.log("find exsit rtc window.");
+				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
+			}
+			
+			me.rtcWindow.webContents.openDevTools();
+			
+		});
+		ipcMain.on("closeRtcWindow", () => {
+			console.log("close rtc win");
+			if(me.rtcWindow){
+				me.rtcWindow.hide();
+			}
+		});
 	}
 
-  getPrivateConfig(){
-    const devPath = path.resolve(__dirname, "../../server.json");
-    const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
-    let privateConfig = {};
+	createRtcWindow(data){
+		const me = this;
+		me.rtcWindow = new BrowserWindow({
+			width: 400,
+			height: 550,
+			minWidth: 400,
+			minHeight: 550,
+			// frame: false,
+			resizable: true,
+			parent: me.mainWindow,
+			show: false,
+			movable: true,
+			// closable: true,
+			minimizable: true,
+			// title: "音视频通话",
+			webPreferences: {
+				nodeIntegration: true,
+				// enableRemoteModule: true,
+				webSecurity: false,
+				// preload: path.join(app.getAppPath(), '/dist/preLoad.js'), // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
+			}
+		});
 
-    if(fs.existsSync(devPath)){
+		// me.rtcWindow.webContents.on("did-finish-load", () => {
+		// 	me.rtcWindow.webContents.send("rtcInitData", data);
+		// });
+
+		console.log("rtcwindow load url", `file://${this.entryPath}/rtc.html`);
+		me.rtcWindow.loadURL(`file://${this.entryPath}/rtc.html`);
+	
+	}
+
+	getPrivateConfig(){
+		const devPath = path.resolve(__dirname, "../../server.json");
+		const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
+		let privateConfig = {};
+
+		if(fs.existsSync(devPath)){
       privateConfig = fs.readFileSync(devPath, "utf-8");
     }
     else if(fs.existsSync(prodPath)){

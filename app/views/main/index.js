@@ -985,7 +985,9 @@ class MainView extends PureComponent {
 					}
 					else if(msgExt.conferenceNotice == 3){ // 被邀请人拒绝加入
 						setRtcStatus(0);
-						rtcHelper.service.exit();
+						utils.initRtcWindow().then((rtcWin) => {
+							rtcWin.webContents.send("leaveRoom");
+						});
 					}
 					else if(msgExt.conferenceNotice == 4){ // 邀请人取消发起音视频
 						if(msgExt.conferenceId === rtcInfo.data.conferenceId){
