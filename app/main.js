@@ -218,13 +218,13 @@ module.exports = function (it) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nonEnumerableProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MAX_ARRAY_INDEX; });
 // Current version.
-var VERSION = '1.13.2';
+var VERSION = '1.13.4';
 
 // Establish the root object, `window` (`self`) in the browser, `global`
 // on the server, or `this` in some virtual machines. We use `self`
 // instead of `window` for `WebWorker` support.
-var root = typeof self == 'object' && self.self === self && self ||
-          typeof global == 'object' && global.global === global && global ||
+var root = (typeof self == 'object' && self.self === self && self) ||
+          (typeof global == 'object' && global.global === global && global) ||
           Function('return this')() ||
           {};
 
@@ -502,16 +502,35 @@ function patch (fs) {
 
   var fs$readdir = fs.readdir
   fs.readdir = readdir
+  var noReaddirOptionVersions = /^v[0-5]\./
   function readdir (path, options, cb) {
     if (typeof options === 'function')
       cb = options, options = null
 
+    var go$readdir = noReaddirOptionVersions.test(process.version)
+      ? function go$readdir (path, options, cb, startTime) {
+        return fs$readdir(path, fs$readdirCallback(
+          path, options, cb, startTime
+        ))
+      }
+      : function go$readdir (path, options, cb, startTime) {
+        return fs$readdir(path, options, fs$readdirCallback(
+          path, options, cb, startTime
+        ))
+      }
+
     return go$readdir(path, options, cb)
 
-    function go$readdir (path, options, cb, startTime) {
-      return fs$readdir(path, options, function (err, files) {
+    function fs$readdirCallback (path, options, cb, startTime) {
+      return function (err, files) {
         if (err && (err.code === 'EMFILE' || err.code === 'ENFILE'))
-          enqueue([go$readdir, [path, options, cb], err, startTime || Date.now(), Date.now()])
+          enqueue([
+            go$readdir,
+            [path, options, cb],
+            err,
+            startTime || Date.now(),
+            Date.now()
+          ])
         else {
           if (files && files.sort)
             files.sort()
@@ -519,7 +538,7 @@ function patch (fs) {
           if (typeof cb === 'function')
             cb.call(this, err, files)
         }
-      })
+      }
     }
   }
 
@@ -2172,7 +2191,7 @@ module.exports = require("electron");
 // Is a given variable an object?
 function isObject(obj) {
   var type = typeof obj;
-  return type === 'function' || type === 'object' && !!obj;
+  return type === 'function' || (type === 'object' && !!obj);
 }
 
 
@@ -4825,9 +4844,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Named Exports
 // =============
 
-//     Underscore.js 1.13.2
+//     Underscore.js 1.13.4
 //     https://underscorejs.org
-//     (c) 2009-2021 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
+//     (c) 2009-2022 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
 
 // Baseline setup.
@@ -7436,7 +7455,7 @@ function collectNonEnumProps(obj, keys) {
   keys = emulatedSet(keys);
   var nonEnumIdx = __WEBPACK_IMPORTED_MODULE_0__setup_js__["n" /* nonEnumerableProps */].length;
   var constructor = obj.constructor;
-  var proto = Object(__WEBPACK_IMPORTED_MODULE_1__isFunction_js__["a" /* default */])(constructor) && constructor.prototype || __WEBPACK_IMPORTED_MODULE_0__setup_js__["c" /* ObjProto */];
+  var proto = (Object(__WEBPACK_IMPORTED_MODULE_1__isFunction_js__["a" /* default */])(constructor) && constructor.prototype) || __WEBPACK_IMPORTED_MODULE_0__setup_js__["c" /* ObjProto */];
 
   // Constructor is a special case.
   var prop = 'constructor';
@@ -8051,7 +8070,7 @@ function createReduce(dir) {
 function max(obj, iteratee, context) {
   var result = -Infinity, lastComputed = -Infinity,
       value, computed;
-  if (iteratee == null || typeof iteratee == 'number' && typeof obj[0] != 'object' && obj != null) {
+  if (iteratee == null || (typeof iteratee == 'number' && typeof obj[0] != 'object' && obj != null)) {
     obj = Object(__WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__["a" /* default */])(obj) ? obj : Object(__WEBPACK_IMPORTED_MODULE_1__values_js__["a" /* default */])(obj);
     for (var i = 0, length = obj.length; i < length; i++) {
       value = obj[i];
@@ -8063,7 +8082,7 @@ function max(obj, iteratee, context) {
     iteratee = Object(__WEBPACK_IMPORTED_MODULE_2__cb_js__["a" /* default */])(iteratee, context);
     Object(__WEBPACK_IMPORTED_MODULE_3__each_js__["a" /* default */])(obj, function(v, index, list) {
       computed = iteratee(v, index, list);
-      if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
+      if (computed > lastComputed || (computed === -Infinity && result === -Infinity)) {
         result = v;
         lastComputed = computed;
       }
@@ -8309,7 +8328,7 @@ function uniq(array, isSorted, iteratee, context) {
 // Complement of zip. Unzip accepts an array of arrays and groups
 // each array's elements on shared indices.
 function unzip(array) {
-  var length = array && Object(__WEBPACK_IMPORTED_MODULE_0__max_js__["a" /* default */])(array, __WEBPACK_IMPORTED_MODULE_1__getLength_js__["a" /* default */]).length || 0;
+  var length = (array && Object(__WEBPACK_IMPORTED_MODULE_0__max_js__["a" /* default */])(array, __WEBPACK_IMPORTED_MODULE_1__getLength_js__["a" /* default */]).length) || 0;
   var result = Array(length);
 
   for (var index = 0; index < length; index++) {
@@ -9637,7 +9656,7 @@ function setup(env) {
 			namespaces = split[i].replace(/\*/g, '.*?');
 
 			if (namespaces[0] === '-') {
-				createDebug.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+				createDebug.skips.push(new RegExp('^' + namespaces.slice(1) + '$'));
 			} else {
 				createDebug.names.push(new RegExp('^' + namespaces + '$'));
 			}
@@ -10092,7 +10111,10 @@ Glob.prototype._process = function (pattern, index, inGlobStar, cb) {
   var read
   if (prefix === null)
     read = '.'
-  else if (isAbsolute(prefix) || isAbsolute(pattern.join('/'))) {
+  else if (isAbsolute(prefix) ||
+      isAbsolute(pattern.map(function (p) {
+        return typeof p === 'string' ? p : '[*]'
+      }).join('/'))) {
     if (!prefix || !isAbsolute(prefix))
       prefix = '/' + prefix
     read = prefix
@@ -10725,6 +10747,8 @@ function setopts (self, pattern, options) {
   // Note that they are not supported in Glob itself anyway.
   options.nonegate = true
   options.nocomment = true
+  // always treat \ in patterns as escapes, not path separators
+  options.allowWindowsEscape = false
 
   self.minimatch = new Minimatch(pattern, options)
   self.options = self.minimatch.options
@@ -17264,9 +17288,83 @@ var AppRemote = function () {
 		_electron.ipcMain.on("receive-client-upgrade", function (event) {
 			console.log("receive-client-upgrade");
 		});
+
+		_electron.ipcMain.on("syncPrivateServerConfig", function (event, data) {
+			var config = me.getPrivateConfig();
+			console.log("syncPrivateServerConfig", config);
+			me.mainWindow.webContents.send("privateServerConfig", config);
+			event.returnValue = config;
+		});
+
+		_electron.ipcMain.on("initRtcWindow", function (event, data) {
+			console.log(me.rtcWindow);
+			if (!me.rtcWindow || me.rtcWindow.isDestroyed()) {
+				console.log("create  new rtc window.");
+				_this.createRtcWindow(data);
+				event.returnValue = { winId: me.rtcWindow.id, isNew: true };
+			} else {
+				console.log("find exsit rtc window.");
+				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
+			}
+
+			// me.rtcWindow.webContents.openDevTools();
+		});
+		_electron.ipcMain.on("closeRtcWindow", function () {
+			console.log("close rtc win");
+			if (me.rtcWindow) {
+				me.rtcWindow.hide();
+			}
+		});
 	}
 
 	_createClass(AppRemote, [{
+		key: "createRtcWindow",
+		value: function createRtcWindow(data) {
+			var me = this;
+			me.rtcWindow = new _electron.BrowserWindow({
+				width: 400,
+				height: 550,
+				minWidth: 400,
+				minHeight: 550,
+				// frame: false,
+				resizable: true,
+				parent: me.mainWindow,
+				show: false,
+				movable: true,
+				autoHideMenuBar: !IS_MAC_OSX,
+				// closable: true,
+				minimizable: true,
+				// title: "音视频通话",
+				webPreferences: {
+					nodeIntegration: true,
+					// enableRemoteModule: true,
+					webSecurity: false
+					// preload: path.join(app.getAppPath(), '/dist/preLoad.js'), // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
+				}
+			});
+
+			// me.rtcWindow.webContents.on("did-finish-load", () => {
+			// 	me.rtcWindow.webContents.send("rtcInitData", data);
+			// });
+
+			console.log("rtcwindow load url", "file://" + this.entryPath + "/rtc.html");
+			me.rtcWindow.loadURL("file://" + this.entryPath + "/rtc.html");
+		}
+	}, {
+		key: "getPrivateConfig",
+		value: function getPrivateConfig() {
+			var devPath = _path2.default.resolve(__dirname, "../../server.json");
+			var prodPath = _path2.default.resolve(_path2.default.dirname(process.execPath), "./app/server.json");
+			var privateConfig = {};
+
+			if (_fs2.default.existsSync(devPath)) {
+				privateConfig = _fs2.default.readFileSync(devPath, "utf-8");
+			} else if (_fs2.default.existsSync(prodPath)) {
+				privateConfig = _fs2.default.readFileSync(prodPath, "utf-8");
+			}
+			return typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig;
+		}
+	}, {
 		key: "init",
 		value: function init(entryPath) {
 			if (!entryPath) {
@@ -17372,7 +17470,7 @@ var AppRemote = function () {
 				show: false,
 				frame: true,
 				titleBarStyle: "hidden",
-				webPreferences: { webSecurity: false },
+				webPreferences: { webSecurity: false, nodeIntegration: true },
 				thickFrame: true,
 				showAfterLoad: true
 			};
@@ -17393,6 +17491,7 @@ var AppRemote = function () {
 			// 	throw new Error(`The window with name '${name}' has already be created.`);
 			// }
 			this.mainWindow = browserWindow;
+			browserWindow.webContents.openDevTools();
 
 			browserWindow.on("close", function (event) {
 				// dock 上右键退出，ElectronApp.quitting = true
@@ -17420,16 +17519,8 @@ var AppRemote = function () {
 				if (options.onLoad) {
 					options.onLoad(browserWindow);
 				}
-				var devPath = _path2.default.resolve(__dirname, "../../server.json");
-				var prodPath = _path2.default.resolve(_path2.default.dirname(process.execPath), "./app/server.json");
-				var privateConfig = {};
-
-				if (_fs2.default.existsSync(devPath)) {
-					privateConfig = _fs2.default.readFileSync(devPath, "utf-8");
-				} else if (_fs2.default.existsSync(prodPath)) {
-					privateConfig = _fs2.default.readFileSync(prodPath, "utf-8");
-				}
-				browserWindow.webContents.send("privateServerConfig", typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig);
+				var config = _this4.getPrivateConfig();
+				browserWindow.webContents.send("privateServerConfig", config);
 			});
 
 			var url = options.url;
@@ -18954,7 +19045,7 @@ function where(obj, attrs) {
 function min(obj, iteratee, context) {
   var result = Infinity, lastComputed = Infinity,
       value, computed;
-  if (iteratee == null || typeof iteratee == 'number' && typeof obj[0] != 'object' && obj != null) {
+  if (iteratee == null || (typeof iteratee == 'number' && typeof obj[0] != 'object' && obj != null)) {
     obj = Object(__WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__["a" /* default */])(obj) ? obj : Object(__WEBPACK_IMPORTED_MODULE_1__values_js__["a" /* default */])(obj);
     for (var i = 0, length = obj.length; i < length; i++) {
       value = obj[i];
@@ -18966,7 +19057,7 @@ function min(obj, iteratee, context) {
     iteratee = Object(__WEBPACK_IMPORTED_MODULE_2__cb_js__["a" /* default */])(iteratee, context);
     Object(__WEBPACK_IMPORTED_MODULE_3__each_js__["a" /* default */])(obj, function(v, index, list) {
       computed = iteratee(v, index, list);
-      if (computed < lastComputed || computed === Infinity && result === Infinity) {
+      if (computed < lastComputed || (computed === Infinity && result === Infinity)) {
         result = v;
         lastComputed = computed;
       }
@@ -19814,13 +19905,13 @@ function patch (fs) {
   fs.lstatSync = statFixSync(fs.lstatSync)
 
   // if lchmod/lchown do not exist, then make them no-ops
-  if (!fs.lchmod) {
+  if (fs.chmod && !fs.lchmod) {
     fs.lchmod = function (path, mode, cb) {
       if (cb) process.nextTick(cb)
     }
     fs.lchmodSync = function () {}
   }
-  if (!fs.lchown) {
+  if (fs.chown && !fs.lchown) {
     fs.lchown = function (path, uid, gid, cb) {
       if (cb) process.nextTick(cb)
     }
@@ -19837,32 +19928,38 @@ function patch (fs) {
   // CPU to a busy looping process, which can cause the program causing the lock
   // contention to be starved of CPU by node, so the contention doesn't resolve.
   if (platform === "win32") {
-    fs.rename = (function (fs$rename) { return function (from, to, cb) {
-      var start = Date.now()
-      var backoff = 0;
-      fs$rename(from, to, function CB (er) {
-        if (er
-            && (er.code === "EACCES" || er.code === "EPERM")
-            && Date.now() - start < 60000) {
-          setTimeout(function() {
-            fs.stat(to, function (stater, st) {
-              if (stater && stater.code === "ENOENT")
-                fs$rename(from, to, CB);
-              else
-                cb(er)
-            })
-          }, backoff)
-          if (backoff < 100)
-            backoff += 10;
-          return;
-        }
-        if (cb) cb(er)
-      })
-    }})(fs.rename)
+    fs.rename = typeof fs.rename !== 'function' ? fs.rename
+    : (function (fs$rename) {
+      function rename (from, to, cb) {
+        var start = Date.now()
+        var backoff = 0;
+        fs$rename(from, to, function CB (er) {
+          if (er
+              && (er.code === "EACCES" || er.code === "EPERM")
+              && Date.now() - start < 60000) {
+            setTimeout(function() {
+              fs.stat(to, function (stater, st) {
+                if (stater && stater.code === "ENOENT")
+                  fs$rename(from, to, CB);
+                else
+                  cb(er)
+              })
+            }, backoff)
+            if (backoff < 100)
+              backoff += 10;
+            return;
+          }
+          if (cb) cb(er)
+        })
+      }
+      if (Object.setPrototypeOf) Object.setPrototypeOf(rename, fs$rename)
+      return rename
+    })(fs.rename)
   }
 
   // if read() returns EAGAIN, then just try it again.
-  fs.read = (function (fs$read) {
+  fs.read = typeof fs.read !== 'function' ? fs.read
+  : (function (fs$read) {
     function read (fd, buffer, offset, length, position, callback_) {
       var callback
       if (callback_ && typeof callback_ === 'function') {
@@ -19883,7 +19980,8 @@ function patch (fs) {
     return read
   })(fs.read)
 
-  fs.readSync = (function (fs$readSync) { return function (fd, buffer, offset, length, position) {
+  fs.readSync = typeof fs.readSync !== 'function' ? fs.readSync
+  : (function (fs$readSync) { return function (fd, buffer, offset, length, position) {
     var eagCounter = 0
     while (true) {
       try {
@@ -19942,7 +20040,7 @@ function patch (fs) {
   }
 
   function patchLutimes (fs) {
-    if (constants.hasOwnProperty("O_SYMLINK")) {
+    if (constants.hasOwnProperty("O_SYMLINK") && fs.futimes) {
       fs.lutimes = function (path, at, mt, cb) {
         fs.open(path, constants.O_SYMLINK, function (er, fd) {
           if (er) {
@@ -19976,7 +20074,7 @@ function patch (fs) {
         return ret
       }
 
-    } else {
+    } else if (fs.futimes) {
       fs.lutimes = function (_a, _b, _c, cb) { if (cb) process.nextTick(cb) }
       fs.lutimesSync = function () {}
     }
@@ -28919,7 +29017,7 @@ function GlobSync (pattern, options) {
 }
 
 GlobSync.prototype._finish = function () {
-  assert(this instanceof GlobSync)
+  assert.ok(this instanceof GlobSync)
   if (this.realpath) {
     var self = this
     this.matches.forEach(function (matchset, index) {
@@ -28943,7 +29041,7 @@ GlobSync.prototype._finish = function () {
 
 
 GlobSync.prototype._process = function (pattern, index, inGlobStar) {
-  assert(this instanceof GlobSync)
+  assert.ok(this instanceof GlobSync)
 
   // Get the first [n] parts of pattern that are all strings.
   var n = 0
@@ -28980,7 +29078,10 @@ GlobSync.prototype._process = function (pattern, index, inGlobStar) {
   var read
   if (prefix === null)
     read = '.'
-  else if (isAbsolute(prefix) || isAbsolute(pattern.join('/'))) {
+  else if (isAbsolute(prefix) ||
+      isAbsolute(pattern.map(function (p) {
+        return typeof p === 'string' ? p : '[*]'
+      }).join('/'))) {
     if (!prefix || !isAbsolute(prefix))
       prefix = '/' + prefix
     read = prefix
@@ -29496,7 +29597,7 @@ function map_obj(obj, fn){
 /* 598 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Fri Mar 11 2022 14:02:28 GMT+0800 (China Standard Time)","_from":"7zip@0.0.6","_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz"}
+module.exports = {"_args":[["7zip@0.0.6","/Users/tee/Documents/easemob/sdkdemoapp_windows"]],"_development":true,"_from":"7zip@0.0.6","_id":"7zip@0.0.6","_inBundle":false,"_integrity":"sha512-ns8vKbKhIQm338AeWo/YdDSWil3pldwCMoyR2npoM2qDAzF8Vuko8BtDxpNt/wE15SXOh5K5WbjSLR4kTOAHLA==","_location":"/7zip","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"7zip@0.0.6","name":"7zip","escapedName":"7zip","rawSpec":"0.0.6","saveSpec":null,"fetchSpec":"0.0.6"},"_requiredBy":["/electron-devtools-installer"],"_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz","_spec":"0.0.6","_where":"/Users/tee/Documents/easemob/sdkdemoapp_windows","bin":{"7z":"7zip-lite/7z.exe"},"bugs":{"url":"https://github.com/fritx/win-7zip/issues"},"description":"7zip Windows Package via Node.js","homepage":"https://github.com/fritx/win-7zip#readme","keywords":["7z","7zip","7-zip","windows","install"],"license":"GNU LGPL","main":"index.js","name":"7zip","repository":{"type":"git","url":"git+ssh://git@github.com/fritx/win-7zip.git"},"scripts":{"test":"mocha"},"version":"0.0.6"}
 
 /***/ }),
 /* 599 */

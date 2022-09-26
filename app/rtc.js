@@ -68,8 +68,11 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 });
 
 rtcHelper.on("addMember", () => {
+	const tip = document.getElementById("rtc-invitee-tip");
 	userCount++;
-	document.getElementById("rtc-invitee-tip").style.display = "none";
+	if(tip && tip.style.display == "block"){
+		tip.style.display = "none";
+	}
 });
 
 rtcHelper.on("removeMember", () => {

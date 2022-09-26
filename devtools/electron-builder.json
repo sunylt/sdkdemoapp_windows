@@ -9,6 +9,9 @@
 			"url": "https://download-sdk.oss-cn-beijing.aliyuncs.com/"
 		}
 	],
+	"electronDownload":{
+		"mirror":"https://npmmirror.com/mirrors/electron/v"
+	},
 	"dmg": {
 		"contents": [
 			{

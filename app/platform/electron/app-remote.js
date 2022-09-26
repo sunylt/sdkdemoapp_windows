@@ -145,6 +145,7 @@ class AppRemote {
 			parent: me.mainWindow,
 			show: false,
 			movable: true,
+			autoHideMenuBar: !IS_MAC_OSX,
 			// closable: true,
 			minimizable: true,
 			// title: "音视频通话",

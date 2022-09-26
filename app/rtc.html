@@ -8,6 +8,22 @@
 </head>
 <body>
 	<div id="app"></div>
-	<script src="http://localhost:3000/static/rtc.js"></script>
+	<script>
+		{
+			const process = global.process || {
+				type: 'renderer',
+				env: {
+					HOT: window.location.search.includes('hot'),
+					port: 3000
+				}
+			};
+			const script = document.createElement('script');
+			const port = process.env.PORT || 3000;
+			script.src = (process.env.HOT)
+				? 'http://localhost:3000/static/rtc.js'
+				: './__build__/rtc.js';
+			document.body.appendChild(script);
+		}
+		</script>
 </body>
 </html>
