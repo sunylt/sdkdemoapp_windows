@@ -386,14 +386,17 @@ class ChatSendBoxView extends PureComponent {
 		const roomId = `rtc_room_${easemobName}_${+new Date()}`;
 
 		utils.initRtcWindow(easemobName).then((rtcWin) => {
-			console.log(`init rtc window done${new Date().getTime()}`, rtcWin);
-			rtcWin.webContents.send("joinRoom", { roomId, invitee: selectConversationId });
-			console.log(this);
-			this.props.setRtcStatus(1);
-			this.props.setRtcData({ invitee: selectConversationId,  chatType: this.props.isSelectCovGroup, conferenceId: roomId, fromNickName: easemobName });
-
+			console.log(`init rtc window success >>> ${new Date().getTime()}`, rtcWin);
 			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
-			
+			rtcWin.webContents.send("joinRoom", { roomId, invitee: selectConversationId });
+			this.props.setRtcStatus(1);
+			this.props.setRtcData({
+				invitee: selectConversationId,
+				chatType: this.props.isSelectCovGroup,
+				conferenceId: roomId,
+				fromNickName: easemobName
+			});
+
 			this.sendMsg(textMsgBody, "", "", {
 				conferenceNotice: 1, // int类型，1，会议邀请；2，用户加入（1v1）；
 				conferenceId: roomId, // String类型,会议roomId;
@@ -404,24 +407,23 @@ class ChatSendBoxView extends PureComponent {
 			});
 		});
 	
-		return;
 		// eslint-disable-next-line no-invalid-this
 		
 		// eslint-disable-next-line no-invalid-this
 		
-		rtc.joinRoom(roomId).then(() => {
-			// eslint-disable-next-line no-invalid-this
-			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
-			// eslint-disable-next-line no-invalid-this
-			this.sendMsg(textMsgBody, "", "", {
-				conferenceNotice: 1, // int类型，1，会议邀请；2，用户加入（1v1）；
-				conferenceId: roomId, // String类型,会议roomId;
-				isGroupChat: false, // boolean类型true/false；
-				isVideoOff: false, // boolean类型true/false；
-				fromNickName: easemobName, // String类型，邀请人昵称；
-				conversationId: easemobName
-			});
-		});
+		// rtc.joinRoom(roomId).then(() => {
+		// 	// eslint-disable-next-line no-invalid-this
+		// 	const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
+		// 	// eslint-disable-next-line no-invalid-this
+		// 	this.sendMsg(textMsgBody, "", "", {
+		// 		conferenceNotice: 1, // int类型，1，会议邀请；2，用户加入（1v1）；
+		// 		conferenceId: roomId, // String类型,会议roomId;
+		// 		isGroupChat: false, // boolean类型true/false；
+		// 		isVideoOff: false, // boolean类型true/false；
+		// 		fromNickName: easemobName, // String类型，邀请人昵称；
+		// 		conversationId: easemobName
+		// 	});
+		// });
 		
 	}
 

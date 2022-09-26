@@ -17,23 +17,28 @@ const utils = {
 		
 		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
 		return new Promise((resolve, reject) => {
-			const { winId, isNew } = ipcRenderer.sendSync("initRtcWindow");
-			const rtcWindow = remote.BrowserWindow.fromId(winId);
+			try{
+				const { winId, isNew } = ipcRenderer.sendSync("initRtcWindow");
+				const rtcWindow = remote.BrowserWindow.fromId(winId);
 
-			rtcWindow.webContents.once("did-finish-load", () => {
-				rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
-				rtcWindow.show();
-				resolve(rtcWindow);
-			});
-			
-			if(!isNew){
-				rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
-				rtcWindow.show();
-				resolve(rtcWindow);
+				rtcWindow.webContents.once("did-finish-load", () => {
+					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+					rtcWindow.show();
+					resolve(rtcWindow);
+				});
+				
+				if(!isNew){
+					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+					rtcWindow.show();
+					resolve(rtcWindow);
+				}
+
+				if(!winId){
+					reject({ msg: "init rtc window fail." });
+				}
 			}
-
-			if(!winId){
-				reject({ msg: "init rtc window fail." });
+			catch(e){
+				reject(e);
 			}
 		});
 	},

@@ -121,6 +121,11 @@ export default {
 			}
 		});
 	},
+	leaveRoom(destoryRoom){
+		if(this.service){
+			this.service.exit(destoryRoom);
+		}
+	},
 	initRtcSDK(){
 		const me = this;
 		const emedia = window.emedia = new EmediaSDK({
@@ -131,30 +136,34 @@ export default {
 		});
 		this.service = new emedia.Service({
 			listeners: {
-				onMeExit(...rest){
-					console.log("触发onMeExit，原因:", ...rest);
-					me.localStream = null;
-					me.currentMainScreenItem = null;
-					me.videoList.innerHTML = "";
-					me.cachedPlayers = [];
-					console.log("reset all...");
-				},
-				onNotifyEvent(evt){
-					console.log("event>>>>", evt);
-				},
+				onMeExit: me.onMeExit.bind(me),
+				onNotifyEvent: me.onNotifyEvent.bind(me),
+
 				onAddMember: me.onAddMember.bind(me),
 				onRemoveMember: me.onRemoveMember.bind(me),
+
 				onAddStream: me.onAddStream.bind(me),
-				onUpdateStream: me.onUpdateStream.bind(me),
-				onRemoveStream: me.onRemoveMember.bind(me),
+				onRemoveStream: me.onRemoveStream.bind(me),
+				onUpdateStream: me.onUpdateStream.bind(me)
+
 			}
 		});
+	},
+	onMeExit(...rest){
+		console.log("触发onMeExit，原因:", ...rest);
+		this.localStream = null;
+		this.currentMainScreenItem = null;
+		this.videoList.innerHTML = "";
+		this.cachedPlayers = [];
+		this.emit("exit");
+	},
+	onNotifyEvent(evt){
+		console.log(evt);
 	},
 	onAddMember(member){
 		console.log("member add>>>>", member);
 		const name = member.ext.nickname || member.nickName || member.name || member.memName;
-		// 成员播放器创建
-		this.createMiniPlayer(member.id, name);
+		this.createMiniPlayer(member.id, name); // 成员播放器创建
 		this.emit("onAddMember", member);
 	},
 	onRemoveMember(member){
@@ -164,8 +173,7 @@ export default {
 	},
 	// 流的增加，仅用于统计人数，不处理流
 	onAddStream(stream){
-		console.log(this);
-		console.log(`${new Date()}stream add >>>> `, stream);
+		console.log(`stream add >>>> `, stream);
 		const nickname = stream.located() ? "我" : stream.owner.ext.nickname || stream.owner.name;
 		if(stream.located() && stream.type == 0){
 			this.createMiniPlayer("localstream");
@@ -178,7 +186,7 @@ export default {
 	},
 	// 某成员的流退出（包含本地流、音视频流，共享桌面等）
 	onUpdateStream(stream, updateObj){
-		console.log(`${new Date()} stream update >>>> `, stream);
+		console.log(`stream update >>>> `, stream);
 		const mediaStream = stream.getMediaStream();
 
 		// type 1 桌面共享
@@ -267,7 +275,10 @@ export default {
 		if(navigator.userAgent.includes("Mobile")) return;
 
 		// 无开启的会议
-		if(!this.localStream || this.localSharedDesktopStream){
+		if(!this.localStream){
+			return;
+		}
+		if(this.localSharedDesktopStream){
 			this.localSharedDesktopStream && this.service.hungup(this.localSharedDesktopStream.id);
 			return;
 		}

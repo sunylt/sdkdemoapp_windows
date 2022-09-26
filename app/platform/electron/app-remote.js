@@ -122,7 +122,7 @@ class AppRemote {
 				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
 			}
 			
-			me.rtcWindow.webContents.openDevTools();
+			// me.rtcWindow.webContents.openDevTools();
 			
 		});
 		ipcMain.on("closeRtcWindow", () => {
