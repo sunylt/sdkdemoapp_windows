@@ -191,6 +191,8 @@ class LoginForm extends PureComponent {
 							onChange={ this.handleChangePassword }
 						/>
 					)}
+				</FormItem>
+				<FormItem style={ { marginTop: "-15px" } }>
 					{getFieldDecorator("remember", {
 						valuePropName: "checked",
 						initialValue: checkedVal,
