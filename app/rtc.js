@@ -3,6 +3,7 @@ import rtcHelper from "./utils/rtc-helper";
 import "./style/rtc.scss";
 
 const app = document.getElementById("app");
+let userCount = 0;
 let isCalling = false;
 
 const initToolbar = () => {
@@ -58,16 +59,28 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 	})
 	.catch((e) => {
 		console.error("join room error", e);
+		// eslint-disable-next-line no-alert
+		alert("加入失败，请检查摄像头或重试");
+		ipcRenderer.send("closeRtcWindow");
 		isCalling = false;
 	});
 	isCalling = true;
 });
 
 rtcHelper.on("addMember", () => {
+	userCount++;
 	document.getElementById("rtc-invitee-tip").style.display = "none";
 });
 
+rtcHelper.on("removeMember", () => {
+	userCount--;
+	if(userCount === 0){ // 没人了退出
+		rtcHelper.leaveRoom();
+	}
+});
+
 rtcHelper.on("exit", () => {
+	userCount = 0;
 	isCalling = false;
 	toolbar.video.className = "iconfont icon-video";
 	toolbar.audio.className = "iconfont icon-audio";

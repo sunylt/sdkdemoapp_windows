@@ -965,7 +965,7 @@ class MainView extends PureComponent {
 			console.log("type:" + msg.type());
 			switch(msg.type()){
 			case 0:
-				console.log("new txt message>>", message.ext(), msg);
+				console.log("new txt message>>", message.from(), message.conversationId(), message.ext(), msg);
 				const msgExt = Object.fromEntries(message.ext().map(item => [item.attr, item.value]));
 				console.log("new ext message", msgExt);
 				msgExt.conferenceNotice = message.getAttribute("conferenceNotice"); // value 是int ext()读取不到
@@ -973,7 +973,7 @@ class MainView extends PureComponent {
 					if(msgExt.conferenceNotice == 1){ // 收到新的音视频邀请
 						if(rtcInfo.status == 0){ // 无音视频通话才处理
 							setRtcStatus(3);
-							setRtcData(msgExt);
+							setRtcData({ ...msgExt, from: message.conversationId() });
 						}
 						else{
 							// todo 通知对方当前在忙

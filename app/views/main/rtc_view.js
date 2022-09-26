@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "@/stores/actions";
 import { utils } from "../../utils/utils";
-import rtc from "../../utils/rtc-helper";
 import { ipcRenderer } from "electron";
 
 class RtcView extends React.Component {
@@ -88,7 +87,7 @@ class RtcView extends React.Component {
 		sendMsg({ id: conversationId, msg: sendMessage, conversation: conversations[conversationId] });
 	}
 
-	handleAccept = ({ conferenceId, conversationId, isGroupChat }) => {
+	handleAccept = ({ from, conferenceId, isGroupChat }) => {
 		// rtc.joinRoom(conferenceId).then(() => {
 		// 	this.props.setRtcStatus(2);
 		// 	this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
@@ -97,13 +96,13 @@ class RtcView extends React.Component {
 		utils.initRtcWindow(easemobName).then((rtcWin) => {
 			rtcWin.webContents.send("joinRoom", { roomId: conferenceId });
 			this.props.setRtcStatus(2);
-			this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+			this.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
 		});
 	}
 
-	handleRefuse = ({ conferenceId, conversationId, isGroupChat }) => {
+	handleRefuse = ({ from, isGroupChat }) => {
 		this.props.setRtcStatus(0);
-		this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "拒接接受视频邀请", { conferenceNotice: 3 });
+		this.sendTextMsg(from, isGroupChat ? 1 : 0, "拒绝视频邀请", { conferenceNotice: 3 });
 	}
 
 	handleLeaveRoom = () => {
@@ -154,7 +153,7 @@ class RtcView extends React.Component {
 	render(){
 		console.log("rtc-view>>>", this.props);
 		const { rtcInfo } = this.props;
-		const { voff, aoff } = this.state;
+		// const { voff, aoff } = this.state;
 		return (
 			<div style={ { display: !rtcInfo.status ? "none" : "block" } }>
 				{

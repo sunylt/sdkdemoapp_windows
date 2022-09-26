@@ -46,6 +46,9 @@ export default {
 		.then(res => res.text());
 		return userSig;
 	},
+	async fetchUserSigByIM(){
+
+	},
 	async getTicket(roomId){
 		const { rtcServer, rtcAppId, userSig, userId } = this;
 		const ticket = await fetch(`${rtcServer}/emedia/enter_room?app_id=${rtcAppId}&user_sig=${userSig}&room_id=${roomId}&user_id=${userId}&_=${+new Date()}`)
@@ -86,7 +89,7 @@ export default {
 			this.currentMainScreenItem.className = "";
 		}
 		const item = this.query(`#${id}`);
-		item.className = "mainScreen";
+		item.className = "rtc-fullscreen";
 		this.currentMainScreenItem = item;
 	},
 	pushStream(containts, success = () => {}, fail = () => {}){
@@ -164,12 +167,12 @@ export default {
 		console.log("member add>>>>", member);
 		const name = member.ext.nickname || member.nickName || member.name || member.memName;
 		this.createMiniPlayer(member.id, name); // 成员播放器创建
-		this.emit("onAddMember", member);
+		this.emit("addMember", member);
 	},
 	onRemoveMember(member){
 		console.log("member remove>>>>", member);
 		this.removeVideoPlayer(member.id);
-		this.emit("onRemoveMember", member);
+		this.emit("removeMember", member);
 	},
 	// 流的增加，仅用于统计人数，不处理流
 	onAddStream(stream){
