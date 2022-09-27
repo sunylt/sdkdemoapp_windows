@@ -106,7 +106,7 @@ export default {
 	joinRoom(roomId){
 		return new Promise(async (resolve, reject) => {
 			if(!roomId){
-				reject({ msg: "roomId error." });
+				reject({ msg: "roomId error" });
 				return;
 			}
 			if(!this.userSig){
@@ -114,10 +114,16 @@ export default {
 			}
 			const result = await this.getTicket(roomId);
 			if(result && result.ticket){
-				this.service.setup(result.ticket, this.userExtInfo || {});
-				this.service.join(
-					() => this.pushStream({ audio: true, video: true }, resolve, reject),
-					error => reject(error));
+				try{
+					this.service.setup(result.ticket, this.userExtInfo || {});
+					this.service.join(
+						() => this.pushStream({ audio: true, video: true }, resolve, reject),
+						error => reject(error)
+					);
+				}
+				catch(e){
+					reject(e);
+				}
 			}
 			else{
 				reject({ error: true, msg: "fetch ticket error." });
