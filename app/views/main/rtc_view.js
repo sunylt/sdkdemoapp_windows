@@ -92,11 +92,14 @@ class RtcView extends React.Component {
 		// 	this.props.setRtcStatus(2);
 		// 	this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
 		// });
+		const me = this;
 		const { easemobName } = this.props.userInfo.user;
 		utils.initRtcWindow(easemobName).then((rtcWin) => {
 			rtcWin.webContents.send("joinRoom", { roomId: conferenceId });
-			this.props.setRtcStatus(2);
-			this.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+			ipcRenderer.once("rtcJoinRoomSuccess", () => {
+				me.props.setRtcStatus(2);
+				me.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+			});
 		});
 	}
 

@@ -2,6 +2,7 @@ import { ipcRenderer, remote } from "electron";
 import rtcHelper from "./utils/rtc-helper";
 import "./style/rtc.scss";
 
+const mainWindow = remote.getCurrentWindow().getParentWindow();
 const app = document.getElementById("app");
 let userCount = 0;
 let isCalling = false;
@@ -56,11 +57,12 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 		if(invitee){
 			initTip(invitee);
 		}
+		mainWindow.webContents.send(invitee ? "rtcInviteJoinSuccess" : "rtcJoinRoomSuccess");
 	})
 	.catch((e) => {
 		console.error("join room error", e);
 		// eslint-disable-next-line no-alert
-		alert("加入失败，请检查摄像头或重试");
+		alert(`${invitee ? "无法邀请" : "加入失败"}，请检查摄像头或重试`);
 		ipcRenderer.send("closeRtcWindow");
 		isCalling = false;
 	});
@@ -102,7 +104,7 @@ toolbar.video.addEventListener("click", (e) => {
 
 toolbar.iconfontphone.addEventListener("click", () => {
 	rtcHelper.leaveRoom();
-	remote.getCurrentWindow().getParentWindow().webContents.send("leaveRtcRoom");
+	mainWindow.webContents.send("leaveRtcRoom");
 	isCalling = false;
 });
 
