@@ -9,7 +9,6 @@ export default {
 	localStream: null,
 	localSharedDesktopStream: null,
 	currentMainScreenItem: null,
-	cachedPlayers: [],
 	_isInited: false,
 	_handles: {},
 
@@ -202,14 +201,6 @@ export default {
 		if(stream.type == 1){
 			const videoPlayer = this.query(`#${stream.id} video`);
 			videoPlayer.srcObject = mediaStream;
-
-			// 如果localStream还没进来，已加入的成员 player 不调用 play()
-			if(this.localStream){
-				videoPlayer.play();
-			}
-			else{
-				this.cachedPlayers.push(videoPlayer);
-			}
 		}
 
 		// type 0 音视频通话
@@ -222,30 +213,13 @@ export default {
 				if(!this.localStream){ // localstream处理一次即可
 					this.localStream = stream;
 					localPlayer.srcObject = mediaStream;
-					localPlayer.play();
 					localPlayer.muted = true; // 自己永远静音
-					if(this.cachedPlayers.length){
-						this.cachedPlayers.forEach(memberPlayer => memberPlayer.play());
-						this.cachedPlayers = [];
-					}
 				}
 			}
 			else{
-				// 自动播放策略 https://developer.chrome.com/blog/autoplay/
-				// TRTC自动播放受限处理建议 https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-21-advanced-auto-play-policy.html
-				// TRTC微信autoplay问题 https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-02-info-webrtc-issues.html#h2-8
-				// 实时音视频 TRTC 常见问题汇总---WebRTC篇 https://cloud.tencent.com/developer/article/1539376
 				const memberPlayer = this.query(`#${stream.memId} video`);
 				console.log(`Play member's mediaStream.`);
 				memberPlayer.srcObject = mediaStream;
-
-				// 如果localStream还没进来，已加入的成员 player 不调用 play()
-				if(this.localStream){
-					memberPlayer.play();
-				}
-				else{
-					this.cachedPlayers.push(memberPlayer);
-				}
 			}
 		}
 	},

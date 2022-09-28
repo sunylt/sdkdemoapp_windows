@@ -17307,7 +17307,7 @@ var AppRemote = function () {
 				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
 			}
 
-			// me.rtcWindow.webContents.openDevTools();
+			"production" === "development" && me.rtcWindow.webContents.openDevTools();
 		});
 		_electron.ipcMain.on("closeRtcWindow", function () {
 			console.log("close rtc win");
@@ -17350,18 +17350,15 @@ var AppRemote = function () {
 			console.log("rtcwindow load url", "file://" + this.entryPath + "/rtc.html");
 			me.rtcWindow.loadURL("file://" + this.entryPath + "/rtc.html");
 		}
+
+		// eslint-disable-next-line class-methods-use-this
+
 	}, {
 		key: "getPrivateConfig",
 		value: function getPrivateConfig() {
-			var devPath = _path2.default.resolve(__dirname, "../../server.json");
-			var prodPath = _path2.default.resolve(_path2.default.dirname(process.execPath), "./app/server.json");
-			var privateConfig = {};
-
-			if (_fs2.default.existsSync(devPath)) {
-				privateConfig = _fs2.default.readFileSync(devPath, "utf-8");
-			} else if (_fs2.default.existsSync(prodPath)) {
-				privateConfig = _fs2.default.readFileSync(prodPath, "utf-8");
-			}
+			var isDev = "production" === "development";
+			var filePath = _path2.default.resolve(__dirname, isDev ? "../../server.json" : "../../app/server.json");
+			var privateConfig = _fs2.default.readFileSync(filePath, "utf-8");
 			return typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig;
 		}
 	}, {

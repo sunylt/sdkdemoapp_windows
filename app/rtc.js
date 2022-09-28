@@ -4,6 +4,8 @@ import "./style/rtc.scss";
 
 const mainWindow = remote.getCurrentWindow().getParentWindow();
 const app = document.getElementById("app");
+const tip = document.getElementById("rtc-invitee-tip");
+const txt = "正在邀请 $invitee 进行视频通话";
 let userCount = 0;
 let isCalling = false;
 
@@ -21,19 +23,6 @@ const initToolbar = () => {
 
 	app.appendChild(toolbar);
 	return cxt;
-};
-
-const initTip = (invitee) => {
-	const id = "rtc-invitee-tip";
-	const text = `正在邀请 ${invitee} 进行视频通话`;
-	let tip = document.getElementById(id);
-	if(!tip){
-		tip = document.createElement("div");
-		tip.id = id;
-		app.appendChild(tip);
-	}
-	tip.innerText = text;
-	tip.style.display = "block";
 };
 
 const toolbar = initToolbar();
@@ -55,7 +44,8 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 	rtcHelper.joinRoom(roomId)
 	.then(() => {
 		if(invitee){
-			initTip(invitee);
+			tip.innerText = txt.replace("$invitee", invitee);
+			tip.style.display = "block";
 		}
 		mainWindow.webContents.send(invitee ? "rtcInviteJoinSuccess" : "rtcJoinRoomSuccess");
 	})
@@ -70,11 +60,8 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 });
 
 rtcHelper.on("addMember", () => {
-	const tip = document.getElementById("rtc-invitee-tip");
 	userCount++;
-	if(tip && tip.style.display == "block"){
-		tip.style.display = "none";
-	}
+	tip.style.display = "none";
 });
 
 rtcHelper.on("removeMember", () => {
@@ -89,7 +76,8 @@ rtcHelper.on("exit", () => {
 	isCalling = false;
 	toolbar.video.className = "iconfont icon-video";
 	toolbar.audio.className = "iconfont icon-audio";
-	ipcRenderer.send("closeRtcWindow");
+	mainWindow.webContents.send("leaveRtcRoom");
+	tip.style.display = "none";
 });
 
 toolbar.audio.addEventListener("click", (e) => {

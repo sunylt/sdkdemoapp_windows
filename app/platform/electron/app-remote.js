@@ -121,8 +121,8 @@ class AppRemote {
 				console.log("find exsit rtc window.");
 				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
 			}
-			
-			// me.rtcWindow.webContents.openDevTools();
+				
+			process.env.NODE_ENV === "development" && me.rtcWindow.webContents.openDevTools();
 			
 		});
 		ipcMain.on("closeRtcWindow", () => {
@@ -166,19 +166,13 @@ class AppRemote {
 	
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	getPrivateConfig(){
-		const devPath = path.resolve(__dirname, "../../server.json");
-		const prodPath = path.resolve(path.dirname(process.execPath), "./app/server.json");
-		let privateConfig = {};
-
-		if(fs.existsSync(devPath)){
-      privateConfig = fs.readFileSync(devPath, "utf-8");
-    }
-    else if(fs.existsSync(prodPath)){
-      privateConfig = fs.readFileSync(prodPath, "utf-8");
-    }
-    return typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig
-  }
+		const isDev = process.env.NODE_ENV === "development";
+		const  filePath = path.resolve(__dirname,  isDev  ? "../../server.json" : "../../app/server.json");
+		const privateConfig = fs.readFileSync(filePath, "utf-8");
+		return typeof privateConfig === "string" ? JSON.parse(privateConfig) : privateConfig;
+	}
   
 	init(entryPath){
 		if(!entryPath){
