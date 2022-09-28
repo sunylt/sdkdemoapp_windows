@@ -1,5 +1,7 @@
 import EmediaSDK from "@/utils/EmediaSDK";
 
+const LOG_LEVEL = 5;
+
 export default {
 	rtcServer: "",
 	rtcAppId: "",
@@ -68,9 +70,6 @@ export default {
 			nameTag.innerText = name;
 			item.appendChild(nameTag);
 		}
-		if(id === "localstream"){
-			videoTag.muted = true;
-		}
 		item.addEventListener("click", () => {
 			this.swithVideoToMain(item.id);
 		});
@@ -91,9 +90,9 @@ export default {
 		item.className = "rtc-fullscreen";
 		this.currentMainScreenItem = item;
 	},
-	pushStream(containts, success = () => {}, fail = () => {}){
+	pushStream(constaints = {}, success = () => {}, fail = () => {}){
 		const _pubS = new this.service.AVPubstream({
-			containts,
+			constaints: Object.assign({ audio: true, video: true }, constaints),
 			aoff: 0,
 			voff: 0
 		});
@@ -102,7 +101,7 @@ export default {
 			error => fail(error)
 		);
 	},
-	joinRoom(roomId){
+	joinRoom(roomId, constaints = {}){
 		return new Promise(async (resolve, reject) => {
 			if(!roomId){
 				reject({ msg: "roomId error" });
@@ -116,7 +115,7 @@ export default {
 				try{
 					this.service.setup(result.ticket, this.userExtInfo || {});
 					this.service.join(
-						() => this.pushStream({ audio: true, video: true }, resolve, reject),
+						() => this.pushStream(constaints, resolve, reject),
 						error => reject(error)
 					);
 				}
@@ -138,8 +137,7 @@ export default {
 		const me = this;
 		const emedia = window.emedia = new EmediaSDK({
 			config: {
-				// eslint-disable-next-line no-magic-numbers
-				LOG_LEVEL: 5
+				LOG_LEVEL
 			}
 		});
 		this.service = new emedia.Service({
@@ -169,74 +167,47 @@ export default {
 		console.log(evt);
 	},
 	onAddMember(member){
-		console.log("member add>>>>", member);
-		const name = member.ext.nickname || member.nickName || member.name || member.memName;
-		this.createMiniPlayer(member.id, name); // 成员播放器创建
+		console.log("add member >>>", member);
 		this.emit("addMember", member);
 	},
 	onRemoveMember(member){
-		console.log("member remove>>>>", member);
-		this.removeVideoPlayer(member.id);
+		console.log("remove member >>>", member);
 		this.emit("removeMember", member);
 	},
 	// 流的增加，仅用于统计人数，不处理流
 	onAddStream(stream){
 		console.log(`stream add >>>> `, stream);
-		const nickname = stream.located() ? "我" : stream.owner.ext.nickname || stream.owner.name;
+		const nickname = stream.owner.ext.nickname || stream.owner.name;
+		this.createMiniPlayer(stream.id, `${nickname}${stream.type ? "的桌面" : ""}`);
 		if(stream.located() && stream.type == 0){
-			this.createMiniPlayer("localstream");
-			this.swithVideoToMain("localstream");
-		}
-		// 针对桌面共享单独处理
-		if(stream.type == 1){
-			this.createMiniPlayer(stream.id, `${nickname}的桌面`);
+			this.swithVideoToMain(stream.id);
 		}
 	},
 	// 某成员的流退出（包含本地流、音视频流，共享桌面等）
 	onUpdateStream(stream, updateObj){
-		console.log(`stream update >>>> `, stream);
+		console.log(`stream update >>>> `, stream, updateObj);
 		const mediaStream = stream.getMediaStream();
+		const videoPlayer = this.query(`#${stream.id} video`);
 
-		// type 1 桌面共享
-		if(stream.type == 1){
-			const videoPlayer = this.query(`#${stream.id} video`);
-			videoPlayer.srcObject = mediaStream;
+		// located()=>true 当前用户 type 0 音视频通话 1 桌面共享
+		if(stream.located() && stream.type == 0){
+			if(!this.localStream){
+				this.localStream = stream;
+				videoPlayer.srcObject = mediaStream;
+				videoPlayer.muted = true; // 自己永远静音
+			}
 		}
-
-		// type 0 音视频通话
-		if(stream.type == 0){
-
-			// located()=>true 当前用户
-			if(stream.located()){
-				const localPlayer =  this.query("#localstream video");
-				console.log(`Play local mediaStream.`, localPlayer);
-				if(!this.localStream){ // localstream处理一次即可
-					this.localStream = stream;
-					localPlayer.srcObject = mediaStream;
-					localPlayer.muted = true; // 自己永远静音
-				}
-			}
-			else{
-				const memberPlayer = this.query(`#${stream.memId} video`);
-				console.log(`Play member's mediaStream.`);
-				memberPlayer.srcObject = mediaStream;
-			}
+		else{
+			videoPlayer.srcObject = mediaStream;
 		}
 	},
 	// 某成员的流退出（包含本地流、音视频流，共享桌面等）
 	onRemoveStream(stream){
 		console.log("stream remove>>>>", stream);
-
-		// 桌面共享的流单独处理，因为不会触发onRemoveMember
-		if(stream.type == 1){
-
-			// 清除缓存的本地共享流
-			if(stream.located()){
-				this.localSharedDesktopStream = null;
-			}
-
-			this.removeVideoPlayer(stream.id);
+		if(stream.located()){
+			this.localSharedDesktopStream = null;
 		}
+		this.removeVideoPlayer(stream.id);
 	},
 	toggleVideo(){
 		const stream = this.localStream;
