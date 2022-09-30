@@ -10,22 +10,6 @@
 	<div id="app">
 		<div id="rtc-invitee-tip"></div>
 	</div>
-	<script>
-		{
-			const process = global.process || {
-				type: 'renderer',
-				env: {
-					HOT: window.location.search.includes('hot'),
-					port: 3000
-				}
-			};
-			const script = document.createElement('script');
-			const port = process.env.PORT || 3000;
-			script.src = (process.env.HOT)
-				? 'http://localhost:3000/static/rtc.js'
-				: './__build__/rtc.js';
-			document.body.appendChild(script);
-		}
-		</script>
+	<script src="./__build__/rtc.js"></script>
 </body>
 </html>
