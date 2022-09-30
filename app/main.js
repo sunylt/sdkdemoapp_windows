@@ -17202,6 +17202,7 @@ var _require = __webpack_require__(59),
 
 var exec = __webpack_require__(232).exec;
 var IS_MAC_OSX = process.platform === "darwin";
+var IS_DEV = "production" === "development";
 if (false) {
 	console.error("AppRemote must run in main process.");
 }
@@ -17307,7 +17308,7 @@ var AppRemote = function () {
 				event.returnValue = { winId: me.rtcWindow.id, isNew: false };
 			}
 
-			"production" === "development" && me.rtcWindow.webContents.openDevTools();
+			IS_DEV && me.rtcWindow.webContents.openDevTools();
 		});
 		_electron.ipcMain.on("closeRtcWindow", function () {
 			console.log("close rtc win");
@@ -17531,7 +17532,7 @@ var AppRemote = function () {
 				if (options.hashRoute) {
 					url += "#" + options.hashRoute;
 				}
-				browserWindow.loadURL(url);
+				browserWindow.loadURL(IS_DEV ? "http://localhost:3000/#index" : url);
 			}
 
 			// 定义文字快捷菜单

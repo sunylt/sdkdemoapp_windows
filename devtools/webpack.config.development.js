@@ -4,11 +4,11 @@
  * https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
  */
 
-import webpack from "webpack";
-import path from "path";
-import merge from "webpack-merge";
-import baseConfig from "./webpack.config.base";
-import CopyWebpackPlugin from "copy-webpack-plugin";
+const webpack = require("webpack");
+const path = require("path");
+const merge = require("webpack-merge");
+const baseConfig = require("./webpack.config.base");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV;
 var nodePath = "app/__build__";
@@ -36,7 +36,7 @@ cfg = merge([
 		entry: {
 			bundle: [
 				// `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
-				`webpack-hot-middleware/client?name=bundle`,
+				// `webpack-hot-middleware/client?name=bundle`,
 				"babel-polyfill",
 				"./app/index"
 			],
@@ -196,7 +196,15 @@ cfg = merge([
 		externals: ["bindings"],
 
 		// https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-		target: "electron-renderer"
+		target: "electron-renderer",
+		devServer: {
+			contentBase: path.resolve(__dirname, "../app"),
+			historyApiFallback: true,
+			inline: true,
+			publicPath: "/static/",
+			hot: true,
+			port
+		}
 	}
 ]);
 module.exports = [cfg];

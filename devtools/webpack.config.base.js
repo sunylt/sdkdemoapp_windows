@@ -1,9 +1,9 @@
 /**
  * Base webpack config used across other specific configs
  */
-import path from "path";
-import merge from "webpack-merge";
-import { dependencies as externals } from "../app/package.json";
+const path = require("path");
+const merge = require( "webpack-merge");
+const pkg = require("../app/package.json");
 
 module.exports = merge([{
 
@@ -43,5 +43,5 @@ module.exports = merge([{
 
 	plugins: [],
 
-	externals: Object.keys(externals || {})
+	externals: Object.keys(pkg.dependencies || {})
 }]);
