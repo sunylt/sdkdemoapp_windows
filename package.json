@@ -150,7 +150,7 @@
     "ws": "^2.2.3"
   },
   "devEngines": {
-    "node": ">=7.x",
+    "node": ">=13.x",
     "npm": ">=4.x"
   },
   "optionalDependencies": {

@@ -19,6 +19,7 @@ const { shell } = require("electron");
 var exec = require("child_process").exec;
 const IS_MAC_OSX = process.platform === "darwin";
 const IS_DEV = process.env.NODE_ENV === "development";
+const HOT_DEV_SERVER = "http://localhost:3000";
 if(DEBUG && process.type === "renderer"){
 	console.error("AppRemote must run in main process.");
 }
@@ -160,9 +161,7 @@ class AppRemote {
 		// me.rtcWindow.webContents.on("did-finish-load", () => {
 		// 	me.rtcWindow.webContents.send("rtcInitData", data);
 		// });
-
-		console.log("rtcwindow load url", `file://${this.entryPath}/rtc.html`);
-		me.rtcWindow.loadURL(IS_DEV ? "http://localhost:3000/rtc.html" : `file://${this.entryPath}/rtc.html`);
+		me.rtcWindow.loadURL(IS_DEV ? `${HOT_DEV_SERVER}/rtc.html` : `file://${this.entryPath}/rtc.html`);
 	
 	}
 
@@ -338,7 +337,7 @@ class AppRemote {
 			if(options.hashRoute){
 				url += `#${options.hashRoute}`;
 			}
-			browserWindow.loadURL(IS_DEV ? "http://localhost:3000/#/index" : url);
+			browserWindow.loadURL(IS_DEV ? `${HOT_DEV_SERVER}/#/index` : url);
 		}
 
 		// 定义文字快捷菜单
