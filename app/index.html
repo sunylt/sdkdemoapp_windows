@@ -49,22 +49,6 @@
 			</div>
 		</div>
 		<!-- <input style="position: fixed!important; bottom: -50px!important; left: 0!important; opacity: 0!important;" type="file" id="fileOpenButton" /> -->
-		<script>
-		{
-			const process = global.process || {
-				type: 'renderer',
-				env: {
-					HOT: window.location.search.includes('hot'),
-					port: 3000
-				}
-			};
-			const script = document.createElement('script');
-			const port = process.env.PORT || 3000;
-			script.src = (process.env.HOT)
-				? '/static/bundle.js'
-				: './__build__/bundle.js';
-			document.body.appendChild(script);
-		}
-		</script>
+    <script src="./__build__/bundle.js"></script>
 	</body>
 </html>

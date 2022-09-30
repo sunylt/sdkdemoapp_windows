@@ -201,7 +201,7 @@ cfg = merge([
 			contentBase: path.resolve(__dirname, "../app"),
 			historyApiFallback: true,
 			inline: true,
-			publicPath: "/static/",
+			publicPath: "/__build__/",
 			hot: true,
 			port
 		}
