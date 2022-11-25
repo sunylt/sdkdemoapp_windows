@@ -9,6 +9,7 @@ const path = require("path");
 const merge = require("webpack-merge");
 const baseConfig = require("./webpack.config.base");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { spawn } = require("child_process");
 const port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV;
 var nodePath = "app/__build__";
@@ -203,7 +204,14 @@ cfg = merge([
 			inline: true,
 			publicPath: "/__build__/",
 			hot: true,
-			port
+			port,
+			clientLogLevel: "error",
+			after: (arg) => {
+				console.log(arg)
+				spawn("npm", ["run", "start:hot"], { shell: true, env: process.env, stdio: "inherit" })
+				.on("close", code => process.exit(code))
+				.on("error", spawnError => console.error(spawnError));
+			}
 		}
 	}
 ]);

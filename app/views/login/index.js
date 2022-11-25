@@ -39,9 +39,9 @@ class LoginView extends PureComponent {
 				{/* 为了做一个拖动区域 */}
 				<div className="login-drag"></div>
 				<div className="oa-login">
-					<div className="login-logo">
+					{/* <div className="login-logo">
 						<img src={ require(`@/views/config/img/logo.png`) } />
-					</div>
+					</div> */}
 					<div className="app-login center-content">
 						<section>
 							<Login {...this.props}/>

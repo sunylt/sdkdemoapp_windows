@@ -97,10 +97,10 @@ class MenuList extends Component {
 						? <div className="network-state">网络连接已断开</div>
 						: null
 				}
-				<div className="groupname">
+				<div className="groupname" style={ { padding: "10px" } }>
 					<Input title="好友用户ID" placeholder="输入联系人ID" onChange={(event) => {this.onIdChange(event)}}></Input>
 				</div>
-				<Button type="primary" onClick={ this.addContact }>添加好友</Button>
+				<Button style={ { margin: "0 10px 10px" } } type="primary" onClick={ this.addContact }>添加好友</Button>
 				<Menu
 					onClick={ this.handleClick }
 					onOpenChange={ this.handleOpenChange }

@@ -32,7 +32,7 @@
 }
 .nav-user{
 	height: 60px;
-	background: #e4e9ec;
+	background: #5396fe;
 	display: flex;
 	justify-content: flex-end;
 	padding-right: 25px;
@@ -55,11 +55,11 @@
 
 .app-navbar {
 	z-index: 999;
-	width: 64px;
-	background: #405E7A;
+	width: 74px;
+	background: #fbfbfb;
 	text-align: center;
 	font-size: 30px;
-	padding-top: 20px;
+	// padding-top: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -76,9 +76,12 @@
 		&.active{
 			color: #1890ff;
 		}
+    &:hover{
+      color: #5497ff;
+    }
 	}
 	.selected{
-		color: #24BDB9;
+		color: #5497ff;
 	}
 }
 
@@ -99,7 +102,7 @@
 		// overflow-x: hidden;
 		overflow-y: auto;
 		border-right: 1px solid #dfe3e9;
-		background: #f8fafc;
+		background: #ffffff;
 		>ul {
 			height: calc(100% - 58px);
 			overflow-y: auto;
@@ -162,7 +165,7 @@
 	background-repeat: no-repeat;
 	background-position: top;
 	background-size: cover;
-	border-radius: 50%;
+	border-radius: 4px;
 	overflow: hidden;
 	user-select: none;
 	>img {

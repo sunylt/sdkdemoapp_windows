@@ -318,9 +318,9 @@ class CreateGroupView extends PureComponent {
 		var memberInfoOfGroup;
 		return (
 			<div>
-				<div className="add-members" onClick={ this.handleCreatGroup }>
+				{/* <div className="add-members" onClick={ this.handleCreatGroup }>
 					<Icon type="plus-square-o" />
-				</div>
+				</div> */}
 				{userInfo ? 
 					<Modal
 						title="新建群"

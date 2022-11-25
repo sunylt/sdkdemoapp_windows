@@ -9,9 +9,9 @@ import * as selectors from "@/stores/selectors";
 import { ipcRenderer } from "electron";
 
 const navbarItems = [
-	{ to: ROUTES.chats.recents.__, label: "最近聊天", icon: "contacts" },
-	{ to: ROUTES.chats.contacts.__, label: "通讯录", icon: "idcard" },
-	{ to: ROUTES.chats.groups.__, label: "群组", icon: "team" },
+	{ to: ROUTES.chats.recents.__, label: "消息", icon: "message" },
+	// { to: ROUTES.chats.groups.__, label: "工作台", icon: "appstore-o" },
+	{ to: ROUTES.chats.contacts.__, label: "通讯录", icon: "idcard" }
 ];
 
 
@@ -60,6 +60,7 @@ class Navbar extends Component {
 							? <Badge className="nav-unread-count" count={allUnReadMsgCount} />
 							: null
 						}
+            <span style={{fontSize: "12px",display:"block"}}>{ item.label }</span>
 					</Link>
 				)}
 			/>

@@ -23,7 +23,7 @@ class MemberTabView extends Component {
 					<TabPane tab={ <Icon type="solution" /> } key="members">
 						<MemberSettingView />
 					</TabPane>
-					{/* <TabPane tab="文件" key="3">Content of tab 3</TabPane> */}
+					<TabPane tab="文件" key="3">Content of tab 3</TabPane>
 				</Tabs>
 				{/* <div>
 					<Icon type="menu-unfold" />

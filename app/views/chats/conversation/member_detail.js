@@ -50,9 +50,9 @@ class MemberDetailView extends PureComponent {
 
 			<div className="oa-conversation-top">
 				<div>
-					<HeadImageView
+					{/* <HeadImageView
 						imgUrl={ "" }
-					/>
+					/> */}
 					<span className="ellipsis selectName">
 						{
 							name
