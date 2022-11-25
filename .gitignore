@@ -6,6 +6,5 @@ npm-debug.log
 /easemobDB
 /appdata
 /app/__build__
-server.json
 config.json
 package-lock.json
