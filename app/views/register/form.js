@@ -6,6 +6,7 @@ import * as selectors from "@/stores/selectors";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { Link } from "react-router-dom";
 import { utils } from "@/utils/utils";
+import { ipcRenderer } from "electron";
 const session = require("electron").remote.session;
 var checkedVal;
 class RegisterForm extends PureComponent {
@@ -19,7 +20,8 @@ class RegisterForm extends PureComponent {
 		const { requestLogin, setNotice, globalAction } = this.props.reduxProps;
 		const { form } = this.props;
 		form.validateFields((err, fieldsValue) => {
-			this.emclient = utils.initEmclient();
+			const privateConfig = ipcRenderer.sendSync("syncPrivateServerConfig");
+			this.emclient = utils.initEmclient(privateConfig);
 			this.emclient.createAccount(fieldsValue.userName, fieldsValue.password).then((res) => {
 			    if(res.code == 0){
 			    	globalAction({
