@@ -18,12 +18,27 @@
 	}
 	.chat-container{
 		// flex: 3 1 400px;
-		width: calc(100% - 230px);
+		width: 100%;
+    .chat-primary{
+      display: flex;
+      flex-direction: row;
+      height: calc(100% - 56px);
+    }
 		.chat-detail{
-			height: calc(100% - 56px);
+			height: 100%;
 			border-right: 1px solid #dfe3e9;
 			display: flex;
 			flex-direction: column;
+      width: 100%;
+		}
+    .chat-aside{
+      width: 0;
+      height: 100%;
+			transition: width 0.3s linear;
+			overflow: hidden;
+    }
+		.show-card{
+			width: 300px;	
 		}
 	}
 	.operate-member {
@@ -150,9 +165,17 @@
 }
 .oa-conversation-container{
 	height: calc(100% - 150px);
-	overflow-y: scroll;
+	overflow-y: auto;
 	flex: 2 1 450px;
   background-color: #f4f4f4;
+  &::-webkit-scrollbar{
+		width: 6px;
+    background-color: #f4f4f4;
+	}
+	&::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 3px;
+	}
 	// 通知类消息
 	.notice-msg{
 		padding: 10px;
