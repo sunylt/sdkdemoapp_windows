@@ -376,6 +376,17 @@ export const requestLogin = (payload) => (
 	}
 )
 
+
+export const setUserOrg = payload => ({
+	type: "app/setUserOrg",
+	payload
+});
+
+export const updateUserOrgs = payload => ({
+	type: "app/updateUserOrgs",
+	payload
+});
+
 export const getPublicGroupList = payload => ({
 	type: "group/getPublicGroup",
 	payload

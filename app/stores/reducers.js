@@ -625,6 +625,18 @@ export const rtcInfo = (state = { status: 0, data: {} }, { type, payload }) => {
 	}
 };
 
+export const org = (state = { topOrg: {}, userOrgs: [] }, action) => {
+	const { type, payload } = action;
+	switch(type){
+	case "app/setUserOrg":
+		return { topOrg: payload.topOrg, userOrgs: payload.userOrgs };
+	case "app/updateUserOrgs":
+		return { ...state, userOrgs: payload };
+	default:
+		return state;
+	}
+};
+
 export default combineReducers({
 	globals,
 	networkConnection,
@@ -654,5 +666,6 @@ export default combineReducers({
 	allGroupChats,
 	isSelectCovGroup,
 	publicGroup,
-	rtcInfo
+	rtcInfo,
+	org
 });
