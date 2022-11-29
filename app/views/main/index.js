@@ -9,13 +9,13 @@ import TopNav from "./topnav";
 import RtcView from "./rtc_view";
 import moment from "moment";
 import { utils } from "@/utils/utils";
+import { fetchTopOrg, fetchChildOrg, fetchOrgUser } from "@/utils/api";
 import { userChange } from "./receive_notice";
 import api from "@/api";
 import _ from "underscore";
 import ROUTES from "../common/routes";
 import { conversationOfSelect } from "../../stores/actions";
 import { ipcRenderer } from "electron";
-import rtcHelper from "../../utils/rtc-helper";
 // var fs = require("fs-extra");
 
 // const { remote } = require("electron");
@@ -62,7 +62,8 @@ class MainView extends PureComponent {
 			setAllContacts,
 			setGroupChats,
 			selectConversationId,
-			conversationOfSelect
+			conversationOfSelect,
+			setUserOrg
 		} = this.props;
 		if(userInfo && userInfo.user && userInfo.user.id){
 			if(globals.emclient){
@@ -434,6 +435,37 @@ class MainView extends PureComponent {
 			unReadMsgCountAction({ id: item.conversationId(), unReadMsg: unReadMsgMsgId });
 			initConversationsActiton({ id: item.conversationId(), msgs: messages, "conversation":item });
 		});
+
+				fetchTopOrg(userInfo.user.easemobName)
+				.then((res) => {
+					// if(res.entities){
+					// 	res.entities.forEach((orgItem) => {
+					// 		const { topOrg, userOrgs } = orgItem;
+					// 		setUserOrg({ topOrg, userOrgs });
+					// 		fetchChildOrg(topOrg.id, true).then(res => {
+					// 			console.log("allll>>", res);
+					// 		});
+					// 		fetchOrgUser(topOrg.id).then(res => {
+					// 			console.log("usersss>", res);
+					// 		})
+					// 	});
+					// }
+					if(res.entities.length){
+						const { topOrg, userOrgs } = res.entities[0];
+						setUserOrg({ topOrg, userOrgs });
+						fetchChildOrg(topOrg.id, true).then((res) => {
+							console.log("allll>>", res);
+						});
+						fetchOrgUser(topOrg.id).then((res) => {
+							console.log("usersss>", res);
+						});
+					}
+					else{
+						setUserOrg({ topOrg: {}, userOrgs: [] });
+					}
+				})
+				.catch(error => console.log("fetchOrg error.", error));
+
 		if(res.code != 0){
 			this.props.history.push('/index');
 			setNotice(`登录失败，${res.description}`,'fail');
