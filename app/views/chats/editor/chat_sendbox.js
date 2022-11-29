@@ -453,6 +453,7 @@ class ChatSendBoxView extends PureComponent {
 					id="chatSendbox"
 					// onKeyDown={ this.handleKeyDown }
 				/>
+				<Button type="primary" className="btn-send">发 送</Button>
 				<Modal
 					title="发送图片"
 					visible={ this.state.visible }
