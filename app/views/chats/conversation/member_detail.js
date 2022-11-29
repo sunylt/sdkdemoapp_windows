@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import HeadImageView from "@/views/common/head_image";
 import CreateGroupView from "../groups/group_create";
 import { withRouter } from "react-router-dom";
+import { Icon } from "antd";
 
 class MemberDetailView extends PureComponent {
 	constructor(props){
@@ -63,6 +64,7 @@ class MemberDetailView extends PureComponent {
 				{
 					!isGroup && <CreateGroupView selectMember={ [{easemobName:selectConversationId}] } />
 				}
+				<span style={ { fontSize: "24px", marginRight: "20px", cursor: "pointer" } } onClick={ this.props.handleShowCard }><Icon type="solution" /></span>
 			</div>
 		);
 

@@ -19,12 +19,13 @@ class MemberTabView extends Component {
 	render(){
 		return (
 			<div className="group-tab">
-				<Tabs defaultActiveKey="members" size="default" tabBarStyle={ { borderBottom: "1px sold #f6f6f6" } }>
+				<MemberSettingView />
+				{/* <Tabs defaultActiveKey="members" size="default" tabBarStyle={ { borderBottom: "1px sold #f6f6f6" } }>
 					<TabPane tab={ <Icon type="solution" /> } key="members">
 						<MemberSettingView />
 					</TabPane>
 					<TabPane tab="文件" key="3">Content of tab 3</TabPane>
-				</Tabs>
+				</Tabs> */}
 				{/* <div>
 					<Icon type="menu-unfold" />
 				</div> */}

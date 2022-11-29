@@ -13,6 +13,10 @@ import moment from "moment";
 
 class ConversationView extends PureComponent {
 
+  state = {
+  	showCard: false
+  }
+
 	showInfo(){
 		const { isSelectCovGroup } = this.props;
 		// 群组
@@ -23,6 +27,11 @@ class ConversationView extends PureComponent {
 		return <MemberTabView />;
 	}
 
+  showCard = () => {
+  	this.setState({
+  		showCard: !this.state.showCard
+  	});
+  }
 
 	render(){
 		const { selectConversationId } = this.props;
@@ -33,13 +42,18 @@ class ConversationView extends PureComponent {
 					selectConversationId
 						? <div className="oa-conversation-box">
 							<div className="chat-container">
-								<MemberDetailView />
-								<div className="chat-detail">
-									<ConversationDetailView { ...this.props } />
-									<ChatSendBoxView { ...this.props } key={ selectConversationId } />
+								<MemberDetailView handleShowCard={ this.showCard } />
+								<div className="chat-primary">
+								  <div className="chat-detail">
+									  <ConversationDetailView { ...this.props } />
+									  <ChatSendBoxView { ...this.props } key={ selectConversationId } />
+								  </div>
+									<div className={ this.state.showCard ? "chat-aside show-card" : "chat-aside" }>
+										{this.showInfo()}
+								  </div>
 								</div>
 							</div>
-							{ this.showInfo() }
+							{/* { this.showInfo() } */}
 						</div>
 						: null
 				}
