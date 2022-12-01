@@ -24,4 +24,6 @@ export const fetchOrgUser = (orgId, type) => {
 	return fetch(`${restServer}/v1/organization/integration/organs/${orgId}/users${type ? "?type=all" : ""}`).then(res => res.json());
 };
 
+export default restServer;
+
 
