@@ -75,6 +75,9 @@ class MainView extends PureComponent {
 				const privateConfig = ipcRenderer.sendSync("syncPrivateServerConfig");
 				this.emclient = utils.initEmclient(privateConfig);
 			}
+			if(userInfo.user.appkey){
+				this.emclient.changeAppKey(userInfo.user.appkey); // for login with qrcode
+			}
 			this.log = new easemob.EMLog();
 			this.error = new easemob.EMError();
 
