@@ -4,12 +4,18 @@ import { Spin, Icon } from "antd";
 import * as actionCreators from "@/stores/actions";
 import * as selectors from "@/stores/selectors";
 import Login from "./form";
+import restServer, { getQRcode, getQRLoginStat } from "@/utils/api";
+import QRCode from "qrcode";
 const { ipcRenderer } = require("electron");
 
 class LoginView extends PureComponent {
 	constructor(props){
 		super(props);
 		this.state = {
+			loginWithQrc: false,
+			qrCode: "",
+			expireTime: 0,
+			qrCodeStat: 0, // 0无意义 1扫过 2登陆 -1过期 3手机端取消登陆
 		};
 		this.handleRender = this.handleRender.bind(this);
 	}
@@ -28,8 +34,102 @@ class LoginView extends PureComponent {
 		});
 	}
 
+	doLogin = (userName, password, appkey) => {
+		const userInfo = {
+			user: {
+				easemobName: userName,
+				id: 1,
+				easemobPwd: password,
+				os: "PC",
+				appkey,
+				tenantId: 9,
+				image: ""
+			}
+		};
+		console.log("qrcode doLogin", this);
+		if(navigator.onLine){
+			localStorage.setItem("userInfo", JSON.stringify(userInfo));
+			this.props.requestLogin(userInfo);
+			this.props.history.push("/chats/recents");
+			console.log("push router to login");
+		}
+	}
+
+	renderQRCode = (qrCode) => {
+		const data = `${restServer}/qrCode/${qrCode}`;
+		clearInterval(this._interval);
+		QRCode.toCanvas(document.getElementById("c-qrcode"), data, (error) => {
+			if(error){
+				console.error(error);
+			}
+			else{
+				console.log("success!");
+				this._interval = setInterval(() => {
+					if(this.state.expireTime <= +new Date()){
+						clearInterval(this._interval);
+						this.setState({ qrCodeStat: -1 });
+						return;
+					}
+					getQRLoginStat(qrCode).then((res) => {
+						if(res.state == "1"){
+							// 用户扫描成功
+							this.setState({ qrCodeStat: 1 });
+						}
+						else if(res.state == "2" && res.userName && res.orgName && res.appName){
+							// 用户确认登陆，stop interval and doLoign
+							clearInterval(this._interval);
+							this.doLogin(res.userName, res.password, `${res.orgName}#${res.appName}`);
+						}
+						else if(res.state == "3"){
+							clearInterval(this._interval);
+							this.setState({ qrCodeStat: 3 });
+						}
+					});
+				}, 2000);
+			}
+		});
+	}
+
+	updateQRCode = () => {
+		getQRcode().then((res) => {
+			this.setState({
+				loginWithQrc: res,
+				qrCode: res.qrCode,
+				expireTime: res.expireAt,
+				qrCodeStat: 0
+			});
+			this.renderQRCode(res.qrCode);
+		}).catch((e) => {
+			console.error("QR code request error.", e);
+			this.props.setNotice("当前服务不支持扫码登录", "fail");
+		});
+	}
+
+	handleToggleQRcode = () => {
+		const checked = !this.state.loginWithQrc;
+		if(checked){
+			console.log(this.state.expireTime, new Date().getTime());
+			if(this.state.qrCode && this.state.expireTime > new Date().getTime() && this.state.qrCodeStat !== 1){
+				this.setState({
+					loginWithQrc: checked
+				});
+				this.renderQRCode(this.state.qrCode);
+				return;
+			}
+			this.updateQRCode();
+		}
+		else{
+			this.setState({
+				loginWithQrc: checked
+			});
+			clearInterval(this._interval);
+		}
+	}
+
 	render(){
 		const { areRequestsPending } = this.props;
+		const { loginWithQrc, expireTime, qrCodeStat } = this.state;
+		const isExpired = qrCodeStat == -1 || (loginWithQrc && expireTime && new Date().getTime() > expireTime);
 		return (
 			<div>
 				{/* {
@@ -43,6 +143,7 @@ class LoginView extends PureComponent {
 						<img src={ require(`@/views/config/img/logo.png`) } />
 					</div> */}
 					<div className="app-login center-content">
+						<span className="btn-qrcode" onClick={ this.handleToggleQRcode }>{ !loginWithQrc ? "二维码登陆" : "返回" }</span>
 						<section>
 							<Login {...this.props}/>
 							{
@@ -50,6 +151,14 @@ class LoginView extends PureComponent {
 									? <Spin tip="Loading..." />
 									: null
 							}
+						</section>
+						<section className="login-qrcode" style={ { display: loginWithQrc ? "block" : "none" } }>
+							<h4 onClick={() => this.doLogin()}>请扫码登陆</h4>
+							<canvas id="c-qrcode"></canvas>
+							<p>{this.state.qrCode}</p>
+							{this.state.qrCodeStat == 1 && <p>请在手机确认登陆</p>}
+							{this.state.qrCodeStat == 3 && <p>已取消登陆操作</p>}
+							{isExpired && <p>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></p>}
 						</section>
 					</div>
 				</div>
