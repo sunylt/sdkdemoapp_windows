@@ -11,7 +11,7 @@ export default {
 			id: id => (`/chats/recents/${id}`)
 		},
 		contacts: {
-			__: "/chats/contacts",
+			__: "/chats/contacts/:name?",
 			id: id => (`/chats/contacts/${id}`)
 		},
 		groups: {

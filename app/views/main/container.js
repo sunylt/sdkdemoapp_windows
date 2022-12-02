@@ -59,7 +59,7 @@ class Container extends Component {
 						mainViews.map((item) => {
 							return (
 								<Route
-									path={ item.path } key={ item.path } exact={ true }
+									path={ item.path } key={ item.path }
 									render={ () => {
 										return <item.view { ...this.props } />;
 									} }

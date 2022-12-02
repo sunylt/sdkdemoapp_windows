@@ -11,7 +11,7 @@ import { ipcRenderer } from "electron";
 const navbarItems = [
 	{ to: ROUTES.chats.recents.__, label: "消息", icon: "message" },
 	// { to: ROUTES.chats.groups.__, label: "工作台", icon: "appstore-o" },
-	{ to: ROUTES.chats.contacts.__, label: "通讯录", icon: "idcard" }
+	{ to: ROUTES.chats.contacts.id(""), label: "通讯录", icon: "idcard" }
 ];
 
 
