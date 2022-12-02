@@ -76,7 +76,7 @@ class MainView extends PureComponent {
 				this.emclient = utils.initEmclient(privateConfig);
 			}
 			if(userInfo.user.appkey){
-				this.emclient.changeAppKey(userInfo.user.appkey); // for login with qrcode
+				this.emclient.changeAppkey(userInfo.user.appkey); // for login with qrcode
 			}
 			this.log = new easemob.EMLog();
 			this.error = new easemob.EMError();
