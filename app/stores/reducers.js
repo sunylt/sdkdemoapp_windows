@@ -625,13 +625,17 @@ export const rtcInfo = (state = { status: 0, data: {} }, { type, payload }) => {
 	}
 };
 
-export const org = (state = { topOrg: {}, userOrgs: [] }, action) => {
+export const org = (state = { topOrg: {}, userOrgs: [], allOrgs: [], allUsers: [] }, action) => {
 	const { type, payload } = action;
 	switch(type){
 	case "app/setUserOrg":
 		return { topOrg: payload.topOrg, userOrgs: payload.userOrgs };
 	case "app/updateUserOrgs":
 		return { ...state, userOrgs: payload };
+	case "app/setAllOrgs":
+		return { ...state, allOrgs: payload };
+	case "app/setAllUsers":
+		return { ...state, allUsers: payload };
 	default:
 		return state;
 	}

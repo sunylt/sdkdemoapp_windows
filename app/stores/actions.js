@@ -387,6 +387,16 @@ export const updateUserOrgs = payload => ({
 	payload
 });
 
+export const setAllOrgs = payload => ({
+	type: "app/setAllOrgs",
+	payload
+});
+
+export const setAllUsers = payload => ({
+	type: "app/setAllUsers",
+	payload
+});
+
 export const getPublicGroupList = payload => ({
 	type: "group/getPublicGroup",
 	payload

@@ -16,12 +16,12 @@ export const fetchTopOrg = (userName) => {
 	return fetch(`${restServer}/v1/organization/integration/users/${userName}/organsAndTopOrgans`).then(res => res.json());
 };
 
-export const fetchChildOrg = (orgId, type) => {
-	return fetch(`${restServer}/v1/organization/integration/organs/${orgId}/organs${type ? "?type=tree" : ""}`).then(res => res.json());
+export const fetchChildOrg = (orgId, showTree) => {
+	return fetch(`${restServer}/v1/organization/integration/organs/${orgId}/organs${showTree ? "?type=tree" : ""}`).then(res => res.json());
 };
 
-export const fetchOrgUser = (orgId, type) => {
-	return fetch(`${restServer}/v1/organization/integration/organs/${orgId}/users${type ? "?type=all" : ""}`).then(res => res.json());
+export const fetchOrgUser = (orgId, showAll) => {
+	return fetch(`${restServer}/v1/organization/integration/organs/${orgId}/users${showAll ? "?type=all" : ""}`).then(res => res.json());
 };
 
 export default restServer;

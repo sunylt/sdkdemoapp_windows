@@ -6,8 +6,13 @@ body{
 			height: 100%;
 		}
 	}
+	a{
+		color: #333;
+	}
   a:hover{
-    color: red;
+    color: #5497ff;
   }
-  
+  a:focus{
+		text-decoration: none;
+	}
 }

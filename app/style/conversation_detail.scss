@@ -334,30 +334,97 @@
 	}
 }
 
+.userContact{
+	width: 100%;
+	a{
+		color: #444;
+		display: block;
+		&:hover{
+			color: #444;
+		}
+		&:focus{
+			text-decoration: none;
+		}
+	}
+	ul{
+		li{
+			padding:0 10px;
+			line-height: 50px;
+			margin-bottom: 2px;
+			position: relative;
+			&.item-selected{
+				background-color: #f7f8fa;
+			}
+		}
+	}
+}
+
 .userOrg{
 	margin: 10px 10px 0;
 	border-top: 1px solid #ebebee;
 	padding-top: 10px;
-	line-height: 34px;
+	color: #444;
+	a{
+		display: block;
+		&:focus{
+			text-decoration: none;
+		}
+	}
 	ul{
 		li{
-			padding-left: 22px;
+			padding-left: 42px;
 			position: relative;
 			margin-bottom: 2px;
+			line-height: 40px;
+			a{
+				color: #444;
+			}
+			&.item-selected{
+				background-color: #f7f8fa;
+				border-radius: 3px;
+			}
 			&::before{
 				content: "";
 				display: block;
 				width: 10px;
 				height: 10px;
 				position: absolute;
-				top: 7px;
-				left: 5px;
-				border:1px solid #dadcdd;
+				top: 12px;
+				left: 15px;
+				border:1px solid #86909C;
 				border-top: none;
 				border-right: none;
 			}
 		}
 	}
+	.topOrgName{
+		line-height: 44px;
+		height: 44px;
+		margin-bottom: 5px;
+	}
+}
+
+.user-icon, .group-icon, .org-icon{
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	border-radius: 3px;
+	margin-right: 8px;
+	vertical-align: middle;
+	font-size: 22px;
+	line-height: 34px;
+	text-align: center;
+	color: #fff;
+}
+
+.user-icon{
+	background-color: #4080FF;
+}
+.group-icon{
+	background-color: #FF9A2E;
+}
+.org-icon{
+	background-color: #86909C;
 }
 
 

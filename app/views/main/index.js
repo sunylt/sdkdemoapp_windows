@@ -63,7 +63,9 @@ class MainView extends PureComponent {
 			setGroupChats,
 			selectConversationId,
 			conversationOfSelect,
-			setUserOrg
+			setUserOrg,
+			setAllOrgs,
+			setAllUsers
 		} = this.props;
 		if(userInfo && userInfo.user && userInfo.user.id){
 			if(globals.emclient){
@@ -171,7 +173,7 @@ class MainView extends PureComponent {
 				log: this.log,
 				groupManager: this.groupManager,
 				emCallback: this.emCallback,
-				groupManager: this.groupManager,
+				// groupManager: this.groupManager,
 				contactManager:this.contactManager
 			});
 
@@ -456,11 +458,15 @@ class MainView extends PureComponent {
 					if(res.entities.length){
 						const { topOrg, userOrgs } = res.entities[0];
 						setUserOrg({ topOrg, userOrgs });
-						fetchChildOrg(topOrg.id, true).then((res) => {
-							console.log("allll>>", res);
+						fetchChildOrg(topOrg.id).then((res) => {
+							if(res && res.entities){
+								setAllOrgs(res.entities);
+							}
 						});
-						fetchOrgUser(topOrg.id).then((res) => {
-							console.log("usersss>", res);
+						fetchOrgUser(topOrg.id, true).then((res) => {
+							if(res && res.entities){
+								setAllUsers(res.entities);
+							}
 						});
 					}
 					else{

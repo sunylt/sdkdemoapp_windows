@@ -58,7 +58,7 @@
 	width: 74px;
 	background: #fbfbfb;
 	text-align: center;
-	font-size: 30px;
+	font-size: 24px;
 	// padding-top: 20px;
 	display: flex;
 	flex-direction: column;
@@ -104,7 +104,7 @@
 		border-right: 1px solid #dfe3e9;
 		background: #ffffff;
 		>ul {
-			height: calc(100% - 58px);
+			// height: calc(100% - 58px);
 			overflow-y: auto;
 			overflow-x: hidden;
 		}
@@ -124,6 +124,7 @@
 	}
 	.oa-main-sendbox{
 		flex: 1 1 150px;
+		position: relative;
 		textarea{
 			border: none;
 			box-shadow: none;
@@ -131,6 +132,11 @@
 			width: 100%;
 			height: calc(100% - 35px);
 			background: #f9fafc;
+		}
+		.btn-send{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
 		}
 		.oa-main-toolbar{
 			display: flex;
