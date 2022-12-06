@@ -1,0 +1,10 @@
+{
+  "chatServer": "private-preview-msync.easemob.com",
+  "chatPort": 16717,
+  "restServer": "https://private-preview-a1.easemob.com",
+  "appKey": "preview#chat",
+  "usePrivateConfig": true,
+	"rtcServer": "https://private-preview-media.easemob.com",
+	"rtcAppKey": "Y25Sak9nbnVlN1pLv3Bm5FCJBquhPsL5csn06k3AOlQ",
+	"rtcAppId": "827212690214645824"
+ }
