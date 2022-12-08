@@ -16,6 +16,7 @@ import _ from "underscore";
 import ROUTES from "../common/routes";
 import { conversationOfSelect } from "../../stores/actions";
 import { ipcRenderer } from "electron";
+import DataBase from "../../utils/db";
 // var fs = require("fs-extra");
 
 // const { remote } = require("electron");
@@ -42,6 +43,11 @@ else{
 
 
 class MainView extends PureComponent {
+
+	state = {
+		orgDataLoaded: false,
+		userDataLoaded: false,
+	}
 
 	constructor(props){
 		var conversation;
@@ -458,15 +464,26 @@ class MainView extends PureComponent {
 					if(res.entities.length){
 						const { topOrg, userOrgs } = res.entities[0];
 						setUserOrg({ topOrg, userOrgs });
-						fetchChildOrg(topOrg.id).then((res) => {
-							if(res && res.entities){
-								setAllOrgs(res.entities);
-							}
-						});
-						fetchOrgUser(topOrg.id, true).then((res) => {
-							if(res && res.entities){
-								setAllUsers(res.entities);
-							}
+						DataBase.create(userInfo.user.easemobName).then((db) => {
+							console.log("db created success", db);
+							fetchChildOrg(topOrg.id).then((res) => {
+								if(res && res.entities){
+									DataBase.addData("orgs", res.entities);
+									setAllOrgs(res.entities);
+									this.setState({
+										orgDataLoaded: true,
+									});
+								}
+							});
+							fetchOrgUser(topOrg.id, true).then((res) => {
+								if(res && res.entities){
+									DataBase.addData("users", res.entities);
+									setAllUsers(res.entities);
+									this.setState({
+										userDataLoaded: true,
+									});
+								}
+							});
 						});
 					}
 					else{
@@ -1107,9 +1124,10 @@ class MainView extends PureComponent {
 	render(){
 		return (
 			<div className="oa-main-container">
-				<TopNav {...this.props}/>
+				<TopNav { ...this.props } />
 				<div className="nav-container">
 					<Navbar className="dock-left primary shadow-2" />
+					{/* {this.state.orgDataLoaded && this.state.userDataLoaded ? <Container /> : <p>数据加载中.....</p>} */}
 					<Container />
 					<RtcView />
 				</div>
@@ -1127,7 +1145,7 @@ const mapStateToProps = state => ({
 	selectMember: state.selectMember,
 	memberOfSelect: state.memberOfSelect,
 	msgsOfConversation: state.msgsOfConversation,
-	selectNav:state.selectNav,
+	selectNav: state.selectNav,
 	rtcInfo: state.rtcInfo
 });
 export default withRouter(connect(mapStateToProps, actionCreators)(MainView));

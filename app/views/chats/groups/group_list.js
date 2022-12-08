@@ -39,8 +39,8 @@ class GroupList extends Component {
 		} = this.props;
 		let arrGroupChats = allGroupChats.allGroups || [];
 		return (
-			<div className="oa-main-list oa-conversation-list">
-				<AddGroup />
+			<div className="oa-main-list oa-conversation-list group-list">
+				{/* <AddGroup /> */}
 				{
 					networkConnection
 						? <div className="network-state">网络连接已断开</div>
@@ -48,7 +48,7 @@ class GroupList extends Component {
 				}
 				<Menu
 					onClick={ this.handleClick }
-					style={ { width: 300, border: "none" } }
+					style={ { border: "none" } }
 					selectedKeys={ selectGroup.easemobGroupId ? [selectGroup.easemobGroupId] : [] }
 					// mode="inline"
 				>

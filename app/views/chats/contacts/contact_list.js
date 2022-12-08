@@ -106,7 +106,6 @@ class MenuList extends Component {
 
 		const routeName = match.params.name;
 		const orgId = routeName === "org" ? location.href.split("org/")[1] : "";
-		console.log("click rootid", rootOrgId);
 
 		return (
 			<div className="oa-main-list  oa-conversation-list">

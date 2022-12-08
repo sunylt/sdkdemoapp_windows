@@ -15,4 +15,8 @@ body{
   a:focus{
 		text-decoration: none;
 	}
+	.ant-btn-primary, .ant-btn-primary:hover, .ant-btn-primary:focus{
+		background-color: #4080FF;
+		border-color: #4080FF;
+	}
 }
