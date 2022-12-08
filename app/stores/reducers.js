@@ -629,7 +629,7 @@ export const org = (state = { topOrg: {}, userOrgs: [], allOrgs: [], allUsers: [
 	const { type, payload } = action;
 	switch(type){
 	case "app/setUserOrg":
-		return { topOrg: payload.topOrg, userOrgs: payload.userOrgs };
+		return { ...state, topOrg: payload.topOrg, userOrgs: payload.userOrgs };
 	case "app/updateUserOrgs":
 		return { ...state, userOrgs: payload };
 	case "app/setAllOrgs":
