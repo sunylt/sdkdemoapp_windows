@@ -142,7 +142,7 @@ module.exports = {
         // "guard-for-in":                 1,                  // for in 的警告（观察观察）
 
         // 如果 method 没有使用 this，应该使用 static
-        "class-methods-use-this": [1, { "exceptMethods":["render"] }],
+        // "class-methods-use-this": [1, { "exceptMethods":["render"] }],
         // 强制 promise reject error 对象
         // "prefer-promise-reject-errors": [2, { "allowEmptyReject":true }],
         // 强制 IIFE 必须打括号
