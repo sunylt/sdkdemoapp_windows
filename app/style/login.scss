@@ -1,14 +1,43 @@
+.login-container{
+	width: 100%;
+	height: 100%;
+	background: url(../assets/img/bg-loign.jpg) 0 0 no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
 .oa-login{
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 70px;
+	position: absolute;
+	top: 23%;
+	right: 50px;
 }
 .login-drag{
+	position: relative;
 	height: 60px;
-	background: #465d78;
+	background: transparent;
 	-webkit-app-region: drag; // 可拖动
+	&::after{
+		content: " ";
+		position: absolute;
+		width: 40%;
+		height: 20px;
+		right: 0;
+		bottom: -10px;
+		background-color: transparent;
+		box-shadow: 5px 3px 5px rgba(0, 0, 0, .1);
+		opacity: 0.5;
+	}
+	.logo-home{
+		width: 119px;
+		height: 52px;
+		background: url(../assets/img/logo-home.jpg) 0 0 no-repeat;
+		right: 10px;
+		top: 20px;
+		position:absolute;
+		zoom: 0.8;
+		right: 50px;
+		z-index: 1;
+	}
 }
 .login-logo{
 	width: 80px;
@@ -25,15 +54,18 @@
 	background: #fff;
 	display: flex;
 	justify-content: center;
-	width: 400px;
-	border-radius: 8px;
+	width: 320px;
 	position: relative;
 	overflow: hidden;
+	border: 1px solid #E5E7E9;
+		border-radius: 4px;
+		padding: 20px 0;
+		box-shadow: 0px 8px 24px 0px rgba(4,0,0,0.1);
 	> section{
 		width: calc(100% - 60px);
 		display: flex;
 		flex-direction: column;
-		margin: 15px 0;
+		// margin: 15px 0;
 	 	> header{
 			text-align: center;
 			> img {
@@ -51,20 +83,29 @@
 		position: absolute;
 		right: 0;
 		z-index: 3;
-		padding: 10px;
+		top: 10px;
+		right: 10px;
 		cursor: pointer;
 	}
 	.login-qrcode{
-		position: absolute;
 		width: 100%;
 		height: 100%;
 		background-color: #fff;
 		z-index: 2;
 		margin: 0;
-
+		overflow: hidden;
+		text-align: center;
+		h4{
+			font-size: 18px;
+			margin-bottom: 20px;
+		}
+		p{
+			padding: 20px 0;
+		}
 		canvas{
 			width: 200px;
 			height: 200px;
+			border: 1px solid #E6EBF6;
 		}
 	}
 }

@@ -131,20 +131,22 @@ class LoginView extends PureComponent {
 		const { loginWithQrc, expireTime, qrCodeStat } = this.state;
 		const isExpired = qrCodeStat == -1 || (loginWithQrc && expireTime && new Date().getTime() > expireTime);
 		return (
-			<div>
+			<div className="login-container">
 				{/* {
 					this.handleRender()
 				} */}
 
 				{/* 为了做一个拖动区域 */}
-				<div className="login-drag"></div>
+				<div className="login-drag">
+					<div className="logo-home"></div>
+				</div>
 				<div className="oa-login">
 					{/* <div className="login-logo">
 						<img src={ require(`@/views/config/img/logo.png`) } />
 					</div> */}
 					<div className="app-login center-content">
-						<span className="btn-qrcode" onClick={ this.handleToggleQRcode }>{ !loginWithQrc ? "二维码登陆" : "返回" }</span>
-						<section>
+						<span className="btn-qrcode" onClick={ this.handleToggleQRcode }>{ !loginWithQrc ? "二维码" : "返回" }</span>
+						<section style={ { display: loginWithQrc ? "none" : "block" } }>
 							<Login {...this.props}/>
 							{
 								areRequestsPending
@@ -153,9 +155,9 @@ class LoginView extends PureComponent {
 							}
 						</section>
 						<section className="login-qrcode" style={ { display: loginWithQrc ? "block" : "none" } }>
-							<h4 onClick={() => this.doLogin()}>请扫码登陆</h4>
+							<h4>请扫码登陆</h4>
 							<canvas id="c-qrcode"></canvas>
-							<p>{this.state.qrCode}</p>
+							{this.state.qrCode && this.state.expireTime >= +new Date() ? <p>打开手机客户端<br />消息-右上角 + 号扫一扫</p> : ""}
 							{this.state.qrCodeStat == 1 && <p>请在手机确认登陆</p>}
 							{this.state.qrCodeStat == 3 && <p>已取消登陆操作</p>}
 							{isExpired && <p>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></p>}

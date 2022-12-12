@@ -16,12 +16,14 @@ class RegisterView extends PureComponent {
 	render(){
 		const { areRequestsPending } = this.props;
 		return (
-			<div>
-				<div className="login-drag"></div>
+			<div className="login-container">
+				<div className="login-drag">
+					<div className="logo-home"></div>
+				</div>
 				<div className="oa-login">
-					<div className="login-logo">
+					{/* <div className="login-logo">
 						<img src={ require(`@/views/config/img/logo.png`) } />
-					</div>
+					</div> */}
 					<div className="app-login center-content">
 						<section>
 							<Register />
