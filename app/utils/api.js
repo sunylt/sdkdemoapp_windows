@@ -9,7 +9,7 @@ export const getQRcode =  () => {
 
 
 export const getQRLoginStat = (qrCodeId) => {
-	return fetch(`${restServer}/login/qrCode/${qrCodeId}/scan_info`).then(res => res.json());
+	return fetch(`${restServer}/login/qrCode/${qrCodeId}/scan_info`).then(res => res.text());
 };
 
 export const fetchTopOrg = (userName) => {

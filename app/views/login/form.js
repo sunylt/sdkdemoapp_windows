@@ -205,9 +205,9 @@ class LoginForm extends PureComponent {
 						{ Lang.string("login.btn.label") }
 					</Button>
 				</FormItem>
-				<Link to="/register">
+				{/* <Link to="/register">
 					注册
-				</Link>
+				</Link> */}
 			</Form>
 		);
 	}

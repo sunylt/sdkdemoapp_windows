@@ -70,8 +70,10 @@ class LoginView extends PureComponent {
 						this.setState({ qrCodeStat: -1 });
 						return;
 					}
-					getQRLoginStat(qrCode).then((res) => {
-						if(res.state == "1"){
+					getQRLoginStat(qrCode).then((_res) => {
+						const res = _res.length ? JSON.parse(_res) : {};
+						console.log("qrCode state>>", res);
+						if(res && res.state == "1"){
 							// 用户扫描成功
 							this.setState({ qrCodeStat: 1 });
 						}
@@ -128,7 +130,7 @@ class LoginView extends PureComponent {
 
 	render(){
 		const { areRequestsPending } = this.props;
-		const { loginWithQrc, expireTime, qrCodeStat } = this.state;
+		const { loginWithQrc, expireTime, qrCodeStat, qrCode } = this.state;
 		const isExpired = qrCodeStat == -1 || (loginWithQrc && expireTime && new Date().getTime() > expireTime);
 		return (
 			<div className="login-container">
@@ -156,11 +158,11 @@ class LoginView extends PureComponent {
 						</section>
 						<section className="login-qrcode" style={ { display: loginWithQrc ? "block" : "none" } }>
 							<h4>请扫码登陆</h4>
-							<canvas id="c-qrcode"></canvas>
-							{this.state.qrCode && this.state.expireTime >= +new Date() ? <p>打开手机客户端<br />消息-右上角 + 号扫一扫</p> : ""}
-							{this.state.qrCodeStat == 1 && <p>请在手机确认登陆</p>}
-							{this.state.qrCodeStat == 3 && <p>已取消登陆操作</p>}
-							{isExpired && <p>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></p>}
+							<canvas id="c-qrcode" style={ { display: qrCodeStat > 0 ? "none" : "initial" } }></canvas>
+							{qrCode && qrCodeStat <= 0 && expireTime >= +new Date() ? <div className="scan-info"><span className="ico-phone"></span><br />打开手机客户端<br />消息-右上角 + 号扫一扫</div> : ""}
+							{qrCodeStat == 1 && <div className="scan-success"><span className="ico-phone"></span><p>扫码成功<br />请在手机上<em>确认登陆</em></p><span className="cancel-login">取消登陆</span></div>}
+							{qrCodeStat == 3 && <div>已取消登陆操作 <span onClick={ () => this.updateQRCode() }>刷新</span></div>}
+							{isExpired && <div>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></div>}
 						</section>
 					</div>
 				</div>
