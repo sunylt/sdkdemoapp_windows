@@ -28,6 +28,7 @@ const DataBase = {
 				if(!db.objectStoreNames.contains("users")){
 					const userStore = db.createObjectStore("users", { keyPath: "id" });
 					userStore.createIndex("id", "id", { unique: true });
+					userStore.createIndex("userName", "userName", { unique: false });
 				}
 			};
 		});
