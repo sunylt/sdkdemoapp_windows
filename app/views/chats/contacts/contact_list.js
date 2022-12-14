@@ -136,7 +136,7 @@ class MenuList extends Component {
 				{
 					org.topOrg.name &&
 				<div className="userOrg">
-					<div className="topOrgName"><span className="org-icon"><Icon type="fork"></Icon></span>{org.topOrg.name}</div>
+					<div className="topOrgName"><span className="org-icon"><Icon type="apartment"></Icon></span>{org.topOrg.name}</div>
 					<ul>
 						<li key="all" className={ (orgId === org.topOrg.id && !rootOrgId)  || (orgId && rootOrgId === org.topOrg.id) ? "item-selected" : "" } onClick={ () => this.handleSetRootOrgId(org.topOrg.id) }>
 							<Link to={ `/chats/contacts/org/${org.topOrg.id}` }>组织架构</Link>
