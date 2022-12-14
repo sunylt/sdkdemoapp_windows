@@ -246,6 +246,19 @@ class TopNav extends Component {
 						/>
 					</div>
 				</Modal>
+				<div className="search-box">
+					<Input
+						placeholder="输入内容查询"
+						prefix={ <Icon type="search" /> }
+						// suffix={suffix}
+						// value={userName}
+						// onChange={this.onChangeUserName}
+						// ref={node => this.userNameInput = node}
+					/>
+				</div>
+				<div className="button-add">
+					<Icon type="plus" />
+				</div>
 			</div>
 		);
 	}
