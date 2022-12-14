@@ -31,25 +31,62 @@
 	flex-direction: column;
 }
 .nav-user{
-	height: 60px;
+	height: 50px;
 	background: #0076F6;
 	display: flex;
-	justify-content: flex-end;
-	padding-right: 25px;
+	justify-content:space-between;
 	align-items: center;
 	user-select: none;
 	cursor: pointer;
 	-webkit-app-region: drag; // 为了可拖动窗口
+	padding: 0 15px;
 	img{
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
 		-webkit-app-region: no-drag;
 	}
+
+	.search-box{
+		width: 50%;
+		max-width: 500px;
+
+		.anticon-search{
+			color: #ffffff;
+			font-weight: bold;
+		}
+		input{
+			border: none;
+			background-color: rgba(#ffffff, 0.2);
+			height: 30px;
+			line-height: 30px;
+			color: #fff;
+			&:focus{
+				outline: none;
+				box-shadow: none;
+			}
+			&::-webkit-input-placeholder{
+				color: rgba(#ffffff, 0.5);
+			}
+		}
+	}
+
+	.button-add{
+		background-color: #3D97F8;
+		font-size: 20px;
+		width: 64px;
+		text-align: center;
+		border-radius: 4px;
+		color: #cfe5fe;
+		font-weight: bold;
+		&:hover{
+			background-color: #398de9;
+		}
+	}
 }
 
 .nav-container{
-	height: calc(100% - 60px);
+	height: calc(100% - 50px);
 	display: flex;
 }
 
@@ -105,13 +142,13 @@
 		background: #ffffff;
 		>ul {
 			// height: calc(100% - 58px);
-			overflow-y: auto;
+			// overflow-y: auto;
 			overflow-x: hidden;
 		}
 	}
 	.oa-conversation-serarch-list{
 		>ul {
-			height: calc(100% - 60px);
+		
 		}
 	}
 	.oa-conversation-box{
@@ -431,4 +468,10 @@
 	margin-top: 40px;
 	position: relative;
 	z-index: 1111;
+}
+
+.mac{
+	.nav-user{
+		padding-left: 80px;
+	}
 }

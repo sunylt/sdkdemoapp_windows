@@ -125,3 +125,26 @@
 }
 
 
+.group-list{
+	ul{
+		margin-left: -5px;
+		li{
+			overflow: hidden;
+			zoom: 1;
+			padding: 10px;
+			color: #1D2129;
+			cursor: pointer;
+			&:hover{
+				background-color: #F7F8FA;
+			}
+			.user-avatar{
+				float: left;
+			}
+			p{
+				color: #86909C;
+			}
+		}
+	}
+}
+
+

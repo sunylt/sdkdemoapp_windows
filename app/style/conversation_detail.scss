@@ -1,8 +1,9 @@
 .oa-conversation-box{
-	width: calc(100% - 240px);
+	width: 72%;
 	height: 100%;
 	display: flex;
 	background: #f9fafc;
+	user-select: text;
 	.operate-members{
 		cursor: pointer;
 		margin-bottom: 1px;
@@ -130,6 +131,9 @@
 			padding: 5px 10px!important;
 			height: auto!important;
 			line-height: 30px!important;
+			&::after{
+				border: none !important;
+			}
 			.member-img{
 				width: 40px;
 				height: 40px;
@@ -139,7 +143,7 @@
       &.ant-menu-item-selected{
         background-color: #e2f2ff !important;
         &::after{
-           border-color: #e2f2ff !important;
+           border: none !important;
         }
       }
 
