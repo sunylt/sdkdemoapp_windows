@@ -84,7 +84,7 @@ const utils = {
 		const appKey = _privateConfig.usePrivateConfig ? _privateConfig.appKey : (userInfo && userInfo.user.appkey);
 		this.chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
 		this.chatConfigs.setDeleteMessageAsExitGroup(true);
-		const emclient = new easemob.EMClient(this.chatConfigs);
+		const emclient = easemob.getEMClientInstance(this.chatConfigs);
 		console.warn("util init emclient", emclient, _privateConfig);
 		if(Object.keys(_privateConfig).length && _privateConfig.usePrivateConfig){
 			console.warn("use private config", _privateConfig);
