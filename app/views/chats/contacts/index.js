@@ -6,18 +6,29 @@ import MenuList from "./contact_list";
 import MemberDetailView from "./contact_detail";
 
 import GroupList from "../groups/group_list";
-import RoserListView from "./RosterListView";
+import RosterListView from "./RosterListView";
 import OrgListView from "./OrgListView";
 import DataBase from "../../../utils/db";
 
-const GroupView = () => {
+const MyGroupView = () => {
 	return (
-		<div>
+		<React.Fragment>
 			<h3>我的群组</h3>
 			<div className="contact-content">
 				<GroupList />
 			</div>
-		</div>
+		</React.Fragment>
+	);
+};
+
+const MyRosterView = ({ users }) => {
+	return (
+		<React.Fragment>
+			<h3>我的好友</h3>
+			<div className="contact-content">
+				<RosterListView users={ users } sort={ true } />
+			</div>
+		</React.Fragment>
 	);
 };
 
@@ -42,8 +53,8 @@ class ContactView extends PureComponent {
 			<div>
 				<MenuList selectedKey={ name } />
 				<div className="contact-main">
-					{name === "roster" && <RoserListView users={ users } />}
-					{name === "group" && <GroupView />}
+					{name === "roster" && <MyRosterView users={ users } />}
+					{name === "group" && <MyGroupView />}
 					{name === "org" &&
 						<OrgListView
 							orgId={ orgId }

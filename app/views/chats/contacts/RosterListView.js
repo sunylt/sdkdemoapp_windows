@@ -13,7 +13,7 @@ const CARD_W = 240;
 const CARD_H = 180;
 const ST = 10;
 
-class RoserListView extends PureComponent {
+class RosterListView extends PureComponent {
 	state = {
 		selectedUser: {},
 		x: 0,
@@ -97,9 +97,7 @@ class RoserListView extends PureComponent {
 		document.body.addEventListener("click", this.handleBodyClick);
 	}
 
-	render(){
-		const { selectedUser, x, y } = this.state;
-		const { users } = this.props;
+	renderUserListSort(users){
 		const _users = this.sortByPinyin(users);
 		const listView = [];
 		AZ.forEach((letter) => {
@@ -110,32 +108,40 @@ class RoserListView extends PureComponent {
 				});
 			}
 		});
+		return listView;
+	}
+
+	renderUserList(users){
+		return users.map(user => <li key={ user.id } onClick={ e => this.handleShowUserInfo(user, e) }><AvatarImage name={ user.name.trim() } />{user.name.trim()}</li>);
+	}
+
+	render(){
+		const { selectedUser, x, y } = this.state;
+		const { users, sort } = this.props;
+		
 		return (
-			<div>
-				<h3>我的好友</h3>
-				<div className="contact-content">
-					{
-						users.length ?
-							<ul className="roster-list">
-								{listView}
-							</ul>
-							:
-							null
-					}
-					<div className="user-card" style={ { left: x, top: y, display: `${selectedUser.id ? "block" : "none"}` } } onClick={ this.handleUserCard }>
-						<div>
-							<AvatarImage name={ selectedUser.name } />
-							<h4>{selectedUser.name}</h4>
-							<p>用户ID：{selectedUser.userName}</p>
-						</div>
-						<Link to={ ROUTES.chats.recents.__ }>
-							<Button type="primary" onClick={ () => this.handleSendMessage() }>发消息</Button>
-						</Link>
+			<React.Fragment>
+				{
+					users.length ?
+						<ul className="roster-list">
+							{sort ? this.renderUserListSort(users) : this.renderUserList(users)}
+						</ul>
+						:
+						null
+				}
+				<div className="user-card" style={ { left: x, top: y, display: `${selectedUser.id ? "block" : "none"}` } } onClick={ this.handleUserCard }>
+					<div>
+						<AvatarImage name={ selectedUser.name } />
+						<h4>{selectedUser.name}</h4>
+						<p>用户ID：{selectedUser.userName}</p>
 					</div>
+					<Link to={ ROUTES.chats.recents.__ }>
+						<Button type="primary" onClick={ () => this.handleSendMessage() }>发消息</Button>
+					</Link>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
 
-export default connect(state => ({ globals: state.globals }), actionCreators)(RoserListView);
+export default connect(state => ({ globals: state.globals }), actionCreators)(RosterListView);
