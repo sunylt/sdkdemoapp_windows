@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const { remote, ipcRenderer } = require("electron");
 let configDir = remote.app.getPath("userData");
-const easemob = require('../node/index');
+const { easemob } = remote.app;
 let privateServerConfig = {};
 
 // ipcRenderer.on("privateServerConfig", (event, data) => {

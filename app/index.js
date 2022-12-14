@@ -6,6 +6,8 @@ import "@/style/app.scss";
 import IndexView from "@/views/index";
 import configureStore from "@/stores";
 
+document.body.className = window.process.platform === "darwin" ? "mac" : "win";
+
 ReactDOM.render(
 	<Router>
 		<Provider store={ configureStore() }>

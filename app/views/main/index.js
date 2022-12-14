@@ -21,7 +21,7 @@ import DataBase from "../../utils/db";
 
 // const { remote } = require("electron");
 // let configDir = remote.app.getPath("userData");
-const easemob = require('../../node/index');
+const { easemob } = require("electron").remote.app;
 var gconnectListener;
 var gcontactListner;
 var gInvitedContacts = [];

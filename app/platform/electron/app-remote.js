@@ -16,13 +16,16 @@ electron,
 import _ from "underscore";
 const metadata = require("../../package");
 const { shell } = require("electron");
-var exec = require("child_process").exec;
+const exec = require("child_process").exec;
+const easemob = require("../../node/index");
 const IS_MAC_OSX = process.platform === "darwin";
 const IS_DEV = process.env.NODE_ENV === "development";
 const HOT_DEV_SERVER = "http://localhost:3000";
 if(DEBUG && process.type === "renderer"){
 	console.error("AppRemote must run in main process.");
 }
+
+ElectronApp.easemob = easemob;
 
 class AppRemote {
 	constructor(){
@@ -273,9 +276,18 @@ class AppRemote {
 			show: DEBUG,
 			frame: true,
 			titleBarStyle: "hidden",
-			webPreferences: { webSecurity: false, nodeIntegration: true },
+			webPreferences: {
+				webSecurity: false,
+				nodeIntegration: true,
+				contextIsolation: false,
+				enableRemoteModule: true,
+			},
 			thickFrame: true,
 			showAfterLoad: true,
+			trafficLightPosition: {
+				x: 10,
+				y: 16
+			}
 		};
 
 		if(DEBUG){
