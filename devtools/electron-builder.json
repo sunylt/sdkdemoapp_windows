@@ -54,7 +54,7 @@
 	// ],
 	"extraResources": [
     {
-      "from": "./app/addon/",
+      "from": "./addon/",
       "to": "addon"
     }
   ],

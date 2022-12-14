@@ -21,9 +21,19 @@ const easemob = require("../../node/index");
 const IS_MAC_OSX = process.platform === "darwin";
 const IS_DEV = process.env.NODE_ENV === "development";
 const HOT_DEV_SERVER = "http://localhost:3000";
+let emclient = null;
 if(DEBUG && process.type === "renderer"){
 	console.error("AppRemote must run in main process.");
 }
+
+easemob.getEMClientInstance = (chatConfigs) => {
+	if(!emclient){
+		console.log("main process create new emclient");
+		emclient = new easemob.EMClient(chatConfigs);
+	}
+	emclient.logout();
+	return emclient;
+};
 
 ElectronApp.easemob = easemob;
 
@@ -109,7 +119,6 @@ class AppRemote {
 
 		ipcMain.on("syncPrivateServerConfig", (event, data) => {
 			const config = me.getPrivateConfig();
-			console.log("syncPrivateServerConfig", config);
 			me.mainWindow.webContents.send("privateServerConfig", config);
 			event.returnValue = config;
 		});

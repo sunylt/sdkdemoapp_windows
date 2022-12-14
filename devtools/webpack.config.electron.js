@@ -6,6 +6,8 @@ import webpack from "webpack";
 import merge from "webpack-merge";
 // import BabiliPlugin from 'babili-webpack-plugin';
 import baseConfig from "./webpack.config.base";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import path from "path";
 
 var cfg = merge([baseConfig, {
 	devtool: "source-map",
@@ -18,7 +20,37 @@ var cfg = merge([baseConfig, {
 		filename: "../app/main.js"
 	},
 
+	module: {
+		rules: [
+			{
+				test: /\.node$/,
+				use: [
+
+					{
+						loader: "native-addon-loader",
+						options: {
+							name: "../addon/[name].[ext]",
+						}
+					}
+				]
+			}
+		]
+	},
+
 	plugins: [
+		new CopyWebpackPlugin([{
+			from: path.resolve(__dirname, "./../app/easemob/LIBCURL.LIB"),
+			force: true,
+			to: "../addon/LIBCURL.LIB"
+		}, {
+			from: path.resolve(__dirname, "./../app/easemob/LIBCURL.DLL"),
+			force: true,
+			to: "../addon/LIBCURL.DLL"
+		}, {
+			from: path.resolve(__dirname, "./../app/easemob/libcrypto.1.0.0.dylib"),
+			force: true,
+			to: "../addon/libcrypto.1.0.0.dylib"
+		}]),
 		// new BabiliPlugin(),
 		// Add source map support for stack traces in node
 		// https://github.com/evanw/node-source-map-support

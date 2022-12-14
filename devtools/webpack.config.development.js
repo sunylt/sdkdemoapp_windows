@@ -9,6 +9,7 @@ const path = require("path");
 const merge = require("webpack-merge");
 const baseConfig = require("./webpack.config.base");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { spawn } = require("child_process");
 const port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV;
@@ -45,7 +46,7 @@ cfg = merge([
 		},
 
 		output: {
-			publicPath: "/static/",			// 给 server 用的（后期看看，拆开，会影响 webpack）
+			// publicPath: "/__build__/",			// 给 server 用的（后期看看，拆开，会影响 webpack）
 			filename: "./[name].js",
 		},
 
@@ -125,19 +126,28 @@ cfg = merge([
 				// },
 				{
 					test: /\.less$/,
-					use: [
-						{
-							loader: "style-loader" // creates style nodes from JS strings
-						}, {
-							loader: "css-loader" // translates CSS into CommonJS
-						},
-						{
-							loader: "less-loader",
-							options: {
-								modifyVars: theme
-							}
-						}
-					]
+					use: ExtractTextPlugin.extract({
+						fallback: "style-loader",
+						use: [
+							// "style-loader",
+							"css-loader",
+							"postcss-loader",
+							"less-loader",
+						]
+					})
+					// [
+					// 	{
+					// 		loader: "style-loader" // creates style nodes from JS strings
+					// 	}, {
+					// 		loader: "css-loader" // translates CSS into CommonJS
+					// 	},
+					// 	{
+					// 		loader: "less-loader",
+					// 		options: {
+					// 			modifyVars: theme
+					// 		}
+					// 	}
+					// ]
 
 					// use: [{
 					// loader: "style-loader" // creates style nodes from JS strings
@@ -149,34 +159,46 @@ cfg = merge([
 				},
 				{
 					test: /\.scss$/,
-					use: [
-						"style-loader",
-						"css-loader?importLoaders=2&sourceMap",
-						"postcss-loader?sourceMap=true",
-						"sass-loader?sourceMap=true",
-					]
+					use: ExtractTextPlugin.extract({
+						fallback: "style-loader",
+						use: [
+							// "style-loader",
+							"css-loader",
+							"postcss-loader",
+							"sass-loader",
+						]
+					})
 				},
 				{
-					test: /\.(png|jpg)$/,
-					use: "url-loader?limit=8192"
+					test: /\.(png|jpg|gif|jpeg)$/,
+					use: [{
+						loader: "url-loader",
+						options: {
+							limit: 8192,
+							name: "[name].[hash:8].[ext]"
+						}
+					}]
 				}
 			]
 		},
 
 		plugins: [
-			new CopyWebpackPlugin([{
-				from: path.resolve(__dirname, "./../app/easemob/LIBCURL.LIB"),
-				force: true,
-				to: "../addon/LIBCURL.LIB"
-			}, {
-				from: path.resolve(__dirname, "./../app/easemob/LIBCURL.DLL"),
-				force: true,
-				to: "../addon/LIBCURL.DLL"
-			}, {
-				from: path.resolve(__dirname, "./../app/easemob/libcrypto.1.0.0.dylib"),
-				force: true,
-				to: "../addon/libcrypto.1.0.0.dylib"
-			}]),
+			new ExtractTextPlugin({
+				filename: "[name].css"
+			}),
+			// new CopyWebpackPlugin([{
+			// 	from: path.resolve(__dirname, "./../app/easemob/LIBCURL.LIB"),
+			// 	force: true,
+			// 	to: "../addon/LIBCURL.LIB"
+			// }, {
+			// 	from: path.resolve(__dirname, "./../app/easemob/LIBCURL.DLL"),
+			// 	force: true,
+			// 	to: "../addon/LIBCURL.DLL"
+			// }, {
+			// 	from: path.resolve(__dirname, "./../app/easemob/libcrypto.1.0.0.dylib"),
+			// 	force: true,
+			// 	to: "../addon/libcrypto.1.0.0.dylib"
+			// }]),
 			// for bindings package, see https://github.com/rwaldron/johnny-five/issues/1101#issuecomment-213581938
 			new webpack.ContextReplacementPlugin(/bindings$/, /^$/),
 
