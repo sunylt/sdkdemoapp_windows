@@ -10,6 +10,7 @@ const merge = require("webpack-merge");
 const baseConfig = require("./webpack.config.base");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { spawn } = require("child_process");
 const port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV;
@@ -186,6 +187,14 @@ cfg = merge([
 			new ExtractTextPlugin({
 				filename: "[name].css"
 			}),
+			// new HtmlWebpackPlugin({
+			// 	template: path.resolve(__dirname, "../app/html/index.html"),
+			// 	chunks: ["bundle"]
+			// }),
+			// new HtmlWebpackPlugin({
+			// 	template: path.resolve(__dirname, "../app/html/rtc.html"),
+			// 	chunks: ["rtc"]
+			// }),
 			// new CopyWebpackPlugin([{
 			// 	from: path.resolve(__dirname, "./../app/easemob/LIBCURL.LIB"),
 			// 	force: true,
