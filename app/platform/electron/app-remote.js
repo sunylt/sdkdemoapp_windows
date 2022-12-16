@@ -317,6 +317,14 @@ class AppRemote {
 		this.mainWindow = browserWindow;
 		browserWindow.webContents.openDevTools();
 
+		browserWindow.on("enter-full-screen", () => {
+			browserWindow.webContents.send("full-screen-event", {  result: true });
+		});
+
+		browserWindow.on("leave-full-screen", () => {
+			browserWindow.webContents.send("full-screen-event", { result: false });
+		});
+
 		browserWindow.on("close", (event) => {
 			// dock 上右键退出，ElectronApp.quitting = true
 			if(!ElectronApp.quitting && !this.isUpdating){
