@@ -12,6 +12,19 @@
 .contact-content{
 	padding: 0 10px;
 }
+
+.user-avatar{
+	border-radius: 4px;
+	width: 34px;
+	height: 34px;
+	background: #0088ff;
+	color: #fff;
+	text-align: center;
+	line-height: 34px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
 .contact-main{
 	width: 72%;
 	height: 100%;
@@ -30,18 +43,6 @@
 		padding: 10px 0 10px 15px;
 		border-bottom: 1px solid #F2F3F5;
 		margin: 0 0 10px;
-	}
-
-	.user-avatar{
-		border-radius: 4px;
-		width: 34px;
-		height: 34px;
-		background: #0088ff;
-		color: #fff;
-		text-align: center;
-		line-height: 34px;
-		display: inline-block;
-		margin-right: 10px;
 	}
 
 	.group-list{
