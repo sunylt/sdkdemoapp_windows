@@ -5,8 +5,20 @@ import { HashRouter as Router } from "react-router-dom";
 import "@/style/app.scss";
 import IndexView from "@/views/index";
 import configureStore from "@/stores";
+import { ipcRenderer, remote } from "electron";
 
-document.body.className = window.process.platform === "darwin" ? "mac" : "win";
+const $body = document.body;
+const win = remote.getCurrentWindow();
+
+ipcRenderer.on("full-screen-event", (event, data) => {
+	$body.classList[data.result ? "add" : "remove"]("page-full-screen");
+});
+
+$body.className = window.process.platform === "darwin" ? "mac" : "win";
+
+if(win.isFullScreen()){
+	$body.classList.add("page-full-screen");
+}
 
 ReactDOM.render(
 	<Router>
