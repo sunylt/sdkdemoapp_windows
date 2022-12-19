@@ -180,7 +180,7 @@ class ChatSendBoxView extends PureComponent {
 	handlePressEnter(e){
 		var textMsgBody;
 		const { globals } = this.props;
-		textMsgBody = new globals.easemob.EMTextMessageBody(this.input.textAreaRef.value);
+		textMsgBody = new globals.easemob.EMTextMessageBody(this.input.resizableTextArea.textArea.value);
 		console.log(`value:${e.target.value}end`);
 		if(
 			e.target.value &&
@@ -190,7 +190,7 @@ class ChatSendBoxView extends PureComponent {
 			e.preventDefault();
 			this.sendMsg(textMsgBody);
 			// this.setState({ value: "" });
-			this.input.textAreaRef.value = "";
+			this.input.resizableTextArea.textArea.value = "";
 		}
 	}
 
@@ -220,7 +220,7 @@ class ChatSendBoxView extends PureComponent {
 		// console.log(userExt);
 		let emCallback = globals.emCallback;
 		let sendMessage = globals.easemob.createSendMessage((userInfo && userInfo.user.easemobName), conversationId, msg);
-		let textareaVal = this.input ? this.input.textAreaRef.value : "";
+		let textareaVal = this.input ? this.input.resizableTextArea.textArea.value : "";
 		let chatType = isSelectCovGroup;
 		this.cfr = cfr;
 		if(ext && Object.keys(ext).length){
@@ -338,7 +338,7 @@ class ChatSendBoxView extends PureComponent {
 
 	// 选择表情
 	handleEmojiSelect(e){
-		this.input.textAreaRef.value += e.key;
+		this.input.resizableTextArea.textArea.value += e.key;
 		this.input.focus();
 	}
 
