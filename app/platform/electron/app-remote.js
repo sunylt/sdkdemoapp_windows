@@ -295,7 +295,7 @@ class AppRemote {
 			showAfterLoad: true,
 			trafficLightPosition: {
 				x: 10,
-				y: 16
+				y: 18
 			}
 		};
 
