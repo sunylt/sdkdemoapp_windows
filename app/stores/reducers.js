@@ -28,9 +28,9 @@ export const userInfo = (state = JSON.parse(localStorage.getItem("userInfo") || 
 	case "app/setLogout":
 		return {};
 	case "app/changeUserInfo":
-		let currentUser = state;
-		currentUser.user = payload;
-		return _.extend({}, state, currentUser);
+		// let currentUser = state;
+		// currentUser.user = payload;
+		return _.extend({}, state, payload);
 	default:
 		return state;
 	}
@@ -257,7 +257,7 @@ export const membersOfCreateGroup = (state = [], { type, payload }) => {
 	case "app/selectMembersOfGroup":
 		return state.concat(payload);
 	case "app/cancelMembersOfGroup":
-		return _.filter(state, (item) => { return item.easemobName != payload;});
+		return _.filter(state, (item) => { return item.userName != payload;});
 	case "app/createGroup":
 	case "app/cancelCreateGroup":
 	case "app/cancelEditGroup":
@@ -273,7 +273,7 @@ export const membersOfEditGroup = (state = [], { type, payload = [] }) => {
 	case "app/selectMembersOfGroup":
 		return state.concat(payload);
 	case "app/cancelMembersOfGroup":
-		return _.filter(state, (item) => { return item.easemobName != payload;});
+		return _.filter(state, (item) => { return item.userName != payload;});
 	case "app/cancelEditGroup":
 	case "app/cancelCreateGroup":
 	case "app/inveitMembers":
@@ -625,7 +625,7 @@ export const rtcInfo = (state = { status: 0, data: {} }, { type, payload }) => {
 	}
 };
 
-export const org = (state = { topOrg: {}, userOrgs: [], allOrgs: [], allUsers: [] }, action) => {
+export const org = (state = { topOrg: {}, userOrgs: [], allOrgs: [], allUsers: {} }, action) => {
 	const { type, payload } = action;
 	switch(type){
 	case "app/setUserOrg":

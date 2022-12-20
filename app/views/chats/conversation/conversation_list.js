@@ -9,7 +9,7 @@ import HeadImageView from "../../common/head_image";
 import _ from "underscore";
 import { msgParse } from "@/utils/msg_parse";
 import * as selectors from "@/stores/selectors";
-import CreateGroupView from "../groups/group_create";
+// import CreateGroupView from "../groups/group_create";
 
 class ConversationListView extends Component {
 
@@ -144,7 +144,7 @@ class ConversationListView extends Component {
 				let conversation = globals.chatManager.conversationWithType(conversationId,0);
 				latestMessageFromRealName = `${conversation.latestMessage().from()}`;
 			}
-			return latestMessageFromRealName == "system"?`${latestMessage.shortVal}`:`${latestMessageFromRealName}:${latestMessage.shortVal}`;
+			return latestMessageFromRealName == "system"?`${latestMessage.shortVal}`:`${latestMessage.shortVal}`;
 		}
 		return "";
 	}
@@ -168,7 +168,6 @@ class ConversationListView extends Component {
 				mode="inline"
 				onOpenChange={ this.onOpenChange }
 				onClick={ this.handleClick }
-				style={ { border: "none", width: "240px" } }
 				selectedKeys={ [selectConversationId + isSelectCovGroup] }
 			>
 				{
@@ -179,7 +178,7 @@ class ConversationListView extends Component {
 						let arrContacs = allContacts.contacts;
 						const selectMember = conversationId == 0;
 						let param = conversationId + conversationType;
-
+						const ext = item.extField() ? JSON.parse(item.extField()) : {};
 						return (
 							//key传参为会话id+会话类型
 							<Menu.Item 
@@ -191,8 +190,8 @@ class ConversationListView extends Component {
 											{/* { selectGroup ? selectGroup.chatName : selectMember.realName } */}
 											{
 												selectGroup
-													? groupManager.groupWithId(conversationId).groupSubject()
-													: (item.conversationId())
+													? `${groupManager.groupWithId(conversationId).groupSubject()}(群)`
+													: (ext.name || ext.userid || item.conversationId())
 											}
 										</span>
 										{/* <span>{this.showTime(item.latestMessage())}</span> */}
@@ -235,9 +234,9 @@ class ConversationListView extends Component {
 						? <div className="network-state">网络连接已断开</div>
 						: null
 				}
-				<div className="conversation-serach">
+				{/* <div className="conversation-serach">
 					<CreateGroupView></CreateGroupView>
-				</div>
+				</div> */}
 
 				{ this.showConversationList() }
 

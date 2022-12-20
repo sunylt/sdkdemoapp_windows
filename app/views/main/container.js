@@ -19,7 +19,7 @@ const mainViews = [
 class Container extends Component {
 	constructor(props){
 		super(props);
-		console.log("container");
+		// console.log("container");
 		this.state = {
 			conId: ""
 		};

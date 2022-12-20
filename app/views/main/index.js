@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
 import Navbar from "./navbar";
 import Container from "./container";
 import * as actionCreators from "@/stores/actions";
@@ -15,13 +15,13 @@ import api from "@/api";
 import _ from "underscore";
 import ROUTES from "../common/routes";
 import { conversationOfSelect } from "../../stores/actions";
-import { ipcRenderer } from "electron";
+import { ipcRenderer, remote } from "electron";
 import DataBase from "../../utils/db";
 // var fs = require("fs-extra");
 
 // const { remote } = require("electron");
 // let configDir = remote.app.getPath("userData");
-const { easemob } = require("electron").remote.app;
+const { easemob } = remote.app;
 var gconnectListener;
 var gcontactListner;
 var gInvitedContacts = [];
@@ -46,7 +46,7 @@ class MainView extends PureComponent {
 
 	state = {
 		orgDataLoaded: false,
-		userDataLoaded: false,
+		currentUserData: false,
 	}
 
 	constructor(props){
@@ -71,7 +71,8 @@ class MainView extends PureComponent {
 			conversationOfSelect,
 			setUserOrg,
 			setAllOrgs,
-			setAllUsers
+			setAllUsers,
+			changeUserInfo
 		} = this.props;
 		if(userInfo && userInfo.user && userInfo.user.id){
 			if(globals.emclient){
@@ -91,44 +92,45 @@ class MainView extends PureComponent {
 
 			this.emCallback = new easemob.EMCallback();
 
-			console.log(`listern：${this.connectListener}`);
-			this.connectListener = new easemob.EMConnectionListener();
-			this.connectListener.onConnect(() => {
-				networkConnectAction();
-			})
-			this.connectListener.onDisconnect((error) => {
-				console.log("EMConnectionListener onDisconnect");
-				console.log(error.errorCode);
-				console.log(error.description);
+			// console.log(this.emclient, `listern：${this.connectListener}`);
 
-				// code == 206 被踢，需要去验证 session
-				if(error.errorCode == 206){
-					this.emclient.logout();
-					this.props.history.push('/index');
-					this.chatManager.clearListeners();
-					logout();
-					localStorage.clear();
+			// if(!easemob.emClientHasCreated()){
+			// 	console.log("first create emclient", this.emclient);
+			// 	const a = new easemob.EMConnectionListener();
+			// 	this.connectListener = new easemob.EMConnectionListener();
+			// 	this.connectListener.onConnect(() => {
+			// 		networkConnectAction();
+			// 	});
+			// 	this.connectListener.onDisconnect((error) => {
+			// 		console.log("EMConnectionListener onDisconnect");
+			// 		console.log(error.errorCode);
+			// 		console.log(error.description);
 
-					Modal.info({
-						title: "提示",
-						content: (
-							<div>你的账户已在其他地方登录</div>
-						),
-						onOk(){
-						}
-					});
-				}
-				else{
-					networkConnectAction("连接已断开");
-					// 尝试发一条 cmd 消息，看看网络有没有真的断掉
-					me.sendTempCmd();
-				}
-			});
-			if(typeof(gconnectListener) !== "undefined")
-			  this.emclient.removeConnectionListener(gconnectListener);
-			this.emclient.addConnectionListener(this.connectListener);
-			gconnectListener = this.connectListener;
+			// 		// code == 206 被踢，需要去验证 session
+			// 		if(error.errorCode == 206){
+			// 			this.emclient.logout();
+			// 			this.props.history.push('/index');
+			// 			this.chatManager.clearListeners();
+			// 			logout();
+			// 			localStorage.clear();
 
+			// 			Modal.info({
+			// 				title: "提示",
+			// 				content: (
+			// 					<div>你的账户已在其他地方登录</div>
+			// 				),
+			// 				onOk(){
+			// 				}
+			// 			});
+			// 		}
+			// 		else{
+			// 			networkConnectAction("连接已断开");
+			// 			// 尝试发一条 cmd 消息，看看网络有没有真的断掉
+			// 			me.sendTempCmd();
+			// 		}
+			// 	});
+			// 	this.emclient.addConnectionListener(this.connectListener);
+			// }
 
 			this.chatManager = this.emclient.getChatManager();
 
@@ -392,9 +394,8 @@ class MainView extends PureComponent {
 			// 	logout();
 			// }
 
-      console.log("userinfo", JSON.stringify(userInfo));
 		this.emclient.login( userInfo.user.easemobName, userInfo.user.easemobPwd).then((res) => {
-			console.log(`loginCode:${res.code}`);
+			console.log('loginCode', res);
 			// 获取好友列表
 			this.contactManager.getContactsFromServer().then(res => {
 				var res = this.contactManager.allContacts();
@@ -477,11 +478,20 @@ class MainView extends PureComponent {
 							});
 							fetchOrgUser(topOrg.id, true).then((res) => {
 								if(res && res.entities){
+									const _data = {};
 									DataBase.addData("users", res.entities);
-									setAllUsers(res.entities);
+									res.entities.forEach((item) => {
+										if(item.status !== "2"){
+											_data[item.userName] = { ...item, orgId: item.organEntities[0].id };
+										}
+									}); // 过滤掉无效用户
+									const currentUser = _data[userInfo.user.easemobName];
+									changeUserInfo({ userData: currentUser });
 									this.setState({
-										userDataLoaded: true,
+										currentUserData: currentUser,
 									});
+									// delete _data[userInfo.user.easemobName]; // 删掉自己 不出现在好友列表
+									setAllUsers(_data);
 								}
 							});
 						});
@@ -494,7 +504,7 @@ class MainView extends PureComponent {
 
 		if(res.code != 0){
 			this.props.history.push('/index');
-			setNotice(`登录失败，${res.description}`,'fail');
+			setNotice(`登录失败，${res.code == "202" ? "用户名或密码错误" : res.description}`,'fail');
 			this.emclient.logout();
 			logout();
 			return false;
@@ -1121,16 +1131,36 @@ class MainView extends PureComponent {
 
 
 	}
+
+	componentDidMount(){
+		ipcRenderer.removeAllListeners("emclient-connect-listener");
+		ipcRenderer.on("emclient-connect-listener", (event, { status, error }) => {
+			console.error("EMClientCS", status, error);
+		});
+	}
+
+	componentWillUnmount(){
+		ipcRenderer.removeAllListeners("emclient-connect-listener");
+	}
+
 	render(){
 		return (
 			<div className="oa-main-container">
-				<TopNav { ...this.props } />
-				<div className="nav-container">
-					<Navbar className="dock-left primary shadow-2" />
-					{/* {this.state.orgDataLoaded && this.state.userDataLoaded ? <Container /> : <p>数据加载中.....</p>} */}
-					<Container />
-					<RtcView />
-				</div>
+				{
+					!this.state.orgDataLoaded || !this.state.currentUserData ?
+						<div className="page-loading">
+							<Spin spinning={ true } tip="数据加载中..." />
+						</div>
+						:
+						<React.Fragment>
+							<TopNav userData={ this.state.currentUserData } />
+							<div className="nav-container">
+								<Navbar className="dock-left primary shadow-2" />
+								<Container />
+								<RtcView />
+							</div>
+						</React.Fragment>
+				}
 			</div>);
 
 	}

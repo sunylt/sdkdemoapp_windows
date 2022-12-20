@@ -14,53 +14,53 @@ import moment from "moment";
 class ConversationView extends PureComponent {
 
   state = {
-  	showCard: false
+  	showCard: true
   }
 
-	showInfo(){
-		const { isSelectCovGroup } = this.props;
-		// 群组
-		if(isSelectCovGroup){
-			return <GroupTabView />;
-		}
-		// 个人
-		return <MemberTabView />;
-	}
+  showInfo(){
+  	const { isSelectCovGroup } = this.props;
+  	// 群组
+  	if(isSelectCovGroup){
+  		return <GroupTabView />;
+  	}
+  	// 个人
+  	return <MemberTabView />;
+  }
 
-  showCard = () => {
+  showCard = (e) => {
   	this.setState({
   		showCard: !this.state.showCard
   	});
   }
 
-	render(){
-		const { selectConversationId } = this.props;
-		return (
-			<div>
-				<MenuList { ...this.props } />
-				{
-					selectConversationId
-						? <div className="oa-conversation-box">
-							<div className="chat-container">
-								<MemberDetailView handleShowCard={ this.showCard } />
-								<div className="chat-primary">
+  render(){
+  	const { selectConversationId } = this.props;
+  	return (
+  		<div>
+  			<MenuList { ...this.props } />
+  			{
+  				selectConversationId
+  					? <div className="oa-conversation-box">
+  						<div className="chat-container">
+  							<MemberDetailView handleShowCard={ this.showCard } />
+  							<div className="chat-primary">
 								  <div className="chat-detail">
 									  <ConversationDetailView { ...this.props } />
 									  <ChatSendBoxView { ...this.props } key={ selectConversationId } />
 								  </div>
-									<div className={ this.state.showCard ? "chat-aside show-card" : "chat-aside" }>
-										{this.showInfo()}
+  								<div className={ this.state.showCard ? "chat-aside show-card" : "chat-aside" }>
+  									{this.showInfo()}
 								  </div>
-								</div>
-							</div>
-							{/* { this.showInfo() } */}
-						</div>
-						: null
-				}
+  							</div>
+  						</div>
+  						{/* { this.showInfo() } */}
+  					</div>
+  					: null
+  			}
 
-			</div>);
+  		</div>);
 
-	}
+  }
 }
 const mapStateToProps = state => ({
 	selectConversationId: state.selectConversationId,

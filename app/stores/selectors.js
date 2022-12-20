@@ -33,9 +33,9 @@ export const getAllMembers = (state) => {
 	return _.sortBy(_.values(allMembers), "username");
 };
 
-export const membersIdArray = state =>  _.pluck(state.membersOfEditGroup, "easemobName");
-export const createGroupMembersIdArray = state =>  _.pluck(state.membersOfCreateGroup, "easemobName");
-export const deleteGroupMembersIdArray = state =>  _.pluck(state.membersOfDeleteGroup, "easemobName");
+export const membersIdArray = state =>  _.pluck(state.membersOfEditGroup, "userName");
+export const createGroupMembersIdArray = state =>  _.pluck(state.membersOfCreateGroup, "userName");
+export const deleteGroupMembersIdArray = state =>  _.pluck(state.membersOfDeleteGroup, "userName");
 
 export const membersIdOfGroup = (state) => {
 	return membersIdArray(state).join(",");
@@ -44,7 +44,7 @@ export const membersIdOfGroup = (state) => {
 export const membersNameOfGroup = (state) => {
 	var memberArr = [];
 	_.map(state.membersOfEditGroup, function(member){
-		memberArr.push(member.realName || member.username || member.easemobName);
+		memberArr.push(member.userName || member.realName || member.username || member.easemobName);
 	});
 	return _.uniq(memberArr).join(",");
 	// return _.pluck(state.membersOfEditGroup, "realName").join(",");
@@ -52,11 +52,11 @@ export const membersNameOfGroup = (state) => {
 
 // 添加的群成员 _.difference(现在所有的群成员, 之前的群成员)
 export const getAddMembers = (state) => {
-	return _.pluck(state.membersOfEditGroup, "easemobName");
+	return _.pluck(state.membersOfEditGroup, "userName");
 };
 
 export const getRemoveMembers = (state) => {
-	return _.pluck(state.membersOfDeleteGroup, "easemobName");
+	return _.pluck(state.membersOfDeleteGroup, "userName");
 };
 
 export const getAtMembersOfGroup = (state) => {
@@ -81,6 +81,7 @@ export const getAtMembersOfGroup = (state) => {
 // 按最后一条消息的时间排序
 export const conversationsSort = (state) => {
 	var conversations = _.values(state.conversations);
+	console.log(conversations)
 	return _.sortBy(conversations, "sortTime").reverse();
 
 };

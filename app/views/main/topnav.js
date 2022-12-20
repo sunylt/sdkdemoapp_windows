@@ -13,64 +13,68 @@ import {
 import * as actionCreators from "@/stores/actions";
 import * as selectors from "@/stores/selectors";
 import HeadImageView from "@/views/common/head_image";
+import AvatarImage from "../chats/contacts/AvatarImage";
+import DataBase from "../../utils/db";
+import { withRouter } from "react-router-dom";
+import CreateGroupView from "../chats/groups/group_create";
 var _const = require("@/views/common/domain");
 const { ipcRenderer } = require("electron");
 const FormItem = Form.Item;
 
 
-class FormInput extends Component {
+// class FormInput extends Component {
 
-	constructor(props){
-		super(props);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		const { userInfo } = this.props.reduxProps;
-		this.state = {
-			realName: userInfo.user.realName || userInfo.user.username || userInfo.user.easemobName,
-			mobilephone: userInfo.user.mobilephone,
-			email: userInfo.user.email,
-		};
-	}
+// 	constructor(props){
+// 		super(props);
+// 		this.handleSubmit = this.handleSubmit.bind(this);
+// 		const { userInfo } = this.props.reduxProps;
+// 		this.state = {
+// 			realName: userInfo.user.realName || userInfo.user.username || userInfo.user.easemobName,
+// 			mobilephone: userInfo.user.mobilephone,
+// 			email: userInfo.user.email,
+// 		};
+// 	}
 
-	handleSubmit(e){
-		const { userInfo, globals } = this.props.reduxProps;
-		const avatar = this.props.avatar;
-		const handleCancel = this.props.event;
-		var tenantId = userInfo.user.tenantId;
-		var userId = userInfo.user.id;
-		e.preventDefault();
-		this.props.form.validateFields((err, values) => {
-			if(!err){
-				values.image = avatar;
-				handleCancel();
-			}
-		});
-	}
+// 	handleSubmit(e){
+// 		const { userInfo, globals } = this.props.reduxProps;
+// 		const avatar = this.props.avatar;
+// 		const handleCancel = this.props.event;
+// 		var tenantId = userInfo.user.tenantId;
+// 		var userId = userInfo.user.id;
+// 		e.preventDefault();
+// 		this.props.form.validateFields((err, values) => {
+// 			if(!err){
+// 				values.image = avatar;
+// 				handleCancel();
+// 			}
+// 		});
+// 	}
 
-	render(){
-		const { getFieldDecorator } = this.props.form;
-		return (
-			<Form onSubmit={ this.handleSubmit } hideRequiredMark={true}>
-				<FormItem
-					label="用户名:"
-					labelCol={ { span: 7 } }
-					wrapperCol={ { span: 17 } }
-				>
-				<a >&nbsp;&nbsp;{this.state.realName}</a>
-				</FormItem>
-				<FormItem
-					wrapperCol={ { span: 4, offset: 9 } }
-				>
-					<Button type="primary" htmlType="submit">
-						保存
-					</Button>
-				</FormItem>
-			</Form>
-		);
-	}
+// 	render(){
+// 		const { getFieldDecorator } = this.props.form;
+// 		return (
+// 			<Form onSubmit={ this.handleSubmit } hideRequiredMark={true}>
+// 				<FormItem
+// 					label="用户名:"
+// 					labelCol={ { span: 7 } }
+// 					wrapperCol={ { span: 17 } }
+// 				>
+// 				<a >&nbsp;&nbsp;{this.state.realName}</a>
+// 				</FormItem>
+// 				<FormItem
+// 					wrapperCol={ { span: 4, offset: 9 } }
+// 				>
+// 					<Button type="primary" htmlType="submit">
+// 						保存
+// 					</Button>
+// 				</FormItem>
+// 			</Form>
+// 		);
+// 	}
 
-}
+// }
 
-const WrappedApp = Form.create()(FormInput);
+// const WrappedApp = Form.create()(FormInput);
 
 class TopNav extends Component {
 	constructor(props){
@@ -95,6 +99,7 @@ class TopNav extends Component {
 					url: ""
 				}
 			],
+			showUserProfile: false
 		};
 	}
 
@@ -178,6 +183,21 @@ class TopNav extends Component {
 		}
 	}
 
+	handleShowSettings = () => {
+
+	}
+
+	handleLogout = () => {
+		const { globals, logout } = this.props;
+		const emclient = globals.emclient;
+		emclient.getChatManager().clearListeners();
+		emclient.getGroupManager().clearListeners();
+		emclient.logout();
+		this.props.history.push("/index");
+		logout();
+		localStorage.clear();
+	}
+
 	imgUrl(imgUrl){
 		// const { imgUrl } = this.props;
 		if(!imgUrl){
@@ -189,63 +209,55 @@ class TopNav extends Component {
 		return `${_const.domain}${imgUrl}`;
 	}
 
+	handleToggleUserPofile = (e) => {
+		e.stopPropagation();
+		this.setState({
+			showUserProfile: !this.state.showUserProfile
+		});
+	}
+
+	componentDidMount(){
+		document.body.addEventListener("click", () => {
+			this.setState({
+				showUserProfile: false
+			});
+		});
+	}
+
 	render(){
-		const { userInfo } = this.props;
-		const { previewVisible, previewImage, fileList } = this.state;
-		const menu = (
-			<Menu onClick={ this.handleClick } style={ { width: 100 } }>
-				<Menu.Item key="personal">
-					<span>个人资料</span>
-				</Menu.Item>
-				<Menu.Divider />
-				{/* <Menu.Item key="changePwd">
-					<span>修改密码</span>
-				</Menu.Item> */}
-				<Menu.Item key="cancellation">
-					<span>注销</span>
-				</Menu.Item>
-				{/* <Menu.Item key="logout">
-					<span>退出</span>
-				</Menu.Item> */}
-			</Menu>
-		);
+		const { userInfo, userData } = this.props;
+		// const { previewVisible, previewImage, fileList } = this.state;
+		const realName = userData.name || userData.userName;
+		// const menu = (
+		// 	<Menu onClick={ this.handleClick } style={ { width: 100 } }>
+		// 		<Menu.Item key="personal">
+		// 			<span>个人资料</span>
+		// 		</Menu.Item>
+		// 		<Menu.Divider />
+		// 		{/* <Menu.Item key="changePwd">
+		// 			<span>修改密码</span>
+		// 		</Menu.Item> */}
+		// 		<Menu.Item key="cancellation">
+		// 			<span>注销</span>
+		// 		</Menu.Item>
+		// 		{/* <Menu.Item key="logout">
+		// 			<span>退出</span>
+		// 		</Menu.Item> */}
+		// 	</Menu>
+		// );
 		return (
 			<div className="nav-user">
-				{/* <Icon type="user" /> */}
-				<Dropdown
-					overlay={ menu } trigger={ [ "click" ] } placement="bottomLeft"
-					style={ { top: 35, left: 60 } }
-				>
-					{/* 很奇怪，这个不能用头像组件，下拉菜单谈不出来 */}
-					{/* <HeadImageView imgUrl={ userInfo.user.image } /> */}
-					{/* <img src={ this.imgUrl(userInfo.user.image) } /> */}
-					<div className="member-img" style={ { width: "40px", height: "40px", borderRadious: "50%", backgroundImage: `url(${this.imgUrl("")})` } }></div>
-				</Dropdown>
-				<Modal
-					visible={ this.state.visible }
-					onOk={ this.handleOk }
-					onCancel={ this.handleCancel }
-					closable={ false }
-					footer={ null }
-					mask={ false }
-					style={ { top: 60, right: 25 } }
-					width={ 260 }
-					wrapClassName="user-info-setting"
-					bodyStyle={ { margin: 0 } }
-				>
-					<div className="user-avatar">
-						<Modal visible={ previewVisible } footer={ null } onCancel={ this.handleCancelAvatar }>
-							<img alt="example" style={ { width: "100%" } } src={ previewImage } />
-						</Modal>
+				<div className="user-profile">
+					<AvatarImage name={ realName } onClick={ this.handleToggleUserPofile } />
+					<div className="user-popup" style={ { display: this.state.showUserProfile ? "block" : "none" } } onClick={ e => e.stopPropagation() }>
+						<AvatarImage name={ realName } />
+						<h4>{ realName }</h4>
+						<p>用户ID：{ userData.userName }</p>
+						<Button className="btn-settings">偏好设置</Button>
+						<Button className="btn-logout" onClick={ this.handleLogout }>退出登陆</Button>
 					</div>
-					<div className="user-info">
-						<WrappedApp
-							reduxProps={ this.props }
-							avatar={ this.state.avatarUrl }
-							event={ this.handleCancel }
-						/>
-					</div>
-				</Modal>
+				</div>
+	
 				<div className="search-box">
 					<Input
 						placeholder="输入内容查询"
@@ -256,9 +268,10 @@ class TopNav extends Component {
 						// ref={node => this.userNameInput = node}
 					/>
 				</div>
-				<div className="button-add">
+				{/* <div className="button-add">
 					<Icon type="plus" />
-				</div>
+				</div> */}
+				<CreateGroupView />
 			</div>
 		);
 	}
@@ -269,4 +282,4 @@ const mapStateToProps = state => ({
 	userInfo: state.userInfo,
 	globals: state.globals
 });
-export default connect(mapStateToProps, actionCreators)(TopNav);
+export default withRouter(connect(mapStateToProps, actionCreators)(TopNav));

@@ -26,17 +26,6 @@ if(DEBUG && process.type === "renderer"){
 	console.error("AppRemote must run in main process.");
 }
 
-easemob.getEMClientInstance = (chatConfigs) => {
-	if(!emclient){
-		console.log("main process create new emclient");
-		emclient = new easemob.EMClient(chatConfigs);
-	}
-	emclient.logout();
-	return emclient;
-};
-
-ElectronApp.easemob = easemob;
-
 class AppRemote {
 	constructor(){
 		let me = this;
@@ -138,12 +127,31 @@ class AppRemote {
 			IS_DEV && me.rtcWindow.webContents.openDevTools();
 			
 		});
-		ipcMain.on("closeRtcWindow", () => {
+		ipcMain.on("close-rtc-window", () => {
 			console.log("close rtc win");
 			if(me.rtcWindow){
 				me.rtcWindow.hide();
 			}
 		});
+		easemob.getEMClientInstance = (chatConfigs) => {
+			if(!emclient){
+				console.log("main process create new emclient");
+				emclient = new easemob.EMClient(chatConfigs);
+				const connectListener = new easemob.EMConnectionListener();
+				connectListener.onConnect(() => {
+					this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
+				});
+				connectListener.onDisconnect((error) => {
+					this.mainWindow.webContents.send("emclient-connect-listener", { status: 0, error });
+				});
+				emclient.addConnectionListener(connectListener);
+			}
+			else{
+				emclient.logout();
+			}
+			return emclient;
+		};
+		ElectronApp.easemob = easemob;
 	}
 
 	createRtcWindow(data){

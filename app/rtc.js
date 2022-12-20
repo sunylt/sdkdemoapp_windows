@@ -53,7 +53,7 @@ ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
 		console.error("join room error", e);
 		// eslint-disable-next-line no-alert
 		alert(`${invitee ? "无法邀请" : "加入失败"}，请检查摄像头或重试`);
-		ipcRenderer.send("closeRtcWindow");
+		ipcRenderer.send("close-rtc-window");
 		isCalling = false;
 	});
 	isCalling = true;
@@ -76,7 +76,7 @@ rtcHelper.on("exit", () => {
 	isCalling = false;
 	toolbar.video.className = "iconfont icon-video";
 	toolbar.audio.className = "iconfont icon-audio";
-	mainWindow.webContents.send("leaveRtcRoom");
+	mainWindow.webContents.send("leave-rtc-room");
 	tip.style.display = "none";
 });
 
@@ -92,7 +92,7 @@ toolbar.video.addEventListener("click", (e) => {
 
 toolbar.iconfontphone.addEventListener("click", () => {
 	rtcHelper.leaveRoom();
-	mainWindow.webContents.send("leaveRtcRoom");
+	mainWindow.webContents.send("leave-rtc-room");
 	isCalling = false;
 });
 

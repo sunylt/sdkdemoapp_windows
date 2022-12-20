@@ -189,8 +189,9 @@ class ChatSendBoxView extends PureComponent {
 		){
 			e.preventDefault();
 			this.sendMsg(textMsgBody);
-			// this.setState({ value: "" });
-			this.input.resizableTextArea.textArea.value = "";
+			setTimeout(() => {
+				this.input.resizableTextArea.textArea.value = "";
+			}, 100);
 		}
 	}
 

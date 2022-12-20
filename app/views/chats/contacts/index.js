@@ -36,10 +36,10 @@ class ContactView extends PureComponent {
 
 	render(){
 		console.log(this.props);
-		const { match, users, orgs, topOrg } = this.props;
+		const { match, allUsers, orgs, topOrg } = this.props;
 		const name = match.params.name || "roster";
 		const orgId = name === "org" ? location.href.split("org/")[1] : "";
-
+		const users = Object.values(allUsers);
 		if(orgId){
 
 			console.log("db>>>", DataBase.db, orgId);
@@ -71,7 +71,7 @@ class ContactView extends PureComponent {
 }
 const mapStateToProps = state => ({
 	loginState: state.userInfo,
-	users: state.org.allUsers,
+	allUsers: state.org.allUsers,
 	orgs: state.org.allOrgs,
 	topOrg: state.org.topOrg
 });

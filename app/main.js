@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 250);
+/******/ 	return __webpack_require__(__webpack_require__.s = 277);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,10 +68,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var core = __webpack_require__(32);
-var hide = __webpack_require__(17);
-var redefine = __webpack_require__(18);
-var ctx = __webpack_require__(33);
+var core = __webpack_require__(33);
+var hide = __webpack_require__(18);
+var redefine = __webpack_require__(19);
+var ctx = __webpack_require__(34);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -167,8 +167,8 @@ module.exports = function (it) {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(70)('wks');
-var uid = __webpack_require__(49);
+var store = __webpack_require__(73)('wks');
+var uid = __webpack_require__(52);
 var Symbol = __webpack_require__(2).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -185,7 +185,7 @@ $exports.store = store;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(35);
+var toInteger = __webpack_require__(36);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -218,7 +218,7 @@ module.exports = function (it) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nonEnumerableProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MAX_ARRAY_INDEX; });
 // Current version.
-var VERSION = '1.13.4';
+var VERSION = '1.13.6';
 
 // Establish the root object, `window` (`self`) in the browser, `global`
 // on the server, or `this` in some virtual machines. We use `self`
@@ -266,6 +266,22 @@ var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var easemobNode;
+if (process.platform !== "darwin") {
+	easemobNode = __webpack_require__(558);
+} else {
+	easemobNode = __webpack_require__(559);
+}
+
+module.exports = easemobNode;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // Thank's IE8 for his funny defineProperty
 module.exports = !__webpack_require__(3)(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
@@ -273,15 +289,15 @@ module.exports = !__webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(1);
-var IE8_DOM_DEFINE = __webpack_require__(148);
-var toPrimitive = __webpack_require__(37);
+var IE8_DOM_DEFINE = __webpack_require__(159);
+var toPrimitive = __webpack_require__(38);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(10) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -295,26 +311,26 @@ exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProp
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(38);
+var defined = __webpack_require__(39);
 module.exports = function (it) {
   return Object(defined(it));
 };
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(28)
-var polyfills = __webpack_require__(535)
-var legacy = __webpack_require__(537)
-var clone = __webpack_require__(539)
+var fs = __webpack_require__(21)
+var polyfills = __webpack_require__(573)
+var legacy = __webpack_require__(575)
+var clone = __webpack_require__(577)
 
-var util = __webpack_require__(81)
+var util = __webpack_require__(86)
 
 /* istanbul ignore next - node 0.x polyfill */
 var gracefulQueue
@@ -395,7 +411,7 @@ if (!fs[gracefulQueue]) {
   if (/\bgfs4\b/i.test(Object({"NODE_ENV":"production"}).NODE_DEBUG || '')) {
     process.on('exit', function() {
       debug(fs[gracefulQueue])
-      __webpack_require__(82).equal(fs[gracefulQueue].length, 0)
+      __webpack_require__(87).equal(fs[gracefulQueue].length, 0)
     })
   }
 }
@@ -760,15 +776,15 @@ function retry () {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = keys;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__has_js__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__collectNonEnumProps_js__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__has_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__collectNonEnumProps_js__ = __webpack_require__(205);
 
 
 
@@ -788,7 +804,7 @@ function keys(obj) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -806,7 +822,7 @@ function tagTester(name) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -816,14 +832,14 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = cb;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee_js__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__iteratee_js__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee_js__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__iteratee_js__ = __webpack_require__(215);
 
 
 
@@ -837,12 +853,12 @@ function cb(value, context, argCount) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(10);
-var createDesc = __webpack_require__(48);
-module.exports = __webpack_require__(9) ? function (object, key, value) {
+var dP = __webpack_require__(11);
+var createDesc = __webpack_require__(51);
+module.exports = __webpack_require__(10) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -851,18 +867,18 @@ module.exports = __webpack_require__(9) ? function (object, key, value) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var hide = __webpack_require__(17);
-var has = __webpack_require__(24);
-var SRC = __webpack_require__(49)('src');
-var $toString = __webpack_require__(254);
+var hide = __webpack_require__(18);
+var has = __webpack_require__(26);
+var SRC = __webpack_require__(52)('src');
+var $toString = __webpack_require__(281);
 var TO_STRING = 'toString';
 var TPL = ('' + $toString).split(TO_STRING);
 
-__webpack_require__(32).inspectSource = function (it) {
+__webpack_require__(33).inspectSource = function (it) {
   return $toString.call(it);
 };
 
@@ -888,12 +904,12 @@ __webpack_require__(32).inspectSource = function (it) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
 var fails = __webpack_require__(3);
-var defined = __webpack_require__(38);
+var defined = __webpack_require__(39);
 var quot = /"/g;
 // B.2.3.2.1 CreateHTML(string, tag, attribute, value)
 var createHTML = function (string, tag, attribute, value) {
@@ -913,7 +929,13 @@ module.exports = function (NAME, exec) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -948,7 +970,7 @@ function restArguments(func, startIndex) {
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -982,12 +1004,12 @@ _.prototype.toString = function() {
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createSizePropertyCheck_js__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createSizePropertyCheck_js__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(31);
 
 
 
@@ -999,7 +1021,7 @@ _.prototype.toString = function() {
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1031,7 +1053,7 @@ exports.fromPromise = function (fn) {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -1041,30 +1063,30 @@ module.exports = function (it, key) {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(71);
-var defined = __webpack_require__(38);
+var IObject = __webpack_require__(74);
+var defined = __webpack_require__(39);
 module.exports = function (it) {
   return IObject(defined(it));
 };
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(72);
-var createDesc = __webpack_require__(48);
-var toIObject = __webpack_require__(25);
-var toPrimitive = __webpack_require__(37);
-var has = __webpack_require__(24);
-var IE8_DOM_DEFINE = __webpack_require__(148);
+var pIE = __webpack_require__(75);
+var createDesc = __webpack_require__(51);
+var toIObject = __webpack_require__(27);
+var toPrimitive = __webpack_require__(38);
+var has = __webpack_require__(26);
+var IE8_DOM_DEFINE = __webpack_require__(159);
 var gOPD = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(9) ? gOPD : function getOwnPropertyDescriptor(O, P) {
+exports.f = __webpack_require__(10) ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = toIObject(O);
   P = toPrimitive(P, true);
   if (IE8_DOM_DEFINE) try {
@@ -1075,13 +1097,13 @@ exports.f = __webpack_require__(9) ? gOPD : function getOwnPropertyDescriptor(O,
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(24);
-var toObject = __webpack_require__(11);
-var IE_PROTO = __webpack_require__(104)('IE_PROTO');
+var has = __webpack_require__(26);
+var toObject = __webpack_require__(12);
+var IE_PROTO = __webpack_require__(112)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -1094,17 +1116,11 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
 
 
@@ -1124,11 +1140,11 @@ if (typeof /./ != 'function' && typeof Int8Array != 'object' && typeof nodelist 
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shallowProperty_js__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shallowProperty_js__ = __webpack_require__(204);
 
 
 // Internal helper to obtain the `length` property of an object.
@@ -1136,14 +1152,14 @@ if (typeof /./ != 'function' && typeof Int8Array != 'object' && typeof nodelist 
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const u = __webpack_require__(23).fromCallback
-const mkdirs = u(__webpack_require__(543))
-const mkdirsSync = __webpack_require__(544)
+const u = __webpack_require__(25).fromCallback
+const mkdirs = u(__webpack_require__(581))
+const mkdirsSync = __webpack_require__(582)
 
 module.exports = {
   mkdirs: mkdirs,
@@ -1157,7 +1173,7 @@ module.exports = {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 var core = module.exports = { version: '2.6.12' };
@@ -1165,11 +1181,11 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -1191,7 +1207,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -1202,7 +1218,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -1214,7 +1230,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1230,7 +1246,7 @@ module.exports = function (method, arg) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -1248,7 +1264,7 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -1259,12 +1275,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
 var $export = __webpack_require__(0);
-var core = __webpack_require__(32);
+var core = __webpack_require__(33);
 var fails = __webpack_require__(3);
 module.exports = function (KEY, exec) {
   var fn = (core.Object || {})[KEY] || Object[KEY];
@@ -1275,7 +1291,7 @@ module.exports = function (KEY, exec) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 0 -> Array#forEach
@@ -1285,11 +1301,11 @@ module.exports = function (KEY, exec) {
 // 4 -> Array#every
 // 5 -> Array#find
 // 6 -> Array#findIndex
-var ctx = __webpack_require__(33);
-var IObject = __webpack_require__(71);
-var toObject = __webpack_require__(11);
+var ctx = __webpack_require__(34);
+var IObject = __webpack_require__(74);
+var toObject = __webpack_require__(12);
 var toLength = __webpack_require__(7);
-var asc = __webpack_require__(120);
+var asc = __webpack_require__(128);
 module.exports = function (TYPE, $create) {
   var IS_MAP = TYPE == 1;
   var IS_FILTER = TYPE == 2;
@@ -1325,50 +1341,50 @@ module.exports = function (TYPE, $create) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-if (__webpack_require__(9)) {
-  var LIBRARY = __webpack_require__(43);
+if (__webpack_require__(10)) {
+  var LIBRARY = __webpack_require__(45);
   var global = __webpack_require__(2);
   var fails = __webpack_require__(3);
   var $export = __webpack_require__(0);
-  var $typed = __webpack_require__(94);
-  var $buffer = __webpack_require__(128);
-  var ctx = __webpack_require__(33);
-  var anInstance = __webpack_require__(55);
-  var propertyDesc = __webpack_require__(48);
-  var hide = __webpack_require__(17);
-  var redefineAll = __webpack_require__(57);
-  var toInteger = __webpack_require__(35);
+  var $typed = __webpack_require__(99);
+  var $buffer = __webpack_require__(136);
+  var ctx = __webpack_require__(34);
+  var anInstance = __webpack_require__(58);
+  var propertyDesc = __webpack_require__(51);
+  var hide = __webpack_require__(18);
+  var redefineAll = __webpack_require__(60);
+  var toInteger = __webpack_require__(36);
   var toLength = __webpack_require__(7);
-  var toIndex = __webpack_require__(176);
-  var toAbsoluteIndex = __webpack_require__(51);
-  var toPrimitive = __webpack_require__(37);
-  var has = __webpack_require__(24);
-  var classof = __webpack_require__(64);
+  var toIndex = __webpack_require__(187);
+  var toAbsoluteIndex = __webpack_require__(54);
+  var toPrimitive = __webpack_require__(38);
+  var has = __webpack_require__(26);
+  var classof = __webpack_require__(67);
   var isObject = __webpack_require__(5);
-  var toObject = __webpack_require__(11);
-  var isArrayIter = __webpack_require__(117);
-  var create = __webpack_require__(52);
-  var getPrototypeOf = __webpack_require__(27);
-  var gOPN = __webpack_require__(53).f;
-  var getIterFn = __webpack_require__(119);
-  var uid = __webpack_require__(49);
+  var toObject = __webpack_require__(12);
+  var isArrayIter = __webpack_require__(125);
+  var create = __webpack_require__(55);
+  var getPrototypeOf = __webpack_require__(29);
+  var gOPN = __webpack_require__(56).f;
+  var getIterFn = __webpack_require__(127);
+  var uid = __webpack_require__(52);
   var wks = __webpack_require__(6);
-  var createArrayMethod = __webpack_require__(40);
-  var createArrayIncludes = __webpack_require__(84);
-  var speciesConstructor = __webpack_require__(74);
-  var ArrayIterators = __webpack_require__(122);
-  var Iterators = __webpack_require__(66);
-  var $iterDetect = __webpack_require__(89);
-  var setSpecies = __webpack_require__(54);
-  var arrayFill = __webpack_require__(121);
-  var arrayCopyWithin = __webpack_require__(165);
-  var $DP = __webpack_require__(10);
-  var $GOPD = __webpack_require__(26);
+  var createArrayMethod = __webpack_require__(41);
+  var createArrayIncludes = __webpack_require__(89);
+  var speciesConstructor = __webpack_require__(77);
+  var ArrayIterators = __webpack_require__(130);
+  var Iterators = __webpack_require__(69);
+  var $iterDetect = __webpack_require__(94);
+  var setSpecies = __webpack_require__(57);
+  var arrayFill = __webpack_require__(129);
+  var arrayCopyWithin = __webpack_require__(176);
+  var $DP = __webpack_require__(11);
+  var $GOPD = __webpack_require__(28);
   var dP = $DP.f;
   var gOPD = $GOPD.f;
   var RangeError = global.RangeError;
@@ -1812,13 +1828,13 @@ if (__webpack_require__(9)) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Map = __webpack_require__(171);
+var Map = __webpack_require__(182);
 var $export = __webpack_require__(0);
-var shared = __webpack_require__(70)('metadata');
-var store = shared.store || (shared.store = new (__webpack_require__(174))());
+var shared = __webpack_require__(73)('metadata');
+var store = shared.store || (shared.store = new (__webpack_require__(185))());
 
 var getOrCreateMetadataMap = function (target, targetKey, create) {
   var targetMetadata = store.get(target);
@@ -1869,20 +1885,165 @@ module.exports = {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMError implementation.
+ * {
+ * EM_NO_ERROR = 0,                    //No error     
+ * GENERAL_ERROR,                      //General error
+ * NETWORK_ERROR,                      //Network isn't avaliable
+ * DATABASE_ERROR,                     //Database operation failed
+ * EXCEED_SERVICE_LIMIT,               //Exceed service limit
+ * 
+ * NVALID_APP_KEY = 100,              //App key is invalid
+ * INVALID_USER_NAME,                  //User name is illegal
+ * INVALID_PASSWORD,                   //Password is illegal
+ * INVALID_URL,                        //URL is invalid
+ * INVALID_TOKEN,                      //Token is invalid
+ * 
+ * USER_ALREADY_LOGIN = 200,           //User has already login
+ * USER_NOT_LOGIN,                     //User has not login
+ * USER_AUTHENTICATION_FAILED,         //User name or password is wrong
+ * USER_ALREADY_EXIST,                 //User has already exist
+ * USER_NOT_FOUND,                     //User dosn't exist
+ * USER_ILLEGAL_ARGUMENT,              //Illegal argument
+ * USER_LOGIN_ANOTHER_DEVICE,          //User login on another device
+ * USER_REMOVED,                       //User was removed from server
+ * USER_REG_FAILED,                    //User register failed
+ * PUSH_UPDATECONFIGS_FAILED,          //Update push configs failed
+ * USER_PERMISSION_DENIED,             //User has no right for this operation
+ * USER_BINDDEVICETOKEN_FAILED,        //Bind device token failed
+ * USER_UNBIND_DEVICETOKEN_FAILED,     //Unbind device token failed
+ * USER_BIND_ANOTHER_DEVICE,           //Bind another device and do not allow auto login
+ * USER_LOGIN_TOO_MANY_DEVICES,        //User login on too many devices
+ * USER_MUTED,                         //User mutes in groups or chatrooms
+ * USER_KICKED_BY_CHANGE_PASSWORD,     //User has changed the password
+ * USER_KICKED_BY_OTHER_DEVICE,        //User was kicked by other device or console backend
+ * 
+ * SERVER_NOT_REACHABLE = 300,         //Server is not reachable
+ * SERVER_TIMEOUT,                     //Wait server response timeout
+ * SERVER_BUSY,                        //Server is busy
+ * SERVER_UNKNOWN_ERROR,               //Unknown server error
+ * SERVER_GET_DNSLIST_FAILED,          //Can't get dns list
+ * SERVER_SERVING_DISABLED,            //Serving is disabled
+ * SERVER_DECRYPTION_FAILED,           //Server transfer decryption failure.
+ * 
+ * FILE_NOT_FOUND = 400,               //File isn't exist
+ * FILE_INVALID,                       //File is invalid
+ * FILE_UPLOAD_FAILED,                 //Failed uploading file to server
+ * FILE_DOWNLOAD_FAILED,               //Failed donwloading file from server
+ * FILE_DELETE_FAILED,                 //Failed delete file
+ * FILE_TOO_LARGE,                     //file too large to upload
+ * 
+ * MESSAGE_INVALID = 500,              //Message is invalid
+ * MESSAGE_INCLUDE_ILLEGAL_CONTENT,    //Message include illegal content
+ * MESSAGE_SEND_TRAFFIC_LIMIT,
+ * MESSAGE_ENCRYPTION_ERROR,
+ * MESSAGE_RECALL_TIME_LIMIT,          //Message recall exceed time limit
+ * SERVICE_NOT_ENABLED,
+ * 
+ * GROUP_INVALID_ID = 600,             //Group id is invalid
+ * GROUP_ALREADY_JOINED,               //User has already joined the group
+ * GROUP_NOT_JOINED,                   //User has not joined the group
+ * GROUP_PERMISSION_DENIED,            //User has no right for this operation
+ * GROUP_MEMBERS_FULL,                 //Group members is full
+ * GROUP_NOT_EXIST,                    //Group is not exist
+ * 
+ * CHATROOM_INVALID_ID = 700,          //Chatroom id is invalid
+ * CHATROOM_ALREADY_JOINED,            //User has already joined the chatroom
+ * CHATROOM_NOT_JOINED,                //User has not joined the chatroom
+ * CHATROOM_PERMISSION_DENIED,         //User has no right for this operation
+ * CHATROOM_MEMBERS_FULL,              //Chatroom members is full
+ * CHATROOM_NOT_EXIST,                 //Chatroom is not exist
+ * 
+ * CALL_INVALID_ID = 800,              //Call id is invalid
+ * CALL_BUSY,                          //Call in progress
+ * CALL_REMOTE_OFFLINE,                //remote offline
+ * CALL_CONNECTION_FAILED,             //Establish connection failed
+ * CALL_INVALID_CAMERA_INDEX,          //Invalid camera index
+ * CALL_OPERATION_CANCEL,              //Call cancel operation
+ * CALL_PERMISSION_DENIED,             //Call permission denied
+ * CALL_NOT_JOINED,                    //Call not joined
+ * CALL_JOIN_FAILED,                   //Call join failed
+ * CALL_CREATE_FAILED,                 //Call create failed
+ * CALL_UNSUB_FAILED,                  //Call unsub failed
+ * }
+ */
+
+/**
+ * EMError constructor.
+ * @constructor
+ * @param {Number} errorCode
+ * @param {String} description
+ */
+function EMError(errorCode, description) {
+  if (arguments.length == 2) {
+    this._error = new easemobNode.EMError(errorCode, description);
+  } else if (arguments.length == 1) {
+    if ((typeof errorCode === 'undefined' ? 'undefined' : _typeof(errorCode)) == "object") {
+      this._error = errorCode;
+    } else {
+      this._error = new easemobNode.EMError(errorCode);
+    }
+  } else {
+    this._error = new easemobNode.EMError();
+  }
+  Object.defineProperties(this, {
+    errorCode: {
+      get: function get() {
+        return this._error.errorCode;
+      },
+      set: function set(errorCode) {
+        this._error.errorCode = errorCode;
+      }
+    },
+    description: {
+      get: function get() {
+        return this._error.description;
+      },
+      set: function set(description) {
+        this._error.description = description;
+      }
+    }
+  });
+}
+
+/**
+ * set error code and error description.
+ * @param {Number} errorCode
+ * @param {String} description
+ * @return {void}
+ */
+EMError.prototype.setErrorCode = function (errorCode, description) {
+  this._error.setErrorCode(errorCode, description);
+};
+
+module.exports = EMError;
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = false;
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(49)('meta');
+var META = __webpack_require__(52)('meta');
 var isObject = __webpack_require__(5);
-var has = __webpack_require__(24);
-var setDesc = __webpack_require__(10).f;
+var has = __webpack_require__(26);
+var setDesc = __webpack_require__(11).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
@@ -1935,20 +2096,20 @@ var meta = module.exports = {
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = __webpack_require__(6)('unscopables');
 var ArrayProto = Array.prototype;
-if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__(17)(ArrayProto, UNSCOPABLES, {});
+if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__(18)(ArrayProto, UNSCOPABLES, {});
 module.exports = function (key) {
   ArrayProto[UNSCOPABLES][key] = true;
 };
 
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1963,13 +2124,19 @@ function has(obj, key) {
 
 
 /***/ }),
-/* 47 */
+/* 49 */
+/***/ (function(module, exports) {
+
+module.exports = require("events");
+
+/***/ }),
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const u = __webpack_require__(23).fromPromise
-const fs = __webpack_require__(233)
+const u = __webpack_require__(25).fromPromise
+const fs = __webpack_require__(259)
 
 function pathExists (path) {
   return fs.access(path).then(() => true).catch(() => false)
@@ -1982,7 +2149,7 @@ module.exports = {
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -1996,7 +2163,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -2007,12 +2174,12 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(150);
-var enumBugKeys = __webpack_require__(105);
+var $keys = __webpack_require__(161);
+var enumBugKeys = __webpack_require__(113);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -2020,10 +2187,10 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(35);
+var toInteger = __webpack_require__(36);
 var max = Math.max;
 var min = Math.min;
 module.exports = function (index, length) {
@@ -2033,27 +2200,27 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(1);
-var dPs = __webpack_require__(151);
-var enumBugKeys = __webpack_require__(105);
-var IE_PROTO = __webpack_require__(104)('IE_PROTO');
+var dPs = __webpack_require__(162);
+var enumBugKeys = __webpack_require__(113);
+var IE_PROTO = __webpack_require__(112)('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(102)('iframe');
+  var iframe = __webpack_require__(110)('iframe');
   var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(106).appendChild(iframe);
+  __webpack_require__(114).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -2080,12 +2247,12 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(150);
-var hiddenKeys = __webpack_require__(105).concat('length', 'prototype');
+var $keys = __webpack_require__(161);
+var hiddenKeys = __webpack_require__(113).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -2093,14 +2260,14 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global = __webpack_require__(2);
-var dP = __webpack_require__(10);
-var DESCRIPTORS = __webpack_require__(9);
+var dP = __webpack_require__(11);
+var DESCRIPTORS = __webpack_require__(10);
 var SPECIES = __webpack_require__(6)('species');
 
 module.exports = function (KEY) {
@@ -2113,7 +2280,7 @@ module.exports = function (KEY) {
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function (it, Constructor, name, forbiddenField) {
@@ -2124,15 +2291,15 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(33);
-var call = __webpack_require__(163);
-var isArrayIter = __webpack_require__(117);
+var ctx = __webpack_require__(34);
+var call = __webpack_require__(174);
+var isArrayIter = __webpack_require__(125);
 var anObject = __webpack_require__(1);
 var toLength = __webpack_require__(7);
-var getIterFn = __webpack_require__(119);
+var getIterFn = __webpack_require__(127);
 var BREAK = {};
 var RETURN = {};
 var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
@@ -2155,10 +2322,10 @@ exports.RETURN = RETURN;
 
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var redefine = __webpack_require__(18);
+var redefine = __webpack_require__(19);
 module.exports = function (target, src, safe) {
   for (var key in src) redefine(target, key, src[key], safe);
   return target;
@@ -2166,7 +2333,7 @@ module.exports = function (target, src, safe) {
 
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(5);
@@ -2177,13 +2344,13 @@ module.exports = function (it, TYPE) {
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2196,12 +2363,12 @@ function isObject(obj) {
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tagTester_js__ = __webpack_require__(15);
 
 
 
@@ -2211,14 +2378,14 @@ function isObject(obj) {
 
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = each;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__optimizeCb_js__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__optimizeCb_js__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(14);
 
 
 
@@ -2245,11 +2412,11 @@ function each(obj, iteratee, context) {
 
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(10).f;
-var has = __webpack_require__(24);
+var def = __webpack_require__(11).f;
+var has = __webpack_require__(26);
 var TAG = __webpack_require__(6)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -2258,11 +2425,11 @@ module.exports = function (it, tag, stat) {
 
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 var TAG = __webpack_require__(6)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -2287,13 +2454,13 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var defined = __webpack_require__(38);
+var defined = __webpack_require__(39);
 var fails = __webpack_require__(3);
-var spaces = __webpack_require__(108);
+var spaces = __webpack_require__(116);
 var space = '[' + spaces + ']';
 var non = '\u200b\u0085';
 var ltrim = RegExp('^' + space + space + '*');
@@ -2323,19 +2490,19 @@ module.exports = exporter;
 
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = values;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(14);
 
 
 // Retrieve the values of an object's properties.
@@ -2351,15 +2518,15 @@ function values(obj) {
 
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = flatten;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray_js__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArguments_js__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArguments_js__ = __webpack_require__(140);
 
 
 
@@ -2394,14 +2561,14 @@ function flatten(input, depth, strict, output) {
 
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = map;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(14);
 
 
 
@@ -2421,10 +2588,10 @@ function map(obj, iteratee, context) {
 
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var core = __webpack_require__(32);
+var core = __webpack_require__(33);
 var global = __webpack_require__(2);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
@@ -2433,17 +2600,17 @@ var store = global[SHARED] || (global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: core.version,
-  mode: __webpack_require__(43) ? 'pure' : 'global',
+  mode: __webpack_require__(45) ? 'pure' : 'global',
   copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
 });
 
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -2451,14 +2618,14 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2478,12 +2645,12 @@ module.exports = function () {
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = __webpack_require__(1);
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 var SPECIES = __webpack_require__(6)('species');
 module.exports = function (O, D) {
   var C = anObject(O).constructor;
@@ -2493,14 +2660,14 @@ module.exports = function (O, D) {
 
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hasStringTagBug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isIE11; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hasObjectTag_js__ = __webpack_require__(463);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hasObjectTag_js__ = __webpack_require__(490);
 
 
 
@@ -2514,14 +2681,14 @@ var hasStringTagBug = (
 
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = allKeys;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collectNonEnumProps_js__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collectNonEnumProps_js__ = __webpack_require__(205);
 
 
 
@@ -2538,13 +2705,13 @@ function allKeys(obj) {
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toPath;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(213);
 
 
 
@@ -2556,7 +2723,7 @@ function toPath(path) {
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2585,13 +2752,13 @@ function optimizeCb(func, context, argCount) {
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = filter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(65);
 
 
 
@@ -2607,14 +2774,14 @@ function filter(obj, predicate, context) {
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = contains;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexOf_js__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexOf_js__ = __webpack_require__(229);
 
 
 
@@ -2628,19 +2795,6552 @@ function contains(obj, item, fromIndex, guard) {
 
 
 /***/ }),
-/* 81 */
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EMTextMessageBody = __webpack_require__(249);
+var EMImageMessageBody = __webpack_require__(247).EMImageMessageBody;
+var EMVideoMessageBody = __webpack_require__(250).EMVideoMessageBody;
+var EMLocationMessageBody = __webpack_require__(248);
+var EMVoiceMessageBody = __webpack_require__(251);
+var EMFileMessageBody = __webpack_require__(246);
+var EMCmdMessageBody = __webpack_require__(244);
+var EMCustomMessageBody = __webpack_require__(245);
+
+/**
+ * Easemob EMMessage implementation.
+ */
+
+/**chat type.
+ * {
+ * SINGLE = 0,    // One-to-one chat
+ * GROUP = 1,     // Group chat
+ * CHATROOM = 2   // Chatroom chat
+ * }
+ * Message status.
+ * {
+ * NEW = 0,            // New message
+ * DELIVERING = 1,     // Message is delivering
+ * SUCCESS = 2,        // Message is delivered successfully
+ * FAIL = 3            // Message delivering failed
+ * }
+ * message direction.
+ * {
+ * SEND = 0,
+ * RECEIVE = 1
+ * }
+ * message body type.
+ * {
+ * TEXT = 0,        // Text message body
+ * IMAGE = 1,       // Image message body
+ * VIDEO = 2,       // Video message body
+ * LOCATION = 3,    // Location message body
+ * VOICE = 4,       // Voice message body
+ * FILE = 5,        // File message body
+ * COMMAND = 6      // Command message body
+ * }
+ */
+/**
+ * EMMessage constructor.
+ * @constructor
+ * @param {Object} message
+ */
+function EMMessage(message) {
+  this._message = message;
+  this._callback = null;
+}
+
+/**
+ * Get message id.
+ * @return {String} 返回消息ID
+ */
+EMMessage.prototype.msgId = function () {
+  return this._message.msgId();
+};
+
+/**
+ * Set message id.
+ * Note: User should never change a message's id if you don't want to save as a new message.
+ * @param {String} msgId 消息ID
+ * @return {void}
+ */
+EMMessage.prototype.setMsgId = function (msgId) {
+  this._message.setMsgId(msgId);
+};
+
+/**
+ * Get message sender.
+ * @return {String} 消息发送者
+ */
+EMMessage.prototype.from = function () {
+  return this._message.from();
+};
+
+/**
+ * Set message sender.
+ * @param {String} from 消息发送者
+ * @return {void}
+ */
+EMMessage.prototype.setFrom = function (from) {
+  this._message.setFrom(from);
+};
+
+/**
+ * Get message receiver.
+ * @return {String} 返回消息接收者
+ */
+EMMessage.prototype.to = function () {
+  return this._message.to();
+};
+
+/**
+ * Set message receiver.
+ * @param {String} to 消息接收者
+ * @return {void}
+ */
+EMMessage.prototype.setTo = function (to) {
+  this._message.setTo(to);
+};
+
+/**
+ * Get conversation id.
+ * @return {String} 返回消息的会话ID
+ */
+EMMessage.prototype.conversationId = function () {
+  return this._message.conversationId();
+};
+
+/**
+ * Set message's conversation id.
+ * Note: User should NOT change message's conversation id after received or sent a message.
+ * @param {String} conversationId 消息的会话ID
+ * @return {void}
+ */
+EMMessage.prototype.setConversationId = function (conversationId) {
+  this._message.setConversationId(conversationId);
+};
+
+/**
+ * Get message status.
+ * @return {Number} 返回消息状态
+ */
+EMMessage.prototype.status = function () {
+  return this._message.status();
+};
+
+/**
+ * Set message's status.
+ * Note: User should NOT change message's status directly.
+ * Message status.
+ * {
+ * NEW = 0,            // New message
+ * DELIVERING = 1,     // Message is delivering
+ * SUCCESS = 2,        // Message is delivered successfully
+ * FAIL = 3            // Message delivering failed
+ * }
+ * @param {Number} status 消息状态
+ * @return {void}
+ */
+EMMessage.prototype.setStatus = function (status) {
+  this._message.setStatus(status);
+};
+
+/**
+ * Get message chat type.
+ * @return {Number} 返回聊天类型
+ */
+EMMessage.prototype.chatType = function () {
+  return this._message.chatType();
+};
+
+/**
+ * Set message's chat type.
+ * Note: User should NOT change message's chat type after receive or send a message.
+ * {
+ * SINGLE = 0,    // One-to-one chat
+ * GROUP = 1,     // Group chat
+ * CHATROOM = 2   // Chatroom chat
+ * }
+ * @param {Number} status 聊天类型
+ * @return {void}
+ */
+EMMessage.prototype.setChatType = function (chatType) {
+  this._message.setChatType(chatType);
+};
+
+/**
+ * Get message direction.
+ * @return {Number} 返回消息收发方向，0为发，1为收
+ */
+EMMessage.prototype.msgDirection = function () {
+  return this._message.msgDirection();
+};
+
+/**
+ * Set message's direction.
+ * Note: User should NOT change message's message direction after received or sent a message.
+ * message direction.
+ * {
+ * SEND = 0,
+ * RECEIVE = 1
+ * }
+ * @param {Number} msgDirection 消息收发方向，0为发，1为收
+ * @return {void}
+ */
+EMMessage.prototype.setMsgDirection = function (msgDirection) {
+  this._message.setMsgDirection(msgDirection);
+};
+
+/**
+ * Get if message is read status.
+ * @return {Bool} 返回消息是否已读
+ */
+EMMessage.prototype.isRead = function () {
+  return this._message.isRead();
+};
+
+/**
+ * Set if message is read status.
+ * Note: User should NOT change message's read status directly.
+ * @param {Bool} isRead 消息是否已读
+ * @return {void}
+ */
+EMMessage.prototype.setIsRead = function (isRead) {
+  this._message.setIsRead(isRead);
+};
+
+/**
+ * Get message if has listened status.
+ * @return {Bool} 返回消息是否已接收
+ */
+EMMessage.prototype.isListened = function () {
+  return this._message.isListened();
+};
+
+/**
+ * Set message's listened status.
+ * Note: User should NOT change message's listened status directly.
+ * @param {Bool} isListened 消息是否已接收
+ * @return {void}
+ */
+EMMessage.prototype.setIsListened = function (isListened) {
+  this._message.setIsListened(isListened);
+};
+
+/**
+ * Get message read ack status.
+ * Note: For receiver, it indicates whether has sent read ack, and for sender, it indicates whether has received read ack.
+ * @return {Bool} 返回消息读ack状态
+ */
+EMMessage.prototype.isReadAcked = function () {
+  return this._message.isReadAcked();
+};
+
+/**
+ * Set message's read ack status.
+ * Note: User should NOT change message's read ack status directly.
+ * @param {Bool} isRead 消息读ack状态
+ * @return {void}
+ */
+EMMessage.prototype.setIsReadAcked = function (isReadAcked) {
+  this._message.setIsReadAcked(isReadAcked);
+};
+
+/**
+ * Get message delivering status.
+ * Note: For receiver, it indicates whether has sent delivering succeed ack; and for sender, it indicates whether has received delivering succeed ack.
+ * @return {Bool} 返回消息发ack状态
+ */
+EMMessage.prototype.isDeliverAcked = function () {
+  return this._message.isDeliverAcked();
+};
+
+/**
+ * Set message's delivery ack status.
+ * Note: User should NOT change message's delivery ack status directly.
+ * @param {Bool} isDeliverAcked 消息发ack状态
+ * @return {void}
+ */
+EMMessage.prototype.setIsDeliverAcked = function (isDeliverAcked) {
+  this._message.setIsDeliverAcked(isDeliverAcked);
+};
+
+/**
+ * Get message timestamp(server time).
+ * @return {Number} 返回消息服务器时间
+ */
+EMMessage.prototype.timestamp = function () {
+  return this._message.timestamp();
+};
+
+/**
+ * Set message's timestamp.
+ * Note: User should NOT change message's timestamp.
+ * @param {Number} timestamp 返回消息服务器时间
+ * @return {void}
+ */
+EMMessage.prototype.setTimestamp = function (timestamp) {
+  this._message.setTimestamp(timestamp);
+};
+
+/**
+ * Get message's local time.
+ * @return {Number} 返回消息本地时间
+ */
+EMMessage.prototype.localTime = function () {
+  return this._message.localTime();
+};
+
+/**
+ * Set message's local time.
+ * Note: User should NOT change message's server time.
+ * @param {Number} timestamp 返回消息本地时间
+ * @return {void}
+ */
+EMMessage.prototype.setLocalTime = function (localTime) {
+  this._message.setLocalTime(localTime);
+};
+
+/**
+ * Get message body list.
+ * @return {Array} message bodies list.
+ */
+EMMessage.prototype.bodies = function () {
+  var bodies = this._message.bodies();
+  var messageBodys = new Array(bodies.length);
+  for (var i = 0; i < bodies.length; i++) {
+    switch (bodies[i].type()) {
+      case 0:
+        // TEXT
+        messageBodys[i] = new EMTextMessageBody(bodies[i]);
+        break;
+      case 1:
+        // IMAGE
+        messageBodys[i] = new EMImageMessageBody(bodies[i]);
+        break;
+      case 2:
+        // VIDEO
+        messageBodys[i] = new EMVideoMessageBody(bodies[i]);
+        break;
+      case 3:
+        // LOCATION
+        messageBodys[i] = new EMLocationMessageBody(bodies[i]);
+        break;
+      case 4:
+        // VOICE
+        messageBodys[i] = new EMVoiceMessageBody(bodies[i]);
+        break;
+      case 5:
+        // FILE
+        messageBodys[i] = new EMFileMessageBody(bodies[i]);
+        break;
+      case 6:
+        //COMMAND
+        messageBodys[i] = new EMCmdMessageBody(bodies[i]);
+        break;
+      case 7:
+        messageBodys[i] = new EMCustomMessageBody(bodies[i]);
+        break;
+      default:
+    }
+  }
+  return messageBodys;
+};
+
+/**
+ * Clear all bodies.
+ * @return {void}
+ */
+EMMessage.prototype.clearBodies = function () {
+  this._message.clearBodies();
+};
+
+/**
+ * Add a body to message.
+ * @param {EMMessageBody} body
+ * @return {void}
+ */
+EMMessage.prototype.addBody = function (body) {
+  this._message.addBody(body._body);
+};
+
+/**
+ * Add a extend attribute to message.
+ * Note: Supported types: Bool Number and String.
+ * @param {String} attribute 消息属性
+ * @param {Bool | Number | String} value 属性值
+ * @return {void}
+ */
+EMMessage.prototype.setAttribute = function (attribute, value) {
+  this._message.setAttribute(attribute, value);
+};
+
+/**
+ * Get extend attribute of message.
+ * Note: Supported types: Bool Number and String.
+ * @param {String} attribute 消息属性
+ * @return {Bool | Number | String} 属性值
+ */
+EMMessage.prototype.getAttribute = function (attribute) {
+  return this._message.getAttribute(attribute);
+};
+
+/**
+ * Add a extend json object attribute to message.
+ * @param {String} attribute 消息属性
+ * @param {Object} object 属性的json字符串
+ * @return {void}
+ */
+EMMessage.prototype.setJsonAttribute = function (attribute, object) {
+  this._message.setJsonAttribute(attribute, JSON.stringify(object));
+};
+
+/**
+ * Get extend attribute of json object.
+ * @param {String} attribute 消息属性
+ * @return {Object} 属性的json字符串
+ */
+EMMessage.prototype.getJsonAttribute = function (attribute) {
+  return JSON.parse(this._message.getJsonAttribute(attribute));
+};
+
+/**
+ * Remove a attribute from message by key. 
+ * @param {String} attribute 消息属性
+ * @return {void}
+ */
+EMMessage.prototype.removeAttribute = function (attribute) {
+  this._message.removeAttribute(attribute);
+};
+
+/**
+ * Remove all attributes from message.
+ * @return {void}
+ */
+EMMessage.prototype.clearAttributes = function () {
+  this._message.clearAttributes();
+};
+
+/**
+ * Get all attributes from message.
+ * @return {Array} array contains obj, obj like { "attr" : "1", "value" : "1" }
+ */
+EMMessage.prototype.ext = function () {
+  return this._message.ext();
+};
+
+/**
+ * Get message's callback to notify status change.
+ * @return {EMCallback} 返回消息回调对象
+ */
+EMMessage.prototype.callback = function () {
+  return this._callback;
+};
+
+/**
+ * Set message's callback to notify status change.
+ * @param {EMCallback} callback 消息回调对象
+ * @return {void}
+ */
+EMMessage.prototype.setCallback = function (callback) {
+  this._callback = callback;
+  this._message.setCallback(callback._callback);
+};
+
+/**
+ * Set progress.
+ * @param {Number} percent 消息收发进度
+ * @return {void}
+ */
+EMMessage.prototype.setProgress = function (percent) {
+  this._message.setProgress(percent);
+};
+
+/**
+ * Get progress
+ * @return {Number} 返回消息收发进度
+ */
+EMMessage.prototype.getProgress = function () {
+  return this._message.getProgress();
+};
+
+module.exports = EMMessage;
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apply", function() { return apply; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyEach", function() { return applyEach$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applyEachSeries", function() { return applyEachSeries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "asyncify", function() { return asyncify; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auto", function() { return auto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "autoInject", function() { return autoInject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cargo", function() { return cargo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cargoQueue", function() { return cargo$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compose", function() { return compose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concat", function() { return concat$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concatLimit", function() { return concatLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concatSeries", function() { return concatSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "constant", function() { return constant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detect", function() { return detect$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detectLimit", function() { return detectLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detectSeries", function() { return detectSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dir", function() { return dir; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "doUntil", function() { return doUntil; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "doWhilst", function() { return doWhilst$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "each", function() { return each; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eachLimit", function() { return eachLimit$2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eachOf", function() { return eachOf$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eachOfLimit", function() { return eachOfLimit$2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eachOfSeries", function() { return eachOfSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eachSeries", function() { return eachSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ensureAsync", function() { return ensureAsync; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "every", function() { return every$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "everyLimit", function() { return everyLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "everySeries", function() { return everySeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterLimit", function() { return filterLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterSeries", function() { return filterSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forever", function() { return forever$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return groupBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupByLimit", function() { return groupByLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBySeries", function() { return groupBySeries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "log", function() { return log; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapLimit", function() { return mapLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapSeries", function() { return mapSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapValues", function() { return mapValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapValuesLimit", function() { return mapValuesLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapValuesSeries", function() { return mapValuesSeries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "memoize", function() { return memoize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextTick", function() { return nextTick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parallel", function() { return parallel$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parallelLimit", function() { return parallelLimit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "priorityQueue", function() { return priorityQueue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "queue", function() { return queue$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "race", function() { return race$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return reduce$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduceRight", function() { return reduceRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reflect", function() { return reflect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reflectAll", function() { return reflectAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reject", function() { return reject$2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectLimit", function() { return rejectLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectSeries", function() { return rejectSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retry", function() { return retry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retryable", function() { return retryable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "seq", function() { return seq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "series", function() { return series; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setImmediate", function() { return setImmediate$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "some", function() { return some$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "someLimit", function() { return someLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "someSeries", function() { return someSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortBy", function() { return sortBy$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeout", function() { return timeout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "times", function() { return times; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timesLimit", function() { return timesLimit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timesSeries", function() { return timesSeries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transform", function() { return transform; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryEach", function() { return tryEach$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unmemoize", function() { return unmemoize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "until", function() { return until; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "waterfall", function() { return waterfall$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "whilst", function() { return whilst$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "all", function() { return every$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allLimit", function() { return everyLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allSeries", function() { return everySeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "any", function() { return some$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "anyLimit", function() { return someLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "anySeries", function() { return someSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return detect$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findLimit", function() { return detectLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findSeries", function() { return detectSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flatMap", function() { return concat$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flatMapLimit", function() { return concatLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flatMapSeries", function() { return concatSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEach", function() { return each; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachSeries", function() { return eachSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachLimit", function() { return eachLimit$2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachOf", function() { return eachOf$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachOfSeries", function() { return eachOfSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachOfLimit", function() { return eachOfLimit$2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inject", function() { return reduce$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldl", function() { return reduce$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldr", function() { return reduceRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return filter$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectLimit", function() { return filterLimit$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectSeries", function() { return filterSeries$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapSync", function() { return asyncify; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "during", function() { return whilst$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "doDuring", function() { return doWhilst$1; });
+/**
+ * Creates a continuation function with some arguments already applied.
+ *
+ * Useful as a shorthand when combined with other control flow functions. Any
+ * arguments passed to the returned function are added to the arguments
+ * originally passed to apply.
+ *
+ * @name apply
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {Function} fn - The function you want to eventually apply all
+ * arguments to. Invokes with (arguments...).
+ * @param {...*} arguments... - Any number of arguments to automatically apply
+ * when the continuation is called.
+ * @returns {Function} the partially-applied function
+ * @example
+ *
+ * // using apply
+ * async.parallel([
+ *     async.apply(fs.writeFile, 'testfile1', 'test1'),
+ *     async.apply(fs.writeFile, 'testfile2', 'test2')
+ * ]);
+ *
+ *
+ * // the same process without using apply
+ * async.parallel([
+ *     function(callback) {
+ *         fs.writeFile('testfile1', 'test1', callback);
+ *     },
+ *     function(callback) {
+ *         fs.writeFile('testfile2', 'test2', callback);
+ *     }
+ * ]);
+ *
+ * // It's possible to pass any number of additional arguments when calling the
+ * // continuation:
+ *
+ * node> var fn = async.apply(sys.puts, 'one');
+ * node> fn('two', 'three');
+ * one
+ * two
+ * three
+ */
+function apply(fn, ...args) {
+    return (...callArgs) => fn(...args,...callArgs);
+}
+
+function initialParams (fn) {
+    return function (...args/*, callback*/) {
+        var callback = args.pop();
+        return fn.call(this, args, callback);
+    };
+}
+
+/* istanbul ignore file */
+
+var hasQueueMicrotask = typeof queueMicrotask === 'function' && queueMicrotask;
+var hasSetImmediate = typeof setImmediate === 'function' && setImmediate;
+var hasNextTick = typeof process === 'object' && typeof process.nextTick === 'function';
+
+function fallback(fn) {
+    setTimeout(fn, 0);
+}
+
+function wrap(defer) {
+    return (fn, ...args) => defer(() => fn(...args));
+}
+
+var _defer;
+
+if (hasQueueMicrotask) {
+    _defer = queueMicrotask;
+} else if (hasSetImmediate) {
+    _defer = setImmediate;
+} else if (hasNextTick) {
+    _defer = process.nextTick;
+} else {
+    _defer = fallback;
+}
+
+var setImmediate$1 = wrap(_defer);
+
+/**
+ * Take a sync function and make it async, passing its return value to a
+ * callback. This is useful for plugging sync functions into a waterfall,
+ * series, or other async functions. Any arguments passed to the generated
+ * function will be passed to the wrapped function (except for the final
+ * callback argument). Errors thrown will be passed to the callback.
+ *
+ * If the function passed to `asyncify` returns a Promise, that promises's
+ * resolved/rejected state will be used to call the callback, rather than simply
+ * the synchronous return value.
+ *
+ * This also means you can asyncify ES2017 `async` functions.
+ *
+ * @name asyncify
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @alias wrapSync
+ * @category Util
+ * @param {Function} func - The synchronous function, or Promise-returning
+ * function to convert to an {@link AsyncFunction}.
+ * @returns {AsyncFunction} An asynchronous wrapper of the `func`. To be
+ * invoked with `(args..., callback)`.
+ * @example
+ *
+ * // passing a regular synchronous function
+ * async.waterfall([
+ *     async.apply(fs.readFile, filename, "utf8"),
+ *     async.asyncify(JSON.parse),
+ *     function (data, next) {
+ *         // data is the result of parsing the text.
+ *         // If there was a parsing error, it would have been caught.
+ *     }
+ * ], callback);
+ *
+ * // passing a function returning a promise
+ * async.waterfall([
+ *     async.apply(fs.readFile, filename, "utf8"),
+ *     async.asyncify(function (contents) {
+ *         return db.model.create(contents);
+ *     }),
+ *     function (model, next) {
+ *         // `model` is the instantiated model object.
+ *         // If there was an error, this function would be skipped.
+ *     }
+ * ], callback);
+ *
+ * // es2017 example, though `asyncify` is not needed if your JS environment
+ * // supports async functions out of the box
+ * var q = async.queue(async.asyncify(async function(file) {
+ *     var intermediateStep = await processFile(file);
+ *     return await somePromise(intermediateStep)
+ * }));
+ *
+ * q.push(files);
+ */
+function asyncify(func) {
+    if (isAsync(func)) {
+        return function (...args/*, callback*/) {
+            const callback = args.pop();
+            const promise = func.apply(this, args);
+            return handlePromise(promise, callback)
+        }
+    }
+
+    return initialParams(function (args, callback) {
+        var result;
+        try {
+            result = func.apply(this, args);
+        } catch (e) {
+            return callback(e);
+        }
+        // if result is Promise object
+        if (result && typeof result.then === 'function') {
+            return handlePromise(result, callback)
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
+function handlePromise(promise, callback) {
+    return promise.then(value => {
+        invokeCallback(callback, null, value);
+    }, err => {
+        invokeCallback(callback, err && err.message ? err : new Error(err));
+    });
+}
+
+function invokeCallback(callback, error, value) {
+    try {
+        callback(error, value);
+    } catch (err) {
+        setImmediate$1(e => { throw e }, err);
+    }
+}
+
+function isAsync(fn) {
+    return fn[Symbol.toStringTag] === 'AsyncFunction';
+}
+
+function isAsyncGenerator(fn) {
+    return fn[Symbol.toStringTag] === 'AsyncGenerator';
+}
+
+function isAsyncIterable(obj) {
+    return typeof obj[Symbol.asyncIterator] === 'function';
+}
+
+function wrapAsync(asyncFn) {
+    if (typeof asyncFn !== 'function') throw new Error('expected a function')
+    return isAsync(asyncFn) ? asyncify(asyncFn) : asyncFn;
+}
+
+// conditionally promisify a function.
+// only return a promise if a callback is omitted
+function awaitify (asyncFn, arity = asyncFn.length) {
+    if (!arity) throw new Error('arity is undefined')
+    function awaitable (...args) {
+        if (typeof args[arity - 1] === 'function') {
+            return asyncFn.apply(this, args)
+        }
+
+        return new Promise((resolve, reject) => {
+            args[arity - 1] = (err, ...cbArgs) => {
+                if (err) return reject(err)
+                resolve(cbArgs.length > 1 ? cbArgs : cbArgs[0]);
+            };
+            asyncFn.apply(this, args);
+        })
+    }
+
+    return awaitable
+}
+
+function applyEach (eachfn) {
+    return function applyEach(fns, ...callArgs) {
+        const go = awaitify(function (callback) {
+            var that = this;
+            return eachfn(fns, (fn, cb) => {
+                wrapAsync(fn).apply(that, callArgs.concat(cb));
+            }, callback);
+        });
+        return go;
+    };
+}
+
+function _asyncMap(eachfn, arr, iteratee, callback) {
+    arr = arr || [];
+    var results = [];
+    var counter = 0;
+    var _iteratee = wrapAsync(iteratee);
+
+    return eachfn(arr, (value, _, iterCb) => {
+        var index = counter++;
+        _iteratee(value, (err, v) => {
+            results[index] = v;
+            iterCb(err);
+        });
+    }, err => {
+        callback(err, results);
+    });
+}
+
+function isArrayLike(value) {
+    return value &&
+        typeof value.length === 'number' &&
+        value.length >= 0 &&
+        value.length % 1 === 0;
+}
+
+// A temporary value used to identify if the loop should be broken.
+// See #1064, #1293
+const breakLoop = {};
+
+function once(fn) {
+    function wrapper (...args) {
+        if (fn === null) return;
+        var callFn = fn;
+        fn = null;
+        callFn.apply(this, args);
+    }
+    Object.assign(wrapper, fn);
+    return wrapper
+}
+
+function getIterator (coll) {
+    return coll[Symbol.iterator] && coll[Symbol.iterator]();
+}
+
+function createArrayIterator(coll) {
+    var i = -1;
+    var len = coll.length;
+    return function next() {
+        return ++i < len ? {value: coll[i], key: i} : null;
+    }
+}
+
+function createES2015Iterator(iterator) {
+    var i = -1;
+    return function next() {
+        var item = iterator.next();
+        if (item.done)
+            return null;
+        i++;
+        return {value: item.value, key: i};
+    }
+}
+
+function createObjectIterator(obj) {
+    var okeys = obj ? Object.keys(obj) : [];
+    var i = -1;
+    var len = okeys.length;
+    return function next() {
+        var key = okeys[++i];
+        if (key === '__proto__') {
+            return next();
+        }
+        return i < len ? {value: obj[key], key} : null;
+    };
+}
+
+function createIterator(coll) {
+    if (isArrayLike(coll)) {
+        return createArrayIterator(coll);
+    }
+
+    var iterator = getIterator(coll);
+    return iterator ? createES2015Iterator(iterator) : createObjectIterator(coll);
+}
+
+function onlyOnce(fn) {
+    return function (...args) {
+        if (fn === null) throw new Error("Callback was already called.");
+        var callFn = fn;
+        fn = null;
+        callFn.apply(this, args);
+    };
+}
+
+// for async generators
+function asyncEachOfLimit(generator, limit, iteratee, callback) {
+    let done = false;
+    let canceled = false;
+    let awaiting = false;
+    let running = 0;
+    let idx = 0;
+
+    function replenish() {
+        //console.log('replenish')
+        if (running >= limit || awaiting || done) return
+        //console.log('replenish awaiting')
+        awaiting = true;
+        generator.next().then(({value, done: iterDone}) => {
+            //console.log('got value', value)
+            if (canceled || done) return
+            awaiting = false;
+            if (iterDone) {
+                done = true;
+                if (running <= 0) {
+                    //console.log('done nextCb')
+                    callback(null);
+                }
+                return;
+            }
+            running++;
+            iteratee(value, idx, iterateeCallback);
+            idx++;
+            replenish();
+        }).catch(handleError);
+    }
+
+    function iterateeCallback(err, result) {
+        //console.log('iterateeCallback')
+        running -= 1;
+        if (canceled) return
+        if (err) return handleError(err)
+
+        if (err === false) {
+            done = true;
+            canceled = true;
+            return
+        }
+
+        if (result === breakLoop || (done && running <= 0)) {
+            done = true;
+            //console.log('done iterCb')
+            return callback(null);
+        }
+        replenish();
+    }
+
+    function handleError(err) {
+        if (canceled) return
+        awaiting = false;
+        done = true;
+        callback(err);
+    }
+
+    replenish();
+}
+
+var eachOfLimit = (limit) => {
+    return (obj, iteratee, callback) => {
+        callback = once(callback);
+        if (limit <= 0) {
+            throw new RangeError('concurrency limit cannot be less than 1')
+        }
+        if (!obj) {
+            return callback(null);
+        }
+        if (isAsyncGenerator(obj)) {
+            return asyncEachOfLimit(obj, limit, iteratee, callback)
+        }
+        if (isAsyncIterable(obj)) {
+            return asyncEachOfLimit(obj[Symbol.asyncIterator](), limit, iteratee, callback)
+        }
+        var nextElem = createIterator(obj);
+        var done = false;
+        var canceled = false;
+        var running = 0;
+        var looping = false;
+
+        function iterateeCallback(err, value) {
+            if (canceled) return
+            running -= 1;
+            if (err) {
+                done = true;
+                callback(err);
+            }
+            else if (err === false) {
+                done = true;
+                canceled = true;
+            }
+            else if (value === breakLoop || (done && running <= 0)) {
+                done = true;
+                return callback(null);
+            }
+            else if (!looping) {
+                replenish();
+            }
+        }
+
+        function replenish () {
+            looping = true;
+            while (running < limit && !done) {
+                var elem = nextElem();
+                if (elem === null) {
+                    done = true;
+                    if (running <= 0) {
+                        callback(null);
+                    }
+                    return;
+                }
+                running += 1;
+                iteratee(elem.value, elem.key, onlyOnce(iterateeCallback));
+            }
+            looping = false;
+        }
+
+        replenish();
+    };
+};
+
+/**
+ * The same as [`eachOf`]{@link module:Collections.eachOf} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name eachOfLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.eachOf]{@link module:Collections.eachOf}
+ * @alias forEachOfLimit
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async function to apply to each
+ * item in `coll`. The `key` is the item's key, or index in the case of an
+ * array.
+ * Invoked with (item, key, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function eachOfLimit$1(coll, limit, iteratee, callback) {
+    return eachOfLimit(limit)(coll, wrapAsync(iteratee), callback);
+}
+
+var eachOfLimit$2 = awaitify(eachOfLimit$1, 4);
+
+// eachOf implementation optimized for array-likes
+function eachOfArrayLike(coll, iteratee, callback) {
+    callback = once(callback);
+    var index = 0,
+        completed = 0,
+        {length} = coll,
+        canceled = false;
+    if (length === 0) {
+        callback(null);
+    }
+
+    function iteratorCallback(err, value) {
+        if (err === false) {
+            canceled = true;
+        }
+        if (canceled === true) return
+        if (err) {
+            callback(err);
+        } else if ((++completed === length) || value === breakLoop) {
+            callback(null);
+        }
+    }
+
+    for (; index < length; index++) {
+        iteratee(coll[index], index, onlyOnce(iteratorCallback));
+    }
+}
+
+// a generic version of eachOf which can handle array, object, and iterator cases.
+function eachOfGeneric (coll, iteratee, callback) {
+    return eachOfLimit$2(coll, Infinity, iteratee, callback);
+}
+
+/**
+ * Like [`each`]{@link module:Collections.each}, except that it passes the key (or index) as the second argument
+ * to the iteratee.
+ *
+ * @name eachOf
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias forEachOf
+ * @category Collection
+ * @see [async.each]{@link module:Collections.each}
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each
+ * item in `coll`.
+ * The `key` is the item's key, or index in the case of an array.
+ * Invoked with (item, key, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ * @example
+ *
+ * // dev.json is a file containing a valid json object config for dev environment
+ * // dev.json is a file containing a valid json object config for test environment
+ * // prod.json is a file containing a valid json object config for prod environment
+ * // invalid.json is a file with a malformed json object
+ *
+ * let configs = {}; //global variable
+ * let validConfigFileMap = {dev: 'dev.json', test: 'test.json', prod: 'prod.json'};
+ * let invalidConfigFileMap = {dev: 'dev.json', test: 'test.json', invalid: 'invalid.json'};
+ *
+ * // asynchronous function that reads a json file and parses the contents as json object
+ * function parseFile(file, key, callback) {
+ *     fs.readFile(file, "utf8", function(err, data) {
+ *         if (err) return calback(err);
+ *         try {
+ *             configs[key] = JSON.parse(data);
+ *         } catch (e) {
+ *             return callback(e);
+ *         }
+ *         callback();
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.forEachOf(validConfigFileMap, parseFile, function (err) {
+ *     if (err) {
+ *         console.error(err);
+ *     } else {
+ *         console.log(configs);
+ *         // configs is now a map of JSON data, e.g.
+ *         // { dev: //parsed dev.json, test: //parsed test.json, prod: //parsed prod.json}
+ *     }
+ * });
+ *
+ * //Error handing
+ * async.forEachOf(invalidConfigFileMap, parseFile, function (err) {
+ *     if (err) {
+ *         console.error(err);
+ *         // JSON parse error exception
+ *     } else {
+ *         console.log(configs);
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.forEachOf(validConfigFileMap, parseFile)
+ * .then( () => {
+ *     console.log(configs);
+ *     // configs is now a map of JSON data, e.g.
+ *     // { dev: //parsed dev.json, test: //parsed test.json, prod: //parsed prod.json}
+ * }).catch( err => {
+ *     console.error(err);
+ * });
+ *
+ * //Error handing
+ * async.forEachOf(invalidConfigFileMap, parseFile)
+ * .then( () => {
+ *     console.log(configs);
+ * }).catch( err => {
+ *     console.error(err);
+ *     // JSON parse error exception
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.forEachOf(validConfigFileMap, parseFile);
+ *         console.log(configs);
+ *         // configs is now a map of JSON data, e.g.
+ *         // { dev: //parsed dev.json, test: //parsed test.json, prod: //parsed prod.json}
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * //Error handing
+ * async () => {
+ *     try {
+ *         let result = await async.forEachOf(invalidConfigFileMap, parseFile);
+ *         console.log(configs);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // JSON parse error exception
+ *     }
+ * }
+ *
+ */
+function eachOf(coll, iteratee, callback) {
+    var eachOfImplementation = isArrayLike(coll) ? eachOfArrayLike : eachOfGeneric;
+    return eachOfImplementation(coll, wrapAsync(iteratee), callback);
+}
+
+var eachOf$1 = awaitify(eachOf, 3);
+
+/**
+ * Produces a new collection of values by mapping each value in `coll` through
+ * the `iteratee` function. The `iteratee` is called with an item from `coll`
+ * and a callback for when it has finished processing. Each of these callbacks
+ * takes 2 arguments: an `error`, and the transformed item from `coll`. If
+ * `iteratee` passes an error to its callback, the main `callback` (for the
+ * `map` function) is immediately called with the error.
+ *
+ * Note, that since this function applies the `iteratee` to each item in
+ * parallel, there is no guarantee that the `iteratee` functions will complete
+ * in order. However, the results array will be in the same order as the
+ * original `coll`.
+ *
+ * If `map` is passed an Object, the results will be an Array.  The results
+ * will roughly be in the order of the original Objects' keys (but this can
+ * vary across JavaScript engines).
+ *
+ * @name map
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with the transformed item.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Results is an Array of the
+ * transformed items from the `coll`. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * // file1.txt is a file that is 1000 bytes in size
+ * // file2.txt is a file that is 2000 bytes in size
+ * // file3.txt is a file that is 3000 bytes in size
+ * // file4.txt does not exist
+ *
+ * const fileList = ['file1.txt','file2.txt','file3.txt'];
+ * const withMissingFileList = ['file1.txt','file2.txt','file4.txt'];
+ *
+ * // asynchronous function that returns the file size in bytes
+ * function getFileSizeInBytes(file, callback) {
+ *     fs.stat(file, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         callback(null, stat.size);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.map(fileList, getFileSizeInBytes, function(err, results) {
+ *     if (err) {
+ *         console.log(err);
+ *     } else {
+ *         console.log(results);
+ *         // results is now an array of the file size in bytes for each file, e.g.
+ *         // [ 1000, 2000, 3000]
+ *     }
+ * });
+ *
+ * // Error Handling
+ * async.map(withMissingFileList, getFileSizeInBytes, function(err, results) {
+ *     if (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     } else {
+ *         console.log(results);
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.map(fileList, getFileSizeInBytes)
+ * .then( results => {
+ *     console.log(results);
+ *     // results is now an array of the file size in bytes for each file, e.g.
+ *     // [ 1000, 2000, 3000]
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Error Handling
+ * async.map(withMissingFileList, getFileSizeInBytes)
+ * .then( results => {
+ *     console.log(results);
+ * }).catch( err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.map(fileList, getFileSizeInBytes);
+ *         console.log(results);
+ *         // results is now an array of the file size in bytes for each file, e.g.
+ *         // [ 1000, 2000, 3000]
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // Error Handling
+ * async () => {
+ *     try {
+ *         let results = await async.map(withMissingFileList, getFileSizeInBytes);
+ *         console.log(results);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     }
+ * }
+ *
+ */
+function map (coll, iteratee, callback) {
+    return _asyncMap(eachOf$1, coll, iteratee, callback)
+}
+var map$1 = awaitify(map, 3);
+
+/**
+ * Applies the provided arguments to each function in the array, calling
+ * `callback` after all functions have completed. If you only provide the first
+ * argument, `fns`, then it will return a function which lets you pass in the
+ * arguments as if it were a single function call. If more arguments are
+ * provided, `callback` is required while `args` is still optional. The results
+ * for each of the applied async functions are passed to the final callback
+ * as an array.
+ *
+ * @name applyEach
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} fns - A collection of {@link AsyncFunction}s
+ * to all call with the same arguments
+ * @param {...*} [args] - any number of separate arguments to pass to the
+ * function.
+ * @param {Function} [callback] - the final argument should be the callback,
+ * called when all functions have completed processing.
+ * @returns {AsyncFunction} - Returns a function that takes no args other than
+ * an optional callback, that is the result of applying the `args` to each
+ * of the functions.
+ * @example
+ *
+ * const appliedFn = async.applyEach([enableSearch, updateSchema], 'bucket')
+ *
+ * appliedFn((err, results) => {
+ *     // results[0] is the results for `enableSearch`
+ *     // results[1] is the results for `updateSchema`
+ * });
+ *
+ * // partial application example:
+ * async.each(
+ *     buckets,
+ *     async (bucket) => async.applyEach([enableSearch, updateSchema], bucket)(),
+ *     callback
+ * );
+ */
+var applyEach$1 = applyEach(map$1);
+
+/**
+ * The same as [`eachOf`]{@link module:Collections.eachOf} but runs only a single async operation at a time.
+ *
+ * @name eachOfSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.eachOf]{@link module:Collections.eachOf}
+ * @alias forEachOfSeries
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * Invoked with (item, key, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function eachOfSeries(coll, iteratee, callback) {
+    return eachOfLimit$2(coll, 1, iteratee, callback)
+}
+var eachOfSeries$1 = awaitify(eachOfSeries, 3);
+
+/**
+ * The same as [`map`]{@link module:Collections.map} but runs only a single async operation at a time.
+ *
+ * @name mapSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.map]{@link module:Collections.map}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with the transformed item.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Results is an array of the
+ * transformed items from the `coll`. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function mapSeries (coll, iteratee, callback) {
+    return _asyncMap(eachOfSeries$1, coll, iteratee, callback)
+}
+var mapSeries$1 = awaitify(mapSeries, 3);
+
+/**
+ * The same as [`applyEach`]{@link module:ControlFlow.applyEach} but runs only a single async operation at a time.
+ *
+ * @name applyEachSeries
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.applyEach]{@link module:ControlFlow.applyEach}
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} fns - A collection of {@link AsyncFunction}s to all
+ * call with the same arguments
+ * @param {...*} [args] - any number of separate arguments to pass to the
+ * function.
+ * @param {Function} [callback] - the final argument should be the callback,
+ * called when all functions have completed processing.
+ * @returns {AsyncFunction} - A function, that when called, is the result of
+ * appling the `args` to the list of functions.  It takes no args, other than
+ * a callback.
+ */
+var applyEachSeries = applyEach(mapSeries$1);
+
+const PROMISE_SYMBOL = Symbol('promiseCallback');
+
+function promiseCallback () {
+    let resolve, reject;
+    function callback (err, ...args) {
+        if (err) return reject(err)
+        resolve(args.length > 1 ? args : args[0]);
+    }
+
+    callback[PROMISE_SYMBOL] = new Promise((res, rej) => {
+        resolve = res,
+        reject = rej;
+    });
+
+    return callback
+}
+
+/**
+ * Determines the best order for running the {@link AsyncFunction}s in `tasks`, based on
+ * their requirements. Each function can optionally depend on other functions
+ * being completed first, and each function is run as soon as its requirements
+ * are satisfied.
+ *
+ * If any of the {@link AsyncFunction}s pass an error to their callback, the `auto` sequence
+ * will stop. Further tasks will not execute (so any other functions depending
+ * on it will not run), and the main `callback` is immediately called with the
+ * error.
+ *
+ * {@link AsyncFunction}s also receive an object containing the results of functions which
+ * have completed so far as the first argument, if they have dependencies. If a
+ * task function has no dependencies, it will only be passed a callback.
+ *
+ * @name auto
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Object} tasks - An object. Each of its properties is either a
+ * function or an array of requirements, with the {@link AsyncFunction} itself the last item
+ * in the array. The object's key of a property serves as the name of the task
+ * defined by that property, i.e. can be used when specifying requirements for
+ * other tasks. The function receives one or two arguments:
+ * * a `results` object, containing the results of the previously executed
+ *   functions, only passed if the task has any dependencies,
+ * * a `callback(err, result)` function, which must be called when finished,
+ *   passing an `error` (which can be `null`) and the result of the function's
+ *   execution.
+ * @param {number} [concurrency=Infinity] - An optional `integer` for
+ * determining the maximum number of tasks that can be run in parallel. By
+ * default, as many as possible.
+ * @param {Function} [callback] - An optional callback which is called when all
+ * the tasks have been completed. It receives the `err` argument if any `tasks`
+ * pass an error to their callback. Results are always returned; however, if an
+ * error occurs, no further `tasks` will be performed, and the results object
+ * will only contain partial results. Invoked with (err, results).
+ * @returns {Promise} a promise, if a callback is not passed
+ * @example
+ *
+ * //Using Callbacks
+ * async.auto({
+ *     get_data: function(callback) {
+ *         // async code to get some data
+ *         callback(null, 'data', 'converted to array');
+ *     },
+ *     make_folder: function(callback) {
+ *         // async code to create a directory to store a file in
+ *         // this is run at the same time as getting the data
+ *         callback(null, 'folder');
+ *     },
+ *     write_file: ['get_data', 'make_folder', function(results, callback) {
+ *         // once there is some data and the directory exists,
+ *         // write the data to a file in the directory
+ *         callback(null, 'filename');
+ *     }],
+ *     email_link: ['write_file', function(results, callback) {
+ *         // once the file is written let's email a link to it...
+ *         callback(null, {'file':results.write_file, 'email':'user@example.com'});
+ *     }]
+ * }, function(err, results) {
+ *     if (err) {
+ *         console.log('err = ', err);
+ *     }
+ *     console.log('results = ', results);
+ *     // results = {
+ *     //     get_data: ['data', 'converted to array']
+ *     //     make_folder; 'folder',
+ *     //     write_file: 'filename'
+ *     //     email_link: { file: 'filename', email: 'user@example.com' }
+ *     // }
+ * });
+ *
+ * //Using Promises
+ * async.auto({
+ *     get_data: function(callback) {
+ *         console.log('in get_data');
+ *         // async code to get some data
+ *         callback(null, 'data', 'converted to array');
+ *     },
+ *     make_folder: function(callback) {
+ *         console.log('in make_folder');
+ *         // async code to create a directory to store a file in
+ *         // this is run at the same time as getting the data
+ *         callback(null, 'folder');
+ *     },
+ *     write_file: ['get_data', 'make_folder', function(results, callback) {
+ *         // once there is some data and the directory exists,
+ *         // write the data to a file in the directory
+ *         callback(null, 'filename');
+ *     }],
+ *     email_link: ['write_file', function(results, callback) {
+ *         // once the file is written let's email a link to it...
+ *         callback(null, {'file':results.write_file, 'email':'user@example.com'});
+ *     }]
+ * }).then(results => {
+ *     console.log('results = ', results);
+ *     // results = {
+ *     //     get_data: ['data', 'converted to array']
+ *     //     make_folder; 'folder',
+ *     //     write_file: 'filename'
+ *     //     email_link: { file: 'filename', email: 'user@example.com' }
+ *     // }
+ * }).catch(err => {
+ *     console.log('err = ', err);
+ * });
+ *
+ * //Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.auto({
+ *             get_data: function(callback) {
+ *                 // async code to get some data
+ *                 callback(null, 'data', 'converted to array');
+ *             },
+ *             make_folder: function(callback) {
+ *                 // async code to create a directory to store a file in
+ *                 // this is run at the same time as getting the data
+ *                 callback(null, 'folder');
+ *             },
+ *             write_file: ['get_data', 'make_folder', function(results, callback) {
+ *                 // once there is some data and the directory exists,
+ *                 // write the data to a file in the directory
+ *                 callback(null, 'filename');
+ *             }],
+ *             email_link: ['write_file', function(results, callback) {
+ *                 // once the file is written let's email a link to it...
+ *                 callback(null, {'file':results.write_file, 'email':'user@example.com'});
+ *             }]
+ *         });
+ *         console.log('results = ', results);
+ *         // results = {
+ *         //     get_data: ['data', 'converted to array']
+ *         //     make_folder; 'folder',
+ *         //     write_file: 'filename'
+ *         //     email_link: { file: 'filename', email: 'user@example.com' }
+ *         // }
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function auto(tasks, concurrency, callback) {
+    if (typeof concurrency !== 'number') {
+        // concurrency is optional, shift the args.
+        callback = concurrency;
+        concurrency = null;
+    }
+    callback = once(callback || promiseCallback());
+    var numTasks = Object.keys(tasks).length;
+    if (!numTasks) {
+        return callback(null);
+    }
+    if (!concurrency) {
+        concurrency = numTasks;
+    }
+
+    var results = {};
+    var runningTasks = 0;
+    var canceled = false;
+    var hasError = false;
+
+    var listeners = Object.create(null);
+
+    var readyTasks = [];
+
+    // for cycle detection:
+    var readyToCheck = []; // tasks that have been identified as reachable
+    // without the possibility of returning to an ancestor task
+    var uncheckedDependencies = {};
+
+    Object.keys(tasks).forEach(key => {
+        var task = tasks[key];
+        if (!Array.isArray(task)) {
+            // no dependencies
+            enqueueTask(key, [task]);
+            readyToCheck.push(key);
+            return;
+        }
+
+        var dependencies = task.slice(0, task.length - 1);
+        var remainingDependencies = dependencies.length;
+        if (remainingDependencies === 0) {
+            enqueueTask(key, task);
+            readyToCheck.push(key);
+            return;
+        }
+        uncheckedDependencies[key] = remainingDependencies;
+
+        dependencies.forEach(dependencyName => {
+            if (!tasks[dependencyName]) {
+                throw new Error('async.auto task `' + key +
+                    '` has a non-existent dependency `' +
+                    dependencyName + '` in ' +
+                    dependencies.join(', '));
+            }
+            addListener(dependencyName, () => {
+                remainingDependencies--;
+                if (remainingDependencies === 0) {
+                    enqueueTask(key, task);
+                }
+            });
+        });
+    });
+
+    checkForDeadlocks();
+    processQueue();
+
+    function enqueueTask(key, task) {
+        readyTasks.push(() => runTask(key, task));
+    }
+
+    function processQueue() {
+        if (canceled) return
+        if (readyTasks.length === 0 && runningTasks === 0) {
+            return callback(null, results);
+        }
+        while(readyTasks.length && runningTasks < concurrency) {
+            var run = readyTasks.shift();
+            run();
+        }
+
+    }
+
+    function addListener(taskName, fn) {
+        var taskListeners = listeners[taskName];
+        if (!taskListeners) {
+            taskListeners = listeners[taskName] = [];
+        }
+
+        taskListeners.push(fn);
+    }
+
+    function taskComplete(taskName) {
+        var taskListeners = listeners[taskName] || [];
+        taskListeners.forEach(fn => fn());
+        processQueue();
+    }
+
+
+    function runTask(key, task) {
+        if (hasError) return;
+
+        var taskCallback = onlyOnce((err, ...result) => {
+            runningTasks--;
+            if (err === false) {
+                canceled = true;
+                return
+            }
+            if (result.length < 2) {
+                [result] = result;
+            }
+            if (err) {
+                var safeResults = {};
+                Object.keys(results).forEach(rkey => {
+                    safeResults[rkey] = results[rkey];
+                });
+                safeResults[key] = result;
+                hasError = true;
+                listeners = Object.create(null);
+                if (canceled) return
+                callback(err, safeResults);
+            } else {
+                results[key] = result;
+                taskComplete(key);
+            }
+        });
+
+        runningTasks++;
+        var taskFn = wrapAsync(task[task.length - 1]);
+        if (task.length > 1) {
+            taskFn(results, taskCallback);
+        } else {
+            taskFn(taskCallback);
+        }
+    }
+
+    function checkForDeadlocks() {
+        // Kahn's algorithm
+        // https://en.wikipedia.org/wiki/Topological_sorting#Kahn.27s_algorithm
+        // http://connalle.blogspot.com/2013/10/topological-sortingkahn-algorithm.html
+        var currentTask;
+        var counter = 0;
+        while (readyToCheck.length) {
+            currentTask = readyToCheck.pop();
+            counter++;
+            getDependents(currentTask).forEach(dependent => {
+                if (--uncheckedDependencies[dependent] === 0) {
+                    readyToCheck.push(dependent);
+                }
+            });
+        }
+
+        if (counter !== numTasks) {
+            throw new Error(
+                'async.auto cannot execute tasks due to a recursive dependency'
+            );
+        }
+    }
+
+    function getDependents(taskName) {
+        var result = [];
+        Object.keys(tasks).forEach(key => {
+            const task = tasks[key];
+            if (Array.isArray(task) && task.indexOf(taskName) >= 0) {
+                result.push(key);
+            }
+        });
+        return result;
+    }
+
+    return callback[PROMISE_SYMBOL]
+}
+
+var FN_ARGS = /^(?:async\s+)?(?:function)?\s*\w*\s*\(\s*([^)]+)\s*\)(?:\s*{)/;
+var ARROW_FN_ARGS = /^(?:async\s+)?\(?\s*([^)=]+)\s*\)?(?:\s*=>)/;
+var FN_ARG_SPLIT = /,/;
+var FN_ARG = /(=.+)?(\s*)$/;
+
+function stripComments(string) {
+    let stripped = '';
+    let index = 0;
+    let endBlockComment = string.indexOf('*/');
+    while (index < string.length) {
+        if (string[index] === '/' && string[index+1] === '/') {
+            // inline comment
+            let endIndex = string.indexOf('\n', index);
+            index = (endIndex === -1) ? string.length : endIndex;
+        } else if ((endBlockComment !== -1) && (string[index] === '/') && (string[index+1] === '*')) {
+            // block comment
+            let endIndex = string.indexOf('*/', index);
+            if (endIndex !== -1) {
+                index = endIndex + 2;
+                endBlockComment = string.indexOf('*/', index);
+            } else {
+                stripped += string[index];
+                index++;
+            }
+        } else {
+            stripped += string[index];
+            index++;
+        }
+    }
+    return stripped;
+}
+
+function parseParams(func) {
+    const src = stripComments(func.toString());
+    let match = src.match(FN_ARGS);
+    if (!match) {
+        match = src.match(ARROW_FN_ARGS);
+    }
+    if (!match) throw new Error('could not parse args in autoInject\nSource:\n' + src)
+    let [, args] = match;
+    return args
+        .replace(/\s/g, '')
+        .split(FN_ARG_SPLIT)
+        .map((arg) => arg.replace(FN_ARG, '').trim());
+}
+
+/**
+ * A dependency-injected version of the [async.auto]{@link module:ControlFlow.auto} function. Dependent
+ * tasks are specified as parameters to the function, after the usual callback
+ * parameter, with the parameter names matching the names of the tasks it
+ * depends on. This can provide even more readable task graphs which can be
+ * easier to maintain.
+ *
+ * If a final callback is specified, the task results are similarly injected,
+ * specified as named parameters after the initial error parameter.
+ *
+ * The autoInject function is purely syntactic sugar and its semantics are
+ * otherwise equivalent to [async.auto]{@link module:ControlFlow.auto}.
+ *
+ * @name autoInject
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.auto]{@link module:ControlFlow.auto}
+ * @category Control Flow
+ * @param {Object} tasks - An object, each of whose properties is an {@link AsyncFunction} of
+ * the form 'func([dependencies...], callback). The object's key of a property
+ * serves as the name of the task defined by that property, i.e. can be used
+ * when specifying requirements for other tasks.
+ * * The `callback` parameter is a `callback(err, result)` which must be called
+ *   when finished, passing an `error` (which can be `null`) and the result of
+ *   the function's execution. The remaining parameters name other tasks on
+ *   which the task is dependent, and the results from those tasks are the
+ *   arguments of those parameters.
+ * @param {Function} [callback] - An optional callback which is called when all
+ * the tasks have been completed. It receives the `err` argument if any `tasks`
+ * pass an error to their callback, and a `results` object with any completed
+ * task results, similar to `auto`.
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * //  The example from `auto` can be rewritten as follows:
+ * async.autoInject({
+ *     get_data: function(callback) {
+ *         // async code to get some data
+ *         callback(null, 'data', 'converted to array');
+ *     },
+ *     make_folder: function(callback) {
+ *         // async code to create a directory to store a file in
+ *         // this is run at the same time as getting the data
+ *         callback(null, 'folder');
+ *     },
+ *     write_file: function(get_data, make_folder, callback) {
+ *         // once there is some data and the directory exists,
+ *         // write the data to a file in the directory
+ *         callback(null, 'filename');
+ *     },
+ *     email_link: function(write_file, callback) {
+ *         // once the file is written let's email a link to it...
+ *         // write_file contains the filename returned by write_file.
+ *         callback(null, {'file':write_file, 'email':'user@example.com'});
+ *     }
+ * }, function(err, results) {
+ *     console.log('err = ', err);
+ *     console.log('email_link = ', results.email_link);
+ * });
+ *
+ * // If you are using a JS minifier that mangles parameter names, `autoInject`
+ * // will not work with plain functions, since the parameter names will be
+ * // collapsed to a single letter identifier.  To work around this, you can
+ * // explicitly specify the names of the parameters your task function needs
+ * // in an array, similar to Angular.js dependency injection.
+ *
+ * // This still has an advantage over plain `auto`, since the results a task
+ * // depends on are still spread into arguments.
+ * async.autoInject({
+ *     //...
+ *     write_file: ['get_data', 'make_folder', function(get_data, make_folder, callback) {
+ *         callback(null, 'filename');
+ *     }],
+ *     email_link: ['write_file', function(write_file, callback) {
+ *         callback(null, {'file':write_file, 'email':'user@example.com'});
+ *     }]
+ *     //...
+ * }, function(err, results) {
+ *     console.log('err = ', err);
+ *     console.log('email_link = ', results.email_link);
+ * });
+ */
+function autoInject(tasks, callback) {
+    var newTasks = {};
+
+    Object.keys(tasks).forEach(key => {
+        var taskFn = tasks[key];
+        var params;
+        var fnIsAsync = isAsync(taskFn);
+        var hasNoDeps =
+            (!fnIsAsync && taskFn.length === 1) ||
+            (fnIsAsync && taskFn.length === 0);
+
+        if (Array.isArray(taskFn)) {
+            params = [...taskFn];
+            taskFn = params.pop();
+
+            newTasks[key] = params.concat(params.length > 0 ? newTask : taskFn);
+        } else if (hasNoDeps) {
+            // no dependencies, use the function as-is
+            newTasks[key] = taskFn;
+        } else {
+            params = parseParams(taskFn);
+            if ((taskFn.length === 0 && !fnIsAsync) && params.length === 0) {
+                throw new Error("autoInject task functions require explicit parameters.");
+            }
+
+            // remove callback param
+            if (!fnIsAsync) params.pop();
+
+            newTasks[key] = params.concat(newTask);
+        }
+
+        function newTask(results, taskCb) {
+            var newArgs = params.map(name => results[name]);
+            newArgs.push(taskCb);
+            wrapAsync(taskFn)(...newArgs);
+        }
+    });
+
+    return auto(newTasks, callback);
+}
+
+// Simple doubly linked list (https://en.wikipedia.org/wiki/Doubly_linked_list) implementation
+// used for queues. This implementation assumes that the node provided by the user can be modified
+// to adjust the next and last properties. We implement only the minimal functionality
+// for queue support.
+class DLL {
+    constructor() {
+        this.head = this.tail = null;
+        this.length = 0;
+    }
+
+    removeLink(node) {
+        if (node.prev) node.prev.next = node.next;
+        else this.head = node.next;
+        if (node.next) node.next.prev = node.prev;
+        else this.tail = node.prev;
+
+        node.prev = node.next = null;
+        this.length -= 1;
+        return node;
+    }
+
+    empty () {
+        while(this.head) this.shift();
+        return this;
+    }
+
+    insertAfter(node, newNode) {
+        newNode.prev = node;
+        newNode.next = node.next;
+        if (node.next) node.next.prev = newNode;
+        else this.tail = newNode;
+        node.next = newNode;
+        this.length += 1;
+    }
+
+    insertBefore(node, newNode) {
+        newNode.prev = node.prev;
+        newNode.next = node;
+        if (node.prev) node.prev.next = newNode;
+        else this.head = newNode;
+        node.prev = newNode;
+        this.length += 1;
+    }
+
+    unshift(node) {
+        if (this.head) this.insertBefore(this.head, node);
+        else setInitial(this, node);
+    }
+
+    push(node) {
+        if (this.tail) this.insertAfter(this.tail, node);
+        else setInitial(this, node);
+    }
+
+    shift() {
+        return this.head && this.removeLink(this.head);
+    }
+
+    pop() {
+        return this.tail && this.removeLink(this.tail);
+    }
+
+    toArray() {
+        return [...this]
+    }
+
+    *[Symbol.iterator] () {
+        var cur = this.head;
+        while (cur) {
+            yield cur.data;
+            cur = cur.next;
+        }
+    }
+
+    remove (testFn) {
+        var curr = this.head;
+        while(curr) {
+            var {next} = curr;
+            if (testFn(curr)) {
+                this.removeLink(curr);
+            }
+            curr = next;
+        }
+        return this;
+    }
+}
+
+function setInitial(dll, node) {
+    dll.length = 1;
+    dll.head = dll.tail = node;
+}
+
+function queue(worker, concurrency, payload) {
+    if (concurrency == null) {
+        concurrency = 1;
+    }
+    else if(concurrency === 0) {
+        throw new RangeError('Concurrency must not be zero');
+    }
+
+    var _worker = wrapAsync(worker);
+    var numRunning = 0;
+    var workersList = [];
+    const events = {
+        error: [],
+        drain: [],
+        saturated: [],
+        unsaturated: [],
+        empty: []
+    };
+
+    function on (event, handler) {
+        events[event].push(handler);
+    }
+
+    function once (event, handler) {
+        const handleAndRemove = (...args) => {
+            off(event, handleAndRemove);
+            handler(...args);
+        };
+        events[event].push(handleAndRemove);
+    }
+
+    function off (event, handler) {
+        if (!event) return Object.keys(events).forEach(ev => events[ev] = [])
+        if (!handler) return events[event] = []
+        events[event] = events[event].filter(ev => ev !== handler);
+    }
+
+    function trigger (event, ...args) {
+        events[event].forEach(handler => handler(...args));
+    }
+
+    var processingScheduled = false;
+    function _insert(data, insertAtFront, rejectOnError, callback) {
+        if (callback != null && typeof callback !== 'function') {
+            throw new Error('task callback must be a function');
+        }
+        q.started = true;
+
+        var res, rej;
+        function promiseCallback (err, ...args) {
+            // we don't care about the error, let the global error handler
+            // deal with it
+            if (err) return rejectOnError ? rej(err) : res()
+            if (args.length <= 1) return res(args[0])
+            res(args);
+        }
+
+        var item = q._createTaskItem(
+            data,
+            rejectOnError ? promiseCallback :
+                (callback || promiseCallback)
+        );
+
+        if (insertAtFront) {
+            q._tasks.unshift(item);
+        } else {
+            q._tasks.push(item);
+        }
+
+        if (!processingScheduled) {
+            processingScheduled = true;
+            setImmediate$1(() => {
+                processingScheduled = false;
+                q.process();
+            });
+        }
+
+        if (rejectOnError || !callback) {
+            return new Promise((resolve, reject) => {
+                res = resolve;
+                rej = reject;
+            })
+        }
+    }
+
+    function _createCB(tasks) {
+        return function (err, ...args) {
+            numRunning -= 1;
+
+            for (var i = 0, l = tasks.length; i < l; i++) {
+                var task = tasks[i];
+
+                var index = workersList.indexOf(task);
+                if (index === 0) {
+                    workersList.shift();
+                } else if (index > 0) {
+                    workersList.splice(index, 1);
+                }
+
+                task.callback(err, ...args);
+
+                if (err != null) {
+                    trigger('error', err, task.data);
+                }
+            }
+
+            if (numRunning <= (q.concurrency - q.buffer) ) {
+                trigger('unsaturated');
+            }
+
+            if (q.idle()) {
+                trigger('drain');
+            }
+            q.process();
+        };
+    }
+
+    function _maybeDrain(data) {
+        if (data.length === 0 && q.idle()) {
+            // call drain immediately if there are no tasks
+            setImmediate$1(() => trigger('drain'));
+            return true
+        }
+        return false
+    }
+
+    const eventMethod = (name) => (handler) => {
+        if (!handler) {
+            return new Promise((resolve, reject) => {
+                once(name, (err, data) => {
+                    if (err) return reject(err)
+                    resolve(data);
+                });
+            })
+        }
+        off(name);
+        on(name, handler);
+
+    };
+
+    var isProcessing = false;
+    var q = {
+        _tasks: new DLL(),
+        _createTaskItem (data, callback) {
+            return {
+                data,
+                callback
+            };
+        },
+        *[Symbol.iterator] () {
+            yield* q._tasks[Symbol.iterator]();
+        },
+        concurrency,
+        payload,
+        buffer: concurrency / 4,
+        started: false,
+        paused: false,
+        push (data, callback) {
+            if (Array.isArray(data)) {
+                if (_maybeDrain(data)) return
+                return data.map(datum => _insert(datum, false, false, callback))
+            }
+            return _insert(data, false, false, callback);
+        },
+        pushAsync (data, callback) {
+            if (Array.isArray(data)) {
+                if (_maybeDrain(data)) return
+                return data.map(datum => _insert(datum, false, true, callback))
+            }
+            return _insert(data, false, true, callback);
+        },
+        kill () {
+            off();
+            q._tasks.empty();
+        },
+        unshift (data, callback) {
+            if (Array.isArray(data)) {
+                if (_maybeDrain(data)) return
+                return data.map(datum => _insert(datum, true, false, callback))
+            }
+            return _insert(data, true, false, callback);
+        },
+        unshiftAsync (data, callback) {
+            if (Array.isArray(data)) {
+                if (_maybeDrain(data)) return
+                return data.map(datum => _insert(datum, true, true, callback))
+            }
+            return _insert(data, true, true, callback);
+        },
+        remove (testFn) {
+            q._tasks.remove(testFn);
+        },
+        process () {
+            // Avoid trying to start too many processing operations. This can occur
+            // when callbacks resolve synchronously (#1267).
+            if (isProcessing) {
+                return;
+            }
+            isProcessing = true;
+            while(!q.paused && numRunning < q.concurrency && q._tasks.length){
+                var tasks = [], data = [];
+                var l = q._tasks.length;
+                if (q.payload) l = Math.min(l, q.payload);
+                for (var i = 0; i < l; i++) {
+                    var node = q._tasks.shift();
+                    tasks.push(node);
+                    workersList.push(node);
+                    data.push(node.data);
+                }
+
+                numRunning += 1;
+
+                if (q._tasks.length === 0) {
+                    trigger('empty');
+                }
+
+                if (numRunning === q.concurrency) {
+                    trigger('saturated');
+                }
+
+                var cb = onlyOnce(_createCB(tasks));
+                _worker(data, cb);
+            }
+            isProcessing = false;
+        },
+        length () {
+            return q._tasks.length;
+        },
+        running () {
+            return numRunning;
+        },
+        workersList () {
+            return workersList;
+        },
+        idle() {
+            return q._tasks.length + numRunning === 0;
+        },
+        pause () {
+            q.paused = true;
+        },
+        resume () {
+            if (q.paused === false) { return; }
+            q.paused = false;
+            setImmediate$1(q.process);
+        }
+    };
+    // define these as fixed properties, so people get useful errors when updating
+    Object.defineProperties(q, {
+        saturated: {
+            writable: false,
+            value: eventMethod('saturated')
+        },
+        unsaturated: {
+            writable: false,
+            value: eventMethod('unsaturated')
+        },
+        empty: {
+            writable: false,
+            value: eventMethod('empty')
+        },
+        drain: {
+            writable: false,
+            value: eventMethod('drain')
+        },
+        error: {
+            writable: false,
+            value: eventMethod('error')
+        },
+    });
+    return q;
+}
+
+/**
+ * Creates a `cargo` object with the specified payload. Tasks added to the
+ * cargo will be processed altogether (up to the `payload` limit). If the
+ * `worker` is in progress, the task is queued until it becomes available. Once
+ * the `worker` has completed some tasks, each callback of those tasks is
+ * called. Check out [these](https://camo.githubusercontent.com/6bbd36f4cf5b35a0f11a96dcd2e97711ffc2fb37/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f313637363837312f36383130382f62626330636662302d356632392d313165322d393734662d3333393763363464633835382e676966) [animations](https://camo.githubusercontent.com/f4810e00e1c5f5f8addbe3e9f49064fd5d102699/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f313637363837312f36383130312f38346339323036362d356632392d313165322d383134662d3964336430323431336266642e676966)
+ * for how `cargo` and `queue` work.
+ *
+ * While [`queue`]{@link module:ControlFlow.queue} passes only one task to one of a group of workers
+ * at a time, cargo passes an array of tasks to a single worker, repeating
+ * when the worker is finished.
+ *
+ * @name cargo
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.queue]{@link module:ControlFlow.queue}
+ * @category Control Flow
+ * @param {AsyncFunction} worker - An asynchronous function for processing an array
+ * of queued tasks. Invoked with `(tasks, callback)`.
+ * @param {number} [payload=Infinity] - An optional `integer` for determining
+ * how many tasks should be processed per round; if omitted, the default is
+ * unlimited.
+ * @returns {module:ControlFlow.QueueObject} A cargo object to manage the tasks. Callbacks can
+ * attached as certain properties to listen for specific events during the
+ * lifecycle of the cargo and inner queue.
+ * @example
+ *
+ * // create a cargo object with payload 2
+ * var cargo = async.cargo(function(tasks, callback) {
+ *     for (var i=0; i<tasks.length; i++) {
+ *         console.log('hello ' + tasks[i].name);
+ *     }
+ *     callback();
+ * }, 2);
+ *
+ * // add some items
+ * cargo.push({name: 'foo'}, function(err) {
+ *     console.log('finished processing foo');
+ * });
+ * cargo.push({name: 'bar'}, function(err) {
+ *     console.log('finished processing bar');
+ * });
+ * await cargo.push({name: 'baz'});
+ * console.log('finished processing baz');
+ */
+function cargo(worker, payload) {
+    return queue(worker, 1, payload);
+}
+
+/**
+ * Creates a `cargoQueue` object with the specified payload. Tasks added to the
+ * cargoQueue will be processed together (up to the `payload` limit) in `concurrency` parallel workers.
+ * If the all `workers` are in progress, the task is queued until one becomes available. Once
+ * a `worker` has completed some tasks, each callback of those tasks is
+ * called. Check out [these](https://camo.githubusercontent.com/6bbd36f4cf5b35a0f11a96dcd2e97711ffc2fb37/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f313637363837312f36383130382f62626330636662302d356632392d313165322d393734662d3333393763363464633835382e676966) [animations](https://camo.githubusercontent.com/f4810e00e1c5f5f8addbe3e9f49064fd5d102699/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f313637363837312f36383130312f38346339323036362d356632392d313165322d383134662d3964336430323431336266642e676966)
+ * for how `cargo` and `queue` work.
+ *
+ * While [`queue`]{@link module:ControlFlow.queue} passes only one task to one of a group of workers
+ * at a time, and [`cargo`]{@link module:ControlFlow.cargo} passes an array of tasks to a single worker,
+ * the cargoQueue passes an array of tasks to multiple parallel workers.
+ *
+ * @name cargoQueue
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.queue]{@link module:ControlFlow.queue}
+ * @see [async.cargo]{@link module:ControlFLow.cargo}
+ * @category Control Flow
+ * @param {AsyncFunction} worker - An asynchronous function for processing an array
+ * of queued tasks. Invoked with `(tasks, callback)`.
+ * @param {number} [concurrency=1] - An `integer` for determining how many
+ * `worker` functions should be run in parallel.  If omitted, the concurrency
+ * defaults to `1`.  If the concurrency is `0`, an error is thrown.
+ * @param {number} [payload=Infinity] - An optional `integer` for determining
+ * how many tasks should be processed per round; if omitted, the default is
+ * unlimited.
+ * @returns {module:ControlFlow.QueueObject} A cargoQueue object to manage the tasks. Callbacks can
+ * attached as certain properties to listen for specific events during the
+ * lifecycle of the cargoQueue and inner queue.
+ * @example
+ *
+ * // create a cargoQueue object with payload 2 and concurrency 2
+ * var cargoQueue = async.cargoQueue(function(tasks, callback) {
+ *     for (var i=0; i<tasks.length; i++) {
+ *         console.log('hello ' + tasks[i].name);
+ *     }
+ *     callback();
+ * }, 2, 2);
+ *
+ * // add some items
+ * cargoQueue.push({name: 'foo'}, function(err) {
+ *     console.log('finished processing foo');
+ * });
+ * cargoQueue.push({name: 'bar'}, function(err) {
+ *     console.log('finished processing bar');
+ * });
+ * cargoQueue.push({name: 'baz'}, function(err) {
+ *     console.log('finished processing baz');
+ * });
+ * cargoQueue.push({name: 'boo'}, function(err) {
+ *     console.log('finished processing boo');
+ * });
+ */
+function cargo$1(worker, concurrency, payload) {
+    return queue(worker, concurrency, payload);
+}
+
+/**
+ * Reduces `coll` into a single value using an async `iteratee` to return each
+ * successive step. `memo` is the initial state of the reduction. This function
+ * only operates in series.
+ *
+ * For performance reasons, it may make sense to split a call to this function
+ * into a parallel map, and then use the normal `Array.prototype.reduce` on the
+ * results. This function is for situations where each step in the reduction
+ * needs to be async; if you can get the data before reducing it, then it's
+ * probably a good idea to do so.
+ *
+ * @name reduce
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias inject
+ * @alias foldl
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {*} memo - The initial state of the reduction.
+ * @param {AsyncFunction} iteratee - A function applied to each item in the
+ * array to produce the next step in the reduction.
+ * The `iteratee` should complete with the next state of the reduction.
+ * If the iteratee completes with an error, the reduction is stopped and the
+ * main `callback` is immediately called with the error.
+ * Invoked with (memo, item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result is the reduced value. Invoked with
+ * (err, result).
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * // file1.txt is a file that is 1000 bytes in size
+ * // file2.txt is a file that is 2000 bytes in size
+ * // file3.txt is a file that is 3000 bytes in size
+ * // file4.txt does not exist
+ *
+ * const fileList = ['file1.txt','file2.txt','file3.txt'];
+ * const withMissingFileList = ['file1.txt','file2.txt','file3.txt', 'file4.txt'];
+ *
+ * // asynchronous function that computes the file size in bytes
+ * // file size is added to the memoized value, then returned
+ * function getFileSizeInBytes(memo, file, callback) {
+ *     fs.stat(file, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         callback(null, memo + stat.size);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.reduce(fileList, 0, getFileSizeInBytes, function(err, result) {
+ *     if (err) {
+ *         console.log(err);
+ *     } else {
+ *         console.log(result);
+ *         // 6000
+ *         // which is the sum of the file sizes of the three files
+ *     }
+ * });
+ *
+ * // Error Handling
+ * async.reduce(withMissingFileList, 0, getFileSizeInBytes, function(err, result) {
+ *     if (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     } else {
+ *         console.log(result);
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.reduce(fileList, 0, getFileSizeInBytes)
+ * .then( result => {
+ *     console.log(result);
+ *     // 6000
+ *     // which is the sum of the file sizes of the three files
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Error Handling
+ * async.reduce(withMissingFileList, 0, getFileSizeInBytes)
+ * .then( result => {
+ *     console.log(result);
+ * }).catch( err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.reduce(fileList, 0, getFileSizeInBytes);
+ *         console.log(result);
+ *         // 6000
+ *         // which is the sum of the file sizes of the three files
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // Error Handling
+ * async () => {
+ *     try {
+ *         let result = await async.reduce(withMissingFileList, 0, getFileSizeInBytes);
+ *         console.log(result);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     }
+ * }
+ *
+ */
+function reduce(coll, memo, iteratee, callback) {
+    callback = once(callback);
+    var _iteratee = wrapAsync(iteratee);
+    return eachOfSeries$1(coll, (x, i, iterCb) => {
+        _iteratee(memo, x, (err, v) => {
+            memo = v;
+            iterCb(err);
+        });
+    }, err => callback(err, memo));
+}
+var reduce$1 = awaitify(reduce, 4);
+
+/**
+ * Version of the compose function that is more natural to read. Each function
+ * consumes the return value of the previous function. It is the equivalent of
+ * [compose]{@link module:ControlFlow.compose} with the arguments reversed.
+ *
+ * Each function is executed with the `this` binding of the composed function.
+ *
+ * @name seq
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.compose]{@link module:ControlFlow.compose}
+ * @category Control Flow
+ * @param {...AsyncFunction} functions - the asynchronous functions to compose
+ * @returns {Function} a function that composes the `functions` in order
+ * @example
+ *
+ * // Requires lodash (or underscore), express3 and dresende's orm2.
+ * // Part of an app, that fetches cats of the logged user.
+ * // This example uses `seq` function to avoid overnesting and error
+ * // handling clutter.
+ * app.get('/cats', function(request, response) {
+ *     var User = request.models.User;
+ *     async.seq(
+ *         User.get.bind(User),  // 'User.get' has signature (id, callback(err, data))
+ *         function(user, fn) {
+ *             user.getCats(fn);      // 'getCats' has signature (callback(err, data))
+ *         }
+ *     )(req.session.user_id, function (err, cats) {
+ *         if (err) {
+ *             console.error(err);
+ *             response.json({ status: 'error', message: err.message });
+ *         } else {
+ *             response.json({ status: 'ok', message: 'Cats found', data: cats });
+ *         }
+ *     });
+ * });
+ */
+function seq(...functions) {
+    var _functions = functions.map(wrapAsync);
+    return function (...args) {
+        var that = this;
+
+        var cb = args[args.length - 1];
+        if (typeof cb == 'function') {
+            args.pop();
+        } else {
+            cb = promiseCallback();
+        }
+
+        reduce$1(_functions, args, (newargs, fn, iterCb) => {
+            fn.apply(that, newargs.concat((err, ...nextargs) => {
+                iterCb(err, nextargs);
+            }));
+        },
+        (err, results) => cb(err, ...results));
+
+        return cb[PROMISE_SYMBOL]
+    };
+}
+
+/**
+ * Creates a function which is a composition of the passed asynchronous
+ * functions. Each function consumes the return value of the function that
+ * follows. Composing functions `f()`, `g()`, and `h()` would produce the result
+ * of `f(g(h()))`, only this version uses callbacks to obtain the return values.
+ *
+ * If the last argument to the composed function is not a function, a promise
+ * is returned when you call it.
+ *
+ * Each function is executed with the `this` binding of the composed function.
+ *
+ * @name compose
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {...AsyncFunction} functions - the asynchronous functions to compose
+ * @returns {Function} an asynchronous function that is the composed
+ * asynchronous `functions`
+ * @example
+ *
+ * function add1(n, callback) {
+ *     setTimeout(function () {
+ *         callback(null, n + 1);
+ *     }, 10);
+ * }
+ *
+ * function mul3(n, callback) {
+ *     setTimeout(function () {
+ *         callback(null, n * 3);
+ *     }, 10);
+ * }
+ *
+ * var add1mul3 = async.compose(mul3, add1);
+ * add1mul3(4, function (err, result) {
+ *     // result now equals 15
+ * });
+ */
+function compose(...args) {
+    return seq(...args.reverse());
+}
+
+/**
+ * The same as [`map`]{@link module:Collections.map} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name mapLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.map]{@link module:Collections.map}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with the transformed item.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Results is an array of the
+ * transformed items from the `coll`. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function mapLimit (coll, limit, iteratee, callback) {
+    return _asyncMap(eachOfLimit(limit), coll, iteratee, callback)
+}
+var mapLimit$1 = awaitify(mapLimit, 4);
+
+/**
+ * The same as [`concat`]{@link module:Collections.concat} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name concatLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.concat]{@link module:Collections.concat}
+ * @category Collection
+ * @alias flatMapLimit
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - A function to apply to each item in `coll`,
+ * which should use an array as its result. Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished, or an error occurs. Results is an array
+ * containing the concatenated results of the `iteratee` function. Invoked with
+ * (err, results).
+ * @returns A Promise, if no callback is passed
+ */
+function concatLimit(coll, limit, iteratee, callback) {
+    var _iteratee = wrapAsync(iteratee);
+    return mapLimit$1(coll, limit, (val, iterCb) => {
+        _iteratee(val, (err, ...args) => {
+            if (err) return iterCb(err);
+            return iterCb(err, args);
+        });
+    }, (err, mapResults) => {
+        var result = [];
+        for (var i = 0; i < mapResults.length; i++) {
+            if (mapResults[i]) {
+                result = result.concat(...mapResults[i]);
+            }
+        }
+
+        return callback(err, result);
+    });
+}
+var concatLimit$1 = awaitify(concatLimit, 4);
+
+/**
+ * Applies `iteratee` to each item in `coll`, concatenating the results. Returns
+ * the concatenated list. The `iteratee`s are called in parallel, and the
+ * results are concatenated as they return. The results array will be returned in
+ * the original order of `coll` passed to the `iteratee` function.
+ *
+ * @name concat
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @alias flatMap
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each item in `coll`,
+ * which should use an array as its result. Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished, or an error occurs. Results is an array
+ * containing the concatenated results of the `iteratee` function. Invoked with
+ * (err, results).
+ * @returns A Promise, if no callback is passed
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ * // dir4 does not exist
+ *
+ * let directoryList = ['dir1','dir2','dir3'];
+ * let withMissingDirectoryList = ['dir1','dir2','dir3', 'dir4'];
+ *
+ * // Using callbacks
+ * async.concat(directoryList, fs.readdir, function(err, results) {
+ *    if (err) {
+ *        console.log(err);
+ *    } else {
+ *        console.log(results);
+ *        // [ 'file1.txt', 'file2.txt', 'file3.txt', 'file4.txt', file5.txt ]
+ *    }
+ * });
+ *
+ * // Error Handling
+ * async.concat(withMissingDirectoryList, fs.readdir, function(err, results) {
+ *    if (err) {
+ *        console.log(err);
+ *        // [ Error: ENOENT: no such file or directory ]
+ *        // since dir4 does not exist
+ *    } else {
+ *        console.log(results);
+ *    }
+ * });
+ *
+ * // Using Promises
+ * async.concat(directoryList, fs.readdir)
+ * .then(results => {
+ *     console.log(results);
+ *     // [ 'file1.txt', 'file2.txt', 'file3.txt', 'file4.txt', file5.txt ]
+ * }).catch(err => {
+ *      console.log(err);
+ * });
+ *
+ * // Error Handling
+ * async.concat(withMissingDirectoryList, fs.readdir)
+ * .then(results => {
+ *     console.log(results);
+ * }).catch(err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ *     // since dir4 does not exist
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.concat(directoryList, fs.readdir);
+ *         console.log(results);
+ *         // [ 'file1.txt', 'file2.txt', 'file3.txt', 'file4.txt', file5.txt ]
+ *     } catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // Error Handling
+ * async () => {
+ *     try {
+ *         let results = await async.concat(withMissingDirectoryList, fs.readdir);
+ *         console.log(results);
+ *     } catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *         // since dir4 does not exist
+ *     }
+ * }
+ *
+ */
+function concat(coll, iteratee, callback) {
+    return concatLimit$1(coll, Infinity, iteratee, callback)
+}
+var concat$1 = awaitify(concat, 3);
+
+/**
+ * The same as [`concat`]{@link module:Collections.concat} but runs only a single async operation at a time.
+ *
+ * @name concatSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.concat]{@link module:Collections.concat}
+ * @category Collection
+ * @alias flatMapSeries
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each item in `coll`.
+ * The iteratee should complete with an array an array of results.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished, or an error occurs. Results is an array
+ * containing the concatenated results of the `iteratee` function. Invoked with
+ * (err, results).
+ * @returns A Promise, if no callback is passed
+ */
+function concatSeries(coll, iteratee, callback) {
+    return concatLimit$1(coll, 1, iteratee, callback)
+}
+var concatSeries$1 = awaitify(concatSeries, 3);
+
+/**
+ * Returns a function that when called, calls-back with the values provided.
+ * Useful as the first function in a [`waterfall`]{@link module:ControlFlow.waterfall}, or for plugging values in to
+ * [`auto`]{@link module:ControlFlow.auto}.
+ *
+ * @name constant
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {...*} arguments... - Any number of arguments to automatically invoke
+ * callback with.
+ * @returns {AsyncFunction} Returns a function that when invoked, automatically
+ * invokes the callback with the previous given arguments.
+ * @example
+ *
+ * async.waterfall([
+ *     async.constant(42),
+ *     function (value, next) {
+ *         // value === 42
+ *     },
+ *     //...
+ * ], callback);
+ *
+ * async.waterfall([
+ *     async.constant(filename, "utf8"),
+ *     fs.readFile,
+ *     function (fileData, next) {
+ *         //...
+ *     }
+ *     //...
+ * ], callback);
+ *
+ * async.auto({
+ *     hostname: async.constant("https://server.net/"),
+ *     port: findFreePort,
+ *     launchServer: ["hostname", "port", function (options, cb) {
+ *         startServer(options, cb);
+ *     }],
+ *     //...
+ * }, callback);
+ */
+function constant(...args) {
+    return function (...ignoredArgs/*, callback*/) {
+        var callback = ignoredArgs.pop();
+        return callback(null, ...args);
+    };
+}
+
+function _createTester(check, getResult) {
+    return (eachfn, arr, _iteratee, cb) => {
+        var testPassed = false;
+        var testResult;
+        const iteratee = wrapAsync(_iteratee);
+        eachfn(arr, (value, _, callback) => {
+            iteratee(value, (err, result) => {
+                if (err || err === false) return callback(err);
+
+                if (check(result) && !testResult) {
+                    testPassed = true;
+                    testResult = getResult(true, value);
+                    return callback(null, breakLoop);
+                }
+                callback();
+            });
+        }, err => {
+            if (err) return cb(err);
+            cb(null, testPassed ? testResult : getResult(false));
+        });
+    };
+}
+
+/**
+ * Returns the first value in `coll` that passes an async truth test. The
+ * `iteratee` is applied in parallel, meaning the first iteratee to return
+ * `true` will fire the detect `callback` with that result. That means the
+ * result might not be the first item in the original `coll` (in terms of order)
+ * that passes the test.
+
+ * If order within the original `coll` is important, then look at
+ * [`detectSeries`]{@link module:Collections.detectSeries}.
+ *
+ * @name detect
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias find
+ * @category Collections
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
+ * The iteratee must complete with a boolean value as its result.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the `iteratee` functions have finished.
+ * Result will be the first item in the array that passes the truth test
+ * (iteratee) or the value `undefined` if none passed. Invoked with
+ * (err, result).
+ * @returns {Promise} a promise, if a callback is omitted
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ *
+ * // asynchronous function that checks if a file exists
+ * function fileExists(file, callback) {
+ *    fs.access(file, fs.constants.F_OK, (err) => {
+ *        callback(null, !err);
+ *    });
+ * }
+ *
+ * async.detect(['file3.txt','file2.txt','dir1/file1.txt'], fileExists,
+ *    function(err, result) {
+ *        console.log(result);
+ *        // dir1/file1.txt
+ *        // result now equals the first file in the list that exists
+ *    }
+ *);
+ *
+ * // Using Promises
+ * async.detect(['file3.txt','file2.txt','dir1/file1.txt'], fileExists)
+ * .then(result => {
+ *     console.log(result);
+ *     // dir1/file1.txt
+ *     // result now equals the first file in the list that exists
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.detect(['file3.txt','file2.txt','dir1/file1.txt'], fileExists);
+ *         console.log(result);
+ *         // dir1/file1.txt
+ *         // result now equals the file in the list that exists
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function detect(coll, iteratee, callback) {
+    return _createTester(bool => bool, (res, item) => item)(eachOf$1, coll, iteratee, callback)
+}
+var detect$1 = awaitify(detect, 3);
+
+/**
+ * The same as [`detect`]{@link module:Collections.detect} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name detectLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.detect]{@link module:Collections.detect}
+ * @alias findLimit
+ * @category Collections
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
+ * The iteratee must complete with a boolean value as its result.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the `iteratee` functions have finished.
+ * Result will be the first item in the array that passes the truth test
+ * (iteratee) or the value `undefined` if none passed. Invoked with
+ * (err, result).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function detectLimit(coll, limit, iteratee, callback) {
+    return _createTester(bool => bool, (res, item) => item)(eachOfLimit(limit), coll, iteratee, callback)
+}
+var detectLimit$1 = awaitify(detectLimit, 4);
+
+/**
+ * The same as [`detect`]{@link module:Collections.detect} but runs only a single async operation at a time.
+ *
+ * @name detectSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.detect]{@link module:Collections.detect}
+ * @alias findSeries
+ * @category Collections
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A truth test to apply to each item in `coll`.
+ * The iteratee must complete with a boolean value as its result.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the `iteratee` functions have finished.
+ * Result will be the first item in the array that passes the truth test
+ * (iteratee) or the value `undefined` if none passed. Invoked with
+ * (err, result).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function detectSeries(coll, iteratee, callback) {
+    return _createTester(bool => bool, (res, item) => item)(eachOfLimit(1), coll, iteratee, callback)
+}
+
+var detectSeries$1 = awaitify(detectSeries, 3);
+
+function consoleFunc(name) {
+    return (fn, ...args) => wrapAsync(fn)(...args, (err, ...resultArgs) => {
+        /* istanbul ignore else */
+        if (typeof console === 'object') {
+            /* istanbul ignore else */
+            if (err) {
+                /* istanbul ignore else */
+                if (console.error) {
+                    console.error(err);
+                }
+            } else if (console[name]) { /* istanbul ignore else */
+                resultArgs.forEach(x => console[name](x));
+            }
+        }
+    })
+}
+
+/**
+ * Logs the result of an [`async` function]{@link AsyncFunction} to the
+ * `console` using `console.dir` to display the properties of the resulting object.
+ * Only works in Node.js or in browsers that support `console.dir` and
+ * `console.error` (such as FF and Chrome).
+ * If multiple arguments are returned from the async function,
+ * `console.dir` is called on each argument in order.
+ *
+ * @name dir
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} function - The function you want to eventually apply
+ * all arguments to.
+ * @param {...*} arguments... - Any number of arguments to apply to the function.
+ * @example
+ *
+ * // in a module
+ * var hello = function(name, callback) {
+ *     setTimeout(function() {
+ *         callback(null, {hello: name});
+ *     }, 1000);
+ * };
+ *
+ * // in the node repl
+ * node> async.dir(hello, 'world');
+ * {hello: 'world'}
+ */
+var dir = consoleFunc('dir');
+
+/**
+ * The post-check version of [`whilst`]{@link module:ControlFlow.whilst}. To reflect the difference in
+ * the order of operations, the arguments `test` and `iteratee` are switched.
+ *
+ * `doWhilst` is to `whilst` as `do while` is to `while` in plain JavaScript.
+ *
+ * @name doWhilst
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.whilst]{@link module:ControlFlow.whilst}
+ * @category Control Flow
+ * @param {AsyncFunction} iteratee - A function which is called each time `test`
+ * passes. Invoked with (callback).
+ * @param {AsyncFunction} test - asynchronous truth test to perform after each
+ * execution of `iteratee`. Invoked with (...args, callback), where `...args` are the
+ * non-error args from the previous callback of `iteratee`.
+ * @param {Function} [callback] - A callback which is called after the test
+ * function has failed and repeated execution of `iteratee` has stopped.
+ * `callback` will be passed an error and any arguments passed to the final
+ * `iteratee`'s callback. Invoked with (err, [results]);
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function doWhilst(iteratee, test, callback) {
+    callback = onlyOnce(callback);
+    var _fn = wrapAsync(iteratee);
+    var _test = wrapAsync(test);
+    var results;
+
+    function next(err, ...args) {
+        if (err) return callback(err);
+        if (err === false) return;
+        results = args;
+        _test(...args, check);
+    }
+
+    function check(err, truth) {
+        if (err) return callback(err);
+        if (err === false) return;
+        if (!truth) return callback(null, ...results);
+        _fn(next);
+    }
+
+    return check(null, true);
+}
+
+var doWhilst$1 = awaitify(doWhilst, 3);
+
+/**
+ * Like ['doWhilst']{@link module:ControlFlow.doWhilst}, except the `test` is inverted. Note the
+ * argument ordering differs from `until`.
+ *
+ * @name doUntil
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.doWhilst]{@link module:ControlFlow.doWhilst}
+ * @category Control Flow
+ * @param {AsyncFunction} iteratee - An async function which is called each time
+ * `test` fails. Invoked with (callback).
+ * @param {AsyncFunction} test - asynchronous truth test to perform after each
+ * execution of `iteratee`. Invoked with (...args, callback), where `...args` are the
+ * non-error args from the previous callback of `iteratee`
+ * @param {Function} [callback] - A callback which is called after the test
+ * function has passed and repeated execution of `iteratee` has stopped. `callback`
+ * will be passed an error and any arguments passed to the final `iteratee`'s
+ * callback. Invoked with (err, [results]);
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function doUntil(iteratee, test, callback) {
+    const _test = wrapAsync(test);
+    return doWhilst$1(iteratee, (...args) => {
+        const cb = args.pop();
+        _test(...args, (err, truth) => cb (err, !truth));
+    }, callback);
+}
+
+function _withoutIndex(iteratee) {
+    return (value, index, callback) => iteratee(value, callback);
+}
+
+/**
+ * Applies the function `iteratee` to each item in `coll`, in parallel.
+ * The `iteratee` is called with an item from the list, and a callback for when
+ * it has finished. If the `iteratee` passes an error to its `callback`, the
+ * main `callback` (for the `each` function) is immediately called with the
+ * error.
+ *
+ * Note, that since this function applies `iteratee` to each item in parallel,
+ * there is no guarantee that the iteratee functions will complete in order.
+ *
+ * @name each
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias forEach
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to
+ * each item in `coll`. Invoked with (item, callback).
+ * The array index is not passed to the iteratee.
+ * If you need the index, use `eachOf`.
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ * // dir4 does not exist
+ *
+ * const fileList = [ 'dir1/file2.txt', 'dir2/file3.txt', 'dir/file5.txt'];
+ * const withMissingFileList = ['dir1/file1.txt', 'dir4/file2.txt'];
+ *
+ * // asynchronous function that deletes a file
+ * const deleteFile = function(file, callback) {
+ *     fs.unlink(file, callback);
+ * };
+ *
+ * // Using callbacks
+ * async.each(fileList, deleteFile, function(err) {
+ *     if( err ) {
+ *         console.log(err);
+ *     } else {
+ *         console.log('All files have been deleted successfully');
+ *     }
+ * });
+ *
+ * // Error Handling
+ * async.each(withMissingFileList, deleteFile, function(err){
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ *     // since dir4/file2.txt does not exist
+ *     // dir1/file1.txt could have been deleted
+ * });
+ *
+ * // Using Promises
+ * async.each(fileList, deleteFile)
+ * .then( () => {
+ *     console.log('All files have been deleted successfully');
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Error Handling
+ * async.each(fileList, deleteFile)
+ * .then( () => {
+ *     console.log('All files have been deleted successfully');
+ * }).catch( err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ *     // since dir4/file2.txt does not exist
+ *     // dir1/file1.txt could have been deleted
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         await async.each(files, deleteFile);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // Error Handling
+ * async () => {
+ *     try {
+ *         await async.each(withMissingFileList, deleteFile);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *         // since dir4/file2.txt does not exist
+ *         // dir1/file1.txt could have been deleted
+ *     }
+ * }
+ *
+ */
+function eachLimit(coll, iteratee, callback) {
+    return eachOf$1(coll, _withoutIndex(wrapAsync(iteratee)), callback);
+}
+
+var each = awaitify(eachLimit, 3);
+
+/**
+ * The same as [`each`]{@link module:Collections.each} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name eachLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.each]{@link module:Collections.each}
+ * @alias forEachLimit
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The array index is not passed to the iteratee.
+ * If you need the index, use `eachOfLimit`.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function eachLimit$1(coll, limit, iteratee, callback) {
+    return eachOfLimit(limit)(coll, _withoutIndex(wrapAsync(iteratee)), callback);
+}
+var eachLimit$2 = awaitify(eachLimit$1, 4);
+
+/**
+ * The same as [`each`]{@link module:Collections.each} but runs only a single async operation at a time.
+ *
+ * Note, that unlike [`each`]{@link module:Collections.each}, this function applies iteratee to each item
+ * in series and therefore the iteratee functions will complete in order.
+
+ * @name eachSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.each]{@link module:Collections.each}
+ * @alias forEachSeries
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each
+ * item in `coll`.
+ * The array index is not passed to the iteratee.
+ * If you need the index, use `eachOfSeries`.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @returns {Promise} a promise, if a callback is omitted
+ */
+function eachSeries(coll, iteratee, callback) {
+    return eachLimit$2(coll, 1, iteratee, callback)
+}
+var eachSeries$1 = awaitify(eachSeries, 3);
+
+/**
+ * Wrap an async function and ensure it calls its callback on a later tick of
+ * the event loop.  If the function already calls its callback on a next tick,
+ * no extra deferral is added. This is useful for preventing stack overflows
+ * (`RangeError: Maximum call stack size exceeded`) and generally keeping
+ * [Zalgo](http://blog.izs.me/post/59142742143/designing-apis-for-asynchrony)
+ * contained. ES2017 `async` functions are returned as-is -- they are immune
+ * to Zalgo's corrupting influences, as they always resolve on a later tick.
+ *
+ * @name ensureAsync
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} fn - an async function, one that expects a node-style
+ * callback as its last argument.
+ * @returns {AsyncFunction} Returns a wrapped function with the exact same call
+ * signature as the function passed in.
+ * @example
+ *
+ * function sometimesAsync(arg, callback) {
+ *     if (cache[arg]) {
+ *         return callback(null, cache[arg]); // this would be synchronous!!
+ *     } else {
+ *         doSomeIO(arg, callback); // this IO would be asynchronous
+ *     }
+ * }
+ *
+ * // this has a risk of stack overflows if many results are cached in a row
+ * async.mapSeries(args, sometimesAsync, done);
+ *
+ * // this will defer sometimesAsync's callback if necessary,
+ * // preventing stack overflows
+ * async.mapSeries(args, async.ensureAsync(sometimesAsync), done);
+ */
+function ensureAsync(fn) {
+    if (isAsync(fn)) return fn;
+    return function (...args/*, callback*/) {
+        var callback = args.pop();
+        var sync = true;
+        args.push((...innerArgs) => {
+            if (sync) {
+                setImmediate$1(() => callback(...innerArgs));
+            } else {
+                callback(...innerArgs);
+            }
+        });
+        fn.apply(this, args);
+        sync = false;
+    };
+}
+
+/**
+ * Returns `true` if every element in `coll` satisfies an async test. If any
+ * iteratee call returns `false`, the main `callback` is immediately called.
+ *
+ * @name every
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias all
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collection in parallel.
+ * The iteratee must complete with a boolean result value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result will be either `true` or `false`
+ * depending on the values of the async tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ * // dir4 does not exist
+ *
+ * const fileList = ['dir1/file1.txt','dir2/file3.txt','dir3/file5.txt'];
+ * const withMissingFileList = ['file1.txt','file2.txt','file4.txt'];
+ *
+ * // asynchronous function that checks if a file exists
+ * function fileExists(file, callback) {
+ *    fs.access(file, fs.constants.F_OK, (err) => {
+ *        callback(null, !err);
+ *    });
+ * }
+ *
+ * // Using callbacks
+ * async.every(fileList, fileExists, function(err, result) {
+ *     console.log(result);
+ *     // true
+ *     // result is true since every file exists
+ * });
+ *
+ * async.every(withMissingFileList, fileExists, function(err, result) {
+ *     console.log(result);
+ *     // false
+ *     // result is false since NOT every file exists
+ * });
+ *
+ * // Using Promises
+ * async.every(fileList, fileExists)
+ * .then( result => {
+ *     console.log(result);
+ *     // true
+ *     // result is true since every file exists
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * async.every(withMissingFileList, fileExists)
+ * .then( result => {
+ *     console.log(result);
+ *     // false
+ *     // result is false since NOT every file exists
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.every(fileList, fileExists);
+ *         console.log(result);
+ *         // true
+ *         // result is true since every file exists
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * async () => {
+ *     try {
+ *         let result = await async.every(withMissingFileList, fileExists);
+ *         console.log(result);
+ *         // false
+ *         // result is false since NOT every file exists
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function every(coll, iteratee, callback) {
+    return _createTester(bool => !bool, res => !res)(eachOf$1, coll, iteratee, callback)
+}
+var every$1 = awaitify(every, 3);
+
+/**
+ * The same as [`every`]{@link module:Collections.every} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name everyLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.every]{@link module:Collections.every}
+ * @alias allLimit
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collection in parallel.
+ * The iteratee must complete with a boolean result value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result will be either `true` or `false`
+ * depending on the values of the async tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ */
+function everyLimit(coll, limit, iteratee, callback) {
+    return _createTester(bool => !bool, res => !res)(eachOfLimit(limit), coll, iteratee, callback)
+}
+var everyLimit$1 = awaitify(everyLimit, 4);
+
+/**
+ * The same as [`every`]{@link module:Collections.every} but runs only a single async operation at a time.
+ *
+ * @name everySeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.every]{@link module:Collections.every}
+ * @alias allSeries
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collection in series.
+ * The iteratee must complete with a boolean result value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result will be either `true` or `false`
+ * depending on the values of the async tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ */
+function everySeries(coll, iteratee, callback) {
+    return _createTester(bool => !bool, res => !res)(eachOfSeries$1, coll, iteratee, callback)
+}
+var everySeries$1 = awaitify(everySeries, 3);
+
+function filterArray(eachfn, arr, iteratee, callback) {
+    var truthValues = new Array(arr.length);
+    eachfn(arr, (x, index, iterCb) => {
+        iteratee(x, (err, v) => {
+            truthValues[index] = !!v;
+            iterCb(err);
+        });
+    }, err => {
+        if (err) return callback(err);
+        var results = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (truthValues[i]) results.push(arr[i]);
+        }
+        callback(null, results);
+    });
+}
+
+function filterGeneric(eachfn, coll, iteratee, callback) {
+    var results = [];
+    eachfn(coll, (x, index, iterCb) => {
+        iteratee(x, (err, v) => {
+            if (err) return iterCb(err);
+            if (v) {
+                results.push({index, value: x});
+            }
+            iterCb(err);
+        });
+    }, err => {
+        if (err) return callback(err);
+        callback(null, results
+            .sort((a, b) => a.index - b.index)
+            .map(v => v.value));
+    });
+}
+
+function _filter(eachfn, coll, iteratee, callback) {
+    var filter = isArrayLike(coll) ? filterArray : filterGeneric;
+    return filter(eachfn, coll, wrapAsync(iteratee), callback);
+}
+
+/**
+ * Returns a new array of all the values in `coll` which pass an async truth
+ * test. This operation is performed in parallel, but the results array will be
+ * in the same order as the original.
+ *
+ * @name filter
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias select
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {Function} iteratee - A truth test to apply to each item in `coll`.
+ * The `iteratee` is passed a `callback(err, truthValue)`, which must be called
+ * with a boolean argument once it has completed. Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback provided
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ *
+ * const files = ['dir1/file1.txt','dir2/file3.txt','dir3/file6.txt'];
+ *
+ * // asynchronous function that checks if a file exists
+ * function fileExists(file, callback) {
+ *    fs.access(file, fs.constants.F_OK, (err) => {
+ *        callback(null, !err);
+ *    });
+ * }
+ *
+ * // Using callbacks
+ * async.filter(files, fileExists, function(err, results) {
+ *    if(err) {
+ *        console.log(err);
+ *    } else {
+ *        console.log(results);
+ *        // [ 'dir1/file1.txt', 'dir2/file3.txt' ]
+ *        // results is now an array of the existing files
+ *    }
+ * });
+ *
+ * // Using Promises
+ * async.filter(files, fileExists)
+ * .then(results => {
+ *     console.log(results);
+ *     // [ 'dir1/file1.txt', 'dir2/file3.txt' ]
+ *     // results is now an array of the existing files
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.filter(files, fileExists);
+ *         console.log(results);
+ *         // [ 'dir1/file1.txt', 'dir2/file3.txt' ]
+ *         // results is now an array of the existing files
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function filter (coll, iteratee, callback) {
+    return _filter(eachOf$1, coll, iteratee, callback)
+}
+var filter$1 = awaitify(filter, 3);
+
+/**
+ * The same as [`filter`]{@link module:Collections.filter} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name filterLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.filter]{@link module:Collections.filter}
+ * @alias selectLimit
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {Function} iteratee - A truth test to apply to each item in `coll`.
+ * The `iteratee` is passed a `callback(err, truthValue)`, which must be called
+ * with a boolean argument once it has completed. Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback provided
+ */
+function filterLimit (coll, limit, iteratee, callback) {
+    return _filter(eachOfLimit(limit), coll, iteratee, callback)
+}
+var filterLimit$1 = awaitify(filterLimit, 4);
+
+/**
+ * The same as [`filter`]{@link module:Collections.filter} but runs only a single async operation at a time.
+ *
+ * @name filterSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.filter]{@link module:Collections.filter}
+ * @alias selectSeries
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {Function} iteratee - A truth test to apply to each item in `coll`.
+ * The `iteratee` is passed a `callback(err, truthValue)`, which must be called
+ * with a boolean argument once it has completed. Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results)
+ * @returns {Promise} a promise, if no callback provided
+ */
+function filterSeries (coll, iteratee, callback) {
+    return _filter(eachOfSeries$1, coll, iteratee, callback)
+}
+var filterSeries$1 = awaitify(filterSeries, 3);
+
+/**
+ * Calls the asynchronous function `fn` with a callback parameter that allows it
+ * to call itself again, in series, indefinitely.
+
+ * If an error is passed to the callback then `errback` is called with the
+ * error, and execution stops, otherwise it will never be called.
+ *
+ * @name forever
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {AsyncFunction} fn - an async function to call repeatedly.
+ * Invoked with (next).
+ * @param {Function} [errback] - when `fn` passes an error to it's callback,
+ * this function will be called, and execution stops. Invoked with (err).
+ * @returns {Promise} a promise that rejects if an error occurs and an errback
+ * is not passed
+ * @example
+ *
+ * async.forever(
+ *     function(next) {
+ *         // next is suitable for passing to things that need a callback(err [, whatever]);
+ *         // it will result in this function being called again.
+ *     },
+ *     function(err) {
+ *         // if next is called with a value in its first parameter, it will appear
+ *         // in here as 'err', and execution will stop.
+ *     }
+ * );
+ */
+function forever(fn, errback) {
+    var done = onlyOnce(errback);
+    var task = wrapAsync(ensureAsync(fn));
+
+    function next(err) {
+        if (err) return done(err);
+        if (err === false) return;
+        task(next);
+    }
+    return next();
+}
+var forever$1 = awaitify(forever, 2);
+
+/**
+ * The same as [`groupBy`]{@link module:Collections.groupBy} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name groupByLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.groupBy]{@link module:Collections.groupBy}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with a `key` to group the value under.
+ * Invoked with (value, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Result is an `Object` whoses
+ * properties are arrays of values which returned the corresponding key.
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function groupByLimit(coll, limit, iteratee, callback) {
+    var _iteratee = wrapAsync(iteratee);
+    return mapLimit$1(coll, limit, (val, iterCb) => {
+        _iteratee(val, (err, key) => {
+            if (err) return iterCb(err);
+            return iterCb(err, {key, val});
+        });
+    }, (err, mapResults) => {
+        var result = {};
+        // from MDN, handle object having an `hasOwnProperty` prop
+        var {hasOwnProperty} = Object.prototype;
+
+        for (var i = 0; i < mapResults.length; i++) {
+            if (mapResults[i]) {
+                var {key} = mapResults[i];
+                var {val} = mapResults[i];
+
+                if (hasOwnProperty.call(result, key)) {
+                    result[key].push(val);
+                } else {
+                    result[key] = [val];
+                }
+            }
+        }
+
+        return callback(err, result);
+    });
+}
+
+var groupByLimit$1 = awaitify(groupByLimit, 4);
+
+/**
+ * Returns a new object, where each value corresponds to an array of items, from
+ * `coll`, that returned the corresponding key. That is, the keys of the object
+ * correspond to the values passed to the `iteratee` callback.
+ *
+ * Note: Since this function applies the `iteratee` to each item in parallel,
+ * there is no guarantee that the `iteratee` functions will complete in order.
+ * However, the values for each key in the `result` will be in the same order as
+ * the original `coll`. For Objects, the values will roughly be in the order of
+ * the original Objects' keys (but this can vary across JavaScript engines).
+ *
+ * @name groupBy
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with a `key` to group the value under.
+ * Invoked with (value, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Result is an `Object` whoses
+ * properties are arrays of values which returned the corresponding key.
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ * // dir4 does not exist
+ *
+ * const files = ['dir1/file1.txt','dir2','dir4']
+ *
+ * // asynchronous function that detects file type as none, file, or directory
+ * function detectFile(file, callback) {
+ *     fs.stat(file, function(err, stat) {
+ *         if (err) {
+ *             return callback(null, 'none');
+ *         }
+ *         callback(null, stat.isDirectory() ? 'directory' : 'file');
+ *     });
+ * }
+ *
+ * //Using callbacks
+ * async.groupBy(files, detectFile, function(err, result) {
+ *     if(err) {
+ *         console.log(err);
+ *     } else {
+ *	       console.log(result);
+ *         // {
+ *         //     file: [ 'dir1/file1.txt' ],
+ *         //     none: [ 'dir4' ],
+ *         //     directory: [ 'dir2']
+ *         // }
+ *         // result is object containing the files grouped by type
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.groupBy(files, detectFile)
+ * .then( result => {
+ *     console.log(result);
+ *     // {
+ *     //     file: [ 'dir1/file1.txt' ],
+ *     //     none: [ 'dir4' ],
+ *     //     directory: [ 'dir2']
+ *     // }
+ *     // result is object containing the files grouped by type
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.groupBy(files, detectFile);
+ *         console.log(result);
+ *         // {
+ *         //     file: [ 'dir1/file1.txt' ],
+ *         //     none: [ 'dir4' ],
+ *         //     directory: [ 'dir2']
+ *         // }
+ *         // result is object containing the files grouped by type
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function groupBy (coll, iteratee, callback) {
+    return groupByLimit$1(coll, Infinity, iteratee, callback)
+}
+
+/**
+ * The same as [`groupBy`]{@link module:Collections.groupBy} but runs only a single async operation at a time.
+ *
+ * @name groupBySeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.groupBy]{@link module:Collections.groupBy}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with a `key` to group the value under.
+ * Invoked with (value, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. Result is an `Object` whose
+ * properties are arrays of values which returned the corresponding key.
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function groupBySeries (coll, iteratee, callback) {
+    return groupByLimit$1(coll, 1, iteratee, callback)
+}
+
+/**
+ * Logs the result of an `async` function to the `console`. Only works in
+ * Node.js or in browsers that support `console.log` and `console.error` (such
+ * as FF and Chrome). If multiple arguments are returned from the async
+ * function, `console.log` is called on each argument in order.
+ *
+ * @name log
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} function - The function you want to eventually apply
+ * all arguments to.
+ * @param {...*} arguments... - Any number of arguments to apply to the function.
+ * @example
+ *
+ * // in a module
+ * var hello = function(name, callback) {
+ *     setTimeout(function() {
+ *         callback(null, 'hello ' + name);
+ *     }, 1000);
+ * };
+ *
+ * // in the node repl
+ * node> async.log(hello, 'world');
+ * 'hello world'
+ */
+var log = consoleFunc('log');
+
+/**
+ * The same as [`mapValues`]{@link module:Collections.mapValues} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name mapValuesLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.mapValues]{@link module:Collections.mapValues}
+ * @category Collection
+ * @param {Object} obj - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - A function to apply to each value and key
+ * in `coll`.
+ * The iteratee should complete with the transformed value as its result.
+ * Invoked with (value, key, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. `result` is a new object consisting
+ * of each key from `obj`, with each transformed value on the right-hand side.
+ * Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function mapValuesLimit(obj, limit, iteratee, callback) {
+    callback = once(callback);
+    var newObj = {};
+    var _iteratee = wrapAsync(iteratee);
+    return eachOfLimit(limit)(obj, (val, key, next) => {
+        _iteratee(val, key, (err, result) => {
+            if (err) return next(err);
+            newObj[key] = result;
+            next(err);
+        });
+    }, err => callback(err, newObj));
+}
+
+var mapValuesLimit$1 = awaitify(mapValuesLimit, 4);
+
+/**
+ * A relative of [`map`]{@link module:Collections.map}, designed for use with objects.
+ *
+ * Produces a new Object by mapping each value of `obj` through the `iteratee`
+ * function. The `iteratee` is called each `value` and `key` from `obj` and a
+ * callback for when it has finished processing. Each of these callbacks takes
+ * two arguments: an `error`, and the transformed item from `obj`. If `iteratee`
+ * passes an error to its callback, the main `callback` (for the `mapValues`
+ * function) is immediately called with the error.
+ *
+ * Note, the order of the keys in the result is not guaranteed.  The keys will
+ * be roughly in the order they complete, (but this is very engine-specific)
+ *
+ * @name mapValues
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Object} obj - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each value and key
+ * in `coll`.
+ * The iteratee should complete with the transformed value as its result.
+ * Invoked with (value, key, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. `result` is a new object consisting
+ * of each key from `obj`, with each transformed value on the right-hand side.
+ * Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * // file1.txt is a file that is 1000 bytes in size
+ * // file2.txt is a file that is 2000 bytes in size
+ * // file3.txt is a file that is 3000 bytes in size
+ * // file4.txt does not exist
+ *
+ * const fileMap = {
+ *     f1: 'file1.txt',
+ *     f2: 'file2.txt',
+ *     f3: 'file3.txt'
+ * };
+ *
+ * const withMissingFileMap = {
+ *     f1: 'file1.txt',
+ *     f2: 'file2.txt',
+ *     f3: 'file4.txt'
+ * };
+ *
+ * // asynchronous function that returns the file size in bytes
+ * function getFileSizeInBytes(file, key, callback) {
+ *     fs.stat(file, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         callback(null, stat.size);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.mapValues(fileMap, getFileSizeInBytes, function(err, result) {
+ *     if (err) {
+ *         console.log(err);
+ *     } else {
+ *         console.log(result);
+ *         // result is now a map of file size in bytes for each file, e.g.
+ *         // {
+ *         //     f1: 1000,
+ *         //     f2: 2000,
+ *         //     f3: 3000
+ *         // }
+ *     }
+ * });
+ *
+ * // Error handling
+ * async.mapValues(withMissingFileMap, getFileSizeInBytes, function(err, result) {
+ *     if (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     } else {
+ *         console.log(result);
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.mapValues(fileMap, getFileSizeInBytes)
+ * .then( result => {
+ *     console.log(result);
+ *     // result is now a map of file size in bytes for each file, e.g.
+ *     // {
+ *     //     f1: 1000,
+ *     //     f2: 2000,
+ *     //     f3: 3000
+ *     // }
+ * }).catch (err => {
+ *     console.log(err);
+ * });
+ *
+ * // Error Handling
+ * async.mapValues(withMissingFileMap, getFileSizeInBytes)
+ * .then( result => {
+ *     console.log(result);
+ * }).catch (err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.mapValues(fileMap, getFileSizeInBytes);
+ *         console.log(result);
+ *         // result is now a map of file size in bytes for each file, e.g.
+ *         // {
+ *         //     f1: 1000,
+ *         //     f2: 2000,
+ *         //     f3: 3000
+ *         // }
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // Error Handling
+ * async () => {
+ *     try {
+ *         let result = await async.mapValues(withMissingFileMap, getFileSizeInBytes);
+ *         console.log(result);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     }
+ * }
+ *
+ */
+function mapValues(obj, iteratee, callback) {
+    return mapValuesLimit$1(obj, Infinity, iteratee, callback)
+}
+
+/**
+ * The same as [`mapValues`]{@link module:Collections.mapValues} but runs only a single async operation at a time.
+ *
+ * @name mapValuesSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.mapValues]{@link module:Collections.mapValues}
+ * @category Collection
+ * @param {Object} obj - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - A function to apply to each value and key
+ * in `coll`.
+ * The iteratee should complete with the transformed value as its result.
+ * Invoked with (value, key, callback).
+ * @param {Function} [callback] - A callback which is called when all `iteratee`
+ * functions have finished, or an error occurs. `result` is a new object consisting
+ * of each key from `obj`, with each transformed value on the right-hand side.
+ * Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function mapValuesSeries(obj, iteratee, callback) {
+    return mapValuesLimit$1(obj, 1, iteratee, callback)
+}
+
+/**
+ * Caches the results of an async function. When creating a hash to store
+ * function results against, the callback is omitted from the hash and an
+ * optional hash function can be used.
+ *
+ * **Note: if the async function errs, the result will not be cached and
+ * subsequent calls will call the wrapped function.**
+ *
+ * If no hash function is specified, the first argument is used as a hash key,
+ * which may work reasonably if it is a string or a data type that converts to a
+ * distinct string. Note that objects and arrays will not behave reasonably.
+ * Neither will cases where the other arguments are significant. In such cases,
+ * specify your own hash function.
+ *
+ * The cache of results is exposed as the `memo` property of the function
+ * returned by `memoize`.
+ *
+ * @name memoize
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} fn - The async function to proxy and cache results from.
+ * @param {Function} hasher - An optional function for generating a custom hash
+ * for storing results. It has all the arguments applied to it apart from the
+ * callback, and must be synchronous.
+ * @returns {AsyncFunction} a memoized version of `fn`
+ * @example
+ *
+ * var slow_fn = function(name, callback) {
+ *     // do something
+ *     callback(null, result);
+ * };
+ * var fn = async.memoize(slow_fn);
+ *
+ * // fn can now be used as if it were slow_fn
+ * fn('some name', function() {
+ *     // callback
+ * });
+ */
+function memoize(fn, hasher = v => v) {
+    var memo = Object.create(null);
+    var queues = Object.create(null);
+    var _fn = wrapAsync(fn);
+    var memoized = initialParams((args, callback) => {
+        var key = hasher(...args);
+        if (key in memo) {
+            setImmediate$1(() => callback(null, ...memo[key]));
+        } else if (key in queues) {
+            queues[key].push(callback);
+        } else {
+            queues[key] = [callback];
+            _fn(...args, (err, ...resultArgs) => {
+                // #1465 don't memoize if an error occurred
+                if (!err) {
+                    memo[key] = resultArgs;
+                }
+                var q = queues[key];
+                delete queues[key];
+                for (var i = 0, l = q.length; i < l; i++) {
+                    q[i](err, ...resultArgs);
+                }
+            });
+        }
+    });
+    memoized.memo = memo;
+    memoized.unmemoized = fn;
+    return memoized;
+}
+
+/* istanbul ignore file */
+
+/**
+ * Calls `callback` on a later loop around the event loop. In Node.js this just
+ * calls `process.nextTick`.  In the browser it will use `setImmediate` if
+ * available, otherwise `setTimeout(callback, 0)`, which means other higher
+ * priority events may precede the execution of `callback`.
+ *
+ * This is used internally for browser-compatibility purposes.
+ *
+ * @name nextTick
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @see [async.setImmediate]{@link module:Utils.setImmediate}
+ * @category Util
+ * @param {Function} callback - The function to call on a later loop around
+ * the event loop. Invoked with (args...).
+ * @param {...*} args... - any number of additional arguments to pass to the
+ * callback on the next tick.
+ * @example
+ *
+ * var call_order = [];
+ * async.nextTick(function() {
+ *     call_order.push('two');
+ *     // call_order now equals ['one','two']
+ * });
+ * call_order.push('one');
+ *
+ * async.setImmediate(function (a, b, c) {
+ *     // a, b, and c equal 1, 2, and 3
+ * }, 1, 2, 3);
+ */
+var _defer$1;
+
+if (hasNextTick) {
+    _defer$1 = process.nextTick;
+} else if (hasSetImmediate) {
+    _defer$1 = setImmediate;
+} else {
+    _defer$1 = fallback;
+}
+
+var nextTick = wrap(_defer$1);
+
+var parallel = awaitify((eachfn, tasks, callback) => {
+    var results = isArrayLike(tasks) ? [] : {};
+
+    eachfn(tasks, (task, key, taskCb) => {
+        wrapAsync(task)((err, ...result) => {
+            if (result.length < 2) {
+                [result] = result;
+            }
+            results[key] = result;
+            taskCb(err);
+        });
+    }, err => callback(err, results));
+}, 3);
+
+/**
+ * Run the `tasks` collection of functions in parallel, without waiting until
+ * the previous function has completed. If any of the functions pass an error to
+ * its callback, the main `callback` is immediately called with the value of the
+ * error. Once the `tasks` have completed, the results are passed to the final
+ * `callback` as an array.
+ *
+ * **Note:** `parallel` is about kicking-off I/O tasks in parallel, not about
+ * parallel execution of code.  If your tasks do not use any timers or perform
+ * any I/O, they will actually be executed in series.  Any synchronous setup
+ * sections for each task will happen one after the other.  JavaScript remains
+ * single-threaded.
+ *
+ * **Hint:** Use [`reflect`]{@link module:Utils.reflect} to continue the
+ * execution of other tasks when a task fails.
+ *
+ * It is also possible to use an object instead of an array. Each property will
+ * be run as a function and the results will be passed to the final `callback`
+ * as an object instead of an array. This can be a more readable way of handling
+ * results from {@link async.parallel}.
+ *
+ * @name parallel
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} tasks - A collection of
+ * [async functions]{@link AsyncFunction} to run.
+ * Each async function can complete with any number of optional `result` values.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed successfully. This function gets a results array
+ * (or object) containing all the result arguments passed to the task callbacks.
+ * Invoked with (err, results).
+ * @returns {Promise} a promise, if a callback is not passed
+ *
+ * @example
+ *
+ * //Using Callbacks
+ * async.parallel([
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ], function(err, results) {
+ *     console.log(results);
+ *     // results is equal to ['one','two'] even though
+ *     // the second function had a shorter timeout.
+ * });
+ *
+ * // an example using an object instead of an array
+ * async.parallel({
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 1);
+ *         }, 200);
+ *     },
+ *     two: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 2);
+ *         }, 100);
+ *     }
+ * }, function(err, results) {
+ *     console.log(results);
+ *     // results is equal to: { one: 1, two: 2 }
+ * });
+ *
+ * //Using Promises
+ * async.parallel([
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ]).then(results => {
+ *     console.log(results);
+ *     // results is equal to ['one','two'] even though
+ *     // the second function had a shorter timeout.
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // an example using an object instead of an array
+ * async.parallel({
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 1);
+ *         }, 200);
+ *     },
+ *     two: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 2);
+ *         }, 100);
+ *     }
+ * }).then(results => {
+ *     console.log(results);
+ *     // results is equal to: { one: 1, two: 2 }
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * //Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.parallel([
+ *             function(callback) {
+ *                 setTimeout(function() {
+ *                     callback(null, 'one');
+ *                 }, 200);
+ *             },
+ *             function(callback) {
+ *                 setTimeout(function() {
+ *                     callback(null, 'two');
+ *                 }, 100);
+ *             }
+ *         ]);
+ *         console.log(results);
+ *         // results is equal to ['one','two'] even though
+ *         // the second function had a shorter timeout.
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // an example using an object instead of an array
+ * async () => {
+ *     try {
+ *         let results = await async.parallel({
+ *             one: function(callback) {
+ *                 setTimeout(function() {
+ *                     callback(null, 1);
+ *                 }, 200);
+ *             },
+ *            two: function(callback) {
+ *                 setTimeout(function() {
+ *                     callback(null, 2);
+ *                 }, 100);
+ *            }
+ *         });
+ *         console.log(results);
+ *         // results is equal to: { one: 1, two: 2 }
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function parallel$1(tasks, callback) {
+    return parallel(eachOf$1, tasks, callback);
+}
+
+/**
+ * The same as [`parallel`]{@link module:ControlFlow.parallel} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name parallelLimit
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.parallel]{@link module:ControlFlow.parallel}
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} tasks - A collection of
+ * [async functions]{@link AsyncFunction} to run.
+ * Each async function can complete with any number of optional `result` values.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed successfully. This function gets a results array
+ * (or object) containing all the result arguments passed to the task callbacks.
+ * Invoked with (err, results).
+ * @returns {Promise} a promise, if a callback is not passed
+ */
+function parallelLimit(tasks, limit, callback) {
+    return parallel(eachOfLimit(limit), tasks, callback);
+}
+
+/**
+ * A queue of tasks for the worker function to complete.
+ * @typedef {Iterable} QueueObject
+ * @memberOf module:ControlFlow
+ * @property {Function} length - a function returning the number of items
+ * waiting to be processed. Invoke with `queue.length()`.
+ * @property {boolean} started - a boolean indicating whether or not any
+ * items have been pushed and processed by the queue.
+ * @property {Function} running - a function returning the number of items
+ * currently being processed. Invoke with `queue.running()`.
+ * @property {Function} workersList - a function returning the array of items
+ * currently being processed. Invoke with `queue.workersList()`.
+ * @property {Function} idle - a function returning false if there are items
+ * waiting or being processed, or true if not. Invoke with `queue.idle()`.
+ * @property {number} concurrency - an integer for determining how many `worker`
+ * functions should be run in parallel. This property can be changed after a
+ * `queue` is created to alter the concurrency on-the-fly.
+ * @property {number} payload - an integer that specifies how many items are
+ * passed to the worker function at a time. only applies if this is a
+ * [cargo]{@link module:ControlFlow.cargo} object
+ * @property {AsyncFunction} push - add a new task to the `queue`. Calls `callback`
+ * once the `worker` has finished processing the task. Instead of a single task,
+ * a `tasks` array can be submitted. The respective callback is used for every
+ * task in the list. Invoke with `queue.push(task, [callback])`,
+ * @property {AsyncFunction} unshift - add a new task to the front of the `queue`.
+ * Invoke with `queue.unshift(task, [callback])`.
+ * @property {AsyncFunction} pushAsync - the same as `q.push`, except this returns
+ * a promise that rejects if an error occurs.
+ * @property {AsyncFunction} unshiftAsync - the same as `q.unshift`, except this returns
+ * a promise that rejects if an error occurs.
+ * @property {Function} remove - remove items from the queue that match a test
+ * function.  The test function will be passed an object with a `data` property,
+ * and a `priority` property, if this is a
+ * [priorityQueue]{@link module:ControlFlow.priorityQueue} object.
+ * Invoked with `queue.remove(testFn)`, where `testFn` is of the form
+ * `function ({data, priority}) {}` and returns a Boolean.
+ * @property {Function} saturated - a function that sets a callback that is
+ * called when the number of running workers hits the `concurrency` limit, and
+ * further tasks will be queued.  If the callback is omitted, `q.saturated()`
+ * returns a promise for the next occurrence.
+ * @property {Function} unsaturated - a function that sets a callback that is
+ * called when the number of running workers is less than the `concurrency` &
+ * `buffer` limits, and further tasks will not be queued. If the callback is
+ * omitted, `q.unsaturated()` returns a promise for the next occurrence.
+ * @property {number} buffer - A minimum threshold buffer in order to say that
+ * the `queue` is `unsaturated`.
+ * @property {Function} empty - a function that sets a callback that is called
+ * when the last item from the `queue` is given to a `worker`. If the callback
+ * is omitted, `q.empty()` returns a promise for the next occurrence.
+ * @property {Function} drain - a function that sets a callback that is called
+ * when the last item from the `queue` has returned from the `worker`. If the
+ * callback is omitted, `q.drain()` returns a promise for the next occurrence.
+ * @property {Function} error - a function that sets a callback that is called
+ * when a task errors. Has the signature `function(error, task)`. If the
+ * callback is omitted, `error()` returns a promise that rejects on the next
+ * error.
+ * @property {boolean} paused - a boolean for determining whether the queue is
+ * in a paused state.
+ * @property {Function} pause - a function that pauses the processing of tasks
+ * until `resume()` is called. Invoke with `queue.pause()`.
+ * @property {Function} resume - a function that resumes the processing of
+ * queued tasks when the queue is paused. Invoke with `queue.resume()`.
+ * @property {Function} kill - a function that removes the `drain` callback and
+ * empties remaining tasks from the queue forcing it to go idle. No more tasks
+ * should be pushed to the queue after calling this function. Invoke with `queue.kill()`.
+ *
+ * @example
+ * const q = async.queue(worker, 2)
+ * q.push(item1)
+ * q.push(item2)
+ * q.push(item3)
+ * // queues are iterable, spread into an array to inspect
+ * const items = [...q] // [item1, item2, item3]
+ * // or use for of
+ * for (let item of q) {
+ *     console.log(item)
+ * }
+ *
+ * q.drain(() => {
+ *     console.log('all done')
+ * })
+ * // or
+ * await q.drain()
+ */
+
+/**
+ * Creates a `queue` object with the specified `concurrency`. Tasks added to the
+ * `queue` are processed in parallel (up to the `concurrency` limit). If all
+ * `worker`s are in progress, the task is queued until one becomes available.
+ * Once a `worker` completes a `task`, that `task`'s callback is called.
+ *
+ * @name queue
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {AsyncFunction} worker - An async function for processing a queued task.
+ * If you want to handle errors from an individual task, pass a callback to
+ * `q.push()`. Invoked with (task, callback).
+ * @param {number} [concurrency=1] - An `integer` for determining how many
+ * `worker` functions should be run in parallel.  If omitted, the concurrency
+ * defaults to `1`.  If the concurrency is `0`, an error is thrown.
+ * @returns {module:ControlFlow.QueueObject} A queue object to manage the tasks. Callbacks can be
+ * attached as certain properties to listen for specific events during the
+ * lifecycle of the queue.
+ * @example
+ *
+ * // create a queue object with concurrency 2
+ * var q = async.queue(function(task, callback) {
+ *     console.log('hello ' + task.name);
+ *     callback();
+ * }, 2);
+ *
+ * // assign a callback
+ * q.drain(function() {
+ *     console.log('all items have been processed');
+ * });
+ * // or await the end
+ * await q.drain()
+ *
+ * // assign an error callback
+ * q.error(function(err, task) {
+ *     console.error('task experienced an error');
+ * });
+ *
+ * // add some items to the queue
+ * q.push({name: 'foo'}, function(err) {
+ *     console.log('finished processing foo');
+ * });
+ * // callback is optional
+ * q.push({name: 'bar'});
+ *
+ * // add some items to the queue (batch-wise)
+ * q.push([{name: 'baz'},{name: 'bay'},{name: 'bax'}], function(err) {
+ *     console.log('finished processing item');
+ * });
+ *
+ * // add some items to the front of the queue
+ * q.unshift({name: 'bar'}, function (err) {
+ *     console.log('finished processing bar');
+ * });
+ */
+function queue$1 (worker, concurrency) {
+    var _worker = wrapAsync(worker);
+    return queue((items, cb) => {
+        _worker(items[0], cb);
+    }, concurrency, 1);
+}
+
+// Binary min-heap implementation used for priority queue.
+// Implementation is stable, i.e. push time is considered for equal priorities
+class Heap {
+    constructor() {
+        this.heap = [];
+        this.pushCount = Number.MIN_SAFE_INTEGER;
+    }
+
+    get length() {
+        return this.heap.length;
+    }
+
+    empty () {
+        this.heap = [];
+        return this;
+    }
+
+    percUp(index) {
+        let p;
+
+        while (index > 0 && smaller(this.heap[index], this.heap[p=parent(index)])) {
+            let t = this.heap[index];
+            this.heap[index] = this.heap[p];
+            this.heap[p] = t;
+
+            index = p;
+        }
+    }
+
+    percDown(index) {
+        let l;
+
+        while ((l=leftChi(index)) < this.heap.length) {
+            if (l+1 < this.heap.length && smaller(this.heap[l+1], this.heap[l])) {
+                l = l+1;
+            }
+
+            if (smaller(this.heap[index], this.heap[l])) {
+                break;
+            }
+
+            let t = this.heap[index];
+            this.heap[index] = this.heap[l];
+            this.heap[l] = t;
+
+            index = l;
+        }
+    }
+
+    push(node) {
+        node.pushCount = ++this.pushCount;
+        this.heap.push(node);
+        this.percUp(this.heap.length-1);
+    }
+
+    unshift(node) {
+        return this.heap.push(node);
+    }
+
+    shift() {
+        let [top] = this.heap;
+
+        this.heap[0] = this.heap[this.heap.length-1];
+        this.heap.pop();
+        this.percDown(0);
+
+        return top;
+    }
+
+    toArray() {
+        return [...this];
+    }
+
+    *[Symbol.iterator] () {
+        for (let i = 0; i < this.heap.length; i++) {
+            yield this.heap[i].data;
+        }
+    }
+
+    remove (testFn) {
+        let j = 0;
+        for (let i = 0; i < this.heap.length; i++) {
+            if (!testFn(this.heap[i])) {
+                this.heap[j] = this.heap[i];
+                j++;
+            }
+        }
+
+        this.heap.splice(j);
+
+        for (let i = parent(this.heap.length-1); i >= 0; i--) {
+            this.percDown(i);
+        }
+
+        return this;
+    }
+}
+
+function leftChi(i) {
+    return (i<<1)+1;
+}
+
+function parent(i) {
+    return ((i+1)>>1)-1;
+}
+
+function smaller(x, y) {
+    if (x.priority !== y.priority) {
+        return x.priority < y.priority;
+    }
+    else {
+        return x.pushCount < y.pushCount;
+    }
+}
+
+/**
+ * The same as [async.queue]{@link module:ControlFlow.queue} only tasks are assigned a priority and
+ * completed in ascending priority order.
+ *
+ * @name priorityQueue
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.queue]{@link module:ControlFlow.queue}
+ * @category Control Flow
+ * @param {AsyncFunction} worker - An async function for processing a queued task.
+ * If you want to handle errors from an individual task, pass a callback to
+ * `q.push()`.
+ * Invoked with (task, callback).
+ * @param {number} concurrency - An `integer` for determining how many `worker`
+ * functions should be run in parallel.  If omitted, the concurrency defaults to
+ * `1`.  If the concurrency is `0`, an error is thrown.
+ * @returns {module:ControlFlow.QueueObject} A priorityQueue object to manage the tasks. There are three
+ * differences between `queue` and `priorityQueue` objects:
+ * * `push(task, priority, [callback])` - `priority` should be a number. If an
+ *   array of `tasks` is given, all tasks will be assigned the same priority.
+ * * `pushAsync(task, priority, [callback])` - the same as `priorityQueue.push`,
+ *   except this returns a promise that rejects if an error occurs.
+ * * The `unshift` and `unshiftAsync` methods were removed.
+ */
+function priorityQueue(worker, concurrency) {
+    // Start with a normal queue
+    var q = queue$1(worker, concurrency);
+
+    var {
+        push,
+        pushAsync
+    } = q;
+
+    q._tasks = new Heap();
+    q._createTaskItem = ({data, priority}, callback) => {
+        return {
+            data,
+            priority,
+            callback
+        };
+    };
+
+    function createDataItems(tasks, priority) {
+        if (!Array.isArray(tasks)) {
+            return {data: tasks, priority};
+        }
+        return tasks.map(data => { return {data, priority}; });
+    }
+
+    // Override push to accept second parameter representing priority
+    q.push = function(data, priority = 0, callback) {
+        return push(createDataItems(data, priority), callback);
+    };
+
+    q.pushAsync = function(data, priority = 0, callback) {
+        return pushAsync(createDataItems(data, priority), callback);
+    };
+
+    // Remove unshift functions
+    delete q.unshift;
+    delete q.unshiftAsync;
+
+    return q;
+}
+
+/**
+ * Runs the `tasks` array of functions in parallel, without waiting until the
+ * previous function has completed. Once any of the `tasks` complete or pass an
+ * error to its callback, the main `callback` is immediately called. It's
+ * equivalent to `Promise.race()`.
+ *
+ * @name race
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array} tasks - An array containing [async functions]{@link AsyncFunction}
+ * to run. Each function can complete with an optional `result` value.
+ * @param {Function} callback - A callback to run once any of the functions have
+ * completed. This function gets an error or result from the first function that
+ * completed. Invoked with (err, result).
+ * @returns {Promise} a promise, if a callback is omitted
+ * @example
+ *
+ * async.race([
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ],
+ * // main callback
+ * function(err, result) {
+ *     // the result will be equal to 'two' as it finishes earlier
+ * });
+ */
+function race(tasks, callback) {
+    callback = once(callback);
+    if (!Array.isArray(tasks)) return callback(new TypeError('First argument to race must be an array of functions'));
+    if (!tasks.length) return callback();
+    for (var i = 0, l = tasks.length; i < l; i++) {
+        wrapAsync(tasks[i])(callback);
+    }
+}
+
+var race$1 = awaitify(race, 2);
+
+/**
+ * Same as [`reduce`]{@link module:Collections.reduce}, only operates on `array` in reverse order.
+ *
+ * @name reduceRight
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.reduce]{@link module:Collections.reduce}
+ * @alias foldr
+ * @category Collection
+ * @param {Array} array - A collection to iterate over.
+ * @param {*} memo - The initial state of the reduction.
+ * @param {AsyncFunction} iteratee - A function applied to each item in the
+ * array to produce the next step in the reduction.
+ * The `iteratee` should complete with the next state of the reduction.
+ * If the iteratee completes with an error, the reduction is stopped and the
+ * main `callback` is immediately called with the error.
+ * Invoked with (memo, item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result is the reduced value. Invoked with
+ * (err, result).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function reduceRight (array, memo, iteratee, callback) {
+    var reversed = [...array].reverse();
+    return reduce$1(reversed, memo, iteratee, callback);
+}
+
+/**
+ * Wraps the async function in another function that always completes with a
+ * result object, even when it errors.
+ *
+ * The result object has either the property `error` or `value`.
+ *
+ * @name reflect
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} fn - The async function you want to wrap
+ * @returns {Function} - A function that always passes null to it's callback as
+ * the error. The second argument to the callback will be an `object` with
+ * either an `error` or a `value` property.
+ * @example
+ *
+ * async.parallel([
+ *     async.reflect(function(callback) {
+ *         // do some stuff ...
+ *         callback(null, 'one');
+ *     }),
+ *     async.reflect(function(callback) {
+ *         // do some more stuff but error ...
+ *         callback('bad stuff happened');
+ *     }),
+ *     async.reflect(function(callback) {
+ *         // do some more stuff ...
+ *         callback(null, 'two');
+ *     })
+ * ],
+ * // optional callback
+ * function(err, results) {
+ *     // values
+ *     // results[0].value = 'one'
+ *     // results[1].error = 'bad stuff happened'
+ *     // results[2].value = 'two'
+ * });
+ */
+function reflect(fn) {
+    var _fn = wrapAsync(fn);
+    return initialParams(function reflectOn(args, reflectCallback) {
+        args.push((error, ...cbArgs) => {
+            let retVal = {};
+            if (error) {
+                retVal.error = error;
+            }
+            if (cbArgs.length > 0){
+                var value = cbArgs;
+                if (cbArgs.length <= 1) {
+                    [value] = cbArgs;
+                }
+                retVal.value = value;
+            }
+            reflectCallback(null, retVal);
+        });
+
+        return _fn.apply(this, args);
+    });
+}
+
+/**
+ * A helper function that wraps an array or an object of functions with `reflect`.
+ *
+ * @name reflectAll
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @see [async.reflect]{@link module:Utils.reflect}
+ * @category Util
+ * @param {Array|Object|Iterable} tasks - The collection of
+ * [async functions]{@link AsyncFunction} to wrap in `async.reflect`.
+ * @returns {Array} Returns an array of async functions, each wrapped in
+ * `async.reflect`
+ * @example
+ *
+ * let tasks = [
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         // do some more stuff but error ...
+ *         callback(new Error('bad stuff happened'));
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ];
+ *
+ * async.parallel(async.reflectAll(tasks),
+ * // optional callback
+ * function(err, results) {
+ *     // values
+ *     // results[0].value = 'one'
+ *     // results[1].error = Error('bad stuff happened')
+ *     // results[2].value = 'two'
+ * });
+ *
+ * // an example using an object instead of an array
+ * let tasks = {
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     two: function(callback) {
+ *         callback('two');
+ *     },
+ *     three: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'three');
+ *         }, 100);
+ *     }
+ * };
+ *
+ * async.parallel(async.reflectAll(tasks),
+ * // optional callback
+ * function(err, results) {
+ *     // values
+ *     // results.one.value = 'one'
+ *     // results.two.error = 'two'
+ *     // results.three.value = 'three'
+ * });
+ */
+function reflectAll(tasks) {
+    var results;
+    if (Array.isArray(tasks)) {
+        results = tasks.map(reflect);
+    } else {
+        results = {};
+        Object.keys(tasks).forEach(key => {
+            results[key] = reflect.call(this, tasks[key]);
+        });
+    }
+    return results;
+}
+
+function reject(eachfn, arr, _iteratee, callback) {
+    const iteratee = wrapAsync(_iteratee);
+    return _filter(eachfn, arr, (value, cb) => {
+        iteratee(value, (err, v) => {
+            cb(err, !v);
+        });
+    }, callback);
+}
+
+/**
+ * The opposite of [`filter`]{@link module:Collections.filter}. Removes values that pass an `async` truth test.
+ *
+ * @name reject
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.filter]{@link module:Collections.filter}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {Function} iteratee - An async truth test to apply to each item in
+ * `coll`.
+ * The should complete with a boolean value as its `result`.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ *
+ * const fileList = ['dir1/file1.txt','dir2/file3.txt','dir3/file6.txt'];
+ *
+ * // asynchronous function that checks if a file exists
+ * function fileExists(file, callback) {
+ *    fs.access(file, fs.constants.F_OK, (err) => {
+ *        callback(null, !err);
+ *    });
+ * }
+ *
+ * // Using callbacks
+ * async.reject(fileList, fileExists, function(err, results) {
+ *    // [ 'dir3/file6.txt' ]
+ *    // results now equals an array of the non-existing files
+ * });
+ *
+ * // Using Promises
+ * async.reject(fileList, fileExists)
+ * .then( results => {
+ *     console.log(results);
+ *     // [ 'dir3/file6.txt' ]
+ *     // results now equals an array of the non-existing files
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.reject(fileList, fileExists);
+ *         console.log(results);
+ *         // [ 'dir3/file6.txt' ]
+ *         // results now equals an array of the non-existing files
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function reject$1 (coll, iteratee, callback) {
+    return reject(eachOf$1, coll, iteratee, callback)
+}
+var reject$2 = awaitify(reject$1, 3);
+
+/**
+ * The same as [`reject`]{@link module:Collections.reject} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name rejectLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.reject]{@link module:Collections.reject}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {Function} iteratee - An async truth test to apply to each item in
+ * `coll`.
+ * The should complete with a boolean value as its `result`.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function rejectLimit (coll, limit, iteratee, callback) {
+    return reject(eachOfLimit(limit), coll, iteratee, callback)
+}
+var rejectLimit$1 = awaitify(rejectLimit, 4);
+
+/**
+ * The same as [`reject`]{@link module:Collections.reject} but runs only a single async operation at a time.
+ *
+ * @name rejectSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.reject]{@link module:Collections.reject}
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {Function} iteratee - An async truth test to apply to each item in
+ * `coll`.
+ * The should complete with a boolean value as its `result`.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ */
+function rejectSeries (coll, iteratee, callback) {
+    return reject(eachOfSeries$1, coll, iteratee, callback)
+}
+var rejectSeries$1 = awaitify(rejectSeries, 3);
+
+function constant$1(value) {
+    return function () {
+        return value;
+    }
+}
+
+/**
+ * Attempts to get a successful response from `task` no more than `times` times
+ * before returning an error. If the task is successful, the `callback` will be
+ * passed the result of the successful task. If all attempts fail, the callback
+ * will be passed the error and result (if any) of the final attempt.
+ *
+ * @name retry
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @see [async.retryable]{@link module:ControlFlow.retryable}
+ * @param {Object|number} [opts = {times: 5, interval: 0}| 5] - Can be either an
+ * object with `times` and `interval` or a number.
+ * * `times` - The number of attempts to make before giving up.  The default
+ *   is `5`.
+ * * `interval` - The time to wait between retries, in milliseconds.  The
+ *   default is `0`. The interval may also be specified as a function of the
+ *   retry count (see example).
+ * * `errorFilter` - An optional synchronous function that is invoked on
+ *   erroneous result. If it returns `true` the retry attempts will continue;
+ *   if the function returns `false` the retry flow is aborted with the current
+ *   attempt's error and result being returned to the final callback.
+ *   Invoked with (err).
+ * * If `opts` is a number, the number specifies the number of times to retry,
+ *   with the default interval of `0`.
+ * @param {AsyncFunction} task - An async function to retry.
+ * Invoked with (callback).
+ * @param {Function} [callback] - An optional callback which is called when the
+ * task has succeeded, or after the final failed attempt. It receives the `err`
+ * and `result` arguments of the last attempt at completing the `task`. Invoked
+ * with (err, results).
+ * @returns {Promise} a promise if no callback provided
+ *
+ * @example
+ *
+ * // The `retry` function can be used as a stand-alone control flow by passing
+ * // a callback, as shown below:
+ *
+ * // try calling apiMethod 3 times
+ * async.retry(3, apiMethod, function(err, result) {
+ *     // do something with the result
+ * });
+ *
+ * // try calling apiMethod 3 times, waiting 200 ms between each retry
+ * async.retry({times: 3, interval: 200}, apiMethod, function(err, result) {
+ *     // do something with the result
+ * });
+ *
+ * // try calling apiMethod 10 times with exponential backoff
+ * // (i.e. intervals of 100, 200, 400, 800, 1600, ... milliseconds)
+ * async.retry({
+ *   times: 10,
+ *   interval: function(retryCount) {
+ *     return 50 * Math.pow(2, retryCount);
+ *   }
+ * }, apiMethod, function(err, result) {
+ *     // do something with the result
+ * });
+ *
+ * // try calling apiMethod the default 5 times no delay between each retry
+ * async.retry(apiMethod, function(err, result) {
+ *     // do something with the result
+ * });
+ *
+ * // try calling apiMethod only when error condition satisfies, all other
+ * // errors will abort the retry control flow and return to final callback
+ * async.retry({
+ *   errorFilter: function(err) {
+ *     return err.message === 'Temporary error'; // only retry on a specific error
+ *   }
+ * }, apiMethod, function(err, result) {
+ *     // do something with the result
+ * });
+ *
+ * // to retry individual methods that are not as reliable within other
+ * // control flow functions, use the `retryable` wrapper:
+ * async.auto({
+ *     users: api.getUsers.bind(api),
+ *     payments: async.retryable(3, api.getPayments.bind(api))
+ * }, function(err, results) {
+ *     // do something with the results
+ * });
+ *
+ */
+const DEFAULT_TIMES = 5;
+const DEFAULT_INTERVAL = 0;
+
+function retry(opts, task, callback) {
+    var options = {
+        times: DEFAULT_TIMES,
+        intervalFunc: constant$1(DEFAULT_INTERVAL)
+    };
+
+    if (arguments.length < 3 && typeof opts === 'function') {
+        callback = task || promiseCallback();
+        task = opts;
+    } else {
+        parseTimes(options, opts);
+        callback = callback || promiseCallback();
+    }
+
+    if (typeof task !== 'function') {
+        throw new Error("Invalid arguments for async.retry");
+    }
+
+    var _task = wrapAsync(task);
+
+    var attempt = 1;
+    function retryAttempt() {
+        _task((err, ...args) => {
+            if (err === false) return
+            if (err && attempt++ < options.times &&
+                (typeof options.errorFilter != 'function' ||
+                    options.errorFilter(err))) {
+                setTimeout(retryAttempt, options.intervalFunc(attempt - 1));
+            } else {
+                callback(err, ...args);
+            }
+        });
+    }
+
+    retryAttempt();
+    return callback[PROMISE_SYMBOL]
+}
+
+function parseTimes(acc, t) {
+    if (typeof t === 'object') {
+        acc.times = +t.times || DEFAULT_TIMES;
+
+        acc.intervalFunc = typeof t.interval === 'function' ?
+            t.interval :
+            constant$1(+t.interval || DEFAULT_INTERVAL);
+
+        acc.errorFilter = t.errorFilter;
+    } else if (typeof t === 'number' || typeof t === 'string') {
+        acc.times = +t || DEFAULT_TIMES;
+    } else {
+        throw new Error("Invalid arguments for async.retry");
+    }
+}
+
+/**
+ * A close relative of [`retry`]{@link module:ControlFlow.retry}.  This method
+ * wraps a task and makes it retryable, rather than immediately calling it
+ * with retries.
+ *
+ * @name retryable
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.retry]{@link module:ControlFlow.retry}
+ * @category Control Flow
+ * @param {Object|number} [opts = {times: 5, interval: 0}| 5] - optional
+ * options, exactly the same as from `retry`, except for a `opts.arity` that
+ * is the arity of the `task` function, defaulting to `task.length`
+ * @param {AsyncFunction} task - the asynchronous function to wrap.
+ * This function will be passed any arguments passed to the returned wrapper.
+ * Invoked with (...args, callback).
+ * @returns {AsyncFunction} The wrapped function, which when invoked, will
+ * retry on an error, based on the parameters specified in `opts`.
+ * This function will accept the same parameters as `task`.
+ * @example
+ *
+ * async.auto({
+ *     dep1: async.retryable(3, getFromFlakyService),
+ *     process: ["dep1", async.retryable(3, function (results, cb) {
+ *         maybeProcessData(results.dep1, cb);
+ *     })]
+ * }, callback);
+ */
+function retryable (opts, task) {
+    if (!task) {
+        task = opts;
+        opts = null;
+    }
+    let arity = (opts && opts.arity) || task.length;
+    if (isAsync(task)) {
+        arity += 1;
+    }
+    var _task = wrapAsync(task);
+    return initialParams((args, callback) => {
+        if (args.length < arity - 1 || callback == null) {
+            args.push(callback);
+            callback = promiseCallback();
+        }
+        function taskFn(cb) {
+            _task(...args, cb);
+        }
+
+        if (opts) retry(opts, taskFn, callback);
+        else retry(taskFn, callback);
+
+        return callback[PROMISE_SYMBOL]
+    });
+}
+
+/**
+ * Run the functions in the `tasks` collection in series, each one running once
+ * the previous function has completed. If any functions in the series pass an
+ * error to its callback, no more functions are run, and `callback` is
+ * immediately called with the value of the error. Otherwise, `callback`
+ * receives an array of results when `tasks` have completed.
+ *
+ * It is also possible to use an object instead of an array. Each property will
+ * be run as a function, and the results will be passed to the final `callback`
+ * as an object instead of an array. This can be a more readable way of handling
+ *  results from {@link async.series}.
+ *
+ * **Note** that while many implementations preserve the order of object
+ * properties, the [ECMAScript Language Specification](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6)
+ * explicitly states that
+ *
+ * > The mechanics and order of enumerating the properties is not specified.
+ *
+ * So if you rely on the order in which your series of functions are executed,
+ * and want this to work on all platforms, consider using an array.
+ *
+ * @name series
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} tasks - A collection containing
+ * [async functions]{@link AsyncFunction} to run in series.
+ * Each function can complete with any number of optional `result` values.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed. This function gets a results array (or object)
+ * containing all the result arguments passed to the `task` callbacks. Invoked
+ * with (err, result).
+ * @return {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * //Using Callbacks
+ * async.series([
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             // do some async task
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             // then do another async task
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ], function(err, results) {
+ *     console.log(results);
+ *     // results is equal to ['one','two']
+ * });
+ *
+ * // an example using objects instead of arrays
+ * async.series({
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             // do some async task
+ *             callback(null, 1);
+ *         }, 200);
+ *     },
+ *     two: function(callback) {
+ *         setTimeout(function() {
+ *             // then do another async task
+ *             callback(null, 2);
+ *         }, 100);
+ *     }
+ * }, function(err, results) {
+ *     console.log(results);
+ *     // results is equal to: { one: 1, two: 2 }
+ * });
+ *
+ * //Using Promises
+ * async.series([
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'one');
+ *         }, 200);
+ *     },
+ *     function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 'two');
+ *         }, 100);
+ *     }
+ * ]).then(results => {
+ *     console.log(results);
+ *     // results is equal to ['one','two']
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // an example using an object instead of an array
+ * async.series({
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             // do some async task
+ *             callback(null, 1);
+ *         }, 200);
+ *     },
+ *     two: function(callback) {
+ *         setTimeout(function() {
+ *             // then do another async task
+ *             callback(null, 2);
+ *         }, 100);
+ *     }
+ * }).then(results => {
+ *     console.log(results);
+ *     // results is equal to: { one: 1, two: 2 }
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * //Using async/await
+ * async () => {
+ *     try {
+ *         let results = await async.series([
+ *             function(callback) {
+ *                 setTimeout(function() {
+ *                     // do some async task
+ *                     callback(null, 'one');
+ *                 }, 200);
+ *             },
+ *             function(callback) {
+ *                 setTimeout(function() {
+ *                     // then do another async task
+ *                     callback(null, 'two');
+ *                 }, 100);
+ *             }
+ *         ]);
+ *         console.log(results);
+ *         // results is equal to ['one','two']
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * // an example using an object instead of an array
+ * async () => {
+ *     try {
+ *         let results = await async.parallel({
+ *             one: function(callback) {
+ *                 setTimeout(function() {
+ *                     // do some async task
+ *                     callback(null, 1);
+ *                 }, 200);
+ *             },
+ *            two: function(callback) {
+ *                 setTimeout(function() {
+ *                     // then do another async task
+ *                     callback(null, 2);
+ *                 }, 100);
+ *            }
+ *         });
+ *         console.log(results);
+ *         // results is equal to: { one: 1, two: 2 }
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function series(tasks, callback) {
+    return parallel(eachOfSeries$1, tasks, callback);
+}
+
+/**
+ * Returns `true` if at least one element in the `coll` satisfies an async test.
+ * If any iteratee call returns `true`, the main `callback` is immediately
+ * called.
+ *
+ * @name some
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias any
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collections in parallel.
+ * The iteratee should complete with a boolean `result` value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the iteratee functions have finished.
+ * Result will be either `true` or `false` depending on the values of the async
+ * tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ * @example
+ *
+ * // dir1 is a directory that contains file1.txt, file2.txt
+ * // dir2 is a directory that contains file3.txt, file4.txt
+ * // dir3 is a directory that contains file5.txt
+ * // dir4 does not exist
+ *
+ * // asynchronous function that checks if a file exists
+ * function fileExists(file, callback) {
+ *    fs.access(file, fs.constants.F_OK, (err) => {
+ *        callback(null, !err);
+ *    });
+ * }
+ *
+ * // Using callbacks
+ * async.some(['dir1/missing.txt','dir2/missing.txt','dir3/file5.txt'], fileExists,
+ *    function(err, result) {
+ *        console.log(result);
+ *        // true
+ *        // result is true since some file in the list exists
+ *    }
+ *);
+ *
+ * async.some(['dir1/missing.txt','dir2/missing.txt','dir4/missing.txt'], fileExists,
+ *    function(err, result) {
+ *        console.log(result);
+ *        // false
+ *        // result is false since none of the files exists
+ *    }
+ *);
+ *
+ * // Using Promises
+ * async.some(['dir1/missing.txt','dir2/missing.txt','dir3/file5.txt'], fileExists)
+ * .then( result => {
+ *     console.log(result);
+ *     // true
+ *     // result is true since some file in the list exists
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * async.some(['dir1/missing.txt','dir2/missing.txt','dir4/missing.txt'], fileExists)
+ * .then( result => {
+ *     console.log(result);
+ *     // false
+ *     // result is false since none of the files exists
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.some(['dir1/missing.txt','dir2/missing.txt','dir3/file5.txt'], fileExists);
+ *         console.log(result);
+ *         // true
+ *         // result is true since some file in the list exists
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ * async () => {
+ *     try {
+ *         let result = await async.some(['dir1/missing.txt','dir2/missing.txt','dir4/missing.txt'], fileExists);
+ *         console.log(result);
+ *         // false
+ *         // result is false since none of the files exists
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function some(coll, iteratee, callback) {
+    return _createTester(Boolean, res => res)(eachOf$1, coll, iteratee, callback)
+}
+var some$1 = awaitify(some, 3);
+
+/**
+ * The same as [`some`]{@link module:Collections.some} but runs a maximum of `limit` async operations at a time.
+ *
+ * @name someLimit
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.some]{@link module:Collections.some}
+ * @alias anyLimit
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collections in parallel.
+ * The iteratee should complete with a boolean `result` value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the iteratee functions have finished.
+ * Result will be either `true` or `false` depending on the values of the async
+ * tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ */
+function someLimit(coll, limit, iteratee, callback) {
+    return _createTester(Boolean, res => res)(eachOfLimit(limit), coll, iteratee, callback)
+}
+var someLimit$1 = awaitify(someLimit, 4);
+
+/**
+ * The same as [`some`]{@link module:Collections.some} but runs only a single async operation at a time.
+ *
+ * @name someSeries
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @see [async.some]{@link module:Collections.some}
+ * @alias anySeries
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async truth test to apply to each item
+ * in the collections in series.
+ * The iteratee should complete with a boolean `result` value.
+ * Invoked with (item, callback).
+ * @param {Function} [callback] - A callback which is called as soon as any
+ * iteratee returns `true`, or after all the iteratee functions have finished.
+ * Result will be either `true` or `false` depending on the values of the async
+ * tests. Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ */
+function someSeries(coll, iteratee, callback) {
+    return _createTester(Boolean, res => res)(eachOfSeries$1, coll, iteratee, callback)
+}
+var someSeries$1 = awaitify(someSeries, 3);
+
+/**
+ * Sorts a list by the results of running each `coll` value through an async
+ * `iteratee`.
+ *
+ * @name sortBy
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to each item in
+ * `coll`.
+ * The iteratee should complete with a value to use as the sort criteria as
+ * its `result`.
+ * Invoked with (item, callback).
+ * @param {Function} callback - A callback which is called after all the
+ * `iteratee` functions have finished, or an error occurs. Results is the items
+ * from the original `coll` sorted by the values returned by the `iteratee`
+ * calls. Invoked with (err, results).
+ * @returns {Promise} a promise, if no callback passed
+ * @example
+ *
+ * // bigfile.txt is a file that is 251100 bytes in size
+ * // mediumfile.txt is a file that is 11000 bytes in size
+ * // smallfile.txt is a file that is 121 bytes in size
+ *
+ * // asynchronous function that returns the file size in bytes
+ * function getFileSizeInBytes(file, callback) {
+ *     fs.stat(file, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         callback(null, stat.size);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.sortBy(['mediumfile.txt','smallfile.txt','bigfile.txt'], getFileSizeInBytes,
+ *     function(err, results) {
+ *         if (err) {
+ *             console.log(err);
+ *         } else {
+ *             console.log(results);
+ *             // results is now the original array of files sorted by
+ *             // file size (ascending by default), e.g.
+ *             // [ 'smallfile.txt', 'mediumfile.txt', 'bigfile.txt']
+ *         }
+ *     }
+ * );
+ *
+ * // By modifying the callback parameter the
+ * // sorting order can be influenced:
+ *
+ * // ascending order
+ * async.sortBy(['mediumfile.txt','smallfile.txt','bigfile.txt'], function(file, callback) {
+ *     getFileSizeInBytes(file, function(getFileSizeErr, fileSize) {
+ *         if (getFileSizeErr) return callback(getFileSizeErr);
+ *         callback(null, fileSize);
+ *     });
+ * }, function(err, results) {
+ *         if (err) {
+ *             console.log(err);
+ *         } else {
+ *             console.log(results);
+ *             // results is now the original array of files sorted by
+ *             // file size (ascending by default), e.g.
+ *             // [ 'smallfile.txt', 'mediumfile.txt', 'bigfile.txt']
+ *         }
+ *     }
+ * );
+ *
+ * // descending order
+ * async.sortBy(['bigfile.txt','mediumfile.txt','smallfile.txt'], function(file, callback) {
+ *     getFileSizeInBytes(file, function(getFileSizeErr, fileSize) {
+ *         if (getFileSizeErr) {
+ *             return callback(getFileSizeErr);
+ *         }
+ *         callback(null, fileSize * -1);
+ *     });
+ * }, function(err, results) {
+ *         if (err) {
+ *             console.log(err);
+ *         } else {
+ *             console.log(results);
+ *             // results is now the original array of files sorted by
+ *             // file size (ascending by default), e.g.
+ *             // [ 'bigfile.txt', 'mediumfile.txt', 'smallfile.txt']
+ *         }
+ *     }
+ * );
+ *
+ * // Error handling
+ * async.sortBy(['mediumfile.txt','smallfile.txt','missingfile.txt'], getFileSizeInBytes,
+ *     function(err, results) {
+ *         if (err) {
+ *             console.log(err);
+ *             // [ Error: ENOENT: no such file or directory ]
+ *         } else {
+ *             console.log(results);
+ *         }
+ *     }
+ * );
+ *
+ * // Using Promises
+ * async.sortBy(['mediumfile.txt','smallfile.txt','bigfile.txt'], getFileSizeInBytes)
+ * .then( results => {
+ *     console.log(results);
+ *     // results is now the original array of files sorted by
+ *     // file size (ascending by default), e.g.
+ *     // [ 'smallfile.txt', 'mediumfile.txt', 'bigfile.txt']
+ * }).catch( err => {
+ *     console.log(err);
+ * });
+ *
+ * // Error handling
+ * async.sortBy(['mediumfile.txt','smallfile.txt','missingfile.txt'], getFileSizeInBytes)
+ * .then( results => {
+ *     console.log(results);
+ * }).catch( err => {
+ *     console.log(err);
+ *     // [ Error: ENOENT: no such file or directory ]
+ * });
+ *
+ * // Using async/await
+ * (async () => {
+ *     try {
+ *         let results = await async.sortBy(['bigfile.txt','mediumfile.txt','smallfile.txt'], getFileSizeInBytes);
+ *         console.log(results);
+ *         // results is now the original array of files sorted by
+ *         // file size (ascending by default), e.g.
+ *         // [ 'smallfile.txt', 'mediumfile.txt', 'bigfile.txt']
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * })();
+ *
+ * // Error handling
+ * async () => {
+ *     try {
+ *         let results = await async.sortBy(['missingfile.txt','mediumfile.txt','smallfile.txt'], getFileSizeInBytes);
+ *         console.log(results);
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *         // [ Error: ENOENT: no such file or directory ]
+ *     }
+ * }
+ *
+ */
+function sortBy (coll, iteratee, callback) {
+    var _iteratee = wrapAsync(iteratee);
+    return map$1(coll, (x, iterCb) => {
+        _iteratee(x, (err, criteria) => {
+            if (err) return iterCb(err);
+            iterCb(err, {value: x, criteria});
+        });
+    }, (err, results) => {
+        if (err) return callback(err);
+        callback(null, results.sort(comparator).map(v => v.value));
+    });
+
+    function comparator(left, right) {
+        var a = left.criteria, b = right.criteria;
+        return a < b ? -1 : a > b ? 1 : 0;
+    }
+}
+var sortBy$1 = awaitify(sortBy, 3);
+
+/**
+ * Sets a time limit on an asynchronous function. If the function does not call
+ * its callback within the specified milliseconds, it will be called with a
+ * timeout error. The code property for the error object will be `'ETIMEDOUT'`.
+ *
+ * @name timeout
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @category Util
+ * @param {AsyncFunction} asyncFn - The async function to limit in time.
+ * @param {number} milliseconds - The specified time limit.
+ * @param {*} [info] - Any variable you want attached (`string`, `object`, etc)
+ * to timeout Error for more information..
+ * @returns {AsyncFunction} Returns a wrapped function that can be used with any
+ * of the control flow functions.
+ * Invoke this function with the same parameters as you would `asyncFunc`.
+ * @example
+ *
+ * function myFunction(foo, callback) {
+ *     doAsyncTask(foo, function(err, data) {
+ *         // handle errors
+ *         if (err) return callback(err);
+ *
+ *         // do some stuff ...
+ *
+ *         // return processed data
+ *         return callback(null, data);
+ *     });
+ * }
+ *
+ * var wrapped = async.timeout(myFunction, 1000);
+ *
+ * // call `wrapped` as you would `myFunction`
+ * wrapped({ bar: 'bar' }, function(err, data) {
+ *     // if `myFunction` takes < 1000 ms to execute, `err`
+ *     // and `data` will have their expected values
+ *
+ *     // else `err` will be an Error with the code 'ETIMEDOUT'
+ * });
+ */
+function timeout(asyncFn, milliseconds, info) {
+    var fn = wrapAsync(asyncFn);
+
+    return initialParams((args, callback) => {
+        var timedOut = false;
+        var timer;
+
+        function timeoutCallback() {
+            var name = asyncFn.name || 'anonymous';
+            var error  = new Error('Callback function "' + name + '" timed out.');
+            error.code = 'ETIMEDOUT';
+            if (info) {
+                error.info = info;
+            }
+            timedOut = true;
+            callback(error);
+        }
+
+        args.push((...cbArgs) => {
+            if (!timedOut) {
+                callback(...cbArgs);
+                clearTimeout(timer);
+            }
+        });
+
+        // setup timer and call original function
+        timer = setTimeout(timeoutCallback, milliseconds);
+        fn(...args);
+    });
+}
+
+function range(size) {
+    var result = Array(size);
+    while (size--) {
+        result[size] = size;
+    }
+    return result;
+}
+
+/**
+ * The same as [times]{@link module:ControlFlow.times} but runs a maximum of `limit` async operations at a
+ * time.
+ *
+ * @name timesLimit
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.times]{@link module:ControlFlow.times}
+ * @category Control Flow
+ * @param {number} count - The number of times to run the function.
+ * @param {number} limit - The maximum number of async operations at a time.
+ * @param {AsyncFunction} iteratee - The async function to call `n` times.
+ * Invoked with the iteration index and a callback: (n, next).
+ * @param {Function} callback - see [async.map]{@link module:Collections.map}.
+ * @returns {Promise} a promise, if no callback is provided
+ */
+function timesLimit(count, limit, iteratee, callback) {
+    var _iteratee = wrapAsync(iteratee);
+    return mapLimit$1(range(count), limit, _iteratee, callback);
+}
+
+/**
+ * Calls the `iteratee` function `n` times, and accumulates results in the same
+ * manner you would use with [map]{@link module:Collections.map}.
+ *
+ * @name times
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.map]{@link module:Collections.map}
+ * @category Control Flow
+ * @param {number} n - The number of times to run the function.
+ * @param {AsyncFunction} iteratee - The async function to call `n` times.
+ * Invoked with the iteration index and a callback: (n, next).
+ * @param {Function} callback - see {@link module:Collections.map}.
+ * @returns {Promise} a promise, if no callback is provided
+ * @example
+ *
+ * // Pretend this is some complicated async factory
+ * var createUser = function(id, callback) {
+ *     callback(null, {
+ *         id: 'user' + id
+ *     });
+ * };
+ *
+ * // generate 5 users
+ * async.times(5, function(n, next) {
+ *     createUser(n, function(err, user) {
+ *         next(err, user);
+ *     });
+ * }, function(err, users) {
+ *     // we should now have 5 users
+ * });
+ */
+function times (n, iteratee, callback) {
+    return timesLimit(n, Infinity, iteratee, callback)
+}
+
+/**
+ * The same as [times]{@link module:ControlFlow.times} but runs only a single async operation at a time.
+ *
+ * @name timesSeries
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.times]{@link module:ControlFlow.times}
+ * @category Control Flow
+ * @param {number} n - The number of times to run the function.
+ * @param {AsyncFunction} iteratee - The async function to call `n` times.
+ * Invoked with the iteration index and a callback: (n, next).
+ * @param {Function} callback - see {@link module:Collections.map}.
+ * @returns {Promise} a promise, if no callback is provided
+ */
+function timesSeries (n, iteratee, callback) {
+    return timesLimit(n, 1, iteratee, callback)
+}
+
+/**
+ * A relative of `reduce`.  Takes an Object or Array, and iterates over each
+ * element in parallel, each step potentially mutating an `accumulator` value.
+ * The type of the accumulator defaults to the type of collection passed in.
+ *
+ * @name transform
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @category Collection
+ * @param {Array|Iterable|AsyncIterable|Object} coll - A collection to iterate over.
+ * @param {*} [accumulator] - The initial state of the transform.  If omitted,
+ * it will default to an empty Object or Array, depending on the type of `coll`
+ * @param {AsyncFunction} iteratee - A function applied to each item in the
+ * collection that potentially modifies the accumulator.
+ * Invoked with (accumulator, item, key, callback).
+ * @param {Function} [callback] - A callback which is called after all the
+ * `iteratee` functions have finished. Result is the transformed accumulator.
+ * Invoked with (err, result).
+ * @returns {Promise} a promise, if no callback provided
+ * @example
+ *
+ * // file1.txt is a file that is 1000 bytes in size
+ * // file2.txt is a file that is 2000 bytes in size
+ * // file3.txt is a file that is 3000 bytes in size
+ *
+ * // helper function that returns human-readable size format from bytes
+ * function formatBytes(bytes, decimals = 2) {
+ *   // implementation not included for brevity
+ *   return humanReadbleFilesize;
+ * }
+ *
+ * const fileList = ['file1.txt','file2.txt','file3.txt'];
+ *
+ * // asynchronous function that returns the file size, transformed to human-readable format
+ * // e.g. 1024 bytes = 1KB, 1234 bytes = 1.21 KB, 1048576 bytes = 1MB, etc.
+ * function transformFileSize(acc, value, key, callback) {
+ *     fs.stat(value, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         acc[key] = formatBytes(stat.size);
+ *         callback(null);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.transform(fileList, transformFileSize, function(err, result) {
+ *     if(err) {
+ *         console.log(err);
+ *     } else {
+ *         console.log(result);
+ *         // [ '1000 Bytes', '1.95 KB', '2.93 KB' ]
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.transform(fileList, transformFileSize)
+ * .then(result => {
+ *     console.log(result);
+ *     // [ '1000 Bytes', '1.95 KB', '2.93 KB' ]
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * (async () => {
+ *     try {
+ *         let result = await async.transform(fileList, transformFileSize);
+ *         console.log(result);
+ *         // [ '1000 Bytes', '1.95 KB', '2.93 KB' ]
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * })();
+ *
+ * @example
+ *
+ * // file1.txt is a file that is 1000 bytes in size
+ * // file2.txt is a file that is 2000 bytes in size
+ * // file3.txt is a file that is 3000 bytes in size
+ *
+ * // helper function that returns human-readable size format from bytes
+ * function formatBytes(bytes, decimals = 2) {
+ *   // implementation not included for brevity
+ *   return humanReadbleFilesize;
+ * }
+ *
+ * const fileMap = { f1: 'file1.txt', f2: 'file2.txt', f3: 'file3.txt' };
+ *
+ * // asynchronous function that returns the file size, transformed to human-readable format
+ * // e.g. 1024 bytes = 1KB, 1234 bytes = 1.21 KB, 1048576 bytes = 1MB, etc.
+ * function transformFileSize(acc, value, key, callback) {
+ *     fs.stat(value, function(err, stat) {
+ *         if (err) {
+ *             return callback(err);
+ *         }
+ *         acc[key] = formatBytes(stat.size);
+ *         callback(null);
+ *     });
+ * }
+ *
+ * // Using callbacks
+ * async.transform(fileMap, transformFileSize, function(err, result) {
+ *     if(err) {
+ *         console.log(err);
+ *     } else {
+ *         console.log(result);
+ *         // { f1: '1000 Bytes', f2: '1.95 KB', f3: '2.93 KB' }
+ *     }
+ * });
+ *
+ * // Using Promises
+ * async.transform(fileMap, transformFileSize)
+ * .then(result => {
+ *     console.log(result);
+ *     // { f1: '1000 Bytes', f2: '1.95 KB', f3: '2.93 KB' }
+ * }).catch(err => {
+ *     console.log(err);
+ * });
+ *
+ * // Using async/await
+ * async () => {
+ *     try {
+ *         let result = await async.transform(fileMap, transformFileSize);
+ *         console.log(result);
+ *         // { f1: '1000 Bytes', f2: '1.95 KB', f3: '2.93 KB' }
+ *     }
+ *     catch (err) {
+ *         console.log(err);
+ *     }
+ * }
+ *
+ */
+function transform (coll, accumulator, iteratee, callback) {
+    if (arguments.length <= 3 && typeof accumulator === 'function') {
+        callback = iteratee;
+        iteratee = accumulator;
+        accumulator = Array.isArray(coll) ? [] : {};
+    }
+    callback = once(callback || promiseCallback());
+    var _iteratee = wrapAsync(iteratee);
+
+    eachOf$1(coll, (v, k, cb) => {
+        _iteratee(accumulator, v, k, cb);
+    }, err => callback(err, accumulator));
+    return callback[PROMISE_SYMBOL]
+}
+
+/**
+ * It runs each task in series but stops whenever any of the functions were
+ * successful. If one of the tasks were successful, the `callback` will be
+ * passed the result of the successful task. If all tasks fail, the callback
+ * will be passed the error and result (if any) of the final attempt.
+ *
+ * @name tryEach
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array|Iterable|AsyncIterable|Object} tasks - A collection containing functions to
+ * run, each function is passed a `callback(err, result)` it must call on
+ * completion with an error `err` (which can be `null`) and an optional `result`
+ * value.
+ * @param {Function} [callback] - An optional callback which is called when one
+ * of the tasks has succeeded, or all have failed. It receives the `err` and
+ * `result` arguments of the last attempt at completing the `task`. Invoked with
+ * (err, results).
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ * async.tryEach([
+ *     function getDataFromFirstWebsite(callback) {
+ *         // Try getting the data from the first website
+ *         callback(err, data);
+ *     },
+ *     function getDataFromSecondWebsite(callback) {
+ *         // First website failed,
+ *         // Try getting the data from the backup website
+ *         callback(err, data);
+ *     }
+ * ],
+ * // optional callback
+ * function(err, results) {
+ *     Now do something with the data.
+ * });
+ *
+ */
+function tryEach(tasks, callback) {
+    var error = null;
+    var result;
+    return eachSeries$1(tasks, (task, taskCb) => {
+        wrapAsync(task)((err, ...args) => {
+            if (err === false) return taskCb(err);
+
+            if (args.length < 2) {
+                [result] = args;
+            } else {
+                result = args;
+            }
+            error = err;
+            taskCb(err ? null : {});
+        });
+    }, () => callback(error, result));
+}
+
+var tryEach$1 = awaitify(tryEach);
+
+/**
+ * Undoes a [memoize]{@link module:Utils.memoize}d function, reverting it to the original,
+ * unmemoized form. Handy for testing.
+ *
+ * @name unmemoize
+ * @static
+ * @memberOf module:Utils
+ * @method
+ * @see [async.memoize]{@link module:Utils.memoize}
+ * @category Util
+ * @param {AsyncFunction} fn - the memoized function
+ * @returns {AsyncFunction} a function that calls the original unmemoized function
+ */
+function unmemoize(fn) {
+    return (...args) => {
+        return (fn.unmemoized || fn)(...args);
+    };
+}
+
+/**
+ * Repeatedly call `iteratee`, while `test` returns `true`. Calls `callback` when
+ * stopped, or an error occurs.
+ *
+ * @name whilst
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {AsyncFunction} test - asynchronous truth test to perform before each
+ * execution of `iteratee`. Invoked with ().
+ * @param {AsyncFunction} iteratee - An async function which is called each time
+ * `test` passes. Invoked with (callback).
+ * @param {Function} [callback] - A callback which is called after the test
+ * function has failed and repeated execution of `iteratee` has stopped. `callback`
+ * will be passed an error and any arguments passed to the final `iteratee`'s
+ * callback. Invoked with (err, [results]);
+ * @returns {Promise} a promise, if no callback is passed
+ * @example
+ *
+ * var count = 0;
+ * async.whilst(
+ *     function test(cb) { cb(null, count < 5); },
+ *     function iter(callback) {
+ *         count++;
+ *         setTimeout(function() {
+ *             callback(null, count);
+ *         }, 1000);
+ *     },
+ *     function (err, n) {
+ *         // 5 seconds have passed, n = 5
+ *     }
+ * );
+ */
+function whilst(test, iteratee, callback) {
+    callback = onlyOnce(callback);
+    var _fn = wrapAsync(iteratee);
+    var _test = wrapAsync(test);
+    var results = [];
+
+    function next(err, ...rest) {
+        if (err) return callback(err);
+        results = rest;
+        if (err === false) return;
+        _test(check);
+    }
+
+    function check(err, truth) {
+        if (err) return callback(err);
+        if (err === false) return;
+        if (!truth) return callback(null, ...results);
+        _fn(next);
+    }
+
+    return _test(check);
+}
+var whilst$1 = awaitify(whilst, 3);
+
+/**
+ * Repeatedly call `iteratee` until `test` returns `true`. Calls `callback` when
+ * stopped, or an error occurs. `callback` will be passed an error and any
+ * arguments passed to the final `iteratee`'s callback.
+ *
+ * The inverse of [whilst]{@link module:ControlFlow.whilst}.
+ *
+ * @name until
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @see [async.whilst]{@link module:ControlFlow.whilst}
+ * @category Control Flow
+ * @param {AsyncFunction} test - asynchronous truth test to perform before each
+ * execution of `iteratee`. Invoked with (callback).
+ * @param {AsyncFunction} iteratee - An async function which is called each time
+ * `test` fails. Invoked with (callback).
+ * @param {Function} [callback] - A callback which is called after the test
+ * function has passed and repeated execution of `iteratee` has stopped. `callback`
+ * will be passed an error and any arguments passed to the final `iteratee`'s
+ * callback. Invoked with (err, [results]);
+ * @returns {Promise} a promise, if a callback is not passed
+ *
+ * @example
+ * const results = []
+ * let finished = false
+ * async.until(function test(cb) {
+ *     cb(null, finished)
+ * }, function iter(next) {
+ *     fetchPage(url, (err, body) => {
+ *         if (err) return next(err)
+ *         results = results.concat(body.objects)
+ *         finished = !!body.next
+ *         next(err)
+ *     })
+ * }, function done (err) {
+ *     // all pages have been fetched
+ * })
+ */
+function until(test, iteratee, callback) {
+    const _test = wrapAsync(test);
+    return whilst$1((cb) => _test((err, truth) => cb (err, !truth)), iteratee, callback);
+}
+
+/**
+ * Runs the `tasks` array of functions in series, each passing their results to
+ * the next in the array. However, if any of the `tasks` pass an error to their
+ * own callback, the next function is not executed, and the main `callback` is
+ * immediately called with the error.
+ *
+ * @name waterfall
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array} tasks - An array of [async functions]{@link AsyncFunction}
+ * to run.
+ * Each function should complete with any number of `result` values.
+ * The `result` values will be passed as arguments, in order, to the next task.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed. This will be passed the results of the last task's
+ * callback. Invoked with (err, [results]).
+ * @returns {Promise} a promise, if a callback is omitted
+ * @example
+ *
+ * async.waterfall([
+ *     function(callback) {
+ *         callback(null, 'one', 'two');
+ *     },
+ *     function(arg1, arg2, callback) {
+ *         // arg1 now equals 'one' and arg2 now equals 'two'
+ *         callback(null, 'three');
+ *     },
+ *     function(arg1, callback) {
+ *         // arg1 now equals 'three'
+ *         callback(null, 'done');
+ *     }
+ * ], function (err, result) {
+ *     // result now equals 'done'
+ * });
+ *
+ * // Or, with named functions:
+ * async.waterfall([
+ *     myFirstFunction,
+ *     mySecondFunction,
+ *     myLastFunction,
+ * ], function (err, result) {
+ *     // result now equals 'done'
+ * });
+ * function myFirstFunction(callback) {
+ *     callback(null, 'one', 'two');
+ * }
+ * function mySecondFunction(arg1, arg2, callback) {
+ *     // arg1 now equals 'one' and arg2 now equals 'two'
+ *     callback(null, 'three');
+ * }
+ * function myLastFunction(arg1, callback) {
+ *     // arg1 now equals 'three'
+ *     callback(null, 'done');
+ * }
+ */
+function waterfall (tasks, callback) {
+    callback = once(callback);
+    if (!Array.isArray(tasks)) return callback(new Error('First argument to waterfall must be an array of functions'));
+    if (!tasks.length) return callback();
+    var taskIndex = 0;
+
+    function nextTask(args) {
+        var task = wrapAsync(tasks[taskIndex++]);
+        task(...args, onlyOnce(next));
+    }
+
+    function next(err, ...args) {
+        if (err === false) return
+        if (err || taskIndex === tasks.length) {
+            return callback(err, ...args);
+        }
+        nextTask(args);
+    }
+
+    nextTask([]);
+}
+
+var waterfall$1 = awaitify(waterfall);
+
+/**
+ * An "async function" in the context of Async is an asynchronous function with
+ * a variable number of parameters, with the final parameter being a callback.
+ * (`function (arg1, arg2, ..., callback) {}`)
+ * The final callback is of the form `callback(err, results...)`, which must be
+ * called once the function is completed.  The callback should be called with a
+ * Error as its first argument to signal that an error occurred.
+ * Otherwise, if no error occurred, it should be called with `null` as the first
+ * argument, and any additional `result` arguments that may apply, to signal
+ * successful completion.
+ * The callback must be called exactly once, ideally on a later tick of the
+ * JavaScript event loop.
+ *
+ * This type of function is also referred to as a "Node-style async function",
+ * or a "continuation passing-style function" (CPS). Most of the methods of this
+ * library are themselves CPS/Node-style async functions, or functions that
+ * return CPS/Node-style async functions.
+ *
+ * Wherever we accept a Node-style async function, we also directly accept an
+ * [ES2017 `async` function]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function}.
+ * In this case, the `async` function will not be passed a final callback
+ * argument, and any thrown error will be used as the `err` argument of the
+ * implicit callback, and the return value will be used as the `result` value.
+ * (i.e. a `rejected` of the returned Promise becomes the `err` callback
+ * argument, and a `resolved` value becomes the `result`.)
+ *
+ * Note, due to JavaScript limitations, we can only detect native `async`
+ * functions and not transpilied implementations.
+ * Your environment must have `async`/`await` support for this to work.
+ * (e.g. Node > v7.6, or a recent version of a modern browser).
+ * If you are using `async` functions through a transpiler (e.g. Babel), you
+ * must still wrap the function with [asyncify]{@link module:Utils.asyncify},
+ * because the `async function` will be compiled to an ordinary function that
+ * returns a promise.
+ *
+ * @typedef {Function} AsyncFunction
+ * @static
+ */
+
+var index = {
+    apply,
+    applyEach: applyEach$1,
+    applyEachSeries,
+    asyncify,
+    auto,
+    autoInject,
+    cargo,
+    cargoQueue: cargo$1,
+    compose,
+    concat: concat$1,
+    concatLimit: concatLimit$1,
+    concatSeries: concatSeries$1,
+    constant,
+    detect: detect$1,
+    detectLimit: detectLimit$1,
+    detectSeries: detectSeries$1,
+    dir,
+    doUntil,
+    doWhilst: doWhilst$1,
+    each,
+    eachLimit: eachLimit$2,
+    eachOf: eachOf$1,
+    eachOfLimit: eachOfLimit$2,
+    eachOfSeries: eachOfSeries$1,
+    eachSeries: eachSeries$1,
+    ensureAsync,
+    every: every$1,
+    everyLimit: everyLimit$1,
+    everySeries: everySeries$1,
+    filter: filter$1,
+    filterLimit: filterLimit$1,
+    filterSeries: filterSeries$1,
+    forever: forever$1,
+    groupBy,
+    groupByLimit: groupByLimit$1,
+    groupBySeries,
+    log,
+    map: map$1,
+    mapLimit: mapLimit$1,
+    mapSeries: mapSeries$1,
+    mapValues,
+    mapValuesLimit: mapValuesLimit$1,
+    mapValuesSeries,
+    memoize,
+    nextTick,
+    parallel: parallel$1,
+    parallelLimit,
+    priorityQueue,
+    queue: queue$1,
+    race: race$1,
+    reduce: reduce$1,
+    reduceRight,
+    reflect,
+    reflectAll,
+    reject: reject$2,
+    rejectLimit: rejectLimit$1,
+    rejectSeries: rejectSeries$1,
+    retry,
+    retryable,
+    seq,
+    series,
+    setImmediate: setImmediate$1,
+    some: some$1,
+    someLimit: someLimit$1,
+    someSeries: someSeries$1,
+    sortBy: sortBy$1,
+    timeout,
+    times,
+    timesLimit,
+    timesSeries,
+    transform,
+    tryEach: tryEach$1,
+    unmemoize,
+    until,
+    waterfall: waterfall$1,
+    whilst: whilst$1,
+
+    // aliases
+    all: every$1,
+    allLimit: everyLimit$1,
+    allSeries: everySeries$1,
+    any: some$1,
+    anyLimit: someLimit$1,
+    anySeries: someSeries$1,
+    find: detect$1,
+    findLimit: detectLimit$1,
+    findSeries: detectSeries$1,
+    flatMap: concat$1,
+    flatMapLimit: concatLimit$1,
+    flatMapSeries: concatSeries$1,
+    forEach: each,
+    forEachSeries: eachSeries$1,
+    forEachLimit: eachLimit$2,
+    forEachOf: eachOf$1,
+    forEachOfSeries: eachOfSeries$1,
+    forEachOfLimit: eachOfLimit$2,
+    inject: reduce$1,
+    foldl: reduce$1,
+    foldr: reduceRight,
+    select: filter$1,
+    selectLimit: filterLimit$1,
+    selectSeries: filterSeries$1,
+    wrapSync: asyncify,
+    during: whilst$1,
+    doDuring: doWhilst$1
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+
+/***/ }),
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 82 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("assert");
 
 /***/ }),
-/* 83 */
+/* 88 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -3063,14 +9763,14 @@ exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflate
 
 
 /***/ }),
-/* 84 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(25);
+var toIObject = __webpack_require__(27);
 var toLength = __webpack_require__(7);
-var toAbsoluteIndex = __webpack_require__(51);
+var toAbsoluteIndex = __webpack_require__(54);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -3092,29 +9792,29 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 85 */
+/* 90 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 86 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
 
 /***/ }),
-/* 87 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(35);
-var defined = __webpack_require__(38);
+var toInteger = __webpack_require__(36);
+var defined = __webpack_require__(39);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -3133,12 +9833,12 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 88 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.8 IsRegExp(argument)
 var isObject = __webpack_require__(5);
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 var MATCH = __webpack_require__(6)('match');
 module.exports = function (it) {
   var isRegExp;
@@ -3147,7 +9847,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 89 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ITERATOR = __webpack_require__(6)('iterator');
@@ -3175,13 +9875,13 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 90 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var classof = __webpack_require__(64);
+var classof = __webpack_require__(67);
 var builtinExec = RegExp.prototype.exec;
 
  // `RegExpExec` abstract operation
@@ -3203,18 +9903,18 @@ module.exports = function (R, S) {
 
 
 /***/ }),
-/* 91 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(167);
-var redefine = __webpack_require__(18);
-var hide = __webpack_require__(17);
+__webpack_require__(178);
+var redefine = __webpack_require__(19);
+var hide = __webpack_require__(18);
 var fails = __webpack_require__(3);
-var defined = __webpack_require__(38);
+var defined = __webpack_require__(39);
 var wks = __webpack_require__(6);
-var regexpExec = __webpack_require__(123);
+var regexpExec = __webpack_require__(131);
 
 var SPECIES = wks('species');
 
@@ -3306,7 +10006,7 @@ module.exports = function (KEY, length, exec) {
 
 
 /***/ }),
-/* 92 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
@@ -3316,23 +10016,23 @@ module.exports = navigator && navigator.userAgent || '';
 
 
 /***/ }),
-/* 93 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global = __webpack_require__(2);
 var $export = __webpack_require__(0);
-var redefine = __webpack_require__(18);
-var redefineAll = __webpack_require__(57);
-var meta = __webpack_require__(44);
-var forOf = __webpack_require__(56);
-var anInstance = __webpack_require__(55);
+var redefine = __webpack_require__(19);
+var redefineAll = __webpack_require__(60);
+var meta = __webpack_require__(46);
+var forOf = __webpack_require__(59);
+var anInstance = __webpack_require__(58);
 var isObject = __webpack_require__(5);
 var fails = __webpack_require__(3);
-var $iterDetect = __webpack_require__(89);
-var setToStringTag = __webpack_require__(63);
-var inheritIfRequired = __webpack_require__(109);
+var $iterDetect = __webpack_require__(94);
+var setToStringTag = __webpack_require__(66);
+var inheritIfRequired = __webpack_require__(117);
 
 module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
   var Base = global[NAME];
@@ -3408,12 +10108,12 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 
 
 /***/ }),
-/* 94 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var hide = __webpack_require__(17);
-var uid = __webpack_require__(49);
+var hide = __webpack_require__(18);
+var uid = __webpack_require__(52);
 var TYPED = uid('typed_array');
 var VIEW = uid('view');
 var ABV = !!(global.ArrayBuffer && global.DataView);
@@ -3442,13 +10142,13 @@ module.exports = {
 
 
 /***/ }),
-/* 95 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // Forced replacement prototype accessors methods
-module.exports = __webpack_require__(43) || !__webpack_require__(3)(function () {
+module.exports = __webpack_require__(45) || !__webpack_require__(3)(function () {
   var K = Math.random();
   // In FF throws only define methods
   // eslint-disable-next-line no-undef, no-useless-call
@@ -3458,7 +10158,7 @@ module.exports = __webpack_require__(43) || !__webpack_require__(3)(function () 
 
 
 /***/ }),
-/* 96 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3477,16 +10177,16 @@ module.exports = function (COLLECTION) {
 
 
 /***/ }),
-/* 97 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/proposal-setmap-offrom/
 var $export = __webpack_require__(0);
-var aFunction = __webpack_require__(15);
-var ctx = __webpack_require__(33);
-var forOf = __webpack_require__(56);
+var aFunction = __webpack_require__(16);
+var ctx = __webpack_require__(34);
+var forOf = __webpack_require__(59);
 
 module.exports = function (COLLECTION) {
   $export($export.S, COLLECTION, { from: function from(source /* , mapFn, thisArg */) {
@@ -3512,13 +10212,13 @@ module.exports = function (COLLECTION) {
 
 
 /***/ }),
-/* 98 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = matcher;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__extendOwn_js__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isMatch_js__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__extendOwn_js__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isMatch_js__ = __webpack_require__(206);
 
 
 
@@ -3533,13 +10233,13 @@ function matcher(attrs) {
 
 
 /***/ }),
-/* 99 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__executeBound_js__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__executeBound_js__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__underscore_js__ = __webpack_require__(23);
 
 
 
@@ -3567,13 +10267,13 @@ partial.placeholder = __WEBPACK_IMPORTED_MODULE_2__underscore_js__["a" /* defaul
 
 
 /***/ }),
-/* 100 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = group;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(65);
 
 
 
@@ -3592,14 +10292,428 @@ function group(behavior, partition) {
 
 
 /***/ }),
-/* 101 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
-const rimraf = __webpack_require__(547)
+var EMMessage = __webpack_require__(84);
+var EMGroup = __webpack_require__(107);
+var EMChatroom = __webpack_require__(108);
+/**
+ * Easemob EMStringCursorResult implementation.
+ */
+
+/**
+ * EMStringCursorResult constructor.
+ * @constructor
+ * @param {Object} cursor
+ */
+function EMStringCursorResult(cursor) {
+  this._cursor = cursor;
+}
+
+/**
+ * Get cursor of next page.
+ * @return {String} 返回下一个结果
+ */
+EMStringCursorResult.prototype.nextPageCursor = function () {
+  return this._cursor.nextPageCursor();
+};
+
+/**
+ * Get the result of current page.
+ * @return {Array} string array.
+ */
+EMStringCursorResult.prototype.result = function () {
+  return this._cursor.result();
+};
+
+/**
+ * Easemob EMCursorResult implementation.
+ * {
+ * GROUP = 0,         //cursor store EMGroup list.
+ * CHATROOM = 1,      //cursor store EMChatroom list.
+ * MESSAGE = 2,       //cursor store EMMessage list.
+ * }
+ * @constructor
+ * @param {String} cursor
+ * @param {Number} type
+ */
+function EMCursorResult(cursor, type) {
+  this._cursor = cursor;
+  this._type = type;
+}
+
+/**
+ * Get cursor of next page.
+ * @return {String} 返回下一个结果
+ */
+EMCursorResult.prototype.nextPageCursor = function () {
+  return this._cursor.nextPageCursor();
+};
+
+/**
+ * Get the result of current page.
+ * @return {Array} group or chatroom list.
+ */
+EMCursorResult.prototype.result = function () {
+  var result = this._cursor.result();
+  var list = new Array(result.length);
+  for (var i = 0; i < result.length; i++) {
+    if (this._type == 0) {
+      list[i] = new EMGroup(result[i]);
+    } else if (this._type == 1) {
+      list[i] = new EMChatroom(result[i]);
+    } else if (this._type == 2) {
+      list[i] = new EMMessage(result[i]);
+    }
+  }
+  return list;
+};
+
+/**
+ * Easemob EMPageResult implementation.
+ * {
+ * GROUP = 0,         //
+ * CHATROOM = 1,      //
+ * }
+ * @constructor
+ */
+function EMPageResult(cursor, type) {
+  this._cursor = cursor;
+  this._type = type;
+}
+
+/**
+ * Get count.
+ * @return {Number} 返回本页结果计数
+ */
+EMPageResult.prototype.count = function () {
+  return this._cursor.count();
+};
+
+/**
+ * Get the result of current page.
+ * @return {Array} group or chatroom list.
+ */
+EMPageResult.prototype.result = function () {
+  var result = this._cursor.result();
+  var list = new Array(result.length);
+  for (var i = 0; i < result.length; i++) {
+    if (this._type == 0) {
+      list[i] = new EMGroup(result[i]);
+    } else {
+      list[i] = new EMChatroom(result[i]);
+    }
+  }
+  return list;
+};
+
+module.exports = {
+  EMStringCursorResult: EMStringCursorResult,
+  EMCursorResult: EMCursorResult,
+  EMPageResult: EMPageResult
+};
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EMMucSetting = __webpack_require__(153);
+var EMMucSharedFile = __webpack_require__(154);
+
+/**
+ * Easemob EMGroup implementation.
+ */
+
+/**
+ * EMError constructor.
+ * @constructor
+ * @param {Object} group
+ */
+function EMGroup(group) {
+  this._group = group;
+}
+
+/**
+ * Get group's ID.
+ * @return {String} 返回groupId
+ */
+EMGroup.prototype.groupId = function () {
+  return this._group.groupId();
+};
+
+/**
+ * Get group's subject.
+ * @return {String} 返回组名称
+ */
+EMGroup.prototype.groupSubject = function () {
+  return this._group.groupSubject();
+};
+
+/**
+ * Get group's description.
+ * @return {String} 返回组描述
+ */
+EMGroup.prototype.groupDescription = function () {
+  return this._group.groupDescription();
+};
+
+/**
+ * Get group's owner.
+ * @return {String} 返回群主
+ */
+EMGroup.prototype.groupOwner = function () {
+  return this._group.groupOwner();
+};
+
+/**
+ * Get group's setting.
+ * @return {EMMucSetting} 返回组设置
+ */
+EMGroup.prototype.groupSetting = function () {
+  return new EMMucSetting(this._group.groupSetting());
+};
+
+/**
+ * Get current members count.
+ * @return {Number} 返回组成员计数
+ */
+EMGroup.prototype.groupMembersCount = function () {
+  return this._group.groupMembersCount();
+};
+
+/**
+ * Get current login user type.
+ * @return {Number} 返回组成员类型
+ */
+EMGroup.prototype.groupMemberType = function () {
+  return this._group.groupMemberType();
+};
+
+/**
+ * Get whether push is enabled status.
+ * @return {Bool} 返回是否允许发送消息
+ */
+EMGroup.prototype.isPushEnabled = function () {
+  return this._group.isPushEnabled();
+};
+
+/**
+ * Get whether group messages is blocked.
+ * @return {Bool} 返回当前是否屏蔽群
+ */
+EMGroup.prototype.isMessageBlocked = function () {
+  return this._group.isMessageBlocked();
+};
+
+/**
+ * Get a copy of group's member list.
+ * Note: Will return empty array if have not ever got group's members.
+ * @return {Array} String list. 组成员列表
+ */
+EMGroup.prototype.groupMembers = function () {
+  return this._group.groupMembers();
+};
+
+/**
+ * Get a copy of group's bans.
+ * Note: Will return empty array if have not ever got group's bans.
+ * @return {Array} String list. 组禁言成员列表
+ */
+EMGroup.prototype.groupBans = function () {
+  return this._group.groupBans();
+};
+
+/**
+ * Get group's admins.
+ * Note: Will return empty array if have not ever got group's admins.
+ * @return {Array} String list. 组管理员列表
+ */
+EMGroup.prototype.groupAdmins = function () {
+  return this._group.groupAdmins();
+};
+
+/**
+ * Get group's mutes.
+ * Note: Will return empty array if have not ever got group's mutes.
+ * object is like {"key": name, "value": muteTime}.
+ * @return {Array} Object list. 聊天室禁言列表
+ */
+EMGroup.prototype.groupMutes = function () {
+  return this._group.groupMutes();
+};
+
+/**
+ * Get group's shared files.
+ * @return {Array} EMMucSharedFile array.
+ */
+EMGroup.prototype.groupSharedFiles = function () {
+  var result = this._group.groupSharedFiles();
+  var list = new Array(result.length);
+  for (var i = 0; i < result.length; i++) {
+    list[i] = new EMMucSharedFile(result[i]);
+  }
+  return list;
+};
+
+/**
+ * Get group's announcement.
+ * @return {String} 群公告
+ */
+EMGroup.prototype.groupAnnouncement = function () {
+  return this._group.groupAnnouncement();
+};
+
+module.exports = EMGroup;
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EMMucSetting = __webpack_require__(153);
+
+/**
+ * Easemob EMChatroom implementation.
+ */
+
+/**
+ * EMChatroom constructor.
+ * @constructor
+ * @param {Object} chatroom 聊天室对象
+ */
+function EMChatroom(chatroom) {
+  this._chatroom = chatroom;
+}
+
+/**
+ * Get chatroom's ID.
+ * @return {String} 聊天室ID
+ */
+EMChatroom.prototype.chatroomId = function () {
+  return this._chatroom.chatroomId();
+};
+
+/**
+ * Get chatroom's subject.
+ * @return {String} 返回聊天室名称
+ */
+EMChatroom.prototype.chatroomSubject = function () {
+  return this._chatroom.chatroomSubject();
+};
+
+/**
+ * Get chatroom's description.
+ * @return {String} 返回聊天室描述
+ */
+EMChatroom.prototype.chatroomDescription = function () {
+  return this._chatroom.chatroomDescription();
+};
+
+/**
+ * Get chatroom's owner.
+ * @return {String} 返回聊天室群主
+ */
+EMChatroom.prototype.owner = function () {
+  return this._chatroom.owner();
+};
+
+/**
+ * Get chatroom's setting.
+ * @return {Number} 返回聊天室设置
+ */
+EMChatroom.prototype.chatroomSetting = function () {
+  return new EMMucSetting(this._chatroom.chatroomSetting());
+};
+
+/**
+ * Get current members count.
+ * @return {Number} 返回聊天室成员数
+ */
+EMChatroom.prototype.chatroomMemberCount = function () {
+  return this._chatroom.chatroomMemberCount();
+};
+
+/**
+ * Get max count of chatroom member.
+ * @return {Number} 返回聊天室最大人数
+ */
+EMChatroom.prototype.chatroomMemberMaxCount = function () {
+  return this._chatroom.chatroomMemberMaxCount();
+};
+
+/**
+ * Get chatroom's members.
+ * Note: Will return empty array if have not ever got chatroom's members.
+ * @return {Array} String list.聊天室成员列表
+ */
+EMChatroom.prototype.chatroomMembers = function () {
+  return this._chatroom.chatroomMembers();
+};
+
+/**
+ * Get chatroom's bans.
+ * Note: Will return empty array if have not ever got chatroom's bans.
+ * @return {Array} String list. 聊天室禁言成员列表
+ */
+EMChatroom.prototype.chatroomBans = function () {
+  return this._chatroom.chatroomBans();
+};
+
+/**
+ * Get chatroom's admins.
+ * Note: Will return empty array if have not ever got chatroom's admins.
+ * @return {Array} String list. 聊天室管理员列表
+ */
+EMChatroom.prototype.chatroomAdmins = function () {
+  return this._chatroom.chatroomAdmins();
+};
+
+/**
+ * Get chatroom's mutes.
+ * Note: Will return empty array if have not ever got chatroom's mutes.
+ * object is like {"key": name, "value": muteTime}.
+ * @return {Array} Object list. 聊天室禁言一段时间的成员列表
+ */
+EMChatroom.prototype.chatroomMutes = function () {
+  return this._chatroom.chatroomMutes();
+};
+
+/**
+ * Get current login user type.
+ * @return {Number} 聊天室类型
+ */
+EMChatroom.prototype.chatroomMemberType = function () {
+  return this._chatroom.chatroomMemberType();
+};
+
+/**
+ * Get chatroom's announcement.
+ * @return {String} 聊天室公告
+ */
+EMChatroom.prototype.chatroomAnnouncement = function () {
+  return this._chatroom.chatroomAnnouncement();
+};
+
+module.exports = EMChatroom;
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const u = __webpack_require__(25).fromCallback
+const rimraf = __webpack_require__(585)
 
 module.exports = {
   remove: u(rimraf),
@@ -3608,7 +10722,7 @@ module.exports = {
 
 
 /***/ }),
-/* 102 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(5);
@@ -3621,14 +10735,14 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 103 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var core = __webpack_require__(32);
-var LIBRARY = __webpack_require__(43);
-var wksExt = __webpack_require__(149);
-var defineProperty = __webpack_require__(10).f;
+var core = __webpack_require__(33);
+var LIBRARY = __webpack_require__(45);
+var wksExt = __webpack_require__(160);
+var defineProperty = __webpack_require__(11).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
@@ -3636,18 +10750,18 @@ module.exports = function (name) {
 
 
 /***/ }),
-/* 104 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(70)('keys');
-var uid = __webpack_require__(49);
+var shared = __webpack_require__(73)('keys');
+var uid = __webpack_require__(52);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
 
 /***/ }),
-/* 105 */
+/* 113 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -3657,7 +10771,7 @@ module.exports = (
 
 
 /***/ }),
-/* 106 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var document = __webpack_require__(2).document;
@@ -3665,7 +10779,7 @@ module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 107 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -3680,7 +10794,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(33)(Function.call, __webpack_require__(26).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(34)(Function.call, __webpack_require__(28).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -3696,7 +10810,7 @@ module.exports = {
 
 
 /***/ }),
-/* 108 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
@@ -3704,11 +10818,11 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
 
 
 /***/ }),
-/* 109 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(5);
-var setPrototypeOf = __webpack_require__(107).set;
+var setPrototypeOf = __webpack_require__(115).set;
 module.exports = function (that, target, C) {
   var S = target.constructor;
   var P;
@@ -3719,13 +10833,13 @@ module.exports = function (that, target, C) {
 
 
 /***/ }),
-/* 110 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toInteger = __webpack_require__(35);
-var defined = __webpack_require__(38);
+var toInteger = __webpack_require__(36);
+var defined = __webpack_require__(39);
 
 module.exports = function repeat(count) {
   var str = String(defined(this));
@@ -3738,7 +10852,7 @@ module.exports = function repeat(count) {
 
 
 /***/ }),
-/* 111 */
+/* 119 */
 /***/ (function(module, exports) {
 
 // 20.2.2.28 Math.sign(x)
@@ -3749,7 +10863,7 @@ module.exports = Math.sign || function sign(x) {
 
 
 /***/ }),
-/* 112 */
+/* 120 */
 /***/ (function(module, exports) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -3765,19 +10879,19 @@ module.exports = (!$expm1
 
 
 /***/ }),
-/* 113 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(43);
+var LIBRARY = __webpack_require__(45);
 var $export = __webpack_require__(0);
-var redefine = __webpack_require__(18);
-var hide = __webpack_require__(17);
-var Iterators = __webpack_require__(66);
-var $iterCreate = __webpack_require__(114);
-var setToStringTag = __webpack_require__(63);
-var getPrototypeOf = __webpack_require__(27);
+var redefine = __webpack_require__(19);
+var hide = __webpack_require__(18);
+var Iterators = __webpack_require__(69);
+var $iterCreate = __webpack_require__(122);
+var setToStringTag = __webpack_require__(66);
+var getPrototypeOf = __webpack_require__(29);
 var ITERATOR = __webpack_require__(6)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -3841,18 +10955,18 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 
 /***/ }),
-/* 114 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var create = __webpack_require__(52);
-var descriptor = __webpack_require__(48);
-var setToStringTag = __webpack_require__(63);
+var create = __webpack_require__(55);
+var descriptor = __webpack_require__(51);
+var setToStringTag = __webpack_require__(66);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(17)(IteratorPrototype, __webpack_require__(6)('iterator'), function () { return this; });
+__webpack_require__(18)(IteratorPrototype, __webpack_require__(6)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -3861,12 +10975,12 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ }),
-/* 115 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // helper for String#{startsWith, endsWith, includes}
-var isRegExp = __webpack_require__(88);
-var defined = __webpack_require__(38);
+var isRegExp = __webpack_require__(93);
+var defined = __webpack_require__(39);
 
 module.exports = function (that, searchString, NAME) {
   if (isRegExp(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
@@ -3875,7 +10989,7 @@ module.exports = function (that, searchString, NAME) {
 
 
 /***/ }),
-/* 116 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var MATCH = __webpack_require__(6)('match');
@@ -3893,11 +11007,11 @@ module.exports = function (KEY) {
 
 
 /***/ }),
-/* 117 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators = __webpack_require__(66);
+var Iterators = __webpack_require__(69);
 var ITERATOR = __webpack_require__(6)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -3907,13 +11021,13 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 118 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $defineProperty = __webpack_require__(10);
-var createDesc = __webpack_require__(48);
+var $defineProperty = __webpack_require__(11);
+var createDesc = __webpack_require__(51);
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));
@@ -3922,13 +11036,13 @@ module.exports = function (object, index, value) {
 
 
 /***/ }),
-/* 119 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(64);
+var classof = __webpack_require__(67);
 var ITERATOR = __webpack_require__(6)('iterator');
-var Iterators = __webpack_require__(66);
-module.exports = __webpack_require__(32).getIteratorMethod = function (it) {
+var Iterators = __webpack_require__(69);
+module.exports = __webpack_require__(33).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
     || Iterators[classof(it)];
@@ -3936,11 +11050,11 @@ module.exports = __webpack_require__(32).getIteratorMethod = function (it) {
 
 
 /***/ }),
-/* 120 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(343);
+var speciesConstructor = __webpack_require__(370);
 
 module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
@@ -3948,14 +11062,14 @@ module.exports = function (original, length) {
 
 
 /***/ }),
-/* 121 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 
-var toObject = __webpack_require__(11);
-var toAbsoluteIndex = __webpack_require__(51);
+var toObject = __webpack_require__(12);
+var toAbsoluteIndex = __webpack_require__(54);
 var toLength = __webpack_require__(7);
 module.exports = function fill(value /* , start = 0, end = @length */) {
   var O = toObject(this);
@@ -3970,21 +11084,21 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 
 
 /***/ }),
-/* 122 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var addToUnscopables = __webpack_require__(45);
-var step = __webpack_require__(166);
-var Iterators = __webpack_require__(66);
-var toIObject = __webpack_require__(25);
+var addToUnscopables = __webpack_require__(47);
+var step = __webpack_require__(177);
+var Iterators = __webpack_require__(69);
+var toIObject = __webpack_require__(27);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(113)(Array, 'Array', function (iterated, kind) {
+module.exports = __webpack_require__(121)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -4011,13 +11125,13 @@ addToUnscopables('entries');
 
 
 /***/ }),
-/* 123 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var regexpFlags = __webpack_require__(73);
+var regexpFlags = __webpack_require__(76);
 
 var nativeExec = RegExp.prototype.exec;
 // This always refers to the native implementation, because the
@@ -4076,12 +11190,12 @@ module.exports = patchedExec;
 
 
 /***/ }),
-/* 124 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var at = __webpack_require__(87)(true);
+var at = __webpack_require__(92)(true);
 
  // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -4091,13 +11205,13 @@ module.exports = function (S, index, unicode) {
 
 
 /***/ }),
-/* 125 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(33);
-var invoke = __webpack_require__(156);
-var html = __webpack_require__(106);
-var cel = __webpack_require__(102);
+var ctx = __webpack_require__(34);
+var invoke = __webpack_require__(167);
+var html = __webpack_require__(114);
+var cel = __webpack_require__(110);
 var global = __webpack_require__(2);
 var process = global.process;
 var setTask = global.setImmediate;
@@ -4137,7 +11251,7 @@ if (!setTask || !clearTask) {
     delete queue[id];
   };
   // Node.js 0.8-
-  if (__webpack_require__(34)(process) == 'process') {
+  if (__webpack_require__(35)(process) == 'process') {
     defer = function (id) {
       process.nextTick(ctx(run, id, 1));
     };
@@ -4181,15 +11295,15 @@ module.exports = {
 
 
 /***/ }),
-/* 126 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var macrotask = __webpack_require__(125).set;
+var macrotask = __webpack_require__(133).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
-var isNode = __webpack_require__(34)(process) == 'process';
+var isNode = __webpack_require__(35)(process) == 'process';
 
 module.exports = function () {
   var head, last, notify;
@@ -4256,13 +11370,13 @@ module.exports = function () {
 
 
 /***/ }),
-/* 127 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 25.4.1.5 NewPromiseCapability(C)
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 
 function PromiseCapability(C) {
   var resolve, reject;
@@ -4281,26 +11395,26 @@ module.exports.f = function (C) {
 
 
 /***/ }),
-/* 128 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global = __webpack_require__(2);
-var DESCRIPTORS = __webpack_require__(9);
-var LIBRARY = __webpack_require__(43);
-var $typed = __webpack_require__(94);
-var hide = __webpack_require__(17);
-var redefineAll = __webpack_require__(57);
+var DESCRIPTORS = __webpack_require__(10);
+var LIBRARY = __webpack_require__(45);
+var $typed = __webpack_require__(99);
+var hide = __webpack_require__(18);
+var redefineAll = __webpack_require__(60);
 var fails = __webpack_require__(3);
-var anInstance = __webpack_require__(55);
-var toInteger = __webpack_require__(35);
+var anInstance = __webpack_require__(58);
+var toInteger = __webpack_require__(36);
 var toLength = __webpack_require__(7);
-var toIndex = __webpack_require__(176);
-var gOPN = __webpack_require__(53).f;
-var dP = __webpack_require__(10).f;
-var arrayFill = __webpack_require__(121);
-var setToStringTag = __webpack_require__(63);
+var toIndex = __webpack_require__(187);
+var gOPN = __webpack_require__(56).f;
+var dP = __webpack_require__(11).f;
+var arrayFill = __webpack_require__(129);
+var setToStringTag = __webpack_require__(66);
 var ARRAY_BUFFER = 'ArrayBuffer';
 var DATA_VIEW = 'DataView';
 var PROTOTYPE = 'prototype';
@@ -4564,287 +11678,287 @@ exports[DATA_VIEW] = $DataView;
 
 
 /***/ }),
-/* 129 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return __WEBPACK_IMPORTED_MODULE_0__setup_js__["e"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__restArguments_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__restArguments_js__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "restArguments", function() { return __WEBPACK_IMPORTED_MODULE_1__restArguments_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject_js__ = __webpack_require__(63);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isObject", function() { return __WEBPACK_IMPORTED_MODULE_2__isObject_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isNull_js__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isNull_js__ = __webpack_require__(485);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isNull", function() { return __WEBPACK_IMPORTED_MODULE_3__isNull_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isUndefined_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isUndefined_js__ = __webpack_require__(195);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isUndefined", function() { return __WEBPACK_IMPORTED_MODULE_4__isUndefined_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isBoolean_js__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isBoolean_js__ = __webpack_require__(196);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isBoolean", function() { return __WEBPACK_IMPORTED_MODULE_5__isBoolean_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isElement_js__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isElement_js__ = __webpack_require__(486);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isElement", function() { return __WEBPACK_IMPORTED_MODULE_6__isElement_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__isString_js__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__isString_js__ = __webpack_require__(138);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isString", function() { return __WEBPACK_IMPORTED_MODULE_7__isString_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__isNumber_js__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__isNumber_js__ = __webpack_require__(197);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isNumber", function() { return __WEBPACK_IMPORTED_MODULE_8__isNumber_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__isDate_js__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__isDate_js__ = __webpack_require__(487);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isDate", function() { return __WEBPACK_IMPORTED_MODULE_9__isDate_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__isRegExp_js__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__isRegExp_js__ = __webpack_require__(488);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isRegExp", function() { return __WEBPACK_IMPORTED_MODULE_10__isRegExp_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__isError_js__ = __webpack_require__(462);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__isError_js__ = __webpack_require__(489);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isError", function() { return __WEBPACK_IMPORTED_MODULE_11__isError_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isSymbol_js__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isSymbol_js__ = __webpack_require__(198);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isSymbol", function() { return __WEBPACK_IMPORTED_MODULE_12__isSymbol_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isArrayBuffer_js__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isArrayBuffer_js__ = __webpack_require__(199);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isArrayBuffer", function() { return __WEBPACK_IMPORTED_MODULE_13__isArrayBuffer_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isDataView_js__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isDataView_js__ = __webpack_require__(139);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isDataView", function() { return __WEBPACK_IMPORTED_MODULE_14__isDataView_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isArray_js__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isArray_js__ = __webpack_require__(64);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isArray", function() { return __WEBPACK_IMPORTED_MODULE_15__isArray_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__isFunction_js__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__isFunction_js__ = __webpack_require__(30);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isFunction", function() { return __WEBPACK_IMPORTED_MODULE_16__isFunction_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__isArguments_js__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__isArguments_js__ = __webpack_require__(140);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isArguments", function() { return __WEBPACK_IMPORTED_MODULE_17__isArguments_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__isFinite_js__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__isFinite_js__ = __webpack_require__(491);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isFinite", function() { return __WEBPACK_IMPORTED_MODULE_18__isFinite_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__isNaN_js__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__isNaN_js__ = __webpack_require__(200);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isNaN", function() { return __WEBPACK_IMPORTED_MODULE_19__isNaN_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__isTypedArray_js__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__isTypedArray_js__ = __webpack_require__(201);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isTypedArray", function() { return __WEBPACK_IMPORTED_MODULE_20__isTypedArray_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__isEmpty_js__ = __webpack_require__(466);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__isEmpty_js__ = __webpack_require__(493);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return __WEBPACK_IMPORTED_MODULE_21__isEmpty_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__isMatch_js__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__isMatch_js__ = __webpack_require__(206);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isMatch", function() { return __WEBPACK_IMPORTED_MODULE_22__isMatch_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__isEqual_js__ = __webpack_require__(467);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__isEqual_js__ = __webpack_require__(494);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isEqual", function() { return __WEBPACK_IMPORTED_MODULE_23__isEqual_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__isMap_js__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__isMap_js__ = __webpack_require__(496);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isMap", function() { return __WEBPACK_IMPORTED_MODULE_24__isMap_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__isWeakMap_js__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__isWeakMap_js__ = __webpack_require__(497);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isWeakMap", function() { return __WEBPACK_IMPORTED_MODULE_25__isWeakMap_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__isSet_js__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__isSet_js__ = __webpack_require__(498);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isSet", function() { return __WEBPACK_IMPORTED_MODULE_26__isSet_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__isWeakSet_js__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__isWeakSet_js__ = __webpack_require__(499);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isWeakSet", function() { return __WEBPACK_IMPORTED_MODULE_27__isWeakSet_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__keys_js__ = __webpack_require__(14);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "keys", function() { return __WEBPACK_IMPORTED_MODULE_28__keys_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__allKeys_js__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__allKeys_js__ = __webpack_require__(79);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "allKeys", function() { return __WEBPACK_IMPORTED_MODULE_29__allKeys_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__values_js__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__values_js__ = __webpack_require__(70);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "values", function() { return __WEBPACK_IMPORTED_MODULE_30__values_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pairs_js__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pairs_js__ = __webpack_require__(500);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "pairs", function() { return __WEBPACK_IMPORTED_MODULE_31__pairs_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__invert_js__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__invert_js__ = __webpack_require__(207);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "invert", function() { return __WEBPACK_IMPORTED_MODULE_32__invert_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__functions_js__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__functions_js__ = __webpack_require__(208);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "functions", function() { return __WEBPACK_IMPORTED_MODULE_33__functions_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "methods", function() { return __WEBPACK_IMPORTED_MODULE_33__functions_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__extend_js__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__extend_js__ = __webpack_require__(209);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "extend", function() { return __WEBPACK_IMPORTED_MODULE_34__extend_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__extendOwn_js__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__extendOwn_js__ = __webpack_require__(144);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "extendOwn", function() { return __WEBPACK_IMPORTED_MODULE_35__extendOwn_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "assign", function() { return __WEBPACK_IMPORTED_MODULE_35__extendOwn_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__defaults_js__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__defaults_js__ = __webpack_require__(210);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return __WEBPACK_IMPORTED_MODULE_36__defaults_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__create_js__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__create_js__ = __webpack_require__(501);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return __WEBPACK_IMPORTED_MODULE_37__create_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__clone_js__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__clone_js__ = __webpack_require__(502);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "clone", function() { return __WEBPACK_IMPORTED_MODULE_38__clone_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__tap_js__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__tap_js__ = __webpack_require__(503);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tap", function() { return __WEBPACK_IMPORTED_MODULE_39__tap_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__get_js__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__get_js__ = __webpack_require__(212);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return __WEBPACK_IMPORTED_MODULE_40__get_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__has_js__ = __webpack_require__(477);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__has_js__ = __webpack_require__(504);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "has", function() { return __WEBPACK_IMPORTED_MODULE_41__has_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__mapObject_js__ = __webpack_require__(478);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__mapObject_js__ = __webpack_require__(505);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mapObject", function() { return __WEBPACK_IMPORTED_MODULE_42__mapObject_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__identity_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__identity_js__ = __webpack_require__(146);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "identity", function() { return __WEBPACK_IMPORTED_MODULE_43__identity_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__constant_js__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__constant_js__ = __webpack_require__(202);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "constant", function() { return __WEBPACK_IMPORTED_MODULE_44__constant_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__noop_js__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__noop_js__ = __webpack_require__(216);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "noop", function() { return __WEBPACK_IMPORTED_MODULE_45__noop_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__toPath_js__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__toPath_js__ = __webpack_require__(213);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "toPath", function() { return __WEBPACK_IMPORTED_MODULE_46__toPath_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__property_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__property_js__ = __webpack_require__(147);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "property", function() { return __WEBPACK_IMPORTED_MODULE_47__property_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__propertyOf_js__ = __webpack_require__(479);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__propertyOf_js__ = __webpack_require__(506);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "propertyOf", function() { return __WEBPACK_IMPORTED_MODULE_48__propertyOf_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__matcher_js__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__matcher_js__ = __webpack_require__(103);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matcher", function() { return __WEBPACK_IMPORTED_MODULE_49__matcher_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matches", function() { return __WEBPACK_IMPORTED_MODULE_49__matcher_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__times_js__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__times_js__ = __webpack_require__(507);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "times", function() { return __WEBPACK_IMPORTED_MODULE_50__times_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__random_js__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__random_js__ = __webpack_require__(217);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "random", function() { return __WEBPACK_IMPORTED_MODULE_51__random_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__now_js__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__now_js__ = __webpack_require__(148);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "now", function() { return __WEBPACK_IMPORTED_MODULE_52__now_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__escape_js__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__escape_js__ = __webpack_require__(508);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "escape", function() { return __WEBPACK_IMPORTED_MODULE_53__escape_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__unescape_js__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__unescape_js__ = __webpack_require__(509);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "unescape", function() { return __WEBPACK_IMPORTED_MODULE_54__unescape_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__templateSettings_js__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__templateSettings_js__ = __webpack_require__(220);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "templateSettings", function() { return __WEBPACK_IMPORTED_MODULE_55__templateSettings_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__template_js__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__template_js__ = __webpack_require__(511);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "template", function() { return __WEBPACK_IMPORTED_MODULE_56__template_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__result_js__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__result_js__ = __webpack_require__(512);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "result", function() { return __WEBPACK_IMPORTED_MODULE_57__result_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__uniqueId_js__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__uniqueId_js__ = __webpack_require__(513);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "uniqueId", function() { return __WEBPACK_IMPORTED_MODULE_58__uniqueId_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__chain_js__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__chain_js__ = __webpack_require__(514);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "chain", function() { return __WEBPACK_IMPORTED_MODULE_59__chain_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__iteratee_js__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__iteratee_js__ = __webpack_require__(215);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "iteratee", function() { return __WEBPACK_IMPORTED_MODULE_60__iteratee_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__partial_js__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__partial_js__ = __webpack_require__(104);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "partial", function() { return __WEBPACK_IMPORTED_MODULE_61__partial_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__bind_js__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__bind_js__ = __webpack_require__(222);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bind", function() { return __WEBPACK_IMPORTED_MODULE_62__bind_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__bindAll_js__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__bindAll_js__ = __webpack_require__(515);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindAll", function() { return __WEBPACK_IMPORTED_MODULE_63__bindAll_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__memoize_js__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__memoize_js__ = __webpack_require__(516);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "memoize", function() { return __WEBPACK_IMPORTED_MODULE_64__memoize_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__delay_js__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__delay_js__ = __webpack_require__(223);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "delay", function() { return __WEBPACK_IMPORTED_MODULE_65__delay_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__defer_js__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__defer_js__ = __webpack_require__(517);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "defer", function() { return __WEBPACK_IMPORTED_MODULE_66__defer_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__throttle_js__ = __webpack_require__(491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__throttle_js__ = __webpack_require__(518);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return __WEBPACK_IMPORTED_MODULE_67__throttle_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__debounce_js__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__debounce_js__ = __webpack_require__(519);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return __WEBPACK_IMPORTED_MODULE_68__debounce_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__wrap_js__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__wrap_js__ = __webpack_require__(520);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "wrap", function() { return __WEBPACK_IMPORTED_MODULE_69__wrap_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__negate_js__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__negate_js__ = __webpack_require__(149);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "negate", function() { return __WEBPACK_IMPORTED_MODULE_70__negate_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__compose_js__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__compose_js__ = __webpack_require__(521);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "compose", function() { return __WEBPACK_IMPORTED_MODULE_71__compose_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__after_js__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__after_js__ = __webpack_require__(522);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "after", function() { return __WEBPACK_IMPORTED_MODULE_72__after_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__before_js__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__before_js__ = __webpack_require__(224);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "before", function() { return __WEBPACK_IMPORTED_MODULE_73__before_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__once_js__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__once_js__ = __webpack_require__(523);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "once", function() { return __WEBPACK_IMPORTED_MODULE_74__once_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__findKey_js__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__findKey_js__ = __webpack_require__(225);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "findKey", function() { return __WEBPACK_IMPORTED_MODULE_75__findKey_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__findIndex_js__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__findIndex_js__ = __webpack_require__(150);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return __WEBPACK_IMPORTED_MODULE_76__findIndex_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__findLastIndex_js__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__findLastIndex_js__ = __webpack_require__(227);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "findLastIndex", function() { return __WEBPACK_IMPORTED_MODULE_77__findLastIndex_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__sortedIndex_js__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__sortedIndex_js__ = __webpack_require__(228);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "sortedIndex", function() { return __WEBPACK_IMPORTED_MODULE_78__sortedIndex_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__indexOf_js__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__indexOf_js__ = __webpack_require__(229);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "indexOf", function() { return __WEBPACK_IMPORTED_MODULE_79__indexOf_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__lastIndexOf_js__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__lastIndexOf_js__ = __webpack_require__(524);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "lastIndexOf", function() { return __WEBPACK_IMPORTED_MODULE_80__lastIndexOf_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__find_js__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__find_js__ = __webpack_require__(231);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return __WEBPACK_IMPORTED_MODULE_81__find_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "detect", function() { return __WEBPACK_IMPORTED_MODULE_81__find_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__findWhere_js__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__findWhere_js__ = __webpack_require__(525);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "findWhere", function() { return __WEBPACK_IMPORTED_MODULE_82__findWhere_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__each_js__ = __webpack_require__(65);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "each", function() { return __WEBPACK_IMPORTED_MODULE_83__each_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "forEach", function() { return __WEBPACK_IMPORTED_MODULE_83__each_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__map_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__map_js__ = __webpack_require__(72);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return __WEBPACK_IMPORTED_MODULE_84__map_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "collect", function() { return __WEBPACK_IMPORTED_MODULE_84__map_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__reduce_js__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__reduce_js__ = __webpack_require__(526);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return __WEBPACK_IMPORTED_MODULE_85__reduce_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "foldl", function() { return __WEBPACK_IMPORTED_MODULE_85__reduce_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "inject", function() { return __WEBPACK_IMPORTED_MODULE_85__reduce_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__reduceRight_js__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__reduceRight_js__ = __webpack_require__(527);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "reduceRight", function() { return __WEBPACK_IMPORTED_MODULE_86__reduceRight_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "foldr", function() { return __WEBPACK_IMPORTED_MODULE_86__reduceRight_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__filter_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__filter_js__ = __webpack_require__(82);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return __WEBPACK_IMPORTED_MODULE_87__filter_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_87__filter_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__reject_js__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__reject_js__ = __webpack_require__(528);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "reject", function() { return __WEBPACK_IMPORTED_MODULE_88__reject_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__every_js__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__every_js__ = __webpack_require__(529);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "every", function() { return __WEBPACK_IMPORTED_MODULE_89__every_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "all", function() { return __WEBPACK_IMPORTED_MODULE_89__every_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__some_js__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__some_js__ = __webpack_require__(530);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "some", function() { return __WEBPACK_IMPORTED_MODULE_90__some_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "any", function() { return __WEBPACK_IMPORTED_MODULE_90__some_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__contains_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__contains_js__ = __webpack_require__(83);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "contains", function() { return __WEBPACK_IMPORTED_MODULE_91__contains_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "includes", function() { return __WEBPACK_IMPORTED_MODULE_91__contains_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "include", function() { return __WEBPACK_IMPORTED_MODULE_91__contains_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__invoke_js__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__invoke_js__ = __webpack_require__(531);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "invoke", function() { return __WEBPACK_IMPORTED_MODULE_92__invoke_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pluck_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__pluck_js__ = __webpack_require__(151);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "pluck", function() { return __WEBPACK_IMPORTED_MODULE_93__pluck_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__where_js__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__where_js__ = __webpack_require__(532);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "where", function() { return __WEBPACK_IMPORTED_MODULE_94__where_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__max_js__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__max_js__ = __webpack_require__(233);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return __WEBPACK_IMPORTED_MODULE_95__max_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__min_js__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__min_js__ = __webpack_require__(533);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return __WEBPACK_IMPORTED_MODULE_96__min_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__shuffle_js__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__shuffle_js__ = __webpack_require__(534);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return __WEBPACK_IMPORTED_MODULE_97__shuffle_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__sample_js__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__sample_js__ = __webpack_require__(234);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "sample", function() { return __WEBPACK_IMPORTED_MODULE_98__sample_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__sortBy_js__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__sortBy_js__ = __webpack_require__(535);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "sortBy", function() { return __WEBPACK_IMPORTED_MODULE_99__sortBy_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__groupBy_js__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__groupBy_js__ = __webpack_require__(536);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return __WEBPACK_IMPORTED_MODULE_100__groupBy_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__indexBy_js__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__indexBy_js__ = __webpack_require__(537);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "indexBy", function() { return __WEBPACK_IMPORTED_MODULE_101__indexBy_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__countBy_js__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__countBy_js__ = __webpack_require__(538);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "countBy", function() { return __WEBPACK_IMPORTED_MODULE_102__countBy_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_103__partition_js__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_103__partition_js__ = __webpack_require__(539);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return __WEBPACK_IMPORTED_MODULE_103__partition_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_104__toArray_js__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_104__toArray_js__ = __webpack_require__(235);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "toArray", function() { return __WEBPACK_IMPORTED_MODULE_104__toArray_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__size_js__ = __webpack_require__(513);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__size_js__ = __webpack_require__(540);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "size", function() { return __WEBPACK_IMPORTED_MODULE_105__size_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_106__pick_js__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_106__pick_js__ = __webpack_require__(236);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "pick", function() { return __WEBPACK_IMPORTED_MODULE_106__pick_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__omit_js__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__omit_js__ = __webpack_require__(542);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "omit", function() { return __WEBPACK_IMPORTED_MODULE_107__omit_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__first_js__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__first_js__ = __webpack_require__(543);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "first", function() { return __WEBPACK_IMPORTED_MODULE_108__first_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "head", function() { return __WEBPACK_IMPORTED_MODULE_108__first_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "take", function() { return __WEBPACK_IMPORTED_MODULE_108__first_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_109__initial_js__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_109__initial_js__ = __webpack_require__(237);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "initial", function() { return __WEBPACK_IMPORTED_MODULE_109__initial_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__last_js__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__last_js__ = __webpack_require__(544);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "last", function() { return __WEBPACK_IMPORTED_MODULE_110__last_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_111__rest_js__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_111__rest_js__ = __webpack_require__(238);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "rest", function() { return __WEBPACK_IMPORTED_MODULE_111__rest_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tail", function() { return __WEBPACK_IMPORTED_MODULE_111__rest_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "drop", function() { return __WEBPACK_IMPORTED_MODULE_111__rest_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_112__compact_js__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_112__compact_js__ = __webpack_require__(545);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "compact", function() { return __WEBPACK_IMPORTED_MODULE_112__compact_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_113__flatten_js__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_113__flatten_js__ = __webpack_require__(546);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "flatten", function() { return __WEBPACK_IMPORTED_MODULE_113__flatten_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_114__without_js__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_114__without_js__ = __webpack_require__(547);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "without", function() { return __WEBPACK_IMPORTED_MODULE_114__without_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_115__uniq_js__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_115__uniq_js__ = __webpack_require__(240);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "uniq", function() { return __WEBPACK_IMPORTED_MODULE_115__uniq_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "unique", function() { return __WEBPACK_IMPORTED_MODULE_115__uniq_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_116__union_js__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_116__union_js__ = __webpack_require__(548);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "union", function() { return __WEBPACK_IMPORTED_MODULE_116__union_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_117__intersection_js__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_117__intersection_js__ = __webpack_require__(549);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "intersection", function() { return __WEBPACK_IMPORTED_MODULE_117__intersection_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_118__difference_js__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_118__difference_js__ = __webpack_require__(239);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "difference", function() { return __WEBPACK_IMPORTED_MODULE_118__difference_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_119__unzip_js__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_119__unzip_js__ = __webpack_require__(241);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "unzip", function() { return __WEBPACK_IMPORTED_MODULE_119__unzip_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "transpose", function() { return __WEBPACK_IMPORTED_MODULE_119__unzip_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_120__zip_js__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_120__zip_js__ = __webpack_require__(550);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return __WEBPACK_IMPORTED_MODULE_120__zip_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__object_js__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__object_js__ = __webpack_require__(551);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "object", function() { return __WEBPACK_IMPORTED_MODULE_121__object_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_122__range_js__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_122__range_js__ = __webpack_require__(552);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "range", function() { return __WEBPACK_IMPORTED_MODULE_122__range_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_123__chunk_js__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_123__chunk_js__ = __webpack_require__(553);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "chunk", function() { return __WEBPACK_IMPORTED_MODULE_123__chunk_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_124__mixin_js__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_124__mixin_js__ = __webpack_require__(554);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mixin", function() { return __WEBPACK_IMPORTED_MODULE_124__mixin_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_125__underscore_array_methods_js__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_125__underscore_array_methods_js__ = __webpack_require__(555);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return __WEBPACK_IMPORTED_MODULE_125__underscore_array_methods_js__["a"]; });
 // Named Exports
 // =============
 
-//     Underscore.js 1.13.4
+//     Underscore.js 1.13.6
 //     https://underscorejs.org
 //     (c) 2009-2022 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -5024,25 +12138,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 130 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('String'));
 
 
 /***/ }),
-/* 131 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayBuffer_js__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stringTagBug_js__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayBuffer_js__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stringTagBug_js__ = __webpack_require__(78);
 
 
 
@@ -5060,12 +12174,12 @@ function ie10IsDataView(obj) {
 
 
 /***/ }),
-/* 132 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(48);
 
 
 
@@ -5085,11 +12199,11 @@ var isArguments = Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* defa
 
 
 /***/ }),
-/* 133 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shallowProperty_js__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shallowProperty_js__ = __webpack_require__(204);
 
 
 // Internal helper to obtain the `byteLength` property of an object.
@@ -5097,7 +12211,7 @@ var isArguments = Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* defa
 
 
 /***/ }),
-/* 134 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5105,9 +12219,9 @@ var isArguments = Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* defa
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapMethods; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return weakMapMethods; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setMethods; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__allKeys_js__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__allKeys_js__ = __webpack_require__(79);
 
 
 
@@ -5148,7 +12262,7 @@ var mapMethods = commonInit.concat(forEachName, mapTail),
 
 
 /***/ }),
-/* 135 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5174,12 +12288,12 @@ function createAssigner(keysFunc, defaults) {
 
 
 /***/ }),
-/* 136 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(14);
 
 
 
@@ -5190,7 +12304,7 @@ function createAssigner(keysFunc, defaults) {
 
 
 /***/ }),
-/* 137 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5207,7 +12321,7 @@ function deepGet(obj, path) {
 
 
 /***/ }),
-/* 138 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5219,13 +12333,13 @@ function identity(value) {
 
 
 /***/ }),
-/* 139 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = property;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deepGet_js__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deepGet_js__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(80);
 
 
 
@@ -5240,7 +12354,7 @@ function property(path) {
 
 
 /***/ }),
-/* 140 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5251,7 +12365,7 @@ function property(path) {
 
 
 /***/ }),
-/* 141 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5265,11 +12379,11 @@ function negate(predicate) {
 
 
 /***/ }),
-/* 142 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createPredicateIndexFinder_js__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createPredicateIndexFinder_js__ = __webpack_require__(226);
 
 
 // Returns the first index on an array-like that passes a truth test.
@@ -5277,13 +12391,13 @@ function negate(predicate) {
 
 
 /***/ }),
-/* 143 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = pluck;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__property_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_js__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__property_js__ = __webpack_require__(147);
 
 
 
@@ -5294,20 +12408,476 @@ function pluck(obj, key) {
 
 
 /***/ }),
-/* 144 */
-/***/ (function(module, exports) {
-
-module.exports = require("os");
-
-/***/ }),
-/* 145 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
-const jsonFile = __webpack_require__(549)
+var EMMessage = __webpack_require__(84);
+
+/**
+ * Easemob EMConversation implementation.
+ */
+
+/**
+ * EMConversationType
+ * {
+ * CHAT = 0,
+ * GROUPCHAT = 1,
+ * CHATROOM = 2,
+ * }
+ * EMMessageSearchDirection
+ * {
+ * UP = 0
+ * DOWN = 1
+ * }
+ */
+
+/**
+ * EMConversation constructor.
+ * @constructor
+ * @param {Object} conversation
+ */
+function EMConversation(conversation) {
+  this._conversation = conversation;
+}
+
+/**
+ * Get conversation id.
+ * Note: For a single chat conversation, it's remote peer's user name, for a group chat conversation, it's group id.
+ * @return {String} 会话ID
+ */
+EMConversation.prototype.conversationId = function () {
+  return this._conversation.conversationId();
+};
+
+/**
+ * Get conversation type.
+ * @return {Number} 会话类型
+ */
+EMConversation.prototype.conversationType = function () {
+  return this._conversation.conversationType();
+};
+
+/**
+ * Remove a message from DB and cache.
+ * Note: It's user's responsibility to confirm removed message belongs to the conversation.
+ * Better to use message to remove message instead of message id.
+ * @param {EMMessage|String} message EMMessage is the message to remove, String is message Id. 
+ * @return {Bool} 删除消息结果
+ */
+EMConversation.prototype.removeMessage = function (message) {
+  if (typeof message == "string") {
+    return this._conversation.removeMessage(message);
+  } else {
+    return this._conversation.removeMessage(message._message);
+  }
+};
+
+/**
+ * Insert a message to DB.
+ * Note: It's user's responsibility to confirm inserted message belongs to the conversation.
+ * 在指定时间插入消息
+ * @param {EMMessage} message 消息对象
+ * @return {Bool} 插入消息结果
+ */
+EMConversation.prototype.insertMessage = function (message) {
+  return this._conversation.insertMessage(message._message);
+};
+
+/**
+ * Append a message to the last of conversation.
+ * Note: It's user's responsibility to confirm inserted message belongs to the conversation.
+ * 在消息末尾添加
+ * @param {EMMessage} message 消息对象
+ * @return {Bool} 添加消息结果
+ */
+EMConversation.prototype.appendMessage = function (message) {
+  return this._conversation.appendMessage(message._message);
+};
+
+/**
+ * Append a message to the last of conversation.
+ * It's user's responsibility to confirm updated message belongs to the conversation, and user
+ * should NOT change a message's id.
+ * 修改制定消息
+ * @param {EMMessage} message 消息对象
+ * @return {Bool} 修改消息结果
+ */
+EMConversation.prototype.updateMessage = function (message) {
+  return this._conversation.updateMessage(message._message);
+};
+
+/**
+ * Clear all messages belong to the the conversation(include DB and memory cache).
+ * @return {Bool} 删除所有消息结果
+ */
+EMConversation.prototype.clearAllMessages = function () {
+  return this._conversation.clearAllMessages();
+};
+
+/**
+ * Change message's read status.
+ * Note: It's user's responsibility to confirm changed message belongs to the conversation.
+ * @param {String} msgId 消息ID
+ * @param {Bool} isRead 消息已读状态
+ * @return {Bool} 设置结果
+ */
+EMConversation.prototype.markMessageAsRead = function (msgId, isRead) {
+  return this._conversation.markMessageAsRead(msgId, isRead);
+};
+
+/**
+ * Change all messages's read status.
+ * @param {Bool} isRead 消息已读状态
+ * @return {Bool} 设置结果
+ */
+EMConversation.prototype.markAllMessagesAsRead = function (isRead) {
+  return this._conversation.markAllMessagesAsRead(isRead);
+};
+
+/**
+ * Get unread messages count of conversation.
+ * @return {Number} 返回未读消息计数
+ */
+EMConversation.prototype.unreadMessagesCount = function () {
+  return this._conversation.unreadMessagesCount();
+};
+
+/**
+ * Get the total messages count of conversation.
+ * @return {Number} 返回消息计数
+ */
+EMConversation.prototype.messagesCount = function () {
+  return this._conversation.messagesCount();
+};
+
+/**
+ * Load a message(Will load message from DB if not exist in cache).
+ * @param {String} msgId. 消息ID
+ * @return {EMMessage} 返回消息对象
+ */
+EMConversation.prototype.loadMessage = function (msgId) {
+  return new EMMessage(this._conversation.loadMessage(msgId));
+};
+
+/**
+ * Get latest message of conversation.
+ * @return {EMMessage} 返回最新消息对象
+ */
+EMConversation.prototype.latestMessage = function () {
+  return new EMMessage(this._conversation.latestMessage());
+};
+
+/**
+ * Get received latest message of conversation.
+ * @return {EMMessage} 返回最新接收的消息对象
+ */
+EMConversation.prototype.latestMessageFromOthers = function () {
+  return new EMMessage(this._conversation.latestMessageFromOthers());
+};
+
+function createEMMessageList(array) {
+  var messageList = new Array(array.length);
+  for (var i = 0; i < array.length; i++) {
+    messageList[i] = new EMMessage(array[i]);
+  }
+  return messageList;
+}
+
+/**
+ * Load specified number of messages from DB.
+ * Note: The return result will NOT include the reference message, 
+ * and load message from the latest message if reference message id is empty.
+ * The result will be sorted by ASC.
+ * The trailing position resident last arrived message;
+
+ * @param {String} refMsgId 起始消息ID
+ * @param {Number} count 要加载的消息计数
+ * @param {Number} direction optional
+ * @return {Array} EMMessage array list.
+ */
+EMConversation.prototype.loadMoreMessagesByMsgId = function (refMsgId, count, direction) {
+  return createEMMessageList(this._conversation.loadMoreMessages(0, refMsgId, count, direction));
+};
+
+/**
+ * Load specified number of messages before the timestamp from DB.
+ * Note: The result will be sorted by ASC.
+ * @param {Number} timeStamp The reference timestamp
+ * @param {Number} count Message count to load
+ * @param {Number} direction optional. Message search direction
+ * @return {Array} EMMessage array list.
+ */
+EMConversation.prototype.loadMoreMessagesByTime = function (timeStamp, count, direction) {
+  return createEMMessageList(this._conversation.loadMoreMessages(1, timeStamp, count, direction));
+};
+
+/**
+ * Load specified number of messages before the timestamp and with the specified type from DB.
+ * Note: The result will be sorted by ASC.
+ * @param {Number} type Message type to load.
+ * @param {Number} timeStamp optional. The reference timestamp, milliseconds, will reference current time if timestamp is negative. default is -1.
+ * @param {Number} count optional. Message count to load, will load all messages meeet the conditions if count is negative. default is -1.
+ * @param {String} from optional. Message sender, will ignore it if it's empty. default is empty.
+ * @param {Number} direction optional. Message search direction. default is UP(0).
+ * @return {Array} EMMessage array list.
+ */
+EMConversation.prototype.loadMoreMessagesByType = function (type, timeStamp, count, from, direction) {
+  return createEMMessageList(this._conversation.loadMessage(2, type, timeStamp, count, from, direction));
+};
+
+/**
+ * Load specified number of messages before the timestamp and contains the specified keywords from DB.
+ * Note: The result will be sorted by ASC.
+ * @param {String} keywords Message contains keywords, will ignore it if it's empty.
+ * @param {Number} timeStamp the reference timestamp, milliseconds, will reference current time if timestamp is negative. default is -1.
+ * @param {Number} count Message count to load, will load all messages meeet the conditions if count is negative. default is -1.
+ * @param {String} from Message sender, will ignore it if it's empty, default is empty.
+ * @param {Number} direction Message search direction, default is UP(0).
+ * @return {Array} EMMessage array list.
+ */
+EMConversation.prototype.loadMoreMessagesByKeyWords = function (keywords, timeStamp, count, from, direction) {
+  return createEMMessageList(this._conversation.loadMoreMessages(3, keywords, timeStamp, count, from, direction));
+};
+
+/**
+ * Load messages from DB.
+ * Note: To avoid occupy too much memory, user should limit the max messages count to load.
+ * The result will be sorted by ASC.
+ * The trailing position resident last arrived message;
+ * @param {Number} startTimeStamp 起始时间
+ * @param {Number} endTimeStamp 结束时间
+ * @param {Number} maxCount 最大消息计数
+ * @return {Array} EMMessage array list.
+ */
+EMConversation.prototype.loadMoreMessagesBetweenTime = function (startTimeStamp, endTimeStamp, maxCount) {
+  return createEMMessageList(this._conversation.loadMoreMessages(4, startTimeStamp, endTimeStamp, maxCount));
+};
+
+/**
+ * Get conversation extend attribute.
+ * @return {String} 返回会话扩展属性
+ */
+EMConversation.prototype.extField = function () {
+  return this._conversation.extField();
+};
+
+/**
+ * Set conversation extend attribute.
+ * @param {String} ext 设置的会话扩展属性
+ */
+EMConversation.prototype.setExtField = function (ext) {
+  return this._conversation.setExtField(ext);
+};
+
+/**
+ * Get conversation last sync roam key. if don't have, return empty string.
+ * @return {String} 返回最新的同步消息ID
+ */
+EMConversation.prototype.lastSyncedMsgId = function () {
+  return this._conversation.lastSyncedMsgId();
+};
+
+module.exports = EMConversation;
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMMucSetting implementation.
+ * {
+ * PRIVATE_OWNER_INVITE = 0(defaule),  //Private group, only group owner can invite user to the group
+ * PRIVATE_MEMBER_INVITE = 1,          //Private group, both group owner and members can invite user to the group
+ * PUBLIC_JOIN_APPROVAL = 2,           //Public group, user can apply to join the group, but need group owner's approval, and owner can invite user to the group
+ * PUBLIC_JOIN_OPEN = 3                //Public group, any user can freely join the group, and owner can invite user to the group
+ * }
+ */
+
+/**
+ * EMMucSetting constructor.
+ * @constructor
+ * @param {Number} style 群组类型
+ * @param {Number} maxUserCount  最大人数
+ * @param {Bool} inviteNeedConfirm 邀请进群是否需要确认
+ * @param {String} extension 扩展信息
+ */
+function EMMucSetting(style, maxUserCount, inviteNeedConfirm, extension) {
+  if ((typeof style === 'undefined' ? 'undefined' : _typeof(style)) == "object") {
+    this._setting = style;
+  } else {
+    this._setting = new easemobNode.EMMucSetting(style, maxUserCount, inviteNeedConfirm, extension);
+  }
+}
+
+/**
+ * Set muc setting style.
+ * @param {Number} style 群组类型
+ * @return {void}
+ */
+EMMucSetting.prototype.setStyle = function (style) {
+  this._setting.setStyle(style);
+};
+
+/**
+ * Get muc setting style.
+ * @return {Number} 返回群组类型
+ */
+EMMucSetting.prototype.style = function () {
+  return this._setting.style();
+};
+
+/**
+ * Set muc max user count.
+ * @param {Number} maxUserCount 群组最大人数
+ * @return {void}
+ */
+EMMucSetting.prototype.setMaxUserCount = function (maxUserCount) {
+  this._setting.setMaxUserCount(maxUserCount);
+};
+
+/**
+ * Get muc max user count.
+ * @return {Number} 返回群组最大人数
+ */
+EMMucSetting.prototype.maxUserCount = function () {
+  return this._setting.maxUserCount();
+};
+
+/**
+ * Set muc max user count.
+ * @param {Bool} inviteNeedConfirm 邀请成员是否需要确认
+ * @return {void}
+ */
+EMMucSetting.prototype.setInviteNeedConfirm = function (inviteNeedConfirm) {
+  this._setting.setInviteNeedConfirm(inviteNeedConfirm);
+};
+
+/**
+ * Get muc max user count.
+ * @return {Bool} 返回邀请成员是否需要确认
+ */
+EMMucSetting.prototype.inviteNeedConfirm = function () {
+  return this._setting.inviteNeedConfirm();
+};
+
+/**
+ * Set muc max user count.
+ * @param {String} extension 扩展信息
+ * @return {void}
+ */
+EMMucSetting.prototype.setExtension = function (extension) {
+  this._setting.setExtension(extension);
+};
+
+/**
+ * Get muc max user count.
+ * @return {String} 返回扩展信息
+ */
+EMMucSetting.prototype.extension = function () {
+  return this._setting.extension();
+};
+
+module.exports = EMMucSetting;
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMMucSharedFile implementation.
+ */
+
+/**
+ * EMMucSetting constructor.
+ * @constructor
+ * @param {String} fileId 文件ID
+ * @param {String} fileName  文件名
+ * @param {String} fileOwner 文件所有人
+ * @param {Number} create 创建时间
+ * @param {Number} fileSize 文件大小
+ */
+function EMMucSharedFile(fileId, fileName, fileOwner, create, fileSize) {
+  if ((typeof fileId === 'undefined' ? 'undefined' : _typeof(fileId)) == "object") {
+    this._sharedfile = fileId;
+  } else {
+    this._sharedfile = new easemobNode.EMMucSharedFile(fileId, fileName, fileOwner, create, fileSize);
+  }
+}
+
+/**
+ * Get shared file id.
+ * @return {String} 返回文件ID
+ */
+EMMucSharedFile.prototype.fileId = function () {
+  return this._sharedfile.fileId();
+};
+
+/**
+ * Get shared file name.
+ * @return {String} 返回文件名
+ */
+EMMucSharedFile.prototype.fileName = function () {
+  return this._sharedfile.fileName();
+};
+
+/**
+ * Get shared file owner.
+ * @return {String} 返回文件创建人
+ */
+EMMucSharedFile.prototype.fileOwner = function () {
+  return this._sharedfile.fileOwner();
+};
+
+/**
+ * Get shared file create time.
+ * @return {Number} 返回创建时间
+ */
+EMMucSharedFile.prototype.create = function () {
+  return this._sharedfile.create();
+};
+
+/**
+ * Get shared file size.
+ * @return {Number} 返回文件大小
+ */
+EMMucSharedFile.prototype.fileSize = function () {
+  return this._sharedfile.fileSize();
+};
+
+module.exports = EMMucSharedFile;
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports) {
+
+module.exports = require("os");
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const u = __webpack_require__(25).fromCallback
+const jsonFile = __webpack_require__(587)
 
 module.exports = {
   // jsonfile exports
@@ -5319,7 +12889,7 @@ module.exports = {
 
 
 /***/ }),
-/* 146 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = minimatch
@@ -5331,7 +12901,7 @@ var path = (function () { try { return __webpack_require__(4) } catch (e) {}}())
 minimatch.sep = path.sep
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
-var expand = __webpack_require__(588)
+var expand = __webpack_require__(625)
 
 var plTypes = {
   '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
@@ -6272,7 +13842,7 @@ function regExpEscape (s) {
 
 
 /***/ }),
-/* 147 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6299,29 +13869,29 @@ module.exports.win32 = win32;
 
 
 /***/ }),
-/* 148 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(9) && !__webpack_require__(3)(function () {
-  return Object.defineProperty(__webpack_require__(102)('div'), 'a', { get: function () { return 7; } }).a != 7;
+module.exports = !__webpack_require__(10) && !__webpack_require__(3)(function () {
+  return Object.defineProperty(__webpack_require__(110)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
 /***/ }),
-/* 149 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.f = __webpack_require__(6);
 
 
 /***/ }),
-/* 150 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(24);
-var toIObject = __webpack_require__(25);
-var arrayIndexOf = __webpack_require__(84)(false);
-var IE_PROTO = __webpack_require__(104)('IE_PROTO');
+var has = __webpack_require__(26);
+var toIObject = __webpack_require__(27);
+var arrayIndexOf = __webpack_require__(89)(false);
+var IE_PROTO = __webpack_require__(112)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -6338,14 +13908,14 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 151 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(10);
+var dP = __webpack_require__(11);
 var anObject = __webpack_require__(1);
-var getKeys = __webpack_require__(50);
+var getKeys = __webpack_require__(53);
 
-module.exports = __webpack_require__(9) ? Object.defineProperties : function defineProperties(O, Properties) {
+module.exports = __webpack_require__(10) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
   var keys = getKeys(Properties);
   var length = keys.length;
@@ -6357,12 +13927,12 @@ module.exports = __webpack_require__(9) ? Object.defineProperties : function def
 
 
 /***/ }),
-/* 152 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(25);
-var gOPN = __webpack_require__(53).f;
+var toIObject = __webpack_require__(27);
+var gOPN = __webpack_require__(56).f;
 var toString = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -6382,18 +13952,18 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 
 /***/ }),
-/* 153 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var DESCRIPTORS = __webpack_require__(9);
-var getKeys = __webpack_require__(50);
-var gOPS = __webpack_require__(85);
-var pIE = __webpack_require__(72);
-var toObject = __webpack_require__(11);
-var IObject = __webpack_require__(71);
+var DESCRIPTORS = __webpack_require__(10);
+var getKeys = __webpack_require__(53);
+var gOPS = __webpack_require__(90);
+var pIE = __webpack_require__(75);
+var toObject = __webpack_require__(12);
+var IObject = __webpack_require__(74);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -6427,7 +13997,7 @@ module.exports = !$assign || __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 154 */
+/* 165 */
 /***/ (function(module, exports) {
 
 // 7.2.9 SameValue(x, y)
@@ -6438,14 +14008,14 @@ module.exports = Object.is || function is(x, y) {
 
 
 /***/ }),
-/* 155 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 var isObject = __webpack_require__(5);
-var invoke = __webpack_require__(156);
+var invoke = __webpack_require__(167);
 var arraySlice = [].slice;
 var factories = {};
 
@@ -6470,7 +14040,7 @@ module.exports = Function.bind || function bind(that /* , ...args */) {
 
 
 /***/ }),
-/* 156 */
+/* 167 */
 /***/ (function(module, exports) {
 
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -6492,12 +14062,12 @@ module.exports = function (fn, args, that) {
 
 
 /***/ }),
-/* 157 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $parseInt = __webpack_require__(2).parseInt;
-var $trim = __webpack_require__(65).trim;
-var ws = __webpack_require__(108);
+var $trim = __webpack_require__(68).trim;
+var ws = __webpack_require__(116);
 var hex = /^[-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
@@ -6507,13 +14077,13 @@ module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? f
 
 
 /***/ }),
-/* 158 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $parseFloat = __webpack_require__(2).parseFloat;
-var $trim = __webpack_require__(65).trim;
+var $trim = __webpack_require__(68).trim;
 
-module.exports = 1 / $parseFloat(__webpack_require__(108) + '-0') !== -Infinity ? function parseFloat(str) {
+module.exports = 1 / $parseFloat(__webpack_require__(116) + '-0') !== -Infinity ? function parseFloat(str) {
   var string = $trim(String(str), 3);
   var result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
@@ -6521,10 +14091,10 @@ module.exports = 1 / $parseFloat(__webpack_require__(108) + '-0') !== -Infinity 
 
 
 /***/ }),
-/* 159 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 module.exports = function (it, msg) {
   if (typeof it != 'number' && cof(it) != 'Number') throw TypeError(msg);
   return +it;
@@ -6532,7 +14102,7 @@ module.exports = function (it, msg) {
 
 
 /***/ }),
-/* 160 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
@@ -6544,7 +14114,7 @@ module.exports = function isInteger(it) {
 
 
 /***/ }),
-/* 161 */
+/* 172 */
 /***/ (function(module, exports) {
 
 // 20.2.2.20 Math.log1p(x)
@@ -6554,11 +14124,11 @@ module.exports = Math.log1p || function log1p(x) {
 
 
 /***/ }),
-/* 162 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.16 Math.fround(x)
-var sign = __webpack_require__(111);
+var sign = __webpack_require__(119);
 var pow = Math.pow;
 var EPSILON = pow(2, -52);
 var EPSILON32 = pow(2, -23);
@@ -6583,7 +14153,7 @@ module.exports = Math.fround || function fround(x) {
 
 
 /***/ }),
-/* 163 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
@@ -6601,12 +14171,12 @@ module.exports = function (iterator, fn, value, entries) {
 
 
 /***/ }),
-/* 164 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aFunction = __webpack_require__(15);
-var toObject = __webpack_require__(11);
-var IObject = __webpack_require__(71);
+var aFunction = __webpack_require__(16);
+var toObject = __webpack_require__(12);
+var IObject = __webpack_require__(74);
 var toLength = __webpack_require__(7);
 
 module.exports = function (that, callbackfn, aLen, memo, isRight) {
@@ -6635,14 +14205,14 @@ module.exports = function (that, callbackfn, aLen, memo, isRight) {
 
 
 /***/ }),
-/* 165 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 
-var toObject = __webpack_require__(11);
-var toAbsoluteIndex = __webpack_require__(51);
+var toObject = __webpack_require__(12);
+var toAbsoluteIndex = __webpack_require__(54);
 var toLength = __webpack_require__(7);
 
 module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /* = 0, end = @length */) {
@@ -6668,7 +14238,7 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
 
 
 /***/ }),
-/* 166 */
+/* 177 */
 /***/ (function(module, exports) {
 
 module.exports = function (done, value) {
@@ -6677,12 +14247,12 @@ module.exports = function (done, value) {
 
 
 /***/ }),
-/* 167 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var regexpExec = __webpack_require__(123);
+var regexpExec = __webpack_require__(131);
 __webpack_require__(0)({
   target: 'RegExp',
   proto: true,
@@ -6693,18 +14263,18 @@ __webpack_require__(0)({
 
 
 /***/ }),
-/* 168 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 21.2.5.3 get RegExp.prototype.flags()
-if (__webpack_require__(9) && /./g.flags != 'g') __webpack_require__(10).f(RegExp.prototype, 'flags', {
+if (__webpack_require__(10) && /./g.flags != 'g') __webpack_require__(11).f(RegExp.prototype, 'flags', {
   configurable: true,
-  get: __webpack_require__(73)
+  get: __webpack_require__(76)
 });
 
 
 /***/ }),
-/* 169 */
+/* 180 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -6717,12 +14287,12 @@ module.exports = function (exec) {
 
 
 /***/ }),
-/* 170 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(5);
-var newPromiseCapability = __webpack_require__(127);
+var newPromiseCapability = __webpack_require__(135);
 
 module.exports = function (C, x) {
   anObject(C);
@@ -6735,17 +14305,17 @@ module.exports = function (C, x) {
 
 
 /***/ }),
-/* 171 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strong = __webpack_require__(172);
-var validate = __webpack_require__(58);
+var strong = __webpack_require__(183);
+var validate = __webpack_require__(61);
 var MAP = 'Map';
 
 // 23.1 Map Objects
-module.exports = __webpack_require__(93)(MAP, function (get) {
+module.exports = __webpack_require__(98)(MAP, function (get) {
   return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.1.3.6 Map.prototype.get(key)
@@ -6761,23 +14331,23 @@ module.exports = __webpack_require__(93)(MAP, function (get) {
 
 
 /***/ }),
-/* 172 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var dP = __webpack_require__(10).f;
-var create = __webpack_require__(52);
-var redefineAll = __webpack_require__(57);
-var ctx = __webpack_require__(33);
-var anInstance = __webpack_require__(55);
-var forOf = __webpack_require__(56);
-var $iterDefine = __webpack_require__(113);
-var step = __webpack_require__(166);
-var setSpecies = __webpack_require__(54);
-var DESCRIPTORS = __webpack_require__(9);
-var fastKey = __webpack_require__(44).fastKey;
-var validate = __webpack_require__(58);
+var dP = __webpack_require__(11).f;
+var create = __webpack_require__(55);
+var redefineAll = __webpack_require__(60);
+var ctx = __webpack_require__(34);
+var anInstance = __webpack_require__(58);
+var forOf = __webpack_require__(59);
+var $iterDefine = __webpack_require__(121);
+var step = __webpack_require__(177);
+var setSpecies = __webpack_require__(57);
+var DESCRIPTORS = __webpack_require__(10);
+var fastKey = __webpack_require__(46).fastKey;
+var validate = __webpack_require__(61);
 var SIZE = DESCRIPTORS ? '_s' : 'size';
 
 var getEntry = function (that, key) {
@@ -6912,17 +14482,17 @@ module.exports = {
 
 
 /***/ }),
-/* 173 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strong = __webpack_require__(172);
-var validate = __webpack_require__(58);
+var strong = __webpack_require__(183);
+var validate = __webpack_require__(61);
 var SET = 'Set';
 
 // 23.2 Set Objects
-module.exports = __webpack_require__(93)(SET, function (get) {
+module.exports = __webpack_require__(98)(SET, function (get) {
   return function Set() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.2.3.1 Set.prototype.add(value)
@@ -6933,20 +14503,20 @@ module.exports = __webpack_require__(93)(SET, function (get) {
 
 
 /***/ }),
-/* 174 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global = __webpack_require__(2);
-var each = __webpack_require__(40)(0);
-var redefine = __webpack_require__(18);
-var meta = __webpack_require__(44);
-var assign = __webpack_require__(153);
-var weak = __webpack_require__(175);
+var each = __webpack_require__(41)(0);
+var redefine = __webpack_require__(19);
+var meta = __webpack_require__(46);
+var assign = __webpack_require__(164);
+var weak = __webpack_require__(186);
 var isObject = __webpack_require__(5);
-var validate = __webpack_require__(58);
-var NATIVE_WEAK_MAP = __webpack_require__(58);
+var validate = __webpack_require__(61);
+var NATIVE_WEAK_MAP = __webpack_require__(61);
 var IS_IE11 = !global.ActiveXObject && 'ActiveXObject' in global;
 var WEAK_MAP = 'WeakMap';
 var getWeak = meta.getWeak;
@@ -6976,7 +14546,7 @@ var methods = {
 };
 
 // 23.3 WeakMap Objects
-var $WeakMap = module.exports = __webpack_require__(93)(WEAK_MAP, wrapper, methods, weak, true, true);
+var $WeakMap = module.exports = __webpack_require__(98)(WEAK_MAP, wrapper, methods, weak, true, true);
 
 // IE11 WeakMap frozen keys fix
 if (NATIVE_WEAK_MAP && IS_IE11) {
@@ -7000,20 +14570,20 @@ if (NATIVE_WEAK_MAP && IS_IE11) {
 
 
 /***/ }),
-/* 175 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var redefineAll = __webpack_require__(57);
-var getWeak = __webpack_require__(44).getWeak;
+var redefineAll = __webpack_require__(60);
+var getWeak = __webpack_require__(46).getWeak;
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(5);
-var anInstance = __webpack_require__(55);
-var forOf = __webpack_require__(56);
-var createArrayMethod = __webpack_require__(40);
-var $has = __webpack_require__(24);
-var validate = __webpack_require__(58);
+var anInstance = __webpack_require__(58);
+var forOf = __webpack_require__(59);
+var createArrayMethod = __webpack_require__(41);
+var $has = __webpack_require__(26);
+var validate = __webpack_require__(61);
 var arrayFind = createArrayMethod(5);
 var arrayFindIndex = createArrayMethod(6);
 var id = 0;
@@ -7092,11 +14662,11 @@ module.exports = {
 
 
 /***/ }),
-/* 176 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/ecma262/#sec-toindex
-var toInteger = __webpack_require__(35);
+var toInteger = __webpack_require__(36);
 var toLength = __webpack_require__(7);
 module.exports = function (it) {
   if (it === undefined) return 0;
@@ -7108,12 +14678,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 177 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all object keys, includes non-enumerable and symbols
-var gOPN = __webpack_require__(53);
-var gOPS = __webpack_require__(85);
+var gOPN = __webpack_require__(56);
+var gOPS = __webpack_require__(90);
 var anObject = __webpack_require__(1);
 var Reflect = __webpack_require__(2).Reflect;
 module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
@@ -7124,16 +14694,16 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
 
 
 /***/ }),
-/* 178 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
-var isArray = __webpack_require__(86);
+var isArray = __webpack_require__(91);
 var isObject = __webpack_require__(5);
 var toLength = __webpack_require__(7);
-var ctx = __webpack_require__(33);
+var ctx = __webpack_require__(34);
 var IS_CONCAT_SPREADABLE = __webpack_require__(6)('isConcatSpreadable');
 
 function flattenIntoArray(target, original, source, sourceLen, start, depth, mapper, thisArg) {
@@ -7170,13 +14740,13 @@ module.exports = flattenIntoArray;
 
 
 /***/ }),
-/* 179 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = __webpack_require__(7);
-var repeat = __webpack_require__(110);
-var defined = __webpack_require__(38);
+var repeat = __webpack_require__(118);
+var defined = __webpack_require__(39);
 
 module.exports = function (that, maxLength, fillString, left) {
   var S = String(defined(that));
@@ -7192,13 +14762,13 @@ module.exports = function (that, maxLength, fillString, left) {
 
 
 /***/ }),
-/* 180 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var DESCRIPTORS = __webpack_require__(9);
-var getKeys = __webpack_require__(50);
-var toIObject = __webpack_require__(25);
-var isEnum = __webpack_require__(72).f;
+var DESCRIPTORS = __webpack_require__(10);
+var getKeys = __webpack_require__(53);
+var toIObject = __webpack_require__(27);
+var isEnum = __webpack_require__(75).f;
 module.exports = function (isEntries) {
   return function (it) {
     var O = toIObject(it);
@@ -7219,12 +14789,12 @@ module.exports = function (isEntries) {
 
 
 /***/ }),
-/* 181 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(64);
-var from = __webpack_require__(182);
+var classof = __webpack_require__(67);
+var from = __webpack_require__(193);
 module.exports = function (NAME) {
   return function toJSON() {
     if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
@@ -7234,10 +14804,10 @@ module.exports = function (NAME) {
 
 
 /***/ }),
-/* 182 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var forOf = __webpack_require__(56);
+var forOf = __webpack_require__(59);
 
 module.exports = function (iter, ITERATOR) {
   var result = [];
@@ -7247,7 +14817,7 @@ module.exports = function (iter, ITERATOR) {
 
 
 /***/ }),
-/* 183 */
+/* 194 */
 /***/ (function(module, exports) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -7271,7 +14841,7 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 
 
 /***/ }),
-/* 184 */
+/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7283,7 +14853,7 @@ function isUndefined(obj) {
 
 
 /***/ }),
-/* 185 */
+/* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7298,46 +14868,46 @@ function isBoolean(obj) {
 
 
 /***/ }),
-/* 186 */
+/* 197 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('Number'));
 
 
 /***/ }),
-/* 187 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('Symbol'));
 
 
 /***/ }),
-/* 188 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('ArrayBuffer'));
 
 
 /***/ }),
-/* 189 */
+/* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isNaN;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isNumber_js__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isNumber_js__ = __webpack_require__(197);
 
 
 
@@ -7348,14 +14918,14 @@ function isNaN(obj) {
 
 
 /***/ }),
-/* 190 */
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isDataView_js__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant_js__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isBufferLike_js__ = __webpack_require__(465);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isDataView_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant_js__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isBufferLike_js__ = __webpack_require__(492);
 
 
 
@@ -7374,7 +14944,7 @@ function isTypedArray(obj) {
 
 
 /***/ }),
-/* 191 */
+/* 202 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7388,7 +14958,7 @@ function constant(value) {
 
 
 /***/ }),
-/* 192 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7406,7 +14976,7 @@ function createSizePropertyCheck(getSizeProperty) {
 
 
 /***/ }),
-/* 193 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7420,14 +14990,14 @@ function shallowProperty(key) {
 
 
 /***/ }),
-/* 194 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = collectNonEnumProps;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__has_js__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__has_js__ = __webpack_require__(48);
 
 
 
@@ -7471,12 +15041,12 @@ function collectNonEnumProps(obj, keys) {
 
 
 /***/ }),
-/* 195 */
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isMatch;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(14);
 
 
 // Returns whether an object has a given set of `key:value` pairs.
@@ -7493,12 +15063,12 @@ function isMatch(object, attrs) {
 
 
 /***/ }),
-/* 196 */
+/* 207 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = invert;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(14);
 
 
 // Invert the keys and values of an object. The values must be serializable.
@@ -7513,12 +15083,12 @@ function invert(obj) {
 
 
 /***/ }),
-/* 197 */
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = functions;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction_js__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction_js__ = __webpack_require__(30);
 
 
 // Return a sorted list of the function names available on the object.
@@ -7532,12 +15102,12 @@ function functions(obj) {
 
 
 /***/ }),
-/* 198 */
+/* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__allKeys_js__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__allKeys_js__ = __webpack_require__(79);
 
 
 
@@ -7546,12 +15116,12 @@ function functions(obj) {
 
 
 /***/ }),
-/* 199 */
+/* 210 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__allKeys_js__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createAssigner_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__allKeys_js__ = __webpack_require__(79);
 
 
 
@@ -7560,12 +15130,12 @@ function functions(obj) {
 
 
 /***/ }),
-/* 200 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = baseCreate;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
 
 
@@ -7588,14 +15158,14 @@ function baseCreate(prototype) {
 
 
 /***/ }),
-/* 201 */
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toPath_js__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deepGet_js__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isUndefined_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toPath_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deepGet_js__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isUndefined_js__ = __webpack_require__(195);
 
 
 
@@ -7611,13 +15181,13 @@ function get(object, path, defaultValue) {
 
 
 /***/ }),
-/* 202 */
+/* 213 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toPath;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(64);
 
 
 
@@ -7630,18 +15200,18 @@ __WEBPACK_IMPORTED_MODULE_0__underscore_js__["a" /* default */].toPath = toPath;
 
 
 /***/ }),
-/* 203 */
+/* 214 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = baseIteratee;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject_js__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray_js__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matcher_js__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__property_js__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__optimizeCb_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject_js__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matcher_js__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__property_js__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__optimizeCb_js__ = __webpack_require__(81);
 
 
 
@@ -7662,13 +15232,13 @@ function baseIteratee(value, context, argCount) {
 
 
 /***/ }),
-/* 204 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = iteratee;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee_js__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee_js__ = __webpack_require__(214);
 
 
 
@@ -7682,7 +15252,7 @@ __WEBPACK_IMPORTED_MODULE_0__underscore_js__["a" /* default */].iteratee = itera
 
 
 /***/ }),
-/* 205 */
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7692,7 +15262,7 @@ function noop(){}
 
 
 /***/ }),
-/* 206 */
+/* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7708,12 +15278,12 @@ function random(min, max) {
 
 
 /***/ }),
-/* 207 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createEscaper;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(14);
 
 
 // Internal helper to generate functions for escaping and unescaping strings
@@ -7734,7 +15304,7 @@ function createEscaper(map) {
 
 
 /***/ }),
-/* 208 */
+/* 219 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7750,11 +15320,11 @@ function createEscaper(map) {
 
 
 /***/ }),
-/* 209 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
 
 
 // By default, Underscore uses ERB-style template delimiters. Change the
@@ -7767,13 +15337,13 @@ function createEscaper(map) {
 
 
 /***/ }),
-/* 210 */
+/* 221 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = executeBound;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate_js__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate_js__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject_js__ = __webpack_require__(63);
 
 
 
@@ -7790,13 +15360,13 @@ function executeBound(sourceFunc, boundFunc, context, callingContext, args) {
 
 
 /***/ }),
-/* 211 */
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__executeBound_js__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__executeBound_js__ = __webpack_require__(221);
 
 
 
@@ -7813,11 +15383,11 @@ function executeBound(sourceFunc, boundFunc, context, callingContext, args) {
 
 
 /***/ }),
-/* 212 */
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
 
 
 // Delays a function for the given number of milliseconds, and then calls
@@ -7830,7 +15400,7 @@ function executeBound(sourceFunc, boundFunc, context, callingContext, args) {
 
 
 /***/ }),
-/* 213 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7850,13 +15420,13 @@ function before(times, func) {
 
 
 /***/ }),
-/* 214 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = findKey;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(14);
 
 
 
@@ -7872,13 +15442,13 @@ function findKey(obj, predicate, context) {
 
 
 /***/ }),
-/* 215 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createPredicateIndexFinder;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(31);
 
 
 
@@ -7897,11 +15467,11 @@ function createPredicateIndexFinder(dir) {
 
 
 /***/ }),
-/* 216 */
+/* 227 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createPredicateIndexFinder_js__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createPredicateIndexFinder_js__ = __webpack_require__(226);
 
 
 // Returns the last index on an array-like that passes a truth test.
@@ -7909,13 +15479,13 @@ function createPredicateIndexFinder(dir) {
 
 
 /***/ }),
-/* 217 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = sortedIndex;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(31);
 
 
 
@@ -7934,13 +15504,13 @@ function sortedIndex(array, obj, iteratee, context) {
 
 
 /***/ }),
-/* 218 */
+/* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sortedIndex_js__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findIndex_js__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createIndexFinder_js__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sortedIndex_js__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findIndex_js__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createIndexFinder_js__ = __webpack_require__(230);
 
 
 
@@ -7953,14 +15523,14 @@ function sortedIndex(array, obj, iteratee, context) {
 
 
 /***/ }),
-/* 219 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createIndexFinder;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isNaN_js__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isNaN_js__ = __webpack_require__(200);
 
 
 
@@ -7992,14 +15562,14 @@ function createIndexFinder(dir, predicateFind, sortedIndex) {
 
 
 /***/ }),
-/* 220 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = find;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findIndex_js__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__findKey_js__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findIndex_js__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__findKey_js__ = __webpack_require__(225);
 
 
 
@@ -8013,14 +15583,14 @@ function find(obj, predicate, context) {
 
 
 /***/ }),
-/* 221 */
+/* 232 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createReduce;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__optimizeCb_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__optimizeCb_js__ = __webpack_require__(81);
 
 
 
@@ -8052,15 +15622,15 @@ function createReduce(dir) {
 
 
 /***/ }),
-/* 222 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = max;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__each_js__ = __webpack_require__(65);
 
 
 
@@ -8093,16 +15663,16 @@ function max(obj, iteratee, context) {
 
 
 /***/ }),
-/* 223 */
+/* 234 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = sample;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__random_js__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toArray_js__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__random_js__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toArray_js__ = __webpack_require__(235);
 
 
 
@@ -8133,18 +15703,18 @@ function sample(obj, n, guard) {
 
 
 /***/ }),
-/* 224 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toArray;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArray_js__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArray_js__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isString_js__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__map_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__identity_js__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__values_js__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isString_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__map_js__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__identity_js__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__values_js__ = __webpack_require__(70);
 
 
 
@@ -8168,16 +15738,16 @@ function toArray(obj) {
 
 
 /***/ }),
-/* 225 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__optimizeCb_js__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__allKeys_js__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__keyInObj_js__ = __webpack_require__(514);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__flatten_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__optimizeCb_js__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__allKeys_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__keyInObj_js__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__flatten_js__ = __webpack_require__(71);
 
 
 
@@ -8207,7 +15777,7 @@ function toArray(obj) {
 
 
 /***/ }),
-/* 226 */
+/* 237 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8224,7 +15794,7 @@ function initial(array, n, guard) {
 
 
 /***/ }),
-/* 227 */
+/* 238 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8241,14 +15811,14 @@ function rest(array, n, guard) {
 
 
 /***/ }),
-/* 228 */
+/* 239 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flatten_js__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filter_js__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contains_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flatten_js__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filter_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contains_js__ = __webpack_require__(83);
 
 
 
@@ -8265,15 +15835,15 @@ function rest(array, n, guard) {
 
 
 /***/ }),
-/* 229 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = uniq;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isBoolean_js__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contains_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isBoolean_js__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contains_js__ = __webpack_require__(83);
 
 
 
@@ -8313,14 +15883,14 @@ function uniq(array, isSorted, iteratee, context) {
 
 
 /***/ }),
-/* 230 */
+/* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = unzip;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__max_js__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pluck_js__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__max_js__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pluck_js__ = __webpack_require__(151);
 
 
 
@@ -8339,12 +15909,12 @@ function unzip(array) {
 
 
 /***/ }),
-/* 231 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = chainResult;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
 
 
 // Helper function to continue chaining intermediate results.
@@ -8354,19 +15924,4978 @@ function chainResult(instance, obj) {
 
 
 /***/ }),
-/* 232 */
+/* 243 */
 /***/ (function(module, exports) {
 
 module.exports = require("child_process");
 
 /***/ }),
-/* 233 */
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMCmdMessageBody implementation.
+ */
+
+/**
+ * Command message body constructor.
+ * @constructor
+ * @param {String} action
+ */
+function EMCmdMessageBody(action) {
+  if ((typeof action === 'undefined' ? 'undefined' : _typeof(action)) == "object") {
+    this._body = action;
+  } else {
+    this._body = new easemobNode.EMCmdMessageBody(action);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMCmdMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Get command action.
+ * @return {String} 返回命令消息类型
+ */
+EMCmdMessageBody.prototype.action = function () {
+  return this._body.action();
+};
+
+/**
+ * Set command action.
+ * @param {String} action
+ * @return {void} 设置命令消息类型
+ */
+EMCmdMessageBody.prototype.setAction = function (action) {
+  this._body.setAction(action);
+};
+
+/**
+ * Get command action.
+ * @return {Array} array is a object list. object is like {"key" : "1", "value" : "1"}
+ */
+EMCmdMessageBody.prototype.params = function () {
+  return this._body.params();
+};
+
+/**
+ * Set command action.
+ * @param {Array} params params is a object list. object is a key value object. like {"key" : "1", "value" : "1"}
+ * @return {void}
+ */
+EMCmdMessageBody.prototype.setParams = function (params) {
+  this._body.setParams(params);
+};
+
+module.exports = EMCmdMessageBody;
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMCustomMessageBody implementation.
+ */
+
+/**
+ * Command message body constructor.
+ * @constructor
+ * @param {String} event
+ */
+function EMCustomMessageBody(event) {
+  if ((typeof event === 'undefined' ? 'undefined' : _typeof(event)) == "object") {
+    this._body = event;
+  } else {
+    this._body = new easemobNode.EMCustomMessageBody(event);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMCustomMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Get command action.
+ * @return {String} 返回消息event名称
+ */
+EMCustomMessageBody.prototype.event = function () {
+  return this._body.event();
+};
+
+/**
+ * Set custommsg event.
+ * @param {String} event 设置消息event名称
+ * @return {void} 
+ */
+EMCustomMessageBody.prototype.setEvent = function (event) {
+  this._body.setEvent(event);
+};
+
+/**
+ * Get command exts.
+ * @return {Object} return an object like {"key1" : "val1", "key2" : "val2"}
+ */
+EMCustomMessageBody.prototype.exts = function () {
+  return this._body.exts();
+};
+
+/**
+ * Set command exts.
+ * @param {Object} exts exts is an object like {"key1" : "val1", "key2" : "val2"}
+ * @return {void}
+ */
+EMCustomMessageBody.prototype.setExts = function (exts) {
+  this._body.setExts(exts);
+};
+
+module.exports = EMCustomMessageBody;
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMFileMessageBody implementation.
+ * {
+ * DOWNLOADING = 0, Downloading in progress
+ * SUCCESSED = 1,   Succeed
+ * FAILED = 2,      Failed
+ * PENDING = 3,     Download has not begun
+ * }
+ */
+
+/**
+ * File message body constructor.
+ * @constructor
+ * @param {String} localPath The file path
+ */
+function EMFileMessageBody(localPath) {
+  if ((typeof localPath === 'undefined' ? 'undefined' : _typeof(localPath)) == "object") {
+    this._body = localPath; //this situation used from emmessage.bodies()
+  } else this._body = new easemobNode.EMFileMessageBody(localPath);
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMFileMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Set display name of the attachment.
+ * @param {String} displayName 消息展示名
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setDisplayName = function (displayName) {
+  this._body.setDisplayName(displayName);
+};
+
+/**
+ * Get display name of the attachment.
+ * @return {String} 返回消息展示名
+ */
+EMFileMessageBody.prototype.displayName = function () {
+  return this._body.displayName();
+};
+
+/**
+ * Set local path of the attachment.
+ * Note: should NOT change the local path of the Received message.
+ * @param {String} localPath 附件本地存储路径
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setLocalPath = function (localPath) {
+  this._body.setLocalPath(localPath);
+};
+
+/**
+ * Get local path of the attachment.
+ * @return {String} 返回附件本地存储路径
+ */
+EMFileMessageBody.prototype.localPath = function () {
+  return this._body.localPath();
+};
+
+/**
+ * Set remote path of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} remotePath 文件在服务器的存储位置
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setRemotePath = function (remotePath) {
+  this._body.setRemotePath(remotePath);
+};
+
+/**
+ * Get remote path of the attachment.
+ * @return {String} 返回文件在服务器的存储位置
+ */
+EMFileMessageBody.prototype.remotePath = function () {
+  return this._body.remotePath();
+};
+
+/**
+ * Set secret key of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} secretKey 文件加密密钥
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setSecretKey = function (secretKey) {
+  this._body.setSecretKey(secretKey);
+};
+
+/**
+ * Get secret key of the attachment, it's used to download attachment from server.
+ * @return {String} 返回文件加密密钥
+ */
+EMFileMessageBody.prototype.secretKey = function () {
+  return this._body.secretKey();
+};
+
+/**
+ * Set file length of the attachment.
+ * Note: It's usually not necessary to call this method, will calculate file length automatically when setting local path.
+ * @param {Number} fileLength 文件大小
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setFileLength = function (fileLength) {
+  this._body.setFileLength(fileLength);
+};
+
+/**
+ * Get file length of the attachment.
+ * @return {Number} 返回文件大小
+ */
+EMFileMessageBody.prototype.fileLength = function () {
+  return this._body.fileLength();
+};
+
+/**
+ * Set file downloading status.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} downloadStatus 设置下载状态
+ * @return {void}
+ */
+EMFileMessageBody.prototype.setDownloadStatus = function (downloadStatus) {
+  this._body.setDownloadStatus(downloadStatus);
+};
+
+/**
+ * Get file downloading status
+ * @return {Number} 下载状态
+ */
+EMFileMessageBody.prototype.downloadStatus = function () {
+  return this._body.downloadStatus();
+};
+
+module.exports = EMFileMessageBody;
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMImageMessageBody implementation.
+ */
+/**
+ * Image message body constructor.
+ * @constructor
+ * @param {Number} width The width of image
+ * @param {Number} height The height of image
+ */
+function EMImageSize(width, height) {
+  this._size = new easemobNode.EMImageSize(width, height);
+  Object.defineProperties(this, {
+    width: {
+      get: function get() {
+        return this._size.width;
+      },
+      set: function set(width) {
+        this._size.width = width;
+      }
+    },
+    height: {
+      get: function get() {
+        return this._size.height;
+      },
+      set: function set(height) {
+        this._size.height = height;
+      }
+    }
+  });
+}
+
+function EMImageMessageBody(localPath, thumbnailLocalPath) {
+  if ((typeof localPath === 'undefined' ? 'undefined' : _typeof(localPath)) == "object") {
+    this._body = localPath; //this situation used from emmessage.bodies()
+  } else {
+    this._body = new easemobNode.EMImageMessageBody(localPath, thumbnailLocalPath);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMImageMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Set display name of the attachment.
+ * @param {String} displayName 消息展示名
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setDisplayName = function (displayName) {
+  this._body.setDisplayName(displayName);
+};
+
+/**
+ * Get display name of the attachment.
+ * @return {String} 返回消息展示名
+ */
+EMImageMessageBody.prototype.displayName = function () {
+  return this._body.displayName();
+};
+
+/**
+ * Set local path of the attachment.
+ * Note: should NOT change the local path of the Received message.
+ * @param {String} localPath 图片本地存储路径
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setLocalPath = function (localPath) {
+  this._body.setLocalPath(localPath);
+};
+
+/**
+ * Get local path of the attachment.
+ * @return {String} 返回图片本地存储路径
+ */
+EMImageMessageBody.prototype.localPath = function () {
+  return this._body.localPath();
+};
+
+/**
+ * Set remote path of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} remotePath 图片在服务器的存储路径
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setRemotePath = function (remotePath) {
+  this._body.setRemotePath(remotePath);
+};
+
+/**
+ * Get remote path of the attachment.
+ * @return {String} 返回图片在服务器的存储路径
+ */
+EMImageMessageBody.prototype.remotePath = function () {
+  return this._body.remotePath();
+};
+
+/**
+ * Set secret key of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} secretKey 图片加密密钥
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setSecretKey = function (secretKey) {
+  this._body.setSecretKey(secretKey);
+};
+
+/**
+ * Get secret key of the attachment, it's used to download attachment from server.
+ * @return {String} 返回图片加密密钥
+ */
+EMImageMessageBody.prototype.secretKey = function () {
+  return this._body.secretKey();
+};
+
+/**
+ * Set file length of the attachment.
+ * Note: It's usually not necessary to call this method, will calculate file length automatically when setting local path.
+ * @param {Number} fileLength 文件大小
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setFileLength = function (fileLength) {
+  this._body.setFileLength(fileLength);
+};
+
+/**
+ * Get file length of the attachment.
+ * @return {Number} 返回文件大小
+ */
+EMImageMessageBody.prototype.fileLength = function () {
+  return this._body.fileLength();
+};
+
+/**
+ * Set file downloading status.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} downloadStatus 图片文件下载状态
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setDownloadStatus = function (downloadStatus) {
+  this._body.setDownloadStatus(downloadStatus);
+};
+
+/**
+ * Get file downloading status
+ * @return {Number} 返回图片文件下载状态
+ */
+EMImageMessageBody.prototype.downloadStatus = function () {
+  return this._body.downloadStatus();
+};
+
+/**
+ * Set display name of the thumbnail.
+ * @param {String} thumbnailDisplayName 图片缩略图展示名
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailDisplayName = function (thumbnailDisplayName) {
+  this._body.setThumbnailDisplayName(thumbnailDisplayName);
+};
+
+/**
+ * Get display name of the thumbnail.
+ * @return {String} 返回图片缩略图展示名
+ */
+EMImageMessageBody.prototype.thumbnailDisplayName = function () {
+  return this._body.thumbnailDisplayName();
+};
+
+/**
+ * Set local path of the thumbnail.
+ * @param {String} thumbnailLocalPath 图片缩略图本地路径
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailLocalPath = function (thumbnailLocalPath) {
+  this._body.setThumbnailLocalPath(thumbnailLocalPath);
+};
+
+/**
+ * Get local path of the thumbnail.
+ * @return {String} 返回图片缩略图本地路径
+ */
+EMImageMessageBody.prototype.thumbnailLocalPath = function () {
+  return this._body.thumbnailLocalPath();
+};
+
+/**
+ * Set remote path of the thumbnail.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} thumbnailRemotePath 缩略图在服务器的存储路径
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailRemotePath = function (thumbnailRemotePath) {
+  this._body.setThumbnailRemotePath(thumbnailRemotePath);
+};
+
+/**
+ * Get remote path of the thumbnail.
+ * @return {String} 返回缩略图在服务器的存储路径
+ */
+EMImageMessageBody.prototype.thumbnailRemotePath = function () {
+  return this._body.thumbnailRemotePath();
+};
+
+/**
+ * Set secret key of the thumbnail.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} thumbnailRemotePath 缩略图加密密钥
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailSecretKey = function (thumbnailRemotePath) {
+  this._body.setThumbnailSecretKey(thumbnailRemotePath);
+};
+
+/**
+ * Get secret key of the thumbnail.
+ * @return {String} 返回缩略图加密密钥
+ */
+EMImageMessageBody.prototype.thumbnailSecretKey = function () {
+  return this._body.thumbnailSecretKey();
+};
+
+/**
+ * Set size of the thumbnail.
+ * @param {EMImageSize} size 缩略图大小
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailSize = function (size) {
+  this._body.setThumbnailSize(size._size);
+};
+
+/**
+ * Get size of the thumbnail.
+ * @return {EMImageSize} 返回缩略图大小
+ */
+EMImageMessageBody.prototype.thumbnailSize = function () {
+  return new EMImageSize(this._body.thumbnailSize().width, this._body.thumbnailSize().height);
+};
+
+/**
+ * Set file length of the thumbnail.
+ * Note: It's usually not necessary to call this method, will calculate file length automatically when setting local path.
+ * @param {Number} thumbnailFileLength 缩略图文件大小
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailFileLength = function (thumbnailFileLength) {
+  this._body.setThumbnailFileLength(thumbnailFileLength);
+};
+
+/**
+ * Get file length of the thumbnail.
+ * @return {Number} 返回缩略图文件大小
+ */
+EMImageMessageBody.prototype.thumbnailFileLength = function () {
+  return this._body.thumbnailFileLength();
+};
+
+/**
+ * Set download status of the thumbnail.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} thumbnailDownloadStatus 缩略图下载状态
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setThumbnailDownloadStatus = function (thumbnailDownloadStatus) {
+  this._body.setThumbnailDownloadStatus(thumbnailDownloadStatus);
+};
+
+/**
+ * Get download status of the thumbnail.
+ * @return {Number} 返回缩略图下载状态
+ */
+EMImageMessageBody.prototype.thumbnailDownloadStatus = function () {
+  return this._body.thumbnailDownloadStatus();
+};
+
+/**
+ * Set size of the thumbnail.
+ * @param {EMImageSize} size 缩略图图片大小
+ * @return {void}
+ */
+EMImageMessageBody.prototype.setSize = function (size) {
+  this._body.setSize(size._size);
+};
+
+/**
+ * Get size of the thumbnail.
+ * @return {EMImageSize} 返回缩略图图片大小
+ */
+EMImageMessageBody.prototype.size = function () {
+  return new EMImageSize(this._body.size().width, this._body.size().height);
+};
+
+module.exports = {
+  EMImageSize: EMImageSize,
+  EMImageMessageBody: EMImageMessageBody
+};
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMLocationMessageBody implementation.
+ */
+/**
+ * Location message body constructor.
+ * @constructor
+ * @param {Number} latitude 纬度
+ * @param {Number} longitude 经度
+ * @param {String} address 地址
+ */
+function EMLocationMessageBody(latitude, longitude, address) {
+  if ((typeof latitude === 'undefined' ? 'undefined' : _typeof(latitude)) == "object") {
+    this._body = latitude; //this situation used from emmessage.bodies()
+  } else {
+    this._body = new easemobNode.EMLocationMessageBody(latitude, longitude, address);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 消息类型
+ */
+EMLocationMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Set latitude.
+ * @param {Number} latitude 纬度
+ * @return {void}
+ */
+EMLocationMessageBody.prototype.setLatitude = function (latitude) {
+  this._body.setLatitude(latitude);
+};
+
+/**
+ * Get latitude.
+ * @return {Number} 返回纬度
+ */
+EMLocationMessageBody.prototype.latitude = function () {
+  return this._body.latitude();
+};
+
+/**
+ * Set longitude.
+ * @param {Number} longitude 经度
+ * @return {void}
+ */
+EMLocationMessageBody.prototype.setLongitude = function (longitude) {
+  this._body.setLongitude(longitude);
+};
+
+/**
+ * Get longitude.
+ * @return {Number} 返回经度
+ */
+EMLocationMessageBody.prototype.longitude = function () {
+  return this._body.longitude();
+};
+
+/**
+ * Set address.
+ * @param {String} address 地址信息
+ * @return {void}
+ */
+EMLocationMessageBody.prototype.setAddress = function (address) {
+  this._body.setAddress(address);
+};
+
+/**
+ * Get address.
+ * @return {String} 返回地址信息
+ */
+EMLocationMessageBody.prototype.address = function () {
+  return this._body.address();
+};
+
+module.exports = EMLocationMessageBody;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMTextMessageBody implementation.
+ */
+/**
+ * Text message body constructor.
+ * @constructor
+ * @param {String} text
+ */
+function EMTextMessageBody(text) {
+  if ((typeof text === 'undefined' ? 'undefined' : _typeof(text)) == "object") {
+    this._body = text; //this situation used from emmessage.bodies()
+  } else {
+    this._body = new easemobNode.EMTextMessageBody(text);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMTextMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Get the text.
+ * @return {String} 消息类型
+ */
+EMTextMessageBody.prototype.text = function () {
+  return this._body.text();
+};
+
+module.exports = EMTextMessageBody;
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMVideoMessageBody implementation.
+ */
+/**
+ * Video size constructor.
+ * @constructor
+ * @param {Number} width 视频宽
+ * @param {Number} height 视频高
+ */
+function EMVideoSize(width, height) {
+  this._size = new easemobNode.EMVideoSize(width, height);
+  Object.defineProperties(this, {
+    width: {
+      get: function get() {
+        return this._size.width;
+      },
+      set: function set(width) {
+        this._size.width = width;
+      }
+    },
+    height: {
+      get: function get() {
+        return this._size.height;
+      },
+      set: function set(height) {
+        this._size.height = height;
+      }
+    }
+  });
+}
+
+/**
+ * Video message body constructor.
+ * @constructor
+ * @param {String} localPath 视频本地位置
+ * @param {String} thumbnailLocalPath 视频缩略图本地位置
+ */
+function EMVideoMessageBody(localPath, thumbnailLocalPath) {
+  if ((typeof localPath === 'undefined' ? 'undefined' : _typeof(localPath)) == 'object') {
+    this._body = localPath;
+  } else {
+    this._body = new easemobNode.EMVideoMessageBody(localPath, thumbnailLocalPath);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 返回消息类型
+ */
+EMVideoMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Set display name of the attachment.
+ * @param {String} displayName 消息展示名
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setDisplayName = function (displayName) {
+  this._body.setDisplayName(displayName);
+};
+
+/**
+ * Get display name of the attachment.
+ * @return {String} 返回消息展示名
+ */
+EMVideoMessageBody.prototype.displayName = function () {
+  return this._body.displayName();
+};
+
+/**
+ * Set local path of the attachment.
+ * Note: should NOT change the local path of the Received message.
+ * @param {String} localPath 消息本地存储路径
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setLocalPath = function (localPath) {
+  this._body.setLocalPath(localPath);
+};
+
+/**
+ * Get local path of the attachment.
+ * @return {String} 返回消息本地存储路径
+ */
+EMVideoMessageBody.prototype.localPath = function () {
+  return this._body.localPath();
+};
+
+/**
+ * Set remote path of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} remotePath 消息在服务器存储路径
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setRemotePath = function (remotePath) {
+  this._body.setRemotePath(remotePath);
+};
+
+/**
+ * Get remote path of the attachment.
+ * @return {String} 返回消息在服务器存储路径
+ */
+EMVideoMessageBody.prototype.remotePath = function () {
+  return this._body.remotePath();
+};
+
+/**
+ * Set secret key of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} secretKey 消息加密密钥
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setSecretKey = function (secretKey) {
+  this._body.setSecretKey(secretKey);
+};
+
+/**
+ * Get secret key of the attachment, it's used to download attachment from server.
+ * @return {String} 返回消息加密密钥
+ */
+EMVideoMessageBody.prototype.secretKey = function () {
+  return this._body.secretKey();
+};
+
+/**
+ * Set file length of the attachment.
+ * Note: It's usually not necessary to call this method, will calculate file length automatically when setting local path.
+ * @param {Number} fileLength 文件长度
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setFileLength = function (fileLength) {
+  this._body.setFileLength(fileLength);
+};
+
+/**
+ * Get file length of the attachment.
+ * @return {Number} 返回文件长度
+ */
+EMVideoMessageBody.prototype.fileLength = function () {
+  return this._body.fileLength();
+};
+
+/**
+ * Set file downloading status.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} downloadStatus 文件下载状态
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setDownloadStatus = function (downloadStatus) {
+  this._body.setDownloadStatus(downloadStatus);
+};
+
+/**
+ * Get file downloading status
+ * @return {Number} 返回文件下载状态
+ */
+EMVideoMessageBody.prototype.downloadStatus = function () {
+  return this._body.downloadStatus();
+};
+
+/**
+ * Set local path of the thumbnail.
+ * @param {String} thumbnailLocalPath 缩略图本地存储路径
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setThumbnailLocalPath = function (thumbnailLocalPath) {
+  this._body.setThumbnailLocalPath(thumbnailLocalPath);
+};
+
+/**
+ * Get local path of the thumbnail.
+ * @return {String} 返回缩略图本地存储路径
+ */
+EMVideoMessageBody.prototype.thumbnailLocalPath = function () {
+  return this._body.thumbnailLocalPath();
+};
+
+/**
+ * Set remote path of the thumbnail.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} thumbnailRemotePath 缩略图在服务器的存储路径
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setThumbnailRemotePath = function (thumbnailRemotePath) {
+  this._body.setThumbnailRemotePath(thumbnailRemotePath);
+};
+
+/**
+ * Get remote path of the thumbnail.
+ * @return {String} 返回缩略图在服务器的存储路径
+ */
+EMVideoMessageBody.prototype.thumbnailRemotePath = function () {
+  return this._body.thumbnailRemotePath();
+};
+
+/**
+ * Set secret key of the thumbnail.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} thumbnailKey 缩略图加密密钥
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setThumbnailSecretKey = function (thumbnailKey) {
+  this._body.setThumbnailSecretKey(thumbnailKey);
+};
+
+/**
+ * Get secret key of the thumbnail.
+ * @return {String} 返回缩略图加密密钥
+ */
+EMVideoMessageBody.prototype.thumbnailSecretKey = function () {
+  return this._body.thumbnailSecretKey();
+};
+
+/**
+ * Set download status of the thumbnail.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} thumbnailDownloadStatus 缩略图下载状态
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setThumbnailDownloadStatus = function (thumbnailDownloadStatus) {
+  this._body.setThumbnailDownloadStatus(thumbnailDownloadStatus);
+};
+
+/**
+ * Get download status of the thumbnail.
+ * @return {Number} 返回缩略图下载状态
+ */
+EMVideoMessageBody.prototype.thumbnailDownloadStatus = function () {
+  return this._body.thumbnailDownloadStatus();
+};
+
+/**
+ * Set size of the thumbnail.
+ * @param {EMVideoSize} size 视频大小
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setSize = function (size) {
+  this._body.setSize(size._size);
+};
+
+/**
+ * Get size of the thumbnail.
+ * @return {EMVideoSize} 返回视频大小
+ */
+EMVideoMessageBody.prototype.size = function () {
+  return new EMVideoSize(this._body.size().width, this._body.size().height);
+};
+
+/**
+ * Set playing duration of the video.
+ * @param {Number} duration 视频持续时间
+ * @return {void}
+ */
+EMVideoMessageBody.prototype.setDuration = function (duration) {
+  this._body.setDuration(duration);
+};
+
+/**
+ * Get playing duration of the video.
+ * @return {Number} 返回视频持续时间
+ */
+EMVideoMessageBody.prototype.duration = function () {
+  return this._body.duration();
+};
+
+module.exports = {
+  EMVideoSize: EMVideoSize,
+  EMVideoMessageBody: EMVideoMessageBody
+};
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMVoiceMessageBody implementation.
+ */
+/**
+ * Voice message body constructor.
+ * @constructor
+ * @param {String} localPath 语音文件本地路径
+ * @param {Number} duration 语音文件时间
+ */
+function EMVoiceMessageBody(localPath, duration) {
+  if ((typeof localPath === 'undefined' ? 'undefined' : _typeof(localPath)) == 'object') {
+    this._body = localPath;
+  } else {
+    this._body = new easemobNode.EMVoiceMessageBody(localPath, duration);
+  }
+}
+
+/**
+ * Get message body type.
+ * @return {Number} 消息类型
+ */
+EMVoiceMessageBody.prototype.type = function () {
+  return this._body.type();
+};
+
+/**
+ * Set display name of the attachment.
+ * @param {String} displayName 消息展示名
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setDisplayName = function (displayName) {
+  this._body.setDisplayName(displayName);
+};
+
+/**
+ * Get display name of the attachment.
+ * @return {String} 返回消息展示名
+ */
+EMVoiceMessageBody.prototype.displayName = function () {
+  return this._body.displayName();
+};
+
+/**
+ * Set local path of the attachment.
+ * Note: should NOT change the local path of the Received message.
+ * @param {String} localPath 消息本地存储路径
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setLocalPath = function (localPath) {
+  this._body.setLocalPath(localPath);
+};
+
+/**
+ * Get local path of the attachment.
+ * @return {String} 返回消息本地存储路径
+ */
+EMVoiceMessageBody.prototype.localPath = function () {
+  return this._body.localPath();
+};
+
+/**
+ * Set remote path of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} remotePath 消息在服务器的存储路径
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setRemotePath = function (remotePath) {
+  this._body.setRemotePath(remotePath);
+};
+
+/**
+ * Get remote path of the attachment.
+ * @return {String} 返回消息在服务器的存储路径
+ */
+EMVoiceMessageBody.prototype.remotePath = function () {
+  return this._body.remotePath();
+};
+
+/**
+ * Set secret key of the attachment.
+ * Note: It's internal used, user should never need to call this method.
+ * @param {String} secretKey 消息加密密钥
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setSecretKey = function (secretKey) {
+  this._body.setSecretKey(secretKey);
+};
+
+/**
+ * Get secret key of the attachment, it's used to download attachment from server.
+ * @return {String} 返回消息加密密钥
+ */
+EMVoiceMessageBody.prototype.secretKey = function () {
+  return this._body.secretKey();
+};
+
+/**
+ * Set file length of the attachment.
+ * Note: It's usually not necessary to call this method, will calculate file length automatically when setting local path.
+ * @param {Number} fileLength 消息长度
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setFileLength = function (fileLength) {
+  this._body.setFileLength(fileLength);
+};
+
+/**
+ * Get file length of the attachment.
+ * @return {Number} 返回消息长度
+ */
+EMVoiceMessageBody.prototype.fileLength = function () {
+  return this._body.fileLength();
+};
+
+/**
+ * Set file downloading status.
+ * Note: Usually, user should NOT call this method directly.
+ * @param {Number} downloadStatus 消息下载状态
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setDownloadStatus = function (downloadStatus) {
+  this._body.setDownloadStatus(downloadStatus);
+};
+
+/**
+ * Get file downloading status
+ * @return {Number} 返回消息下载状态
+ */
+EMVoiceMessageBody.prototype.downloadStatus = function () {
+  return this._body.downloadStatus();
+};
+
+/**
+ * Set voice playing duration in seconds.
+ * @param {Number} duration 语音持续时间
+ * @return {void}
+ */
+EMVoiceMessageBody.prototype.setDuration = function (duration) {
+  this._body.setDuration(duration);
+};
+
+/**
+ * Get voice playing duration in seconds.
+ * @return {Number} 返回语音持续时间
+ */
+EMVoiceMessageBody.prototype.duration = function () {
+  return this._body.duration();
+};
+
+module.exports = EMVoiceMessageBody;
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+var EMError = __webpack_require__(44);
+var handle = new easemobNode.EMCallbackObserverHandle();
+
+//EMCallback object callback interface number.
+var emCallbackCount = 3;
+
+/**
+ * Easemob EMCallback implementation.
+ */
+
+/**
+* EMCallback constructor.
+* @constructor
+*/
+function EMCallback() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emCallbackCount);
+  self._callback = new easemobNode.EMCallback(handle);
+  self._callback.onSuccess = function () {
+    self._eventEmitter.emit('onSuccess');
+  };
+  self._callback.onFail = function (error) {
+    self._eventEmitter.emit('onFail', new EMError(error));
+  };
+  self._callback.onProgress = function (progress) {
+    self._eventEmitter.emit('onProgress', progress);
+  };
+}
+
+/**
+ * 设置操作成功时执行的回调
+ * @param {EMCallback~success} callback 回调函数，成功时执行
+ * @return {void}
+ */
+EMCallback.prototype.onSuccess = function (callback) {
+  this._eventEmitter.on('onSuccess', callback);
+};
+/**
+ * @function EMCallback~success
+ * @return {void}
+ */
+
+/**
+ * 设置操作失败时执行的回调
+ * @param {EMCallback~fail} callback 回调函数，失败时执行
+ * @return {void}
+ */
+EMCallback.prototype.onFail = function (callback) {
+  this._eventEmitter.on('onFail', callback);
+};
+
+/**
+ * @function EMCallback~fail
+ * @param {EMError} error EMError对象
+ * @return {void}
+ */
+
+/**
+ * 操作进度改变时，执行的回调
+ * @param {EMCallback~progress} callback called when method is running
+ * @return {void}
+ */
+EMCallback.prototype.onProgress = function (callback) {
+  this._eventEmitter.on('onProgress', callback);
+};
+
+/**
+ * @function EMCallback~progress
+ * @param {Number} progress 进度，1-100
+ * @return {void}
+ */
+
+module.exports = EMCallback;
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var easemobNode = __webpack_require__(9);
+var EMChatPrivateConfigs = __webpack_require__(254);
+
+/**
+ * Easemob EMChatconfigs implementation.
+ */
+
+/**
+ * EMCallback constructor.
+ * @constructor
+ * @param {string} resourcePath 资源文件存储路径
+ * @param {string} workPath 日志文件存储路径
+ * @param {string} appKey appKey，官网应用申请得到
+ * @param {Number} deviceId 设备ID，一般设为0
+ */
+function EMChatConfigs(resourcePath, workPath, appKey, deviceId) {
+  if (arguments.length > 1) {
+    this._chatConfigs = new easemobNode.EMChatConfigs(resourcePath, workPath, appKey, deviceId);
+  } else {
+    this._chatConfigs = arguments[0];
+  }
+}
+
+/**
+ * set sort message by server time or not. default is true.
+ * @param  {Bool} sortByServerTime 消息是否按服务器时间排序
+ * @return {void}
+ */
+EMChatConfigs.prototype.setSortMessageByServerTime = function (sortByServerTime) {
+  this._chatConfigs.setSortMessageByServerTime(sortByServerTime);
+};
+
+/**
+ * get sort message by server time or not.
+ * @return {Bool} 消息是否按服务器时间排序
+ */
+EMChatConfigs.prototype.getSortMessageByServerTime = function () {
+  return this._chatConfigs.getSortMessageByServerTime();
+};
+
+/**
+ * get the resource path.
+ * @return {String} 返回资源存储路径
+ */
+EMChatConfigs.prototype.getResourcePath = function () {
+  return this._chatConfigs.getResourcePath();
+};
+
+/**
+ * get the work path.
+ * @return {String} 返回工作路径
+ */
+EMChatConfigs.prototype.getWorkPath = function () {
+  return this._chatConfigs.getWorkPath();
+};
+
+/**
+ * set the log path.
+ * @param {String} path 日志存储路径
+ * @return {void}
+ */
+EMChatConfigs.prototype.setLogPath = function (path) {
+  this._chatConfigs.setLogPath(path);
+};
+
+/**
+ * get the log path.
+ * @return {String} 返回日志存储路径
+ */
+EMChatConfigs.prototype.getLogPath = function () {
+  return this._chatConfigs.getLogPath();
+};
+
+/**
+ * set the download path.
+ * @param {String} path 下载路径
+ * @return {void}
+ */
+EMChatConfigs.prototype.setDownloadPath = function (path) {
+  this._chatConfigs.setDownloadPath(path);
+};
+
+/**
+ * get the download path.
+ * @return {String} 返回下载路径
+ */
+EMChatConfigs.prototype.getDownloadPath = function () {
+  return this._chatConfigs.getDownloadPath();
+};
+
+/**
+ * set the app key.
+ * @param {String} appKey 设置appKey
+ * @return {void}
+ */
+EMChatConfigs.prototype.setAppKey = function (appKey) {
+  this._chatConfigs.setAppKey(appKey);
+};
+
+/**
+ * get the app key.
+ * @return {String} 返回appKey
+ */
+EMChatConfigs.prototype.getAppKey = function () {
+  return this._chatConfigs.getAppKey();
+};
+
+/**
+ * set sandbox mode. default is false.
+ * @param {Bool} b 设置是否沙盒模式
+ * @return {void} 
+ */
+EMChatConfigs.prototype.setIsSandboxMode = function (b) {
+  this._chatConfigs.setIsSandboxMode(b);
+};
+
+/**
+ * get the sandbox mode.
+ * @return {Bool} 获取是否沙盒模式
+ */
+EMChatConfigs.prototype.getIsSandboxMode = function () {
+  return this._chatConfigs.getIsSandboxMode();
+};
+
+/**
+ * set if output the log to console. default is false.
+ * @param {Bool} b 设置是否输出日志到控制台
+ * @return {void}
+ */
+EMChatConfigs.prototype.setEnableConsoleLog = function (b) {
+  this._chatConfigs.setEnableConsoleLog(b);
+};
+
+/**
+ * get if output the log to console.
+ * @return {Bool} 获取是否输出日志到控制台
+ */
+EMChatConfigs.prototype.getEnableConsoleLog = function () {
+  return this._chatConfigs.getEnableConsoleLog();
+};
+
+/**
+ * set if auto accept friend invitation. default is false.
+ * @param {Bool} b
+ * @return {void} 设置是否自动同意好友申请
+ */
+EMChatConfigs.prototype.setAutoAcceptFriend = function (b) {
+  this._chatConfigs.setAutoAcceptFriend(b);
+};
+
+/**
+ * get if auto accept friend invitation.
+ * @return {Bool} 获取是否自动同意好友申请
+ */
+EMChatConfigs.prototype.getAutoAcceptFriend = function () {
+  return this._chatConfigs.getAutoAcceptFriend();
+};
+
+/**
+ * set if auto accept group invitation. default is true.
+ * @param {Bool} b 设置是否自动同意组邀请
+ * @return {void}
+ */
+EMChatConfigs.prototype.setAutoAcceptGroup = function (b) {
+  this._chatConfigs.setAutoAcceptGroup(b);
+};
+
+/**
+ * get if auto accept group invitation.
+ * @return {Bool} 获取是否自动同意组邀请
+ */
+EMChatConfigs.prototype.getAutoAcceptGroup = function () {
+  return this._chatConfigs.getAutoAcceptGroup();
+};
+
+/**
+ * set if need message read ack. default is true.
+ * @param {Bool} b 设置消息是否需要已读确认
+ * @return {void}
+ */
+EMChatConfigs.prototype.setRequireReadAck = function (b) {
+  this._chatConfigs.setRequireReadAck(b);
+};
+
+/**
+ * get if need message read ack.
+ * @return {Bool} 获取消息是否需要已读确认
+ */
+EMChatConfigs.prototype.getRequireReadAck = function () {
+  return this._chatConfigs.getRequireReadAck();
+};
+
+/**
+ * set if need message delivery ack. default is false.
+ * @param {Bool} b 设置消息传输是否需要到达确认
+ * @return {void}
+ */
+EMChatConfigs.prototype.setRequireDeliveryAck = function (b) {
+  this._chatConfigs.setRequireDeliveryAck(b);
+};
+
+/**
+ * get if need message delivery ack.
+ * @return {Bool} 获取消息传输是否需要到达确认
+ */
+EMChatConfigs.prototype.getRequireDeliveryAck = function () {
+  return this._chatConfigs.getRequireDeliveryAck();
+};
+
+/**
+ * set if need load all conversation when login. default is true.
+ * @param {Bool} b 设置登录时是否自动加载所有会话
+ * @return {void}
+ */
+EMChatConfigs.prototype.setAutoConversationLoaded = function (b) {
+  this._chatConfigs.setAutoConversationLoaded(b);
+};
+
+/**
+ * get if load all conversation when login.
+ * @return {Bool} 获取登录时是否自动加载所有会话
+ */
+EMChatConfigs.prototype.getAutoConversationLoaded = function () {
+  return this._chatConfigs.getAutoConversationLoaded();
+};
+
+/**
+ * set if delete message when exit group. default is true.
+ * @param {Bool} b 设置退出组时，是否删除消息
+ * @return {void}
+ */
+EMChatConfigs.prototype.setDeleteMessageAsExitGroup = function (b) {
+  this._chatConfigs.setDeleteMessageAsExitGroup(b);
+};
+
+/**
+ * get if delete message when exit group.
+ * @return {Bool} 获取退出组时，是否删除消息
+ */
+EMChatConfigs.prototype.getDeleteMessageAsExitGroup = function () {
+  return this._chatConfigs.getDeleteMessageAsExitGroup();
+};
+
+/**
+ * set if chatroom owner can leave. default is true.
+ * @param {Bool} b 设置聊天室所有人是否可以退出
+ * @return {void} 
+ */
+EMChatConfigs.prototype.setIsChatroomOwnerLeaveAllowed = function (b) {
+  this._chatConfigs.setIsChatroomOwnerLeaveAllowed(b);
+};
+
+/**
+ * get if chatroom owner can leave.
+ * @return {Bool} 获取聊天室所有人是否可以退出
+ */
+EMChatConfigs.prototype.getIsChatroomOwnerLeaveAllowed = function () {
+  return this._chatConfigs.getIsChatroomOwnerLeaveAllowed();
+};
+
+/**
+ * set the number of message load at first time. default is 20.
+ * @param {Number} num 设置会话默认加载的消息条数
+ * @return {void}
+ */
+EMChatConfigs.prototype.setNumOfMessageLoaded = function (num) {
+  this._chatConfigs.setNumOfMessageLoaded(num);
+};
+
+/**
+ * get the number of message load at first time.
+ * @return {Number} 获取会话默认加载的消息条数
+ */
+EMChatConfigs.prototype.getNumOfMessageLoaded = function () {
+  return this._chatConfigs.getNumOfMessageLoaded();
+};
+
+/**
+ * set os type. default data is 2, type is Linux.
+ * {
+ * OS_IOS = 0,
+ * OS_ANDROID = 1,
+ * OS_LINUX   = 2,
+ * OS_OSX     = 3,
+ * OS_MSWIN   = 4,
+ * OS_OTHER   = 16,
+ * }
+ * @param {Number} osType 设置操作系统类型，0为IOS，1为ANDROID，2为LINUX，3为mac，4为win，16为其他
+ * @return {void}
+ */
+EMChatConfigs.prototype.setOs = function (osType) {
+  this._chatConfigs.setOs(osType);
+};
+
+/**
+ * get os type.
+ * @return {Number} 获取操作系统类型
+ */
+EMChatConfigs.prototype.getOs = function () {
+  return this._chatConfigs.getOs();
+};
+
+/**
+ * set os version.
+ * @param {String} osVersion 设置操作系统版本
+ * @return {void}
+ */
+EMChatConfigs.prototype.setOsVersion = function (osVersion) {
+  this._chatConfigs.setOsVersion(osVersion);
+};
+
+/**
+ * return os version.
+ * @return {String} 获取操作系统版本
+ */
+EMChatConfigs.prototype.getOsVersion = function () {
+  return this._chatConfigs.getOsVersion();
+};
+
+/**
+ * set sdk version.
+ * @param {String} version 设置sdk版本
+ * @return {void}
+ */
+EMChatConfigs.prototype.setSdkVersion = function (version) {
+  this._chatConfigs.setSdkVersion(version);
+};
+
+/**
+ * return sdk version.
+ * @return {String} 返回sdk版本
+ */
+EMChatConfigs.prototype.getSdkVersion = function () {
+  return this._chatConfigs.getSdkVersion();
+};
+
+/**
+ * return device unique id.
+ * @return {Number} 返回设备ID
+ */
+EMChatConfigs.prototype.getDeviceID = function () {
+  return this._chatConfigs.getDeviceID();
+};
+
+/**
+ * set client resource.
+ * @param {String} resource 设置客户端Resouce
+ * @return {void}
+ */
+EMChatConfigs.prototype.setClientResource = function (resource) {
+  this._chatConfigs.setClientResource(resource);
+};
+
+/**
+ * get client resource.
+ * @return {String} 返回客户端Resouce
+ */
+EMChatConfigs.prototype.clientResource = function () {
+  return this._chatConfigs.clientResource();
+};
+
+/**
+ * set log output level. default is DEBUG_LEVEL.
+ * {
+ * DEBUG_LEVEL = 0,
+ * WARNING_LEVEL = 1,
+ * ERROR_LEVEL = 2
+ * }
+ * @param {Number} level 设置日志输出等级
+ * @return {void}
+ */
+EMChatConfigs.prototype.setLogLevel = function (level) {
+  this._chatConfigs.setLogLevel(level);
+};
+
+/**
+ * get device unique id.
+ * @return {String} 返回设备ID
+ */
+EMChatConfigs.prototype.deviceUuid = function () {
+  return this._chatConfigs.deviceUuid();
+};
+
+/**
+ * set device name.
+ * @param {String} name 设置设备名称
+ * @return {void}
+ */
+EMChatConfigs.prototype.setDeviceName = function (name) {
+  this._chatConfigs.setDeviceName(name);
+};
+
+/**
+ * return device name.
+ * @return {String} 返回设备名称
+ */
+EMChatConfigs.prototype.getDeviceName = function () {
+  return this._chatConfigs.getDeviceName();
+};
+
+//privateConfigs
+/**
+ * return private config EMChatPrivateConfigs. used for im private deploy.
+ * @return {EMChatPrivateConfigs} 返回系统设置
+ */
+EMChatConfigs.prototype.privateConfigs = function () {
+  return new EMChatPrivateConfigs(this._chatConfigs.privateConfigs());
+};
+
+/**
+ * set delete messages as exit chatroom. default is true.
+ * @param {Bool} b 设置退出聊天室时，是否删除消息
+ * @return {void}
+ */
+EMChatConfigs.prototype.setDeleteMessageAsExitChatRoom = function (b) {
+  this._chatConfigs.setDeleteMessageAsExitChatRoom(b);
+};
+
+/**
+ * get delete messages as exit chatroom.
+ * @return {Bool} 返回退出聊天室时，是否退出消息
+ */
+EMChatConfigs.prototype.getDeleteMessageAsExitChatRoom = function () {
+  return this._chatConfigs.getDeleteMessageAsExitChatRoom();
+};
+
+/**
+ * set using https only. default is false.
+ * @param {Bool} httpsOnly 设置是否只支持https协议
+ * @return {void}
+ */
+EMChatConfigs.prototype.setUsingHttpsOnly = function (httpsOnly) {
+  this._chatConfigs.setUsingHttpsOnly(httpsOnly);
+};
+
+/**
+ * get using https only.
+ * @return {Bool} 返回是否只支持https协议
+ */
+EMChatConfigs.prototype.getUsingHttpsOnly = function () {
+  return this._chatConfigs.getUsingHttpsOnly();
+};
+
+/**
+ * set dns url.
+ * @param {String} url 设置dns地址
+ * @return {void}
+ */
+EMChatConfigs.prototype.setDnsURL = function (url) {
+  this._chatConfigs.setDnsURL(url);
+};
+
+/**
+ * get dns url.
+ * @return {String} 返回dns地址
+ */
+EMChatConfigs.prototype.getDnsURL = function () {
+  return this._chatConfigs.getDnsURL();
+};
+
+/**
+ * set transfer attachments or not. default is true.
+ * @param {Bool} transfer 设置是否传输附件
+ * @return {void}
+ */
+EMChatConfigs.prototype.setTransferAttachments = function (transfer) {
+  this._chatConfigs.setTransferAttachments(transfer);
+};
+
+/**
+ * get transfer attachments or not.
+ * @return {Bool} 返回是否传输附件
+ */
+EMChatConfigs.prototype.getTransferAttachments = function () {
+  return this._chatConfigs.getTransferAttachments();
+};
+
+/**
+ * set auto download thumbnail attachments or not. default is true.
+ * @param {Bool} autoDownload 设置是否自动下载附件
+ * @return {void}
+ */
+EMChatConfigs.prototype.setAutoDownloadThumbnail = function (autoDownload) {
+  this._chatConfigs.setAutoDownloadThumbnail(autoDownload);
+};
+
+/**
+ * get auto download thumbnail or not.
+ * @return {Bool} 返回是否自动下载附件
+ */
+EMChatConfigs.prototype.getAutoDownloadThumbnail = function () {
+  return this._chatConfigs.getAutoDownloadThumbnail();
+};
+
+module.exports = EMChatConfigs;
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var easemobNode = __webpack_require__(9);
+
+/**
+ * Easemob EMChatPrivateconfigs implementation.
+ */
+
+/**
+ * EMChatPrivateconfigs constructor.
+ * @constructor
+ * @param {Object} PrivateConfigs 私有部署对象
+ * @property {Bool} enableDns 是否启用dns
+ * @property {String} chatServer IM Server IP
+ * @property {Number} chatPort IM Server port
+ * @property {String} restServer rest Server ip and port
+ * @property {String} resolverServer resolver Server address
+ * @property {String} chatDomain chat domain
+ * @property {String} groupDomain group domain
+ */
+function EMChatPrivateConfigs(PrivateConfigs) {
+  this._privateConfigs = PrivateConfigs;
+  Object.defineProperties(this, {
+    enableDns: {
+      get: function get() {
+        return this._privateConfigs.enableDns;
+      },
+      set: function set(enableDns) {
+        this._privateConfigs.enableDns = enableDns;
+      }
+    },
+    chatServer: {
+      get: function get() {
+        return this._privateConfigs.chatServer;
+      },
+      set: function set(chatServer) {
+        this._privateConfigs.chatServer = chatServer;
+      }
+    },
+    chatPort: {
+      get: function get() {
+        return this._privateConfigs.chatPort;
+      },
+      set: function set(chatPort) {
+        this._privateConfigs.chatPort = chatPort;
+      }
+    },
+    restServer: {
+      get: function get() {
+        return this._privateConfigs.restServer;
+      },
+      set: function set(restServer) {
+        this._privateConfigs.restServer = restServer;
+      }
+    },
+    resolverServer: {
+      get: function get() {
+        return this._privateConfigs.resolverServer;
+      },
+      set: function set(resolverServer) {
+        this._privateConfigs.resolverServer = resolverServer;
+      }
+    },
+    chatDomain: {
+      get: function get() {
+        return this._privateConfigs.chatDomain;
+      },
+      set: function set(chatDomain) {
+        this._privateConfigs.chatDomain = chatDomain;
+      }
+    },
+    groupDomain: {
+      get: function get() {
+        return this._privateConfigs.groupDomain;
+      },
+      set: function set(groupDomain) {
+        this._privateConfigs.groupDomain = groupDomain;
+      }
+    }
+  });
+}
+module.exports = EMChatPrivateConfigs;
+
+/***/ }),
+/* 255 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var EMError = __webpack_require__(44);
+var EMMessage = __webpack_require__(84);
+var EMConversation = __webpack_require__(152);
+var EMCursorResult = __webpack_require__(106).EMCursorResult;
+var async = __webpack_require__(85);
+
+/**
+ * Easemob EMChatManager implementation.
+ */
+
+/**
+ * EMChatManager constructor.
+ * @constructor
+ * @param {Object} chatManager
+ */
+function EMChatManager(chatManager) {
+  this._manager = chatManager;
+}
+
+/**
+ * Send a message.
+ * @param {EMMessage} message 发送的消息
+ * @return {void}
+ */
+EMChatManager.prototype.sendMessage = function (message) {
+  this._manager.sendMessage(message._message);
+};
+
+/**
+ * Send read ask for a message.
+ * @param {EMMessage} message 发送消息的已读ack
+ * @return {void}
+ */
+EMChatManager.prototype.sendReadAckForMessage = function (message) {
+  this._manager.sendReadAckForMessage(message._message);
+};
+
+/**
+ * Recall a message.
+ * @param {EMMessage} message 要撤回的消息
+ * @return {void}
+ */
+EMChatManager.prototype.recallMessage = function (message) {
+  var error = new EMError();
+  this._manager.recallMessage(message._message, error._error);
+};
+
+/**
+ * Resend a message.
+ * @param {EMMessage} message 要重发的消息
+ * @return {void}
+ */
+EMChatManager.prototype.resendMessage = function (message) {
+  this._manager.resendMessage(message._message);
+};
+
+/**
+ * Download thumbnail for image or video message
+ * Note: Image and video message thumbnail will be downloaded automatically. ONLY call this method if automatic download failed.
+ * SDK will callback the user by EMChatManagerListener if user doesn't provide a callback in the message or callback return false.
+ * @param {EMMessage} message 要下载缩略的消息
+ * @return {void}
+ */
+EMChatManager.prototype.downloadMessageThumbnail = function (message) {
+  this._manager.downloadMessageThumbnail(message._message);
+};
+
+/**
+ * Download attachment of a message.
+ * Note: User should call this method to download file, voice, image, video.
+ * SDK will callback the user by EMChatManagerListener if user doesn't provide a callback or callback return false.
+ * @param {EMMessage} message 要下载附件的消息
+ * @return {void}
+ */
+EMChatManager.prototype.downloadMessageAttachments = function (message) {
+  this._manager.downloadMessageAttachments(message._message);
+};
+
+/**
+ * Remove a conversation from cache and local database.
+ * Note: Before removing a conversation, all conversations must be loaded from local database first
+ * @param {String} conversationId 要删除的会话ID
+ * @param {Bool} isRemoveMessages 删除会话时，是否移除消息
+ * @return {void}
+ */
+EMChatManager.prototype.removeConversation = function (conversationId, isRemoveMessages) {
+  this._manager.removeConversation(conversationId, isRemoveMessages);
+};
+
+/**
+ * Remove a conversation from cache and local database.
+ * Note: Before removing a conversation, all conversations must be loaded from local database first
+ * @param {array} list 要删除的会话数组
+ * @param {Bool} isRemoveMessages 删除会话时，是否移除消息
+ * @return {void}
+ */
+EMChatManager.prototype.removeConversations = function (list, isRemoveMessages) {
+  var conversations = new Array(list.length);
+  for (var i = 0; i < list.length; i++) {
+    conversations[i] = list[i]._conversation;
+  }
+  this._manager.removeConversations(conversations, isRemoveMessages);
+};
+
+/**
+ * Get a conversation
+ * Note: All conversations will be loaded from local database.
+ * @param {String} conversationId 会话ID
+ * @param {Number} type 会话类型，0为单聊，1为群组
+ * @param {Bool} createIfNotExist 如果会话不存在，是否临时创建
+ * @return {void}
+ */
+EMChatManager.prototype.conversationWithType = function (conversationId, type, createIfNotExist) {
+  return new EMConversation(this._manager.conversationWithType(conversationId, type, createIfNotExist));
+};
+
+/**
+ * Get all conversations from cache or local database if not in cache.
+ * @return {Array} 会话对象列表
+ */
+EMChatManager.prototype.getConversations = function () {
+  var conversations = this._manager.getConversations();
+  var list = new Array(conversations.length);
+  for (var i = 0; i < conversations.length; i++) {
+    list[i] = new EMConversation(conversations[i]);
+  }
+  return list;
+};
+
+/**
+ * Get all conversations from local database.
+ * @return {Array} 会话对象列表
+ */
+EMChatManager.prototype.loadAllConversationsFromDB = function () {
+  var f = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var conversations, list, i;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              conversations = _manager.loadAllConversationsFromDB();
+              list = new Array(conversations.length);
+
+              for (i = 0; i < conversations.length; i++) {
+                list[i] = new EMConversation(conversations[i]);
+              }
+              return _context.abrupt('return', list);
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context['catch'](0);
+
+              console.log(_context.t0);
+
+            case 10:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0, 7]]);
+    }));
+
+    return function f() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Add chat manager listener
+ * @param {EMChatManagerListener} listener 添加会话的回调监听对象
+ * @return {void}
+ */
+EMChatManager.prototype.addListener = function (listener) {
+  this._manager.addListener(listener._listener);
+};
+
+/**
+ * Remove chat manager listener
+ * @param {EMChatManagerListener} listener 移除会话的回调监听对象
+ * @return {void}
+ */
+EMChatManager.prototype.removeListener = function (listener) {
+  this._manager.removeListener(listener._listener);
+};
+
+/**
+ * Remove all the chat manager listeners
+ * @return {void}
+ */
+EMChatManager.prototype.clearListeners = function () {
+  this._manager.clearListeners();
+};
+
+/**
+ * Insert messages
+ * @param {array} list message list 插入消息到本地，消息列表
+ * @return {Bool}
+ */
+EMChatManager.prototype.insertMessages = function (list) {
+  var messages = new Array(list.length);
+  for (var i = 0; i < list.length; i++) {
+    messages[i] = list[i]._message;
+  }
+  return this._manager.insertMessages(messages);
+};
+
+/**
+ * fetch conversation roam messages from server.
+ * @param {String} conversationId 会话ID
+ * @param {Number} type 会话类型，0为单聊，1为群组
+ * @param {Number} pageSize 分页
+ * @param {String} startMsgId 开始的消息ID
+ * @return {Object} {code,description,data},code为结果，0为成功，其他失败，description为失败原因，data为消息列表
+ */
+EMChatManager.prototype.fetchHistoryMessages = function (conversationId, type, pageSize, startMsgId) {
+  var f = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var error, cursorresult;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              error = new EMError();
+              cursorresult = new EMCursorResult(_manager.fetchHistoryMessages(conversationId, type, error._error, pageSize, startMsgId), 2);
+              return _context2.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: cursorresult.result(),
+                nextcursor: cursorresult.nextPageCursor()
+              });
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2['catch'](0);
+
+              console.log(_context2.t0);
+
+            case 9:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+  return;
+};
+
+/**
+ * Get message by message Id.
+ * @param {String} messageId 消息ID
+ * @return {EMMessage} 消息
+ */
+EMChatManager.prototype.getMessage = function (messageId) {
+  return new EMMessage(this._manager.getMessage(messageId));
+};
+
+/**
+ * update database participant related records, include message table, conversation table, contact table, blacklist table
+ * @param {String} from 修改前的会话ID
+ * @param {String} changeTo 修改后的会话ID
+ * @return {bool}
+ */
+EMChatManager.prototype.updateParticipant = function (from, changeTo) {
+  return this._manager.updateParticipant(from, changeTo);
+};
+
+/**
+ * Upload log to server.上传日志到服务器
+ * @return {void} 
+ */
+EMChatManager.prototype.uploadLog = function () {
+  this._manager.uploadLog();
+};
+
+module.exports = EMChatManager;
+
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var EMChatroom = __webpack_require__(108);
+var EMError = __webpack_require__(44);
+
+var _require = __webpack_require__(106),
+    EMCursorResult = _require.EMCursorResult,
+    EMPageResult = _require.EMPageResult,
+    EMStringCursorResult = _require.EMStringCursorResult;
+
+var async = __webpack_require__(85);
+
+/**
+ * Easemob EMChatroomManager implementation.
+ */
+
+/**
+ * EMChatroomManager constructor.
+ * @constructor
+ * @param {Object} manager
+ */
+function EMChatroomManager(manager) {
+  this._manager = manager;
+}
+
+/**
+ * Add chatroom manager listener.
+ * @param {EMChatroomManagerListener} listener 添加的聊天室回调监听对象
+ * @return {void}
+ */
+EMChatroomManager.prototype.addListener = function (listener) {
+  this._manager.addListener(listener._listener);
+};
+
+/**
+ * Remove chatroom manager listener.
+ * @param {EMChatroomManagerListener} listener 移除的聊天室回调监听对象
+ * @return {void}
+ */
+EMChatroomManager.prototype.removeListener = function (listener) {
+  this._manager.removeListener(listener._listener);
+};
+
+/**
+ * Remove all the chatroom manager listeners.
+ * @return {void}
+ */
+EMChatroomManager.prototype.clearListeners = function () {
+  this._manager.clearListeners();
+};
+
+/**
+ * Get the chatroom by chatroomId, create a chatroom if not existed.
+ * @param {String} chatroomId 聊天室ID
+ * @return {Object} EMChatroom array.
+ */
+EMChatroomManager.prototype.chatroomWithId = function (chatroomId) {
+  return new EMChatroom(this._manager.chatroomWithId(chatroomId));
+};
+
+/**
+ * Fetch all chatrooms of the app.
+ * @return {Array} EMChatroom array.
+ */
+EMChatroomManager.prototype.fetchAllChatrooms = function () {
+  var error = new EMError();
+  var result = this._manager.fetchAllChatrooms(error._error);
+  var list = new Array(result.length);
+  for (var i = 0; i < result.length; i++) {
+    list[i] = new EMChatroom(result[i]);
+  }
+  return list;
+};
+
+/**
+ * Create a new chatroom.
+ * Note: Login user will be the owner of the chat room created.
+ * @param {String} subject          chatroom's subject.
+ * @param {String} description      chatroom's description.
+ * @param {String} welcomeMessage   Welcoming message that will be sent to invited user.
+ * @param {String} setting          chatroom's setting.
+ * @param {Array} members           a list of chatroom's members.
+ * @return {EMChatroom}             The chatroom created.
+ */
+EMChatroomManager.prototype.createChatroom = function (subject, description, welcomeMessage, setting, members) {
+  var error = new EMError();
+  return new EMChatroom(this._manager.createChatroom(subject, description, welcomeMessage, setting._setting, members, error._error));
+};
+
+/**
+ * Destroy a chatroom.
+ * Note: ONLY chatroom's owner can destroy the chatroom.
+ * @param {String} chatroomId     chatroom ID.
+
+ * @return {void}
+ */
+EMChatroomManager.prototype.destroyChatroom = function (chatroomId) {
+  var error = new EMError();
+  this._manager.destroyChatroom(chatroomId, error._error);
+};
+
+/**
+ * Change chatroom's subject.
+ * Note: ONLY chatroom's owner can change chatroom's subject.
+ * @param {String} chatroomId     chatroom ID.
+ * @param {String} newSubject     The new chatroom subject.
+ * @return {EMChatroom}
+ */
+EMChatroomManager.prototype.changeChatroomSubject = function (chatroomId, newSubject) {
+  var error = new EMError();
+  return new EMChatroom(this._manager.changeChatroomSubject(chatroomId, newSubject, error._error));
+};
+
+/**
+ * Change chatroom's description.
+ * Note: ONLY chatroom's owner can change chatroom's description.
+ * @param {String} chatroomId         chatroom ID.
+ * @param {String} newDescription     The new chatroom description.
+ * @return {EMChatroom} The chatroom.
+ */
+EMChatroomManager.prototype.changeChatroomDescription = function (chatroomId, newDescription) {
+  var error = new EMError();
+  return new EMChatroom(this._manager.changeChatroomDescription(chatroomId, newDescription));
+};
+
+/**
+ * Change chatroom's extension.
+ * Note: ONLY chatroom's owner can change chatroom's extension.
+ * @param {String} chatroomId         chatroom ID.
+ * @param {String} newExtension       The new chatroom extension.
+ * @return {EMChatroom} The chatroom.
+ */
+EMChatroomManager.prototype.changeChatroomExtension = function (chatroomId, newExtension) {
+  var error = new EMError();
+  return new EMChatroom(this._manager.changeChatroomExtension(chatroomId, newExtension, error._error));
+};
+
+/**
+ * Get chatroom's specifications.
+ * @param {String} chatroomId         chatroom ID.
+ * @param {Bool} fetchMembers         Wether to fetch members in the chatroom.
+ * @return {EMChatroom} The chatroom.
+ */
+EMChatroomManager.prototype.fetchChatroomSpecification = function (chatroomId, fetchMembers) {
+  var error = new EMError();
+  return new EMChatroom(this._manager.fetchChatroomSpecification(chatroomId, error._error, fetchMembers));
+};
+
+/**
+ * get chatroom members.
+ * @param {String} chatroomId         chatroom ID.
+ * @param {String} cursor             Page's cursor.
+ * @param {Number} pageSize           Page size. ex. 20 for 20 objects.
+ * @return {EMChatroom} The chatroom.
+ */
+EMChatroomManager.prototype.fetchChatroomMembers = function (chatroomId, cursor, pageSize) {
+  var error = new EMError();
+  return new EMStringCursorResult(this._manager.fetchChatroomMembers(chatroomId, cursor, pageSize, error._error));
+};
+
+/**
+ * Join a chatroom.
+ * @param {String} chatroomId         chatroom ID.
+ * @return {EMChatroom} The chatroom.
+ */
+EMChatroomManager.prototype.joinChatroom = function (chatroomId) {
+  var f = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var error, chatroom;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              error = new EMError();
+              chatroom = new EMChatroom(_manager.joinChatroom(chatroomId, error._error));
+              return _context.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: chatroom
+              });
+
+            case 6:
+              _context.prev = 6;
+              _context.t0 = _context['catch'](0);
+
+              console.log(_context.t0);
+
+            case 9:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Join a chatroom.
+ * @param {String} chatroomId         chatroom ID.
+ * @return {void}
+ */
+EMChatroomManager.prototype.leaveChatroom = function (chatroomId) {
+  var f = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              error = new EMError();
+
+              _manager.leaveChatroom(chatroomId, error._error);
+              return _context2.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2['catch'](0);
+
+              console.log(_context2.t0);
+
+            case 9:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get the chatroom by chatroom id.
+ * @param {String} cursor           Page's cursor.
+ * @param {Number} pageSize         Page size. ex. 20 for 20 objects.
+ * @return {EMPageResult} The chatroom.
+ */
+EMChatroomManager.prototype.fetchChatroomsWithCursor = function (cursor, pageSize) {
+  var f = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var error, _cursor;
+
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              error = new EMError();
+              _cursor = new EMCursorResult(_manager.fetchChatroomsWithCursor(_cursor, pageSize, error._error), 1);
+              return _context3.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: _cursor.result(),
+                nextcursor: _cursor.nextPageCursor()
+              });
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3['catch'](0);
+
+              console.log(_context3.t0);
+
+            case 9:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get the chatroom by chatroom id.
+ * @param {Number} pageNum          page number of pagination.
+ * @param {Number} pageSize         Page size. ex. 20 for 20 objects.
+ * @return {EMPageResult}
+ */
+EMChatroomManager.prototype.fetchChatroomsWithPage = function (pageNum, pageSize) {
+  var f = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var error, cursor;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              error = new EMError();
+              cursor = new EMPageResult(_manager.fetchChatroomsWithPage(pageNum, pageSize, error._error), 1);
+              return _context4.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: cursor.result()
+              });
+
+            case 6:
+              _context4.prev = 6;
+              _context4.t0 = _context4['catch'](0);
+
+              console.log(_context4.t0);
+
+            case 9:
+            case 'end':
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get the chatroom by chatroom id.
+ * @param {String} chatroomId         chatroom ID.
+ * @return {EMChatroom}
+ */
+EMChatroomManager.prototype.joinedChatroomById = function (chatroomId) {
+  var f = function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+      var error, chatroom;
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              error = new EMError();
+              chatroom = new EMChatroom(_manager.joinedChatroomById(chatroomId));
+              return _context5.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: chatroom
+              });
+
+            case 6:
+              _context5.prev = 6;
+              _context5.t0 = _context5['catch'](0);
+
+              console.log(_context5.t0);
+
+            case 9:
+            case 'end':
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * fetch chat room mute members.
+ * Note: If PageNum=0, then there is no pagination and will get all the users on the list.
+ * If PageNum=1, then will start from the first page of pagination.
+ * @param {String} chatroomId       chatroom ID.
+ * @param {Number} pageNum          page number of pagination.
+ * @param {Number} pageSizePage     Page size. ex. 20 for 20 objects.
+ * @return {Array} object list. The list of mute users. object like { "key" : name, "value" : 111 }.
+ */
+EMChatroomManager.prototype.fetchChatroomMutes = function (chatroomId, pageNum, pageSize) {
+  var error = new EMError();
+  var chatroom = this._manager.fetchChatroomMutes(chatroomId, pageNum, pageSize, error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: chatroom
+  };
+};
+
+/**
+ * fetch chat room blacklist members.
+ * Note: If PageNum=0, then there is no pagination and will get all the users on the list.
+ * If PageNum=1, then will start from the first page of pagination.
+ * @param {String} chatroomId         chatroom ID.
+ * @param {Number} pageNum            page number of pagination.
+ * @param {Number} pageSize           Page size. ex. 20 for 20 objects.
+ * @return {EMChatroom}
+ */
+EMChatroomManager.prototype.fetchChatroomBans = function (chatroomId, pageNum, pageSize) {
+  var error = new EMError();
+  var chatroom = this._manager.fetchChatroomBans(chatroomId, pageNum, pageSize, error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: chatroom
+  };
+};
+
+/**
+ * fetch chat room announcement.
+ * @param {String} chatroomId         chatroom ID.
+ * @return {EMChatroom}
+ */
+EMChatroomManager.prototype.fetchChatroomAnnouncement = function (chatroomId) {
+  var error = new EMError();
+  var chatroom = this._manager.fetchChatroomAnnouncement(chatroomId, error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: chatroom
+  };
+};
+
+module.exports = EMChatroomManager;
+
+/***/ }),
+/* 257 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var easemobNode = __webpack_require__(9);
+var EMError = __webpack_require__(44);
+var async = __webpack_require__(85);
+
+/**
+ * EMContactManager
+ * @constructor
+ */
+
+function EMContactManager(contactManager) {
+  this._manager = contactManager;
+}
+
+/**
+ * register contact status change listener.
+ * @param {EMContactListener} listener 好友管理回调监听对象
+ * @return {void}
+ */
+EMContactManager.prototype.registerContactListener = function (listener) {
+  this._manager.registerContactListener(listener._listener);
+};
+
+/**
+ * remove registration of contact status change listener.
+ * @param {EMContactListener} listener 好友管理回调监听对象
+ * @return {void}
+ */
+EMContactManager.prototype.removeContactListener = function (listener) {
+  this._manager.removeContactListener(listener._listener);
+};
+
+/**
+ * retrieve current user's friend list from server.
+ * @return {Object} 好友列表
+ */
+EMContactManager.prototype.allContacts = function () {
+  var error = new EMError();
+  var contactlist = this._manager.allContacts(error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: contactlist
+  };
+};
+
+/**
+ * retrieve current user's friend list from server.
+ * @return {Object} 好友列表
+ */
+EMContactManager.prototype.getContactsFromServer = function () {
+  var f = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var error, contactlist;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              error = new EMError();
+              contactlist = _manager.getContactsFromServer(error._error);
+              return _context.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: contactlist
+              });
+
+            case 6:
+              _context.prev = 6;
+              _context.t0 = _context['catch'](0);
+
+              console.log(_context.t0);
+
+            case 9:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * invite contact to be friend, need contact accept.
+ * @return {Object} 好友列表
+ */
+EMContactManager.prototype.getContactsFromDB = function () {
+  var error = new EMError();
+  var contactlist = this._manager.getContactsFromDB(error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: contactlist
+  };
+};
+
+/**
+ * invite contact to be friend, need contact accept.
+ * @param {String} username 用户ID
+ * @param {String} message 邀请信息
+ * @return {Object} 邀请信息发送结果
+ */
+EMContactManager.prototype.inviteContact = function (username, message) {
+  var f = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              error = new EMError();
+
+              _manager.inviteContact(username, message, error._error);
+              return _context2.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2['catch'](0);
+
+              console.log(_context2.t0);
+
+            case 9:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * invite contact to be friend, need contact accept.
+ * @param {String} username 用户ID
+ * @param {Bool} keepConversation  删除后是否保留会话
+ * @return {Object} 删除好友结果
+ */
+EMContactManager.prototype.deleteContact = function (username, keepConversation) {
+  var f = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              error = new EMError();
+
+              _manager.deleteContact(username, error._error, keepConversation);
+              return _context3.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3['catch'](0);
+
+              console.log(_context3.t0);
+
+            case 9:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * accept contact's invitation.
+ * @param {String} username 用户ID
+ * @return {Object} 同意好友申请结果
+ */
+EMContactManager.prototype.acceptInvitation = function (username) {
+  var f = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              error = new EMError();
+
+              _manager.acceptInvitation(username, error._error);
+              return _context4.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context4.prev = 6;
+              _context4.t0 = _context4['catch'](0);
+
+              console.log(_context4.t0);
+
+            case 9:
+            case 'end':
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * decline contact's invitation.
+ * @param {String} username 好友ID
+ * @return {Object}
+ */
+EMContactManager.prototype.declineInvitation = function (username) {
+  var f = function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              error = new EMError();
+
+              _manager.declineInvitation(username, error._error);
+              return _context5.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context5.prev = 6;
+              _context5.t0 = _context5['catch'](0);
+
+              console.log(_context5.t0);
+
+            case 9:
+            case 'end':
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * retrieve black list from memory.
+ * @return {Array} 黑名单列表
+ */
+EMContactManager.prototype.blacklist = function () {
+  var error = new EMError();
+  var memberlist = this._manager._manager.blacklist(error._error);
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: memberlist
+  };
+};
+
+/**
+ * retrieve black list from server.
+ * @return {Array} 黑名单列表
+ */
+EMContactManager.prototype.getBlackListFromServer = function () {
+  var f = function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+      var error, memberlist;
+      return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              error = new EMError();
+              memberlist = _manager.getBlackListFromServer(error._error);
+              return _context6.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: memberlist
+              });
+
+            case 6:
+              _context6.prev = 6;
+              _context6.t0 = _context6['catch'](0);
+
+              console.log(_context6.t0);
+
+            case 9:
+            case 'end':
+              return _context6.stop();
+          }
+        }
+      }, _callee6, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * save black list.
+ * @param {Array} blacklist String array 黑名单
+ * @return {Object} 修改黑名单结果
+ */
+EMContactManager.prototype.saveBlackList = function (blacklist) {
+  var f = function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.prev = 0;
+              error = new EMError();
+
+              _manager.saveBlackList(blacklist, error._error);
+              return _context7.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context7.prev = 6;
+              _context7.t0 = _context7['catch'](0);
+
+              console.log(_context7.t0);
+
+            case 9:
+            case 'end':
+              return _context7.stop();
+          }
+        }
+      }, _callee7, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * add contact to blacklist.
+ * Note: both whether both side will be blocked, if true user also can not subscribe contact's presense. both = false is not work yet, current behaviour is both side conmunication will be blocded.
+ * @param {String} username 用户ID
+ * @return {Object} 添加黑名单结果
+ */
+EMContactManager.prototype.addToBlackList = function (username) {
+  var f = function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              error = new EMError();
+
+              _manager.addToBlackList(username, true, error._error);
+              return _context8.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context8.prev = 6;
+              _context8.t0 = _context8['catch'](0);
+
+              console.log(_context8.t0);
+
+            case 9:
+            case 'end':
+              return _context8.stop();
+          }
+        }
+      }, _callee8, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * remove contact from black list.
+ * @param {String} username 用户ID
+ * @return {Object}
+ */
+EMContactManager.prototype.removeFromBlackList = function (username) {
+  var f = function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              _context9.prev = 0;
+              error = new EMError();
+
+              _manager.removeFromBlackList(username, error._error);
+              return _context9.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context9.prev = 6;
+              _context9.t0 = _context9['catch'](0);
+
+              console.log(_context9.t0);
+
+            case 9:
+            case 'end':
+              return _context9.stop();
+          }
+        }
+      }, _callee9, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * get self id list on other platforms.
+ * @return {Array} String
+ */
+EMContactManager.prototype.getSelfIdsOnOtherPlatform = function () {
+  var error = new EMError();
+  return this._manager.getSelfIdsOnOtherPlatform(error._error);
+};
+
+module.exports = EMContactManager;
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var EMGroup = __webpack_require__(107);
+var EMError = __webpack_require__(44);
+
+var _require = __webpack_require__(106),
+    EMCursorResult = _require.EMCursorResult,
+    EMPageResult = _require.EMPageResult,
+    EMStringCursorResult = _require.EMStringCursorResult;
+
+var EMCallback = __webpack_require__(252);
+var EMMucSharedFile = __webpack_require__(154);
+var async = __webpack_require__(85);
+
+/**
+ * Easemob EMGroupManager implementation.
+ */
+
+/**
+ * EMGroupManager constructor.
+ * @constructor
+ * @param {Object} manager 组管理对象
+ */
+function EMGroupManager(manager) {
+  this._manager = manager;
+}
+
+/**
+ * Add group manager listener.
+ * @param {EMGroupManagerListener} listener 组管理的回调监听对象
+ * @return {void}
+ */
+EMGroupManager.prototype.addListener = function (listener) {
+  this._manager.addListener(listener._listener);
+};
+
+/**
+ * Remove group manager listener.
+ * @param {EMGroupManagerListener} listener 组管理的回调监听对象
+ * @return {void}
+ */
+EMGroupManager.prototype.removeListener = function (listener) {
+  this._manager.removeListener(listener._listener);
+};
+
+/**
+ * Remove all the listeners.
+ * @return {void}
+ */
+EMGroupManager.prototype.clearListeners = function () {
+  this._manager.clearListeners();
+};
+
+/**
+ * Get a group with groupId, create the group if not exist.
+ * @param {String} groupId 群组ID
+ * @return {EMGroup} 返回群组对象
+ */
+EMGroupManager.prototype.groupWithId = function (groupId) {
+  return new EMGroup(this._manager.groupWithId(groupId));
+};
+
+function createGroupList(list) {
+  var groups = new Array(list.length);
+  for (var i = 0; i < list.length; i++) {
+    groups[i] = new EMGroup(list[i]);
+  }
+  return groups;
+}
+
+/**
+ * Get groups for login user from cache, or from local database if not in cache.
+ * @return {Array} EMGroup array.
+ */
+EMGroupManager.prototype.allMyGroups = function () {
+  var error = new EMError();
+  var grouplist = createGroupList(this._manager.allMyGroups(error._error));
+  return {
+    code: error.errorCode,
+    description: error.description,
+    data: grouplist
+  };
+};
+
+/**
+ * Fetch all groups for login user from server.
+ * Note: Groups in memory will be updated.
+ * @return {Object} {code,description,data} EMGroup array.
+ */
+EMGroupManager.prototype.fetchAllMyGroups = function () {
+  var f = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var error, grouplist;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              error = new EMError();
+              grouplist = createGroupList(_manager.fetchAllMyGroups(error._error));
+              return _context.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: grouplist
+              });
+
+            case 6:
+              _context.prev = 6;
+              _context.t0 = _context['catch'](0);
+
+              console.log(_context.t0);
+
+            case 9:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Fetch app's public groups with page.
+ * If PageNum=0, then there is no pagination and will get all the users on the list.
+ * If PageNum=1, then will start from the first page of pagination.
+ * @param {Number} pageNum 获取的页数
+ * @param {Number} pageSize 每页的群组计数
+ * @return {Object}  {code,description,data} cursor store the public groups.
+ */
+EMGroupManager.prototype.fetchPublicGroupsWithPage = function (pageNum, pageSize) {
+  var f = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var error, pageresult;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              error = new EMError();
+              pageresult = new EMPageResult(_manager.fetchPublicGroupsWithPage(pageNum, pageSize, error._error), 0);
+              return _context2.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: pageresult.result()
+              });
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2['catch'](0);
+
+              console.log(_context2.t0);
+
+            case 9:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Create a new group.
+ * Note: user will be the owner of the group created.
+ * @param {String} subject          Group's subject.
+ * @param {String} description      Group's description.
+ * @param {String} welcomeMessage   Welcoming message that will be sent to invited user.
+ * @param {String} setting          Group's setting.
+ * @param {Array} members           Group's members. String array.
+ * @return {Object}      {code,description,data}          The group created.
+ */
+EMGroupManager.prototype.createGroup = function (subject, description, welcomeMessage, setting, members) {
+  var f = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.createGroup(subject, description, welcomeMessage, setting._setting, members, error._error));
+              return _context3.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3['catch'](0);
+
+              console.log(_context3.t0);
+
+            case 9:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Join a public group.
+ * Note: The group's style must be PUBLIC_JOIN_OPEN, or will return error.
+ * @param {String} groupId    Group ID.
+ * @return {Object}    {code,description,data}      The group joined.
+ */
+EMGroupManager.prototype.joinPublicGroup = function (groupId) {
+  var f = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.joinPublicGroup(groupId, error._error));
+              return _context4.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context4.prev = 6;
+              _context4.t0 = _context4['catch'](0);
+
+              console.log(_context4.t0);
+
+            case 9:
+            case 'end':
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Request to join a public group, need owner or admin's approval.
+ * Note: The group's style must be PUBLIC_JOIN_APPROVAL, or will return error.
+ * @param {String} groupId        Group ID.
+ * @param {String} nickName       user's nickname in the group.
+ * @param {String} message        requesting message, that will be sent to group owner.
+ * @return {Object}       {code,description,data}       The group to join.
+ */
+EMGroupManager.prototype.applyJoinPublicGroup = function (groupId, nickName, message) {
+  var f = function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.applyJoinPublicGroup(groupId, nickName, message, error._error));
+              return _context5.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context5.prev = 6;
+              _context5.t0 = _context5['catch'](0);
+
+              console.log(_context5.t0);
+
+            case 9:
+            case 'end':
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Leave a group.
+ * Note: Group owner cannot leave the group.
+ * @param {String} groupId        Group ID.
+ * @return {Object} {code,description,data}
+ */
+EMGroupManager.prototype.leaveGroup = function (groupId) {
+  var f = function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              error = new EMError();
+
+              _manager.leaveGroup(groupId, error._error);
+              return _context6.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 6:
+              _context6.prev = 6;
+              _context6.t0 = _context6['catch'](0);
+
+              console.log(_context6.t0);
+
+            case 9:
+            case 'end':
+              return _context6.stop();
+          }
+        }
+      }, _callee6, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Destroy a group.
+ * Note: Only group owner can destroy the group.
+ * @param {String} groupId        Group ID.
+ * @return {Object} {code,description,data}
+ */
+EMGroupManager.prototype.destroyGroup = function (groupId, error) {
+  var f = function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+      var _error;
+
+      return regeneratorRuntime.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.prev = 0;
+              _error = new EMError();
+
+              _manager.destroyGroup(groupId, _error._error);
+              return _context7.abrupt('return', {
+                code: _error.errorCode,
+                description: _error.description
+              });
+
+            case 6:
+              _context7.prev = 6;
+              _context7.t0 = _context7['catch'](0);
+
+              console.log(_context7.t0);
+
+            case 9:
+            case 'end':
+              return _context7.stop();
+          }
+        }
+      }, _callee7, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Add members to a group.
+ * Note: whether if user has permission to invite other user depends on group's setting
+ * @param {String} groupId          Group ID
+ * @param {Array} members           string members array, Invited users.
+ * @param {String} welcomeMessage   Welcome message that will be sent to invited user.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.addGroupMembers = function (groupId, members, welcomeMessage) {
+  var f = function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.addGroupMembers(groupId, members, welcomeMessage, error._error));
+              return _context8.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context8.prev = 6;
+              _context8.t0 = _context8['catch'](0);
+
+              console.log(_context8.t0);
+
+            case 9:
+            case 'end':
+              return _context8.stop();
+          }
+        }
+      }, _callee8, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Remove members from a group.
+ * Note: ONLY group owner and admin owner can remove members.
+ * ONLY group owner can remove both admin and members.
+ * @param {String} groupId          Group ID.
+ * @param {Array} members           string members array, Removed members.
+ * @return {Object}      {code,description,data}          The group.
+ */
+EMGroupManager.prototype.removeGroupMembers = function (groupId, members) {
+  var f = function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              _context9.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.removeGroupMembers(groupId, members, error._error));
+              return _context9.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context9.prev = 6;
+              _context9.t0 = _context9['catch'](0);
+
+              console.log(_context9.t0);
+
+            case 9:
+            case 'end':
+              return _context9.stop();
+          }
+        }
+      }, _callee9, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Block group's members, the blocked user cannot send message in the group.
+ * Note: ONLY group owner and admin owner can block members.
+ * ONLY group owner can block both admin and members.
+ * @param {String} groupId          Group ID.
+ * @param {Array} members           string members array,  Blocked members.
+
+ * @param {String} reason           The reason of blocking members.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.blockGroupMembers = function (groupId, members, reason) {
+  var f = function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              _context10.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.blockGroupMembers(groupId, members, error._error, reason));
+              return _context10.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context10.prev = 6;
+              _context10.t0 = _context10['catch'](0);
+
+              console.log(_context10.t0);
+
+            case 9:
+            case 'end':
+              return _context10.stop();
+          }
+        }
+      }, _callee10, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref10.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Unblock group's members.
+ * Note: ONLY group owner and admin owner can unblock members.
+ * ONLY group owner can unblock both admin and members.
+ * @param {String} groupId          Group ID.
+ * @param {Array} members           string members array,  Unblocked users.
+ * @param {EMError} error           EMError used for output.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.unblockGroupMembers = function (groupId, members) {
+  var f = function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              _context11.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.unblockGroupMembers(groupId, members, error._error));
+              return _context11.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context11.prev = 6;
+              _context11.t0 = _context11['catch'](0);
+
+              console.log(_context11.t0);
+
+            case 9:
+            case 'end':
+              return _context11.stop();
+          }
+        }
+      }, _callee11, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref11.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Change group's subject.
+ * Note: Only group's owner can change group's subject.
+ * @param {String} groupId          Group ID.
+ * @param {String} newSubject       The new group subject.
+ * @param {EMError} error           EMError used for output.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.changeGroupSubject = function (groupId, newSubject) {
+  var f = function () {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              _context12.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.changeGroupSubject(groupId, newSubject, error._error));
+              return _context12.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context12.prev = 6;
+              _context12.t0 = _context12['catch'](0);
+
+              console.log(_context12.t0);
+
+            case 9:
+            case 'end':
+              return _context12.stop();
+          }
+        }
+      }, _callee12, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref12.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Change group's description.
+ * Note: Only group's owner can change group's description.
+ * @param {String} groupId          Group ID.
+ * @param {String} newDescription   The new group description.
+ * @param {EMError} error           EMError used for output.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.changeGroupDescription = function (groupId, newDescription) {
+  var f = function () {
+    var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              _context13.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.changeGroupDescription(groupId, newDescription, error._error));
+              return _context13.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context13.prev = 6;
+              _context13.t0 = _context13['catch'](0);
+
+              console.log(_context13.t0);
+
+            case 9:
+            case 'end':
+              return _context13.stop();
+          }
+        }
+      }, _callee13, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref13.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Change group's extension.
+ * Note: Only group's owner can change group's extension.
+ * @param {String} groupId          Group ID.
+ * @param {String} newDescription   The new group extension.
+ * @param {EMError} error           EMError used for output.
+ * @return {Object}     {code,description,data}           The group.
+ */
+EMGroupManager.prototype.changeGroupExtension = function (groupId, newExtension) {
+  var f = function () {
+    var _ref14 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              _context14.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.changeGroupExtension(groupId, newExtension, error._error));
+              return _context14.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context14.prev = 6;
+              _context14.t0 = _context14['catch'](0);
+
+              console.log(_context14.t0);
+
+            case 9:
+            case 'end':
+              return _context14.stop();
+          }
+        }
+      }, _callee14, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref14.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get group's specification.
+ * @param {String} groupId          Group ID.
+ * @param {EMError} error           EMError used for output.
+ * @param {Bool} fetchMembers       Whether get group's members.
+ * @return {Object}    {code,description,data}            The group.
+ */
+EMGroupManager.prototype.fetchGroupSpecification = function (groupId, fetchMembers) {
+  var f = function () {
+    var _ref15 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee15$(_context15) {
+        while (1) {
+          switch (_context15.prev = _context15.next) {
+            case 0:
+              _context15.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.fetchGroupSpecification(groupId, error._error, fetchMembers));
+              return _context15.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context15.prev = 6;
+              _context15.t0 = _context15['catch'](0);
+
+              console.log(_context15.t0);
+
+            case 9:
+            case 'end':
+              return _context15.stop();
+          }
+        }
+      }, _callee15, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref15.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get group's member list
+ * Note: User can input empty string as cursor at the first time
+ * @param {String} groupId          Group ID.
+ * @param {String} cursor           Page's cursor.
+ * @param {Number} pageSize         Page size. ex. 20 for 20 objects.
+ * @return {Object} {code,description,data}  the cursor store the list of group members.
+ */
+EMGroupManager.prototype.fetchGroupMembers = function (groupId, cursor, pageSize) {
+  var f = function () {
+    var _ref16 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+      var error, memberlist;
+      return regeneratorRuntime.wrap(function _callee16$(_context16) {
+        while (1) {
+          switch (_context16.prev = _context16.next) {
+            case 0:
+              _context16.prev = 0;
+              error = new EMError();
+              memberlist = new EMStringCursorResult(_manager.fetchGroupMembers(groupId, cursor, pageSize, error._error));
+              return _context16.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: memberlist.result(),
+                nextcursor: memberlist.nextPageCursor()
+              });
+
+            case 6:
+              _context16.prev = 6;
+              _context16.t0 = _context16['catch'](0);
+
+              console.log(_context16.t0);
+
+            case 9:
+            case 'end':
+              return _context16.stop();
+          }
+        }
+      }, _callee16, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref16.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get group's bans member list
+ * Note: User can input empty string as cursor at the first time
+ * @param {String} groupId          Group ID.
+ * @param {Number} pageNum          Page's cursor.
+ * @param {Number} pageSize         Page size. ex. 20 for 20 objects.
+ * @return {Object}  {code,description,data} the cursor store the list of group members.
+ */
+
+EMGroupManager.prototype.fetchGroupBans = function (groupId, pageNum, pageSize) {
+  var f = function () {
+    var _ref17 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+      var error, grouplist;
+      return regeneratorRuntime.wrap(function _callee17$(_context17) {
+        while (1) {
+          switch (_context17.prev = _context17.next) {
+            case 0:
+              _context17.prev = 0;
+              error = new EMError();
+              grouplist = new EMStringCursorResult(_manager.fetchGroupBans(groupId, pageNum, pageSize, error._error));
+              return _context17.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: grouplist.result(),
+                nextcursor: grouplist.nextPageCursor()
+              });
+
+            case 6:
+              _context17.prev = 6;
+              _context17.t0 = _context17['catch'](0);
+
+              console.log(_context17.t0);
+
+            case 9:
+            case 'end':
+              return _context17.stop();
+          }
+        }
+      }, _callee17, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref17.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Search for a public group.
+ * @param {String} groupId          Group ID to be found.
+ * @return {Object}     {code,description,data}           The group with specified id.
+ */
+EMGroupManager.prototype.searchPublicGroup = function (groupId) {
+  var f = function () {
+    var _ref18 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee18$(_context18) {
+        while (1) {
+          switch (_context18.prev = _context18.next) {
+            case 0:
+              _context18.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.searchPublicGroup(groupId, error._error));
+              return _context18.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context18.prev = 6;
+              _context18.t0 = _context18['catch'](0);
+
+              console.log(_context18.t0);
+
+            case 9:
+            case 'end':
+              return _context18.stop();
+          }
+        }
+      }, _callee18, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref18.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Block group message.
+ * Note: Owner cannot block the group message.
+ * @param {String} groupId          Group ID.
+ * @return {Object}       {code,description,data}         The group.
+ */
+EMGroupManager.prototype.blockGroupMessage = function (groupId) {
+  var f = function () {
+    var _ref19 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee19$(_context19) {
+        while (1) {
+          switch (_context19.prev = _context19.next) {
+            case 0:
+              _context19.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.blockGroupMessage(groupId, error._error));
+              return _context19.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context19.prev = 6;
+              _context19.t0 = _context19['catch'](0);
+
+              console.log(_context19.t0);
+
+            case 9:
+            case 'end':
+              return _context19.stop();
+          }
+        }
+      }, _callee19, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref19.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Unblock group message.
+ * @param {String} groupId          Group ID.
+ * @return {Object}        {code,description,data}        The group.
+ */
+EMGroupManager.prototype.unblockGroupMessage = function (groupId) {
+  var f = function () {
+    var _ref20 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee20$(_context20) {
+        while (1) {
+          switch (_context20.prev = _context20.next) {
+            case 0:
+              _context20.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.unblockGroupMessage(groupId, error._error));
+              return _context20.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context20.prev = 6;
+              _context20.t0 = _context20['catch'](0);
+
+              console.log(_context20.t0);
+
+            case 9:
+            case 'end':
+              return _context20.stop();
+          }
+        }
+      }, _callee20, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref20.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Accept user's group joining request.
+ * Note: Only group's owner and admin can approval user's request to join group.
+ * @param {String} groupId          Group ID.
+ * @param {String} user             The user that made the request.
+ * @return {Object}       {code,description,data}         The group.
+ */
+EMGroupManager.prototype.acceptJoinGroupApplication = function (groupId, user) {
+  var f = function () {
+    var _ref21 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee21$(_context21) {
+        while (1) {
+          switch (_context21.prev = _context21.next) {
+            case 0:
+              _context21.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.acceptJoinGroupApplication(groupId, user, error._error));
+              return _context21.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context21.prev = 6;
+              _context21.t0 = _context21['catch'](0);
+
+              console.log(_context21.t0);
+
+            case 9:
+            case 'end':
+              return _context21.stop();
+          }
+        }
+      }, _callee21, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref21.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Decline user's join application.
+ * Note: Only group's owner and admin can decline user's request to join group.
+ * @param {String} groupId          Group ID.
+ * @param {String} user             The user that made the request.
+ * @return {Object}        {code,description,data}        The group.
+ */
+EMGroupManager.prototype.declineJoinGroupApplication = function (groupId, user, reason) {
+  var f = function () {
+    var _ref22 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee22() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee22$(_context22) {
+        while (1) {
+          switch (_context22.prev = _context22.next) {
+            case 0:
+              _context22.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.declineJoinGroupApplication(groupId, user, reason, error._error));
+              return _context22.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context22.prev = 6;
+              _context22.t0 = _context22['catch'](0);
+
+              console.log(_context22.t0);
+
+            case 9:
+            case 'end':
+              return _context22.stop();
+          }
+        }
+      }, _callee22, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref22.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * accept invitation to join a group.
+ * @param {String} groupId          Group ID.
+ * @param {String} inviter          Inviter
+ * @return {Object}      {code,description,data}          The group user has accepted.
+ */
+EMGroupManager.prototype.acceptInvitationFromGroup = function (groupId, inviter) {
+  var f = function () {
+    var _ref23 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee23() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee23$(_context23) {
+        while (1) {
+          switch (_context23.prev = _context23.next) {
+            case 0:
+              _context23.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.acceptInvitationFromGroup(groupId, inviter, error._error));
+              return _context23.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context23.prev = 6;
+              _context23.t0 = _context23['catch'](0);
+
+              console.log(_context23.t0);
+
+            case 9:
+            case 'end':
+              return _context23.stop();
+          }
+        }
+      }, _callee23, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref23.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * decline invitation to join a group.
+ * @param {String} groupId          Group ID.
+ * @param {String} inviter          Inviter.
+ * @param {String} reason           The decline reason.
+ * @return {Object}        {code,description,data}        The group user has accepted.
+ */
+EMGroupManager.prototype.declineInvitationFromGroup = function (groupId, inviter, reason) {
+  var f = function () {
+    var _ref24 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee24() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee24$(_context24) {
+        while (1) {
+          switch (_context24.prev = _context24.next) {
+            case 0:
+              _context24.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.declineInvitationFromGroup(groupId, inviter, reason, error._error));
+              return _context24.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context24.prev = 6;
+              _context24.t0 = _context24['catch'](0);
+
+              console.log(_context24.t0);
+
+            case 9:
+            case 'end':
+              return _context24.stop();
+          }
+        }
+      }, _callee24, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref24.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * transfer to new group owner.
+ * Note: Only group owner can transfer ownership
+ * @param {String} groupId          Group ID of the current owner.
+ * @param {String} newOwner         Group ID of the new owner.
+ * @return {Object}          {code,description,data}      The group user has accepted.
+ */
+EMGroupManager.prototype.transferGroupOwner = function (groupId, newOwner) {
+  var f = function () {
+    var _ref25 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee25() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee25$(_context25) {
+        while (1) {
+          switch (_context25.prev = _context25.next) {
+            case 0:
+              _context25.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.transferGroupOwner(groupId, newOwner, error._error));
+              return _context25.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context25.prev = 6;
+              _context25.t0 = _context25['catch'](0);
+
+              console.log(_context25.t0);
+
+            case 9:
+            case 'end':
+              return _context25.stop();
+          }
+        }
+      }, _callee25, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref25.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * add group admin.
+ * Note: Only group owner can add admin.
+ * @param {String} groupId          Group ID.
+ * @param {String} admin            New group admin.
+ * @return {Object}      {code,description,data}          The group.
+ */
+EMGroupManager.prototype.addGroupAdmin = function (groupId, admin) {
+  var f = function () {
+    var _ref26 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee26() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee26$(_context26) {
+        while (1) {
+          switch (_context26.prev = _context26.next) {
+            case 0:
+              _context26.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.addGroupAdmin(groupId, admin, error._error));
+              return _context26.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context26.prev = 6;
+              _context26.t0 = _context26['catch'](0);
+
+              console.log(_context26.t0);
+
+            case 9:
+            case 'end':
+              return _context26.stop();
+          }
+        }
+      }, _callee26, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref26.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * remove group admin.
+ * Note: ONLY group owner can remove admin, not other admin.
+ * @param {String} groupId          Group ID.
+ * @param {String} admin            Group admin member.
+ * @return {Object}       {code,description,data}         The group.
+ */
+EMGroupManager.prototype.removeGroupAdmin = function (groupId, admin) {
+  var f = function () {
+    var _ref27 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee27() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee27$(_context27) {
+        while (1) {
+          switch (_context27.prev = _context27.next) {
+            case 0:
+              _context27.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.removeGroupAdmin(groupId, admin, error._error));
+              return _context27.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context27.prev = 6;
+              _context27.t0 = _context27['catch'](0);
+
+              console.log(_context27.t0);
+
+            case 9:
+            case 'end':
+              return _context27.stop();
+          }
+        }
+      }, _callee27, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref27.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * add group mute members.
+ * Note: Temporary mute members will not be able to talk in the chat room for period of time.
+ * @param {String} groupId          Group ID.
+ * @param {Array}  members          Group's mute members.
+ * @param {Number} muteDuration     mute duration in milliseconds.
+ * @return {Object}      {code,description,data}          The group.
+ */
+EMGroupManager.prototype.muteGroupMembers = function (groupId, members, muteDuration) {
+  var f = function () {
+    var _ref28 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee28() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee28$(_context28) {
+        while (1) {
+          switch (_context28.prev = _context28.next) {
+            case 0:
+              _context28.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.muteGroupMembers(groupId, members, muteDuration, error._error));
+              return _context28.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context28.prev = 6;
+              _context28.t0 = _context28['catch'](0);
+
+              console.log(_context28.t0);
+
+            case 9:
+            case 'end':
+              return _context28.stop();
+          }
+        }
+      }, _callee28, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref28.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * remove group muted members.
+ * @param {String} groupId          Group ID.
+ * @param {Array}  members          mute members to be removed.
+ * @return {Object}      {code,description,data}          The group.
+ */
+EMGroupManager.prototype.unmuteGroupMembers = function (groupId, members, error) {
+  var f = function () {
+    var _ref29 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee29() {
+      var _error2, group;
+
+      return regeneratorRuntime.wrap(function _callee29$(_context29) {
+        while (1) {
+          switch (_context29.prev = _context29.next) {
+            case 0:
+              _context29.prev = 0;
+              _error2 = new EMError();
+              group = new EMGroup(_manager.unmuteGroupMembers(groupId, members, _error2._error));
+              return _context29.abrupt('return', {
+                code: _error2.errorCode,
+                description: _error2.description,
+                data: group
+              });
+
+            case 6:
+              _context29.prev = 6;
+              _context29.t0 = _context29['catch'](0);
+
+              console.log(_context29.t0);
+
+            case 9:
+            case 'end':
+              return _context29.stop();
+          }
+        }
+      }, _callee29, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref29.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Get the list of group muted users.
+ * @param {String} groupId          Group ID.
+ * @param {Number} pageNum          mute members to be removed.
+ * @param {Number} pageSizePage     size. ex. 20 for 20 objects.
+ * @return {Object} {code,description,data}  The list of mute users. object like { "key" : name, "value" : 111 }.
+ */
+EMGroupManager.prototype.fetchGroupMutes = function (groupId, pageNum, pageSize) {
+  var f = function () {
+    var _ref30 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
+      var error, dataArray;
+      return regeneratorRuntime.wrap(function _callee30$(_context30) {
+        while (1) {
+          switch (_context30.prev = _context30.next) {
+            case 0:
+              _context30.prev = 0;
+              error = new EMError();
+              dataArray = _manager.fetchGroupMutes(groupId, pageNum, pageSize, error._error);
+              return _context30.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: dataArray
+              });
+
+            case 6:
+              _context30.prev = 6;
+              _context30.t0 = _context30['catch'](0);
+
+              console.log(_context30.t0);
+
+            case 9:
+            case 'end':
+              return _context30.stop();
+          }
+        }
+      }, _callee30, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref30.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * upload a sharing file to group.
+ * @param {String} groupId          Group ID.
+ * @param {String} filePath         file path to be uploaded to on server. Can be used for file downloading later.
+ * @param {EMCallback} callback     EMCallback contains onProgress of file uploading progress.
+ * @return {Object} {code,description,data} EMMucSharedFile list. 
+ */
+EMGroupManager.prototype.uploadGroupSharedFile = function (groupId, filePath, callback) {
+  var f = function () {
+    var _ref31 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee31() {
+      var error, sharedFile;
+      return regeneratorRuntime.wrap(function _callee31$(_context31) {
+        while (1) {
+          switch (_context31.prev = _context31.next) {
+            case 0:
+              _context31.prev = 0;
+              error = new EMError();
+              sharedFile = new EMMucSharedFile(_manager.uploadGroupSharedFile(groupId, filePath, callback._callback, error._error));
+              return _context31.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: sharedFile
+              });
+
+            case 6:
+              _context31.prev = 6;
+              _context31.t0 = _context31['catch'](0);
+
+              console.log(_context31.t0);
+
+            case 9:
+            case 'end':
+              return _context31.stop();
+          }
+        }
+      }, _callee31, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref31.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * fetch group's shared files list.
+ * @param {String} groupId          Group ID.
+ * @param {Number} pageNum          page number of pagination.
+ * @param {Number} pageSize         Page size. ex. 20 for 20 objects.
+ * @return {Object}  {code,description,data} EMMucSharedFile list. 
+ */
+EMGroupManager.prototype.fetchGroupSharedFiles = function (groupId, pageNum, pageSize) {
+  var f = function () {
+    var _ref32 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee32() {
+      var error, result, sharedFiles, i;
+      return regeneratorRuntime.wrap(function _callee32$(_context32) {
+        while (1) {
+          switch (_context32.prev = _context32.next) {
+            case 0:
+              _context32.prev = 0;
+              error = new EMError();
+              result = _manager.fetchGroupSharedFiles(groupId, pageNum, pageSize, error._error);
+              sharedFiles = new Array(result.length);
+
+              for (i = 0; i < result.length; i++) {
+                sharedFiles[i] = new EMMucSharedFile(result[i]);
+              }
+              return _context32.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: sharedFiles
+              });
+
+            case 8:
+              _context32.prev = 8;
+              _context32.t0 = _context32['catch'](0);
+
+              console.log(_context32.t0);
+
+            case 11:
+            case 'end':
+              return _context32.stop();
+          }
+        }
+      }, _callee32, this, [[0, 8]]);
+    }));
+
+    return function f() {
+      return _ref32.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * delete a shared file.
+ * Note: ONLY group's admin and owner or file uploader can delete shared file.
+ * @param {String} groupId          Group ID.
+ * @param {String} filePath         store file to this path.
+ * @param {String} fileId           shared file id.
+ * @param {EMCallback} callback     EMCallback contains onProgress of file uploading progress.
+ * @return {Object}        {code,description,data}        The group.
+ */
+EMGroupManager.prototype.downloadGroupSharedFile = function (groupId, filePath, fileId, callback) {
+  var f = function () {
+    var _ref33 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee33$(_context33) {
+        while (1) {
+          switch (_context33.prev = _context33.next) {
+            case 0:
+              _context33.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.downloadGroupSharedFile(groupId, filePath, fileId, callback._callback, error._error));
+              return _context33.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context33.prev = 6;
+              _context33.t0 = _context33['catch'](0);
+
+              console.log(_context33.t0);
+
+            case 9:
+            case 'end':
+              return _context33.stop();
+          }
+        }
+      }, _callee33, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref33.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * delete a shared file.
+ * Note: ONLY group's admin and owner or file uploader can delete shared file.
+ * @param {String} groupId          Group ID.
+ * @param {String} fileId           shared file id.
+ * @return {Object}       {code,description,data}         The group.
+ */
+EMGroupManager.prototype.deleteGroupSharedFile = function (groupId, fileId) {
+  var f = function () {
+    var _ref34 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee34() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee34$(_context34) {
+        while (1) {
+          switch (_context34.prev = _context34.next) {
+            case 0:
+              _context34.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.deleteGroupSharedFile(groupId, fileId, error._error));
+              return _context34.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context34.prev = 6;
+              _context34.t0 = _context34['catch'](0);
+
+              console.log(_context34.t0);
+
+            case 9:
+            case 'end':
+              return _context34.stop();
+          }
+        }
+      }, _callee34, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref34.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * fetch group's announcement.
+ * Note: Only group's members can fetch group's announcement.
+ * @param {String} groupId          Group ID.
+ * @return {Object}         {code,description,data}        The group's announcement in string.
+ */
+EMGroupManager.prototype.fetchGroupAnnouncement = function (groupId) {
+  var f = function () {
+    var _ref35 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee35() {
+      var error, announcement;
+      return regeneratorRuntime.wrap(function _callee35$(_context35) {
+        while (1) {
+          switch (_context35.prev = _context35.next) {
+            case 0:
+              _context35.prev = 0;
+              error = new EMError();
+              announcement = _manager.fetchGroupAnnouncement(groupId, error._error);
+              return _context35.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: announcement
+              });
+
+            case 6:
+              _context35.prev = 6;
+              _context35.t0 = _context35['catch'](0);
+
+              console.log(_context35.t0);
+
+            case 9:
+            case 'end':
+              return _context35.stop();
+          }
+        }
+      }, _callee35, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref35.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+/**
+ * Update group's announcement.
+ * @param {String} groupId          Group ID.
+ * @param {String} newAnnouncement  a new group announcement.
+ * @return {Object}  {code,description,data}  The group.
+ */
+EMGroupManager.prototype.updateGroupAnnouncement = function (groupId, newAnnouncement) {
+  var f = function () {
+    var _ref36 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee36() {
+      var error, group;
+      return regeneratorRuntime.wrap(function _callee36$(_context36) {
+        while (1) {
+          switch (_context36.prev = _context36.next) {
+            case 0:
+              _context36.prev = 0;
+              error = new EMError();
+              group = new EMGroup(_manager.updateGroupAnnouncement(groupId, newAnnouncement, error._error));
+              return _context36.abrupt('return', {
+                code: error.errorCode,
+                description: error.description,
+                data: group
+              });
+
+            case 6:
+              _context36.prev = 6;
+              _context36.t0 = _context36['catch'](0);
+
+              console.log(_context36.t0);
+
+            case 9:
+            case 'end':
+              return _context36.stop();
+          }
+        }
+      }, _callee36, this, [[0, 6]]);
+    }));
+
+    return function f() {
+      return _ref36.apply(this, arguments);
+    };
+  }();
+
+  var _manager = this._manager;
+
+  return f();
+};
+
+module.exports = EMGroupManager;
+
+/***/ }),
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // This is adapted from https://github.com/normalize/mz
 // Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors
-const u = __webpack_require__(23).fromCallback
-const fs = __webpack_require__(12)
+const u = __webpack_require__(25).fromCallback
+const fs = __webpack_require__(13)
 
 const api = [
   'access',
@@ -8473,14 +21002,14 @@ exports.write = function (fd, buffer, a, b, c, callback) {
 
 
 /***/ }),
-/* 234 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // imported from ncp (this is temporary, will rewrite)
 
-var fs = __webpack_require__(12)
+var fs = __webpack_require__(13)
 var path = __webpack_require__(4)
-var utimes = __webpack_require__(542)
+var utimes = __webpack_require__(580)
 
 function ncp (source, dest, options, callback) {
   if (!callback) {
@@ -8713,7 +21242,7 @@ module.exports = ncp
 
 
 /***/ }),
-/* 235 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8745,16 +21274,16 @@ module.exports = {
 
 
 /***/ }),
-/* 236 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  copySync: __webpack_require__(545)
+  copySync: __webpack_require__(583)
 }
 
 
 /***/ }),
-/* 237 */
+/* 263 */
 /***/ (function(module, exports) {
 
 /* eslint-disable node/no-deprecated-api */
@@ -8771,7 +21300,7 @@ module.exports = function (size) {
 
 
 /***/ }),
-/* 238 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -8781,10 +21310,10 @@ module.exports = function (size) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var base64VLQ = __webpack_require__(239);
-var util = __webpack_require__(83);
-var ArraySet = __webpack_require__(240).ArraySet;
-var MappingList = __webpack_require__(565).MappingList;
+var base64VLQ = __webpack_require__(265);
+var util = __webpack_require__(88);
+var ArraySet = __webpack_require__(266).ArraySet;
+var MappingList = __webpack_require__(603).MappingList;
 
 /**
  * An instance of the SourceMapGenerator represents a source map which is
@@ -9193,7 +21722,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
 
 
 /***/ }),
-/* 239 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -9233,7 +21762,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var base64 = __webpack_require__(564);
+var base64 = __webpack_require__(602);
 
 // A single base 64 digit can contain 6 bits of data. For the base 64 variable
 // length quantities we use in the source map spec, the first bit is the sign,
@@ -9339,7 +21868,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
 
 
 /***/ }),
-/* 240 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -9349,7 +21878,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(83);
+var util = __webpack_require__(88);
 var has = Object.prototype.hasOwnProperty;
 var hasNativeMap = typeof Map !== "undefined";
 
@@ -9466,13 +21995,13 @@ exports.ArraySet = ArraySet;
 
 
 /***/ }),
-/* 241 */
+/* 267 */
 /***/ (function(module, exports) {
 
 module.exports = require("module");
 
 /***/ }),
-/* 242 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -9488,7 +22017,7 @@ function setup(env) {
 	createDebug.disable = disable;
 	createDebug.enable = enable;
 	createDebug.enabled = enabled;
-	createDebug.humanize = __webpack_require__(577);
+	createDebug.humanize = __webpack_require__(615);
 	createDebug.destroy = destroy;
 
 	Object.keys(env).forEach(key => {
@@ -9752,7 +22281,13 @@ module.exports = setup;
 
 
 /***/ }),
-/* 243 */
+/* 269 */
+/***/ (function(module, exports) {
+
+module.exports = require("tty");
+
+/***/ }),
+/* 270 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9761,10 +22296,10 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 243;
+webpackEmptyContext.id = 270;
 
 /***/ }),
-/* 244 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Approach:
@@ -9809,24 +22344,24 @@ webpackEmptyContext.id = 243;
 
 module.exports = glob
 
-var rp = __webpack_require__(245)
-var minimatch = __webpack_require__(146)
+var rp = __webpack_require__(272)
+var minimatch = __webpack_require__(157)
 var Minimatch = minimatch.Minimatch
-var inherits = __webpack_require__(591)
-var EE = __webpack_require__(593).EventEmitter
+var inherits = __webpack_require__(628)
+var EE = __webpack_require__(49).EventEmitter
 var path = __webpack_require__(4)
-var assert = __webpack_require__(82)
-var isAbsolute = __webpack_require__(147)
-var globSync = __webpack_require__(594)
-var common = __webpack_require__(246)
+var assert = __webpack_require__(87)
+var isAbsolute = __webpack_require__(158)
+var globSync = __webpack_require__(630)
+var common = __webpack_require__(273)
 var setopts = common.setopts
 var ownProp = common.ownProp
-var inflight = __webpack_require__(595)
-var util = __webpack_require__(81)
+var inflight = __webpack_require__(631)
+var util = __webpack_require__(86)
 var childrenIgnored = common.childrenIgnored
 var isIgnored = common.isIgnored
 
-var once = __webpack_require__(248)
+var once = __webpack_require__(275)
 
 function glob (pattern, options, cb) {
   if (typeof options === 'function') cb = options, options = {}
@@ -10560,7 +23095,7 @@ Glob.prototype._stat2 = function (f, abs, er, stat, cb) {
 
 
 /***/ }),
-/* 245 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = realpath
@@ -10570,13 +23105,13 @@ realpath.realpathSync = realpathSync
 realpath.monkeypatch = monkeypatch
 realpath.unmonkeypatch = unmonkeypatch
 
-var fs = __webpack_require__(28)
+var fs = __webpack_require__(21)
 var origRealpath = fs.realpath
 var origRealpathSync = fs.realpathSync
 
 var version = process.version
 var ok = /^v[0-5]\./.test(version)
-var old = __webpack_require__(587)
+var old = __webpack_require__(624)
 
 function newError (er) {
   return er && er.syscall === 'realpath' && (
@@ -10632,7 +23167,7 @@ function unmonkeypatch () {
 
 
 /***/ }),
-/* 246 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.setopts = setopts
@@ -10647,10 +23182,10 @@ function ownProp (obj, field) {
   return Object.prototype.hasOwnProperty.call(obj, field)
 }
 
-var fs = __webpack_require__(28)
+var fs = __webpack_require__(21)
 var path = __webpack_require__(4)
-var minimatch = __webpack_require__(146)
-var isAbsolute = __webpack_require__(147)
+var minimatch = __webpack_require__(157)
+var isAbsolute = __webpack_require__(158)
 var Minimatch = minimatch.Minimatch
 
 function alphasort (a, b) {
@@ -10876,7 +23411,7 @@ function childrenIgnored (self, path) {
 
 
 /***/ }),
-/* 247 */
+/* 274 */
 /***/ (function(module, exports) {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -10915,10 +23450,10 @@ function wrappy (fn, cb) {
 
 
 /***/ }),
-/* 248 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wrappy = __webpack_require__(247)
+var wrappy = __webpack_require__(274)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -10963,7 +23498,7 @@ function onceStrict (fn) {
 
 
 /***/ }),
-/* 249 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10974,11 +23509,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.changePermissions = exports.downloadFile = exports.getPath = undefined;
 
-var _electron = __webpack_require__(59);
+var _electron = __webpack_require__(62);
 
 var _electron2 = _interopRequireDefault(_electron);
 
-var _fs = __webpack_require__(28);
+var _fs = __webpack_require__(21);
 
 var _fs2 = _interopRequireDefault(_fs);
 
@@ -10986,7 +23521,7 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _https = __webpack_require__(599);
+var _https = __webpack_require__(635);
 
 var _https2 = _interopRequireDefault(_https);
 
@@ -11031,25 +23566,25 @@ var changePermissions = exports.changePermissions = function changePermissions(d
 };
 
 /***/ }),
-/* 250 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(251);
-module.exports = __webpack_require__(453);
+__webpack_require__(278);
+module.exports = __webpack_require__(480);
 
 
 /***/ }),
-/* 251 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(252);
+__webpack_require__(279);
 
-__webpack_require__(449);
+__webpack_require__(476);
 
-__webpack_require__(450);
+__webpack_require__(477);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -11073,37 +23608,10 @@ define(String.prototype, "padRight", "".padEnd);
 });
 
 /***/ }),
-/* 252 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(253);
-__webpack_require__(256);
-__webpack_require__(257);
-__webpack_require__(258);
-__webpack_require__(259);
-__webpack_require__(260);
-__webpack_require__(261);
-__webpack_require__(262);
-__webpack_require__(263);
-__webpack_require__(264);
-__webpack_require__(265);
-__webpack_require__(266);
-__webpack_require__(267);
-__webpack_require__(268);
-__webpack_require__(269);
-__webpack_require__(270);
-__webpack_require__(271);
-__webpack_require__(272);
-__webpack_require__(273);
-__webpack_require__(274);
-__webpack_require__(275);
-__webpack_require__(276);
-__webpack_require__(277);
-__webpack_require__(278);
-__webpack_require__(279);
 __webpack_require__(280);
-__webpack_require__(281);
-__webpack_require__(282);
 __webpack_require__(283);
 __webpack_require__(284);
 __webpack_require__(285);
@@ -11153,8 +23661,10 @@ __webpack_require__(328);
 __webpack_require__(329);
 __webpack_require__(330);
 __webpack_require__(331);
+__webpack_require__(332);
 __webpack_require__(333);
 __webpack_require__(334);
+__webpack_require__(335);
 __webpack_require__(336);
 __webpack_require__(337);
 __webpack_require__(338);
@@ -11162,6 +23672,7 @@ __webpack_require__(339);
 __webpack_require__(340);
 __webpack_require__(341);
 __webpack_require__(342);
+__webpack_require__(343);
 __webpack_require__(344);
 __webpack_require__(345);
 __webpack_require__(346);
@@ -11175,26 +23686,17 @@ __webpack_require__(353);
 __webpack_require__(354);
 __webpack_require__(355);
 __webpack_require__(356);
-__webpack_require__(122);
 __webpack_require__(357);
-__webpack_require__(167);
 __webpack_require__(358);
-__webpack_require__(168);
-__webpack_require__(359);
 __webpack_require__(360);
 __webpack_require__(361);
-__webpack_require__(362);
 __webpack_require__(363);
-__webpack_require__(171);
-__webpack_require__(173);
-__webpack_require__(174);
 __webpack_require__(364);
 __webpack_require__(365);
 __webpack_require__(366);
 __webpack_require__(367);
 __webpack_require__(368);
 __webpack_require__(369);
-__webpack_require__(370);
 __webpack_require__(371);
 __webpack_require__(372);
 __webpack_require__(373);
@@ -11208,13 +23710,19 @@ __webpack_require__(380);
 __webpack_require__(381);
 __webpack_require__(382);
 __webpack_require__(383);
+__webpack_require__(130);
 __webpack_require__(384);
+__webpack_require__(178);
 __webpack_require__(385);
+__webpack_require__(179);
 __webpack_require__(386);
 __webpack_require__(387);
 __webpack_require__(388);
 __webpack_require__(389);
 __webpack_require__(390);
+__webpack_require__(182);
+__webpack_require__(184);
+__webpack_require__(185);
 __webpack_require__(391);
 __webpack_require__(392);
 __webpack_require__(393);
@@ -11273,43 +23781,70 @@ __webpack_require__(445);
 __webpack_require__(446);
 __webpack_require__(447);
 __webpack_require__(448);
-module.exports = __webpack_require__(32);
+__webpack_require__(449);
+__webpack_require__(450);
+__webpack_require__(451);
+__webpack_require__(452);
+__webpack_require__(453);
+__webpack_require__(454);
+__webpack_require__(455);
+__webpack_require__(456);
+__webpack_require__(457);
+__webpack_require__(458);
+__webpack_require__(459);
+__webpack_require__(460);
+__webpack_require__(461);
+__webpack_require__(462);
+__webpack_require__(463);
+__webpack_require__(464);
+__webpack_require__(465);
+__webpack_require__(466);
+__webpack_require__(467);
+__webpack_require__(468);
+__webpack_require__(469);
+__webpack_require__(470);
+__webpack_require__(471);
+__webpack_require__(472);
+__webpack_require__(473);
+__webpack_require__(474);
+__webpack_require__(475);
+module.exports = __webpack_require__(33);
 
 
 /***/ }),
-/* 253 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // ECMAScript 6 symbols shim
 var global = __webpack_require__(2);
-var has = __webpack_require__(24);
-var DESCRIPTORS = __webpack_require__(9);
+var has = __webpack_require__(26);
+var DESCRIPTORS = __webpack_require__(10);
 var $export = __webpack_require__(0);
-var redefine = __webpack_require__(18);
-var META = __webpack_require__(44).KEY;
+var redefine = __webpack_require__(19);
+var META = __webpack_require__(46).KEY;
 var $fails = __webpack_require__(3);
-var shared = __webpack_require__(70);
-var setToStringTag = __webpack_require__(63);
-var uid = __webpack_require__(49);
+var shared = __webpack_require__(73);
+var setToStringTag = __webpack_require__(66);
+var uid = __webpack_require__(52);
 var wks = __webpack_require__(6);
-var wksExt = __webpack_require__(149);
-var wksDefine = __webpack_require__(103);
-var enumKeys = __webpack_require__(255);
-var isArray = __webpack_require__(86);
+var wksExt = __webpack_require__(160);
+var wksDefine = __webpack_require__(111);
+var enumKeys = __webpack_require__(282);
+var isArray = __webpack_require__(91);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(5);
-var toObject = __webpack_require__(11);
-var toIObject = __webpack_require__(25);
-var toPrimitive = __webpack_require__(37);
-var createDesc = __webpack_require__(48);
-var _create = __webpack_require__(52);
-var gOPNExt = __webpack_require__(152);
-var $GOPD = __webpack_require__(26);
-var $GOPS = __webpack_require__(85);
-var $DP = __webpack_require__(10);
-var $keys = __webpack_require__(50);
+var toObject = __webpack_require__(12);
+var toIObject = __webpack_require__(27);
+var toPrimitive = __webpack_require__(38);
+var createDesc = __webpack_require__(51);
+var _create = __webpack_require__(55);
+var gOPNExt = __webpack_require__(163);
+var $GOPD = __webpack_require__(28);
+var $GOPS = __webpack_require__(90);
+var $DP = __webpack_require__(11);
+var $keys = __webpack_require__(53);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -11432,11 +23967,11 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(53).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(72).f = $propertyIsEnumerable;
+  __webpack_require__(56).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(75).f = $propertyIsEnumerable;
   $GOPS.f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(43)) {
+  if (DESCRIPTORS && !__webpack_require__(45)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -11520,7 +24055,7 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(17)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(18)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
 setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
@@ -11530,20 +24065,20 @@ setToStringTag(global.JSON, 'JSON', true);
 
 
 /***/ }),
-/* 254 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(70)('native-function-to-string', Function.toString);
+module.exports = __webpack_require__(73)('native-function-to-string', Function.toString);
 
 
 /***/ }),
-/* 255 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(50);
-var gOPS = __webpack_require__(85);
-var pIE = __webpack_require__(72);
+var getKeys = __webpack_require__(53);
+var gOPS = __webpack_require__(90);
+var pIE = __webpack_require__(75);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -11558,41 +24093,41 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 256 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(52) });
+$export($export.S, 'Object', { create: __webpack_require__(55) });
 
 
 /***/ }),
-/* 257 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(9), 'Object', { defineProperty: __webpack_require__(10).f });
+$export($export.S + $export.F * !__webpack_require__(10), 'Object', { defineProperty: __webpack_require__(11).f });
 
 
 /***/ }),
-/* 258 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
 // 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-$export($export.S + $export.F * !__webpack_require__(9), 'Object', { defineProperties: __webpack_require__(151) });
+$export($export.S + $export.F * !__webpack_require__(10), 'Object', { defineProperties: __webpack_require__(162) });
 
 
 /***/ }),
-/* 259 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-var toIObject = __webpack_require__(25);
-var $getOwnPropertyDescriptor = __webpack_require__(26).f;
+var toIObject = __webpack_require__(27);
+var $getOwnPropertyDescriptor = __webpack_require__(28).f;
 
-__webpack_require__(39)('getOwnPropertyDescriptor', function () {
+__webpack_require__(40)('getOwnPropertyDescriptor', function () {
   return function getOwnPropertyDescriptor(it, key) {
     return $getOwnPropertyDescriptor(toIObject(it), key);
   };
@@ -11600,14 +24135,14 @@ __webpack_require__(39)('getOwnPropertyDescriptor', function () {
 
 
 /***/ }),
-/* 260 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(11);
-var $getPrototypeOf = __webpack_require__(27);
+var toObject = __webpack_require__(12);
+var $getPrototypeOf = __webpack_require__(29);
 
-__webpack_require__(39)('getPrototypeOf', function () {
+__webpack_require__(40)('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
   };
@@ -11615,14 +24150,14 @@ __webpack_require__(39)('getPrototypeOf', function () {
 
 
 /***/ }),
-/* 261 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(11);
-var $keys = __webpack_require__(50);
+var toObject = __webpack_require__(12);
+var $keys = __webpack_require__(53);
 
-__webpack_require__(39)('keys', function () {
+__webpack_require__(40)('keys', function () {
   return function keys(it) {
     return $keys(toObject(it));
   };
@@ -11630,24 +24165,24 @@ __webpack_require__(39)('keys', function () {
 
 
 /***/ }),
-/* 262 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 Object.getOwnPropertyNames(O)
-__webpack_require__(39)('getOwnPropertyNames', function () {
-  return __webpack_require__(152).f;
+__webpack_require__(40)('getOwnPropertyNames', function () {
+  return __webpack_require__(163).f;
 });
 
 
 /***/ }),
-/* 263 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.5 Object.freeze(O)
 var isObject = __webpack_require__(5);
-var meta = __webpack_require__(44).onFreeze;
+var meta = __webpack_require__(46).onFreeze;
 
-__webpack_require__(39)('freeze', function ($freeze) {
+__webpack_require__(40)('freeze', function ($freeze) {
   return function freeze(it) {
     return $freeze && isObject(it) ? $freeze(meta(it)) : it;
   };
@@ -11655,14 +24190,14 @@ __webpack_require__(39)('freeze', function ($freeze) {
 
 
 /***/ }),
-/* 264 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.17 Object.seal(O)
 var isObject = __webpack_require__(5);
-var meta = __webpack_require__(44).onFreeze;
+var meta = __webpack_require__(46).onFreeze;
 
-__webpack_require__(39)('seal', function ($seal) {
+__webpack_require__(40)('seal', function ($seal) {
   return function seal(it) {
     return $seal && isObject(it) ? $seal(meta(it)) : it;
   };
@@ -11670,14 +24205,14 @@ __webpack_require__(39)('seal', function ($seal) {
 
 
 /***/ }),
-/* 265 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.15 Object.preventExtensions(O)
 var isObject = __webpack_require__(5);
-var meta = __webpack_require__(44).onFreeze;
+var meta = __webpack_require__(46).onFreeze;
 
-__webpack_require__(39)('preventExtensions', function ($preventExtensions) {
+__webpack_require__(40)('preventExtensions', function ($preventExtensions) {
   return function preventExtensions(it) {
     return $preventExtensions && isObject(it) ? $preventExtensions(meta(it)) : it;
   };
@@ -11685,13 +24220,13 @@ __webpack_require__(39)('preventExtensions', function ($preventExtensions) {
 
 
 /***/ }),
-/* 266 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.12 Object.isFrozen(O)
 var isObject = __webpack_require__(5);
 
-__webpack_require__(39)('isFrozen', function ($isFrozen) {
+__webpack_require__(40)('isFrozen', function ($isFrozen) {
   return function isFrozen(it) {
     return isObject(it) ? $isFrozen ? $isFrozen(it) : false : true;
   };
@@ -11699,13 +24234,13 @@ __webpack_require__(39)('isFrozen', function ($isFrozen) {
 
 
 /***/ }),
-/* 267 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.13 Object.isSealed(O)
 var isObject = __webpack_require__(5);
 
-__webpack_require__(39)('isSealed', function ($isSealed) {
+__webpack_require__(40)('isSealed', function ($isSealed) {
   return function isSealed(it) {
     return isObject(it) ? $isSealed ? $isSealed(it) : false : true;
   };
@@ -11713,13 +24248,13 @@ __webpack_require__(39)('isSealed', function ($isSealed) {
 
 
 /***/ }),
-/* 268 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.11 Object.isExtensible(O)
 var isObject = __webpack_require__(5);
 
-__webpack_require__(39)('isExtensible', function ($isExtensible) {
+__webpack_require__(40)('isExtensible', function ($isExtensible) {
   return function isExtensible(it) {
     return isObject(it) ? $isExtensible ? $isExtensible(it) : true : false;
   };
@@ -11727,71 +24262,71 @@ __webpack_require__(39)('isExtensible', function ($isExtensible) {
 
 
 /***/ }),
-/* 269 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(0);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(153) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(164) });
 
 
 /***/ }),
-/* 270 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.10 Object.is(value1, value2)
 var $export = __webpack_require__(0);
-$export($export.S, 'Object', { is: __webpack_require__(154) });
+$export($export.S, 'Object', { is: __webpack_require__(165) });
 
 
 /***/ }),
-/* 271 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = __webpack_require__(0);
-$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(107).set });
+$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(115).set });
 
 
 /***/ }),
-/* 272 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(64);
+var classof = __webpack_require__(67);
 var test = {};
 test[__webpack_require__(6)('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
-  __webpack_require__(18)(Object.prototype, 'toString', function toString() {
+  __webpack_require__(19)(Object.prototype, 'toString', function toString() {
     return '[object ' + classof(this) + ']';
   }, true);
 }
 
 
 /***/ }),
-/* 273 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Function', { bind: __webpack_require__(155) });
+$export($export.P, 'Function', { bind: __webpack_require__(166) });
 
 
 /***/ }),
-/* 274 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(10).f;
+var dP = __webpack_require__(11).f;
 var FProto = Function.prototype;
 var nameRE = /^\s*function ([^ (]*)/;
 var NAME = 'name';
 
 // 19.2.4.2 name
-NAME in FProto || __webpack_require__(9) && dP(FProto, NAME, {
+NAME in FProto || __webpack_require__(10) && dP(FProto, NAME, {
   configurable: true,
   get: function () {
     try {
@@ -11804,17 +24339,17 @@ NAME in FProto || __webpack_require__(9) && dP(FProto, NAME, {
 
 
 /***/ }),
-/* 275 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var isObject = __webpack_require__(5);
-var getPrototypeOf = __webpack_require__(27);
+var getPrototypeOf = __webpack_require__(29);
 var HAS_INSTANCE = __webpack_require__(6)('hasInstance');
 var FunctionProto = Function.prototype;
 // 19.2.3.6 Function.prototype[@@hasInstance](V)
-if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(10).f(FunctionProto, HAS_INSTANCE, { value: function (O) {
+if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(11).f(FunctionProto, HAS_INSTANCE, { value: function (O) {
   if (typeof this != 'function' || !isObject(O)) return false;
   if (!isObject(this.prototype)) return O instanceof this;
   // for environment w/o native `@@hasInstance` logic enough `instanceof`, but add this:
@@ -11824,47 +24359,47 @@ if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(10).f(FunctionProto, H
 
 
 /***/ }),
-/* 276 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var $parseInt = __webpack_require__(157);
+var $parseInt = __webpack_require__(168);
 // 18.2.5 parseInt(string, radix)
 $export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt });
 
 
 /***/ }),
-/* 277 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var $parseFloat = __webpack_require__(158);
+var $parseFloat = __webpack_require__(169);
 // 18.2.4 parseFloat(string)
 $export($export.G + $export.F * (parseFloat != $parseFloat), { parseFloat: $parseFloat });
 
 
 /***/ }),
-/* 278 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global = __webpack_require__(2);
-var has = __webpack_require__(24);
-var cof = __webpack_require__(34);
-var inheritIfRequired = __webpack_require__(109);
-var toPrimitive = __webpack_require__(37);
+var has = __webpack_require__(26);
+var cof = __webpack_require__(35);
+var inheritIfRequired = __webpack_require__(117);
+var toPrimitive = __webpack_require__(38);
 var fails = __webpack_require__(3);
-var gOPN = __webpack_require__(53).f;
-var gOPD = __webpack_require__(26).f;
-var dP = __webpack_require__(10).f;
-var $trim = __webpack_require__(65).trim;
+var gOPN = __webpack_require__(56).f;
+var gOPD = __webpack_require__(28).f;
+var dP = __webpack_require__(11).f;
+var $trim = __webpack_require__(68).trim;
 var NUMBER = 'Number';
 var $Number = global[NUMBER];
 var Base = $Number;
 var proto = $Number.prototype;
 // Opera ~12 has broken Object#toString
-var BROKEN_COF = cof(__webpack_require__(52)(proto)) == NUMBER;
+var BROKEN_COF = cof(__webpack_require__(55)(proto)) == NUMBER;
 var TRIM = 'trim' in String.prototype;
 
 // 7.1.3 ToNumber(argument)
@@ -11902,7 +24437,7 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
       && (BROKEN_COF ? fails(function () { proto.valueOf.call(that); }) : cof(that) != NUMBER)
         ? inheritIfRequired(new Base(toNumber(it)), that, $Number) : toNumber(it);
   };
-  for (var keys = __webpack_require__(9) ? gOPN(Base) : (
+  for (var keys = __webpack_require__(10) ? gOPN(Base) : (
     // ES3:
     'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
     // ES6 (in case, if modules with ES6 Number statics required before):
@@ -11915,20 +24450,20 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
   }
   $Number.prototype = proto;
   proto.constructor = $Number;
-  __webpack_require__(18)(global, NUMBER, $Number);
+  __webpack_require__(19)(global, NUMBER, $Number);
 }
 
 
 /***/ }),
-/* 279 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toInteger = __webpack_require__(35);
-var aNumberValue = __webpack_require__(159);
-var repeat = __webpack_require__(110);
+var toInteger = __webpack_require__(36);
+var aNumberValue = __webpack_require__(170);
+var repeat = __webpack_require__(118);
 var $toFixed = 1.0.toFixed;
 var floor = Math.floor;
 var data = [0, 0, 0, 0, 0, 0];
@@ -12041,14 +24576,14 @@ $export($export.P + $export.F * (!!$toFixed && (
 
 
 /***/ }),
-/* 280 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
 var $fails = __webpack_require__(3);
-var aNumberValue = __webpack_require__(159);
+var aNumberValue = __webpack_require__(170);
 var $toPrecision = 1.0.toPrecision;
 
 $export($export.P + $export.F * ($fails(function () {
@@ -12066,7 +24601,7 @@ $export($export.P + $export.F * ($fails(function () {
 
 
 /***/ }),
-/* 281 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.1 Number.EPSILON
@@ -12076,7 +24611,7 @@ $export($export.S, 'Number', { EPSILON: Math.pow(2, -52) });
 
 
 /***/ }),
-/* 282 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.2 Number.isFinite(number)
@@ -12091,17 +24626,17 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 283 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Number', { isInteger: __webpack_require__(160) });
+$export($export.S, 'Number', { isInteger: __webpack_require__(171) });
 
 
 /***/ }),
-/* 284 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.4 Number.isNaN(number)
@@ -12116,12 +24651,12 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 285 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.5 Number.isSafeInteger(number)
 var $export = __webpack_require__(0);
-var isInteger = __webpack_require__(160);
+var isInteger = __webpack_require__(171);
 var abs = Math.abs;
 
 $export($export.S, 'Number', {
@@ -12132,7 +24667,7 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 286 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -12142,7 +24677,7 @@ $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
 
 /***/ }),
-/* 287 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
@@ -12152,32 +24687,32 @@ $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
 
 /***/ }),
-/* 288 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var $parseFloat = __webpack_require__(158);
+var $parseFloat = __webpack_require__(169);
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
 
 
 /***/ }),
-/* 289 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var $parseInt = __webpack_require__(157);
+var $parseInt = __webpack_require__(168);
 // 20.1.2.13 Number.parseInt(string, radix)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
 
 
 /***/ }),
-/* 290 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.3 Math.acosh(x)
 var $export = __webpack_require__(0);
-var log1p = __webpack_require__(161);
+var log1p = __webpack_require__(172);
 var sqrt = Math.sqrt;
 var $acosh = Math.acosh;
 
@@ -12196,7 +24731,7 @@ $export($export.S + $export.F * !($acosh
 
 
 /***/ }),
-/* 291 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.5 Math.asinh(x)
@@ -12212,7 +24747,7 @@ $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', { asinh:
 
 
 /***/ }),
-/* 292 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.7 Math.atanh(x)
@@ -12228,12 +24763,12 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 
 
 /***/ }),
-/* 293 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.9 Math.cbrt(x)
 var $export = __webpack_require__(0);
-var sign = __webpack_require__(111);
+var sign = __webpack_require__(119);
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x) {
@@ -12243,7 +24778,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 294 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.11 Math.clz32(x)
@@ -12257,7 +24792,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 295 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.12 Math.cosh(x)
@@ -12272,28 +24807,28 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 296 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.14 Math.expm1(x)
 var $export = __webpack_require__(0);
-var $expm1 = __webpack_require__(112);
+var $expm1 = __webpack_require__(120);
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 });
 
 
 /***/ }),
-/* 297 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.16 Math.fround(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { fround: __webpack_require__(162) });
+$export($export.S, 'Math', { fround: __webpack_require__(173) });
 
 
 /***/ }),
-/* 298 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
@@ -12324,7 +24859,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 299 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.18 Math.imul(x, y)
@@ -12347,7 +24882,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 300 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.21 Math.log10(x)
@@ -12361,17 +24896,17 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 301 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.20 Math.log1p(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { log1p: __webpack_require__(161) });
+$export($export.S, 'Math', { log1p: __webpack_require__(172) });
 
 
 /***/ }),
-/* 302 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.22 Math.log2(x)
@@ -12385,22 +24920,22 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 303 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.28 Math.sign(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { sign: __webpack_require__(111) });
+$export($export.S, 'Math', { sign: __webpack_require__(119) });
 
 
 /***/ }),
-/* 304 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.30 Math.sinh(x)
 var $export = __webpack_require__(0);
-var expm1 = __webpack_require__(112);
+var expm1 = __webpack_require__(120);
 var exp = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
@@ -12416,12 +24951,12 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 305 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.33 Math.tanh(x)
 var $export = __webpack_require__(0);
-var expm1 = __webpack_require__(112);
+var expm1 = __webpack_require__(120);
 var exp = Math.exp;
 
 $export($export.S, 'Math', {
@@ -12434,7 +24969,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 306 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.34 Math.trunc(x)
@@ -12448,11 +24983,11 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 307 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var toAbsoluteIndex = __webpack_require__(51);
+var toAbsoluteIndex = __webpack_require__(54);
 var fromCharCode = String.fromCharCode;
 var $fromCodePoint = String.fromCodePoint;
 
@@ -12477,11 +25012,11 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 
 
 /***/ }),
-/* 308 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var toIObject = __webpack_require__(25);
+var toIObject = __webpack_require__(27);
 var toLength = __webpack_require__(7);
 
 $export($export.S, 'String', {
@@ -12501,13 +25036,13 @@ $export($export.S, 'String', {
 
 
 /***/ }),
-/* 309 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 21.1.3.25 String.prototype.trim()
-__webpack_require__(65)('trim', function ($trim) {
+__webpack_require__(68)('trim', function ($trim) {
   return function trim() {
     return $trim(this, 3);
   };
@@ -12515,15 +25050,15 @@ __webpack_require__(65)('trim', function ($trim) {
 
 
 /***/ }),
-/* 310 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $at = __webpack_require__(87)(true);
+var $at = __webpack_require__(92)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(113)(String, 'String', function (iterated) {
+__webpack_require__(121)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -12539,13 +25074,13 @@ __webpack_require__(113)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 311 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(87)(false);
+var $at = __webpack_require__(92)(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos) {
@@ -12555,7 +25090,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 312 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12563,11 +25098,11 @@ $export($export.P, 'String', {
 
 var $export = __webpack_require__(0);
 var toLength = __webpack_require__(7);
-var context = __webpack_require__(115);
+var context = __webpack_require__(123);
 var ENDS_WITH = 'endsWith';
 var $endsWith = ''[ENDS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(116)(ENDS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(124)(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /* , endPosition = @length */) {
     var that = context(this, searchString, ENDS_WITH);
     var endPosition = arguments.length > 1 ? arguments[1] : undefined;
@@ -12582,17 +25117,17 @@ $export($export.P + $export.F * __webpack_require__(116)(ENDS_WITH), 'String', {
 
 
 /***/ }),
-/* 313 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 
 var $export = __webpack_require__(0);
-var context = __webpack_require__(115);
+var context = __webpack_require__(123);
 var INCLUDES = 'includes';
 
-$export($export.P + $export.F * __webpack_require__(116)(INCLUDES), 'String', {
+$export($export.P + $export.F * __webpack_require__(124)(INCLUDES), 'String', {
   includes: function includes(searchString /* , position = 0 */) {
     return !!~context(this, searchString, INCLUDES)
       .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
@@ -12601,19 +25136,19 @@ $export($export.P + $export.F * __webpack_require__(116)(INCLUDES), 'String', {
 
 
 /***/ }),
-/* 314 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
-  repeat: __webpack_require__(110)
+  repeat: __webpack_require__(118)
 });
 
 
 /***/ }),
-/* 315 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12621,11 +25156,11 @@ $export($export.P, 'String', {
 
 var $export = __webpack_require__(0);
 var toLength = __webpack_require__(7);
-var context = __webpack_require__(115);
+var context = __webpack_require__(123);
 var STARTS_WITH = 'startsWith';
 var $startsWith = ''[STARTS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(116)(STARTS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(124)(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /* , position = 0 */) {
     var that = context(this, searchString, STARTS_WITH);
     var index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
@@ -12638,13 +25173,13 @@ $export($export.P + $export.F * __webpack_require__(116)(STARTS_WITH), 'String',
 
 
 /***/ }),
-/* 316 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.2 String.prototype.anchor(name)
-__webpack_require__(19)('anchor', function (createHTML) {
+__webpack_require__(20)('anchor', function (createHTML) {
   return function anchor(name) {
     return createHTML(this, 'a', 'name', name);
   };
@@ -12652,13 +25187,13 @@ __webpack_require__(19)('anchor', function (createHTML) {
 
 
 /***/ }),
-/* 317 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.3 String.prototype.big()
-__webpack_require__(19)('big', function (createHTML) {
+__webpack_require__(20)('big', function (createHTML) {
   return function big() {
     return createHTML(this, 'big', '', '');
   };
@@ -12666,13 +25201,13 @@ __webpack_require__(19)('big', function (createHTML) {
 
 
 /***/ }),
-/* 318 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.4 String.prototype.blink()
-__webpack_require__(19)('blink', function (createHTML) {
+__webpack_require__(20)('blink', function (createHTML) {
   return function blink() {
     return createHTML(this, 'blink', '', '');
   };
@@ -12680,13 +25215,13 @@ __webpack_require__(19)('blink', function (createHTML) {
 
 
 /***/ }),
-/* 319 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.5 String.prototype.bold()
-__webpack_require__(19)('bold', function (createHTML) {
+__webpack_require__(20)('bold', function (createHTML) {
   return function bold() {
     return createHTML(this, 'b', '', '');
   };
@@ -12694,13 +25229,13 @@ __webpack_require__(19)('bold', function (createHTML) {
 
 
 /***/ }),
-/* 320 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.6 String.prototype.fixed()
-__webpack_require__(19)('fixed', function (createHTML) {
+__webpack_require__(20)('fixed', function (createHTML) {
   return function fixed() {
     return createHTML(this, 'tt', '', '');
   };
@@ -12708,13 +25243,13 @@ __webpack_require__(19)('fixed', function (createHTML) {
 
 
 /***/ }),
-/* 321 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.7 String.prototype.fontcolor(color)
-__webpack_require__(19)('fontcolor', function (createHTML) {
+__webpack_require__(20)('fontcolor', function (createHTML) {
   return function fontcolor(color) {
     return createHTML(this, 'font', 'color', color);
   };
@@ -12722,13 +25257,13 @@ __webpack_require__(19)('fontcolor', function (createHTML) {
 
 
 /***/ }),
-/* 322 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.8 String.prototype.fontsize(size)
-__webpack_require__(19)('fontsize', function (createHTML) {
+__webpack_require__(20)('fontsize', function (createHTML) {
   return function fontsize(size) {
     return createHTML(this, 'font', 'size', size);
   };
@@ -12736,13 +25271,13 @@ __webpack_require__(19)('fontsize', function (createHTML) {
 
 
 /***/ }),
-/* 323 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.9 String.prototype.italics()
-__webpack_require__(19)('italics', function (createHTML) {
+__webpack_require__(20)('italics', function (createHTML) {
   return function italics() {
     return createHTML(this, 'i', '', '');
   };
@@ -12750,13 +25285,13 @@ __webpack_require__(19)('italics', function (createHTML) {
 
 
 /***/ }),
-/* 324 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.10 String.prototype.link(url)
-__webpack_require__(19)('link', function (createHTML) {
+__webpack_require__(20)('link', function (createHTML) {
   return function link(url) {
     return createHTML(this, 'a', 'href', url);
   };
@@ -12764,13 +25299,13 @@ __webpack_require__(19)('link', function (createHTML) {
 
 
 /***/ }),
-/* 325 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.11 String.prototype.small()
-__webpack_require__(19)('small', function (createHTML) {
+__webpack_require__(20)('small', function (createHTML) {
   return function small() {
     return createHTML(this, 'small', '', '');
   };
@@ -12778,13 +25313,13 @@ __webpack_require__(19)('small', function (createHTML) {
 
 
 /***/ }),
-/* 326 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.12 String.prototype.strike()
-__webpack_require__(19)('strike', function (createHTML) {
+__webpack_require__(20)('strike', function (createHTML) {
   return function strike() {
     return createHTML(this, 'strike', '', '');
   };
@@ -12792,13 +25327,13 @@ __webpack_require__(19)('strike', function (createHTML) {
 
 
 /***/ }),
-/* 327 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.13 String.prototype.sub()
-__webpack_require__(19)('sub', function (createHTML) {
+__webpack_require__(20)('sub', function (createHTML) {
   return function sub() {
     return createHTML(this, 'sub', '', '');
   };
@@ -12806,13 +25341,13 @@ __webpack_require__(19)('sub', function (createHTML) {
 
 
 /***/ }),
-/* 328 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.14 String.prototype.sup()
-__webpack_require__(19)('sup', function (createHTML) {
+__webpack_require__(20)('sup', function (createHTML) {
   return function sup() {
     return createHTML(this, 'sup', '', '');
   };
@@ -12820,7 +25355,7 @@ __webpack_require__(19)('sup', function (createHTML) {
 
 
 /***/ }),
-/* 329 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.3.3.1 / 15.9.4.4 Date.now()
@@ -12830,14 +25365,14 @@ $export($export.S, 'Date', { now: function () { return new Date().getTime(); } }
 
 
 /***/ }),
-/* 330 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var toPrimitive = __webpack_require__(37);
+var toObject = __webpack_require__(12);
+var toPrimitive = __webpack_require__(38);
 
 $export($export.P + $export.F * __webpack_require__(3)(function () {
   return new Date(NaN).toJSON() !== null
@@ -12853,12 +25388,12 @@ $export($export.P + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 331 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 var $export = __webpack_require__(0);
-var toISOString = __webpack_require__(332);
+var toISOString = __webpack_require__(359);
 
 // PhantomJS / old WebKit has a broken implementations
 $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'Date', {
@@ -12867,7 +25402,7 @@ $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'D
 
 
 /***/ }),
-/* 332 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12900,7 +25435,7 @@ module.exports = (fails(function () {
 
 
 /***/ }),
-/* 333 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DateProto = Date.prototype;
@@ -12909,7 +25444,7 @@ var TO_STRING = 'toString';
 var $toString = DateProto[TO_STRING];
 var getTime = DateProto.getTime;
 if (new Date(NaN) + '' != INVALID_DATE) {
-  __webpack_require__(18)(DateProto, TO_STRING, function toString() {
+  __webpack_require__(19)(DateProto, TO_STRING, function toString() {
     var value = getTime.call(this);
     // eslint-disable-next-line no-self-compare
     return value === value ? $toString.call(this) : INVALID_DATE;
@@ -12918,23 +25453,23 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 
 
 /***/ }),
-/* 334 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_PRIMITIVE = __webpack_require__(6)('toPrimitive');
 var proto = Date.prototype;
 
-if (!(TO_PRIMITIVE in proto)) __webpack_require__(17)(proto, TO_PRIMITIVE, __webpack_require__(335));
+if (!(TO_PRIMITIVE in proto)) __webpack_require__(18)(proto, TO_PRIMITIVE, __webpack_require__(362));
 
 
 /***/ }),
-/* 335 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var anObject = __webpack_require__(1);
-var toPrimitive = __webpack_require__(37);
+var toPrimitive = __webpack_require__(38);
 var NUMBER = 'number';
 
 module.exports = function (hint) {
@@ -12944,31 +25479,31 @@ module.exports = function (hint) {
 
 
 /***/ }),
-/* 336 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Array', { isArray: __webpack_require__(86) });
+$export($export.S, 'Array', { isArray: __webpack_require__(91) });
 
 
 /***/ }),
-/* 337 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ctx = __webpack_require__(33);
+var ctx = __webpack_require__(34);
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var call = __webpack_require__(163);
-var isArrayIter = __webpack_require__(117);
+var toObject = __webpack_require__(12);
+var call = __webpack_require__(174);
+var isArrayIter = __webpack_require__(125);
 var toLength = __webpack_require__(7);
-var createProperty = __webpack_require__(118);
-var getIterFn = __webpack_require__(119);
+var createProperty = __webpack_require__(126);
+var getIterFn = __webpack_require__(127);
 
-$export($export.S + $export.F * !__webpack_require__(89)(function (iter) { Array.from(iter); }), 'Array', {
+$export($export.S + $export.F * !__webpack_require__(94)(function (iter) { Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
     var O = toObject(arrayLike);
@@ -12998,13 +25533,13 @@ $export($export.S + $export.F * !__webpack_require__(89)(function (iter) { Array
 
 
 /***/ }),
-/* 338 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var createProperty = __webpack_require__(118);
+var createProperty = __webpack_require__(126);
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * __webpack_require__(3)(function () {
@@ -13024,18 +25559,18 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 339 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.13 Array.prototype.join(separator)
 var $export = __webpack_require__(0);
-var toIObject = __webpack_require__(25);
+var toIObject = __webpack_require__(27);
 var arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(71) != Object || !__webpack_require__(36)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(74) != Object || !__webpack_require__(37)(arrayJoin)), 'Array', {
   join: function join(separator) {
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -13043,15 +25578,15 @@ $export($export.P + $export.F * (__webpack_require__(71) != Object || !__webpack
 
 
 /***/ }),
-/* 340 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var html = __webpack_require__(106);
-var cof = __webpack_require__(34);
-var toAbsoluteIndex = __webpack_require__(51);
+var html = __webpack_require__(114);
+var cof = __webpack_require__(35);
+var toAbsoluteIndex = __webpack_require__(54);
 var toLength = __webpack_require__(7);
 var arraySlice = [].slice;
 
@@ -13078,14 +25613,14 @@ $export($export.P + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 341 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var aFunction = __webpack_require__(15);
-var toObject = __webpack_require__(11);
+var aFunction = __webpack_require__(16);
+var toObject = __webpack_require__(12);
 var fails = __webpack_require__(3);
 var $sort = [].sort;
 var test = [1, 2, 3];
@@ -13097,7 +25632,7 @@ $export($export.P + $export.F * (fails(function () {
   // V8 bug
   test.sort(null);
   // Old WebKit
-}) || !__webpack_require__(36)($sort)), 'Array', {
+}) || !__webpack_require__(37)($sort)), 'Array', {
   // 22.1.3.25 Array.prototype.sort(comparefn)
   sort: function sort(comparefn) {
     return comparefn === undefined
@@ -13108,14 +25643,14 @@ $export($export.P + $export.F * (fails(function () {
 
 
 /***/ }),
-/* 342 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $forEach = __webpack_require__(40)(0);
-var STRICT = __webpack_require__(36)([].forEach, true);
+var $forEach = __webpack_require__(41)(0);
+var STRICT = __webpack_require__(37)([].forEach, true);
 
 $export($export.P + $export.F * !STRICT, 'Array', {
   // 22.1.3.10 / 15.4.4.18 Array.prototype.forEach(callbackfn [, thisArg])
@@ -13126,11 +25661,11 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 
 
 /***/ }),
-/* 343 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(5);
-var isArray = __webpack_require__(86);
+var isArray = __webpack_require__(91);
 var SPECIES = __webpack_require__(6)('species');
 
 module.exports = function (original) {
@@ -13148,15 +25683,15 @@ module.exports = function (original) {
 
 
 /***/ }),
-/* 344 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $map = __webpack_require__(40)(1);
+var $map = __webpack_require__(41)(1);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].map, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].map, true), 'Array', {
   // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
   map: function map(callbackfn /* , thisArg */) {
     return $map(this, callbackfn, arguments[1]);
@@ -13165,15 +25700,15 @@ $export($export.P + $export.F * !__webpack_require__(36)([].map, true), 'Array',
 
 
 /***/ }),
-/* 345 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $filter = __webpack_require__(40)(2);
+var $filter = __webpack_require__(41)(2);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].filter, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].filter, true), 'Array', {
   // 22.1.3.7 / 15.4.4.20 Array.prototype.filter(callbackfn [, thisArg])
   filter: function filter(callbackfn /* , thisArg */) {
     return $filter(this, callbackfn, arguments[1]);
@@ -13182,15 +25717,15 @@ $export($export.P + $export.F * !__webpack_require__(36)([].filter, true), 'Arra
 
 
 /***/ }),
-/* 346 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $some = __webpack_require__(40)(3);
+var $some = __webpack_require__(41)(3);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].some, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].some, true), 'Array', {
   // 22.1.3.23 / 15.4.4.17 Array.prototype.some(callbackfn [, thisArg])
   some: function some(callbackfn /* , thisArg */) {
     return $some(this, callbackfn, arguments[1]);
@@ -13199,15 +25734,15 @@ $export($export.P + $export.F * !__webpack_require__(36)([].some, true), 'Array'
 
 
 /***/ }),
-/* 347 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $every = __webpack_require__(40)(4);
+var $every = __webpack_require__(41)(4);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].every, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].every, true), 'Array', {
   // 22.1.3.5 / 15.4.4.16 Array.prototype.every(callbackfn [, thisArg])
   every: function every(callbackfn /* , thisArg */) {
     return $every(this, callbackfn, arguments[1]);
@@ -13216,15 +25751,15 @@ $export($export.P + $export.F * !__webpack_require__(36)([].every, true), 'Array
 
 
 /***/ }),
-/* 348 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $reduce = __webpack_require__(164);
+var $reduce = __webpack_require__(175);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].reduce, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].reduce, true), 'Array', {
   // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
   reduce: function reduce(callbackfn /* , initialValue */) {
     return $reduce(this, callbackfn, arguments.length, arguments[1], false);
@@ -13233,15 +25768,15 @@ $export($export.P + $export.F * !__webpack_require__(36)([].reduce, true), 'Arra
 
 
 /***/ }),
-/* 349 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $reduce = __webpack_require__(164);
+var $reduce = __webpack_require__(175);
 
-$export($export.P + $export.F * !__webpack_require__(36)([].reduceRight, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(37)([].reduceRight, true), 'Array', {
   // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
   reduceRight: function reduceRight(callbackfn /* , initialValue */) {
     return $reduce(this, callbackfn, arguments.length, arguments[1], true);
@@ -13250,17 +25785,17 @@ $export($export.P + $export.F * !__webpack_require__(36)([].reduceRight, true), 
 
 
 /***/ }),
-/* 350 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $indexOf = __webpack_require__(84)(false);
+var $indexOf = __webpack_require__(89)(false);
 var $native = [].indexOf;
 var NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(36)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(37)($native)), 'Array', {
   // 22.1.3.11 / 15.4.4.14 Array.prototype.indexOf(searchElement [, fromIndex])
   indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
     return NEGATIVE_ZERO
@@ -13272,19 +25807,19 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(36)($nati
 
 
 /***/ }),
-/* 351 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toIObject = __webpack_require__(25);
-var toInteger = __webpack_require__(35);
+var toIObject = __webpack_require__(27);
+var toInteger = __webpack_require__(36);
 var toLength = __webpack_require__(7);
 var $native = [].lastIndexOf;
 var NEGATIVE_ZERO = !!$native && 1 / [1].lastIndexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(36)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(37)($native)), 'Array', {
   // 22.1.3.14 / 15.4.4.15 Array.prototype.lastIndexOf(searchElement [, fromIndex])
   lastIndexOf: function lastIndexOf(searchElement /* , fromIndex = @[*-1] */) {
     // convert -0 to +0
@@ -13301,38 +25836,38 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(36)($nati
 
 
 /***/ }),
-/* 352 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Array', { copyWithin: __webpack_require__(165) });
+$export($export.P, 'Array', { copyWithin: __webpack_require__(176) });
 
-__webpack_require__(45)('copyWithin');
+__webpack_require__(47)('copyWithin');
 
 
 /***/ }),
-/* 353 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Array', { fill: __webpack_require__(121) });
+$export($export.P, 'Array', { fill: __webpack_require__(129) });
 
-__webpack_require__(45)('fill');
+__webpack_require__(47)('fill');
 
 
 /***/ }),
-/* 354 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 var $export = __webpack_require__(0);
-var $find = __webpack_require__(40)(5);
+var $find = __webpack_require__(41)(5);
 var KEY = 'find';
 var forced = true;
 // Shouldn't skip holes
@@ -13342,18 +25877,18 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(45)(KEY);
+__webpack_require__(47)(KEY);
 
 
 /***/ }),
-/* 355 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 var $export = __webpack_require__(0);
-var $find = __webpack_require__(40)(6);
+var $find = __webpack_require__(41)(6);
 var KEY = 'findIndex';
 var forced = true;
 // Shouldn't skip holes
@@ -13363,26 +25898,26 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(45)(KEY);
+__webpack_require__(47)(KEY);
 
 
 /***/ }),
-/* 356 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(54)('Array');
+__webpack_require__(57)('Array');
 
 
 /***/ }),
-/* 357 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(2);
-var inheritIfRequired = __webpack_require__(109);
-var dP = __webpack_require__(10).f;
-var gOPN = __webpack_require__(53).f;
-var isRegExp = __webpack_require__(88);
-var $flags = __webpack_require__(73);
+var inheritIfRequired = __webpack_require__(117);
+var dP = __webpack_require__(11).f;
+var gOPN = __webpack_require__(56).f;
+var isRegExp = __webpack_require__(93);
+var $flags = __webpack_require__(76);
 var $RegExp = global.RegExp;
 var Base = $RegExp;
 var proto = $RegExp.prototype;
@@ -13391,7 +25926,7 @@ var re2 = /a/g;
 // "new" creates a new object, old webkit buggy here
 var CORRECT_NEW = new $RegExp(re1) !== re1;
 
-if (__webpack_require__(9) && (!CORRECT_NEW || __webpack_require__(3)(function () {
+if (__webpack_require__(10) && (!CORRECT_NEW || __webpack_require__(3)(function () {
   re2[__webpack_require__(6)('match')] = false;
   // RegExp constructor can alter flags and IsRegExp works correct with @@match
   return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, 'i') != '/a/i';
@@ -13416,27 +25951,27 @@ if (__webpack_require__(9) && (!CORRECT_NEW || __webpack_require__(3)(function (
   for (var keys = gOPN(Base), i = 0; keys.length > i;) proxy(keys[i++]);
   proto.constructor = $RegExp;
   $RegExp.prototype = proto;
-  __webpack_require__(18)(global, 'RegExp', $RegExp);
+  __webpack_require__(19)(global, 'RegExp', $RegExp);
 }
 
-__webpack_require__(54)('RegExp');
+__webpack_require__(57)('RegExp');
 
 
 /***/ }),
-/* 358 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(168);
+__webpack_require__(179);
 var anObject = __webpack_require__(1);
-var $flags = __webpack_require__(73);
-var DESCRIPTORS = __webpack_require__(9);
+var $flags = __webpack_require__(76);
+var DESCRIPTORS = __webpack_require__(10);
 var TO_STRING = 'toString';
 var $toString = /./[TO_STRING];
 
 var define = function (fn) {
-  __webpack_require__(18)(RegExp.prototype, TO_STRING, fn, true);
+  __webpack_require__(19)(RegExp.prototype, TO_STRING, fn, true);
 };
 
 // 21.2.5.14 RegExp.prototype.toString()
@@ -13455,7 +25990,7 @@ if (__webpack_require__(3)(function () { return $toString.call({ source: 'a', fl
 
 
 /***/ }),
-/* 359 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13463,11 +25998,11 @@ if (__webpack_require__(3)(function () { return $toString.call({ source: 'a', fl
 
 var anObject = __webpack_require__(1);
 var toLength = __webpack_require__(7);
-var advanceStringIndex = __webpack_require__(124);
-var regExpExec = __webpack_require__(90);
+var advanceStringIndex = __webpack_require__(132);
+var regExpExec = __webpack_require__(95);
 
 // @@match logic
-__webpack_require__(91)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
+__webpack_require__(96)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
   return [
     // `String.prototype.match` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.match
@@ -13502,18 +26037,18 @@ __webpack_require__(91)('match', 1, function (defined, MATCH, $match, maybeCallN
 
 
 /***/ }),
-/* 360 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var anObject = __webpack_require__(1);
-var toObject = __webpack_require__(11);
+var toObject = __webpack_require__(12);
 var toLength = __webpack_require__(7);
-var toInteger = __webpack_require__(35);
-var advanceStringIndex = __webpack_require__(124);
-var regExpExec = __webpack_require__(90);
+var toInteger = __webpack_require__(36);
+var advanceStringIndex = __webpack_require__(132);
+var regExpExec = __webpack_require__(95);
 var max = Math.max;
 var min = Math.min;
 var floor = Math.floor;
@@ -13525,7 +26060,7 @@ var maybeToString = function (it) {
 };
 
 // @@replace logic
-__webpack_require__(91)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
+__webpack_require__(96)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
   return [
     // `String.prototype.replace` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.replace
@@ -13627,18 +26162,18 @@ __webpack_require__(91)('replace', 2, function (defined, REPLACE, $replace, mayb
 
 
 /***/ }),
-/* 361 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var anObject = __webpack_require__(1);
-var sameValue = __webpack_require__(154);
-var regExpExec = __webpack_require__(90);
+var sameValue = __webpack_require__(165);
+var regExpExec = __webpack_require__(95);
 
 // @@search logic
-__webpack_require__(91)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
+__webpack_require__(96)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
   return [
     // `String.prototype.search` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.search
@@ -13665,19 +26200,19 @@ __webpack_require__(91)('search', 1, function (defined, SEARCH, $search, maybeCa
 
 
 /***/ }),
-/* 362 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isRegExp = __webpack_require__(88);
+var isRegExp = __webpack_require__(93);
 var anObject = __webpack_require__(1);
-var speciesConstructor = __webpack_require__(74);
-var advanceStringIndex = __webpack_require__(124);
+var speciesConstructor = __webpack_require__(77);
+var advanceStringIndex = __webpack_require__(132);
 var toLength = __webpack_require__(7);
-var callRegExpExec = __webpack_require__(90);
-var regexpExec = __webpack_require__(123);
+var callRegExpExec = __webpack_require__(95);
+var regexpExec = __webpack_require__(131);
 var fails = __webpack_require__(3);
 var $min = Math.min;
 var $push = [].push;
@@ -13690,7 +26225,7 @@ var MAX_UINT32 = 0xffffffff;
 var SUPPORTS_Y = !fails(function () { RegExp(MAX_UINT32, 'y'); });
 
 // @@split logic
-__webpack_require__(91)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
+__webpack_require__(96)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
   var internalSplit;
   if (
     'abbc'[$SPLIT](/(b)*/)[1] == 'c' ||
@@ -13806,27 +26341,27 @@ __webpack_require__(91)('split', 2, function (defined, SPLIT, $split, maybeCallN
 
 
 /***/ }),
-/* 363 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(43);
+var LIBRARY = __webpack_require__(45);
 var global = __webpack_require__(2);
-var ctx = __webpack_require__(33);
-var classof = __webpack_require__(64);
+var ctx = __webpack_require__(34);
+var classof = __webpack_require__(67);
 var $export = __webpack_require__(0);
 var isObject = __webpack_require__(5);
-var aFunction = __webpack_require__(15);
-var anInstance = __webpack_require__(55);
-var forOf = __webpack_require__(56);
-var speciesConstructor = __webpack_require__(74);
-var task = __webpack_require__(125).set;
-var microtask = __webpack_require__(126)();
-var newPromiseCapabilityModule = __webpack_require__(127);
-var perform = __webpack_require__(169);
-var userAgent = __webpack_require__(92);
-var promiseResolve = __webpack_require__(170);
+var aFunction = __webpack_require__(16);
+var anInstance = __webpack_require__(58);
+var forOf = __webpack_require__(59);
+var speciesConstructor = __webpack_require__(77);
+var task = __webpack_require__(133).set;
+var microtask = __webpack_require__(134)();
+var newPromiseCapabilityModule = __webpack_require__(135);
+var perform = __webpack_require__(180);
+var userAgent = __webpack_require__(97);
+var promiseResolve = __webpack_require__(181);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
 var process = global.process;
@@ -14001,7 +26536,7 @@ if (!USE_NATIVE) {
     this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
     this._n = false;          // <- notify
   };
-  Internal.prototype = __webpack_require__(57)($Promise.prototype, {
+  Internal.prototype = __webpack_require__(60)($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected) {
       var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
@@ -14032,9 +26567,9 @@ if (!USE_NATIVE) {
 }
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
-__webpack_require__(63)($Promise, PROMISE);
-__webpack_require__(54)(PROMISE);
-Wrapper = __webpack_require__(32)[PROMISE];
+__webpack_require__(66)($Promise, PROMISE);
+__webpack_require__(57)(PROMISE);
+Wrapper = __webpack_require__(33)[PROMISE];
 
 // statics
 $export($export.S + $export.F * !USE_NATIVE, PROMISE, {
@@ -14052,7 +26587,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(89)(function (iter) {
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(94)(function (iter) {
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -14099,17 +26634,17 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(89)(function
 
 
 /***/ }),
-/* 364 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var weak = __webpack_require__(175);
-var validate = __webpack_require__(58);
+var weak = __webpack_require__(186);
+var validate = __webpack_require__(61);
 var WEAK_SET = 'WeakSet';
 
 // 23.4 WeakSet Objects
-__webpack_require__(93)(WEAK_SET, function (get) {
+__webpack_require__(98)(WEAK_SET, function (get) {
   return function WeakSet() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.4.3.1 WeakSet.prototype.add(value)
@@ -14120,20 +26655,20 @@ __webpack_require__(93)(WEAK_SET, function (get) {
 
 
 /***/ }),
-/* 365 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var $typed = __webpack_require__(94);
-var buffer = __webpack_require__(128);
+var $typed = __webpack_require__(99);
+var buffer = __webpack_require__(136);
 var anObject = __webpack_require__(1);
-var toAbsoluteIndex = __webpack_require__(51);
+var toAbsoluteIndex = __webpack_require__(54);
 var toLength = __webpack_require__(7);
 var isObject = __webpack_require__(5);
 var ArrayBuffer = __webpack_require__(2).ArrayBuffer;
-var speciesConstructor = __webpack_require__(74);
+var speciesConstructor = __webpack_require__(77);
 var $ArrayBuffer = buffer.ArrayBuffer;
 var $DataView = buffer.DataView;
 var $isView = $typed.ABV && ArrayBuffer.isView;
@@ -14169,24 +26704,24 @@ $export($export.P + $export.U + $export.F * __webpack_require__(3)(function () {
   }
 });
 
-__webpack_require__(54)(ARRAY_BUFFER);
+__webpack_require__(57)(ARRAY_BUFFER);
 
 
 /***/ }),
-/* 366 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-$export($export.G + $export.W + $export.F * !__webpack_require__(94).ABV, {
-  DataView: __webpack_require__(128).DataView
+$export($export.G + $export.W + $export.F * !__webpack_require__(99).ABV, {
+  DataView: __webpack_require__(136).DataView
 });
 
 
 /***/ }),
-/* 367 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Int8', 1, function (init) {
+__webpack_require__(42)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14194,10 +26729,10 @@ __webpack_require__(41)('Int8', 1, function (init) {
 
 
 /***/ }),
-/* 368 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Uint8', 1, function (init) {
+__webpack_require__(42)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14205,10 +26740,10 @@ __webpack_require__(41)('Uint8', 1, function (init) {
 
 
 /***/ }),
-/* 369 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Uint8', 1, function (init) {
+__webpack_require__(42)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14216,10 +26751,10 @@ __webpack_require__(41)('Uint8', 1, function (init) {
 
 
 /***/ }),
-/* 370 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Int16', 2, function (init) {
+__webpack_require__(42)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14227,10 +26762,10 @@ __webpack_require__(41)('Int16', 2, function (init) {
 
 
 /***/ }),
-/* 371 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Uint16', 2, function (init) {
+__webpack_require__(42)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14238,10 +26773,10 @@ __webpack_require__(41)('Uint16', 2, function (init) {
 
 
 /***/ }),
-/* 372 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Int32', 4, function (init) {
+__webpack_require__(42)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14249,10 +26784,10 @@ __webpack_require__(41)('Int32', 4, function (init) {
 
 
 /***/ }),
-/* 373 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Uint32', 4, function (init) {
+__webpack_require__(42)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14260,10 +26795,10 @@ __webpack_require__(41)('Uint32', 4, function (init) {
 
 
 /***/ }),
-/* 374 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Float32', 4, function (init) {
+__webpack_require__(42)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14271,10 +26806,10 @@ __webpack_require__(41)('Float32', 4, function (init) {
 
 
 /***/ }),
-/* 375 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(41)('Float64', 8, function (init) {
+__webpack_require__(42)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14282,12 +26817,12 @@ __webpack_require__(41)('Float64', 8, function (init) {
 
 
 /***/ }),
-/* 376 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
 var $export = __webpack_require__(0);
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 var anObject = __webpack_require__(1);
 var rApply = (__webpack_require__(2).Reflect || {}).apply;
 var fApply = Function.apply;
@@ -14304,17 +26839,17 @@ $export($export.S + $export.F * !__webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 377 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
 var $export = __webpack_require__(0);
-var create = __webpack_require__(52);
-var aFunction = __webpack_require__(15);
+var create = __webpack_require__(55);
+var aFunction = __webpack_require__(16);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(5);
 var fails = __webpack_require__(3);
-var bind = __webpack_require__(155);
+var bind = __webpack_require__(166);
 var rConstruct = (__webpack_require__(2).Reflect || {}).construct;
 
 // MS Edge supports only 2 arguments and argumentsList argument is optional
@@ -14357,14 +26892,14 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 
 
 /***/ }),
-/* 378 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
-var dP = __webpack_require__(10);
+var dP = __webpack_require__(11);
 var $export = __webpack_require__(0);
 var anObject = __webpack_require__(1);
-var toPrimitive = __webpack_require__(37);
+var toPrimitive = __webpack_require__(38);
 
 // MS Edge has broken Reflect.defineProperty - throwing instead of returning false
 $export($export.S + $export.F * __webpack_require__(3)(function () {
@@ -14386,12 +26921,12 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 379 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
 var $export = __webpack_require__(0);
-var gOPD = __webpack_require__(26).f;
+var gOPD = __webpack_require__(28).f;
 var anObject = __webpack_require__(1);
 
 $export($export.S, 'Reflect', {
@@ -14403,7 +26938,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 380 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14418,7 +26953,7 @@ var Enumerate = function (iterated) {
   var key;
   for (key in iterated) keys.push(key);
 };
-__webpack_require__(114)(Enumerate, 'Object', function () {
+__webpack_require__(122)(Enumerate, 'Object', function () {
   var that = this;
   var keys = that._k;
   var key;
@@ -14436,13 +26971,13 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 381 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
-var gOPD = __webpack_require__(26);
-var getPrototypeOf = __webpack_require__(27);
-var has = __webpack_require__(24);
+var gOPD = __webpack_require__(28);
+var getPrototypeOf = __webpack_require__(29);
+var has = __webpack_require__(26);
 var $export = __webpack_require__(0);
 var isObject = __webpack_require__(5);
 var anObject = __webpack_require__(1);
@@ -14463,11 +26998,11 @@ $export($export.S, 'Reflect', { get: get });
 
 
 /***/ }),
-/* 382 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
-var gOPD = __webpack_require__(26);
+var gOPD = __webpack_require__(28);
 var $export = __webpack_require__(0);
 var anObject = __webpack_require__(1);
 
@@ -14479,12 +27014,12 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 383 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.8 Reflect.getPrototypeOf(target)
 var $export = __webpack_require__(0);
-var getProto = __webpack_require__(27);
+var getProto = __webpack_require__(29);
 var anObject = __webpack_require__(1);
 
 $export($export.S, 'Reflect', {
@@ -14495,7 +27030,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 384 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.9 Reflect.has(target, propertyKey)
@@ -14509,7 +27044,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 385 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.10 Reflect.isExtensible(target)
@@ -14526,17 +27061,17 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 386 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.11 Reflect.ownKeys(target)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Reflect', { ownKeys: __webpack_require__(177) });
+$export($export.S, 'Reflect', { ownKeys: __webpack_require__(188) });
 
 
 /***/ }),
-/* 387 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.12 Reflect.preventExtensions(target)
@@ -14558,16 +27093,16 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 388 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
-var dP = __webpack_require__(10);
-var gOPD = __webpack_require__(26);
-var getPrototypeOf = __webpack_require__(27);
-var has = __webpack_require__(24);
+var dP = __webpack_require__(11);
+var gOPD = __webpack_require__(28);
+var getPrototypeOf = __webpack_require__(29);
+var has = __webpack_require__(26);
 var $export = __webpack_require__(0);
-var createDesc = __webpack_require__(48);
+var createDesc = __webpack_require__(51);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(5);
 
@@ -14597,12 +27132,12 @@ $export($export.S, 'Reflect', { set: set });
 
 
 /***/ }),
-/* 389 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export = __webpack_require__(0);
-var setProto = __webpack_require__(107);
+var setProto = __webpack_require__(115);
 
 if (setProto) $export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto) {
@@ -14618,14 +27153,14 @@ if (setProto) $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 390 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/Array.prototype.includes
 var $export = __webpack_require__(0);
-var $includes = __webpack_require__(84)(true);
+var $includes = __webpack_require__(89)(true);
 
 $export($export.P, 'Array', {
   includes: function includes(el /* , fromIndex = 0 */) {
@@ -14633,22 +27168,22 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(45)('includes');
+__webpack_require__(47)('includes');
 
 
 /***/ }),
-/* 391 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap
 var $export = __webpack_require__(0);
-var flattenIntoArray = __webpack_require__(178);
-var toObject = __webpack_require__(11);
+var flattenIntoArray = __webpack_require__(189);
+var toObject = __webpack_require__(12);
 var toLength = __webpack_require__(7);
-var aFunction = __webpack_require__(15);
-var arraySpeciesCreate = __webpack_require__(120);
+var aFunction = __webpack_require__(16);
+var arraySpeciesCreate = __webpack_require__(128);
 
 $export($export.P, 'Array', {
   flatMap: function flatMap(callbackfn /* , thisArg */) {
@@ -14662,22 +27197,22 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(45)('flatMap');
+__webpack_require__(47)('flatMap');
 
 
 /***/ }),
-/* 392 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatten
 var $export = __webpack_require__(0);
-var flattenIntoArray = __webpack_require__(178);
-var toObject = __webpack_require__(11);
+var flattenIntoArray = __webpack_require__(189);
+var toObject = __webpack_require__(12);
 var toLength = __webpack_require__(7);
-var toInteger = __webpack_require__(35);
-var arraySpeciesCreate = __webpack_require__(120);
+var toInteger = __webpack_require__(36);
+var arraySpeciesCreate = __webpack_require__(128);
 
 $export($export.P, 'Array', {
   flatten: function flatten(/* depthArg = 1 */) {
@@ -14690,18 +27225,18 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(45)('flatten');
+__webpack_require__(47)('flatten');
 
 
 /***/ }),
-/* 393 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(87)(true);
+var $at = __webpack_require__(92)(true);
 var $fails = __webpack_require__(3);
 
 var FORCED = $fails(function () {
@@ -14716,15 +27251,15 @@ $export($export.P + $export.F * FORCED, 'String', {
 
 
 /***/ }),
-/* 394 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(0);
-var $pad = __webpack_require__(179);
-var userAgent = __webpack_require__(92);
+var $pad = __webpack_require__(190);
+var userAgent = __webpack_require__(97);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -14737,15 +27272,15 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 
 
 /***/ }),
-/* 395 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(0);
-var $pad = __webpack_require__(179);
-var userAgent = __webpack_require__(92);
+var $pad = __webpack_require__(190);
+var userAgent = __webpack_require__(97);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -14758,13 +27293,13 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 
 
 /***/ }),
-/* 396 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-__webpack_require__(65)('trimLeft', function ($trim) {
+__webpack_require__(68)('trimLeft', function ($trim) {
   return function trimLeft() {
     return $trim(this, 1);
   };
@@ -14772,13 +27307,13 @@ __webpack_require__(65)('trimLeft', function ($trim) {
 
 
 /***/ }),
-/* 397 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-__webpack_require__(65)('trimRight', function ($trim) {
+__webpack_require__(68)('trimRight', function ($trim) {
   return function trimRight() {
     return $trim(this, 2);
   };
@@ -14786,17 +27321,17 @@ __webpack_require__(65)('trimRight', function ($trim) {
 
 
 /***/ }),
-/* 398 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/String.prototype.matchAll/
 var $export = __webpack_require__(0);
-var defined = __webpack_require__(38);
+var defined = __webpack_require__(39);
 var toLength = __webpack_require__(7);
-var isRegExp = __webpack_require__(88);
-var getFlags = __webpack_require__(73);
+var isRegExp = __webpack_require__(93);
+var getFlags = __webpack_require__(76);
 var RegExpProto = RegExp.prototype;
 
 var $RegExpStringIterator = function (regexp, string) {
@@ -14804,7 +27339,7 @@ var $RegExpStringIterator = function (regexp, string) {
   this._s = string;
 };
 
-__webpack_require__(114)($RegExpStringIterator, 'RegExp String', function next() {
+__webpack_require__(122)($RegExpStringIterator, 'RegExp String', function next() {
   var match = this._r.exec(this._s);
   return { value: match, done: match === null };
 });
@@ -14823,29 +27358,29 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 399 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(103)('asyncIterator');
+__webpack_require__(111)('asyncIterator');
 
 
 /***/ }),
-/* 400 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(103)('observable');
+__webpack_require__(111)('observable');
 
 
 /***/ }),
-/* 401 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
 var $export = __webpack_require__(0);
-var ownKeys = __webpack_require__(177);
-var toIObject = __webpack_require__(25);
-var gOPD = __webpack_require__(26);
-var createProperty = __webpack_require__(118);
+var ownKeys = __webpack_require__(188);
+var toIObject = __webpack_require__(27);
+var gOPD = __webpack_require__(28);
+var createProperty = __webpack_require__(126);
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
@@ -14865,12 +27400,12 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 402 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(0);
-var $values = __webpack_require__(180)(false);
+var $values = __webpack_require__(191)(false);
 
 $export($export.S, 'Object', {
   values: function values(it) {
@@ -14880,12 +27415,12 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 403 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(0);
-var $entries = __webpack_require__(180)(true);
+var $entries = __webpack_require__(191)(true);
 
 $export($export.S, 'Object', {
   entries: function entries(it) {
@@ -14895,18 +27430,18 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 404 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var aFunction = __webpack_require__(15);
-var $defineProperty = __webpack_require__(10);
+var toObject = __webpack_require__(12);
+var aFunction = __webpack_require__(16);
+var $defineProperty = __webpack_require__(11);
 
 // B.2.2.2 Object.prototype.__defineGetter__(P, getter)
-__webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object', {
+__webpack_require__(10) && $export($export.P + __webpack_require__(100), 'Object', {
   __defineGetter__: function __defineGetter__(P, getter) {
     $defineProperty.f(toObject(this), P, { get: aFunction(getter), enumerable: true, configurable: true });
   }
@@ -14914,18 +27449,18 @@ __webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object',
 
 
 /***/ }),
-/* 405 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var aFunction = __webpack_require__(15);
-var $defineProperty = __webpack_require__(10);
+var toObject = __webpack_require__(12);
+var aFunction = __webpack_require__(16);
+var $defineProperty = __webpack_require__(11);
 
 // B.2.2.3 Object.prototype.__defineSetter__(P, setter)
-__webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object', {
+__webpack_require__(10) && $export($export.P + __webpack_require__(100), 'Object', {
   __defineSetter__: function __defineSetter__(P, setter) {
     $defineProperty.f(toObject(this), P, { set: aFunction(setter), enumerable: true, configurable: true });
   }
@@ -14933,19 +27468,19 @@ __webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object',
 
 
 /***/ }),
-/* 406 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var toPrimitive = __webpack_require__(37);
-var getPrototypeOf = __webpack_require__(27);
-var getOwnPropertyDescriptor = __webpack_require__(26).f;
+var toObject = __webpack_require__(12);
+var toPrimitive = __webpack_require__(38);
+var getPrototypeOf = __webpack_require__(29);
+var getOwnPropertyDescriptor = __webpack_require__(28).f;
 
 // B.2.2.4 Object.prototype.__lookupGetter__(P)
-__webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object', {
+__webpack_require__(10) && $export($export.P + __webpack_require__(100), 'Object', {
   __lookupGetter__: function __lookupGetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -14958,19 +27493,19 @@ __webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object',
 
 
 /***/ }),
-/* 407 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(0);
-var toObject = __webpack_require__(11);
-var toPrimitive = __webpack_require__(37);
-var getPrototypeOf = __webpack_require__(27);
-var getOwnPropertyDescriptor = __webpack_require__(26).f;
+var toObject = __webpack_require__(12);
+var toPrimitive = __webpack_require__(38);
+var getPrototypeOf = __webpack_require__(29);
+var getOwnPropertyDescriptor = __webpack_require__(28).f;
 
 // B.2.2.5 Object.prototype.__lookupSetter__(P)
-__webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object', {
+__webpack_require__(10) && $export($export.P + __webpack_require__(100), 'Object', {
   __lookupSetter__: function __lookupSetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -14983,91 +27518,91 @@ __webpack_require__(9) && $export($export.P + __webpack_require__(95), 'Object',
 
 
 /***/ }),
-/* 408 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = __webpack_require__(0);
 
-$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(181)('Map') });
+$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(192)('Map') });
 
 
 /***/ }),
-/* 409 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = __webpack_require__(0);
 
-$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(181)('Set') });
+$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(192)('Set') });
 
 
 /***/ }),
-/* 410 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(96)('Map');
+__webpack_require__(101)('Map');
 
 
 /***/ }),
-/* 411 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
-__webpack_require__(96)('Set');
+__webpack_require__(101)('Set');
 
 
 /***/ }),
-/* 412 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
-__webpack_require__(96)('WeakMap');
+__webpack_require__(101)('WeakMap');
 
 
 /***/ }),
-/* 413 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
-__webpack_require__(96)('WeakSet');
+__webpack_require__(101)('WeakSet');
 
 
 /***/ }),
-/* 414 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(97)('Map');
+__webpack_require__(102)('Map');
 
 
 /***/ }),
-/* 415 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
-__webpack_require__(97)('Set');
+__webpack_require__(102)('Set');
 
 
 /***/ }),
-/* 416 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
-__webpack_require__(97)('WeakMap');
+__webpack_require__(102)('WeakMap');
 
 
 /***/ }),
-/* 417 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
-__webpack_require__(97)('WeakSet');
+__webpack_require__(102)('WeakSet');
 
 
 /***/ }),
-/* 418 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-global
@@ -15077,7 +27612,7 @@ $export($export.G, { global: __webpack_require__(2) });
 
 
 /***/ }),
-/* 419 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-global
@@ -15087,12 +27622,12 @@ $export($export.S, 'System', { global: __webpack_require__(2) });
 
 
 /***/ }),
-/* 420 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-is-error
 var $export = __webpack_require__(0);
-var cof = __webpack_require__(34);
+var cof = __webpack_require__(35);
 
 $export($export.S, 'Error', {
   isError: function isError(it) {
@@ -15102,7 +27637,7 @@ $export($export.S, 'Error', {
 
 
 /***/ }),
-/* 421 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -15116,7 +27651,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 422 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -15126,7 +27661,7 @@ $export($export.S, 'Math', { DEG_PER_RAD: Math.PI / 180 });
 
 
 /***/ }),
-/* 423 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -15141,13 +27676,13 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 424 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = __webpack_require__(0);
-var scale = __webpack_require__(183);
-var fround = __webpack_require__(162);
+var scale = __webpack_require__(194);
+var fround = __webpack_require__(173);
 
 $export($export.S, 'Math', {
   fscale: function fscale(x, inLow, inHigh, outLow, outHigh) {
@@ -15157,7 +27692,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 425 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -15174,7 +27709,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 426 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -15191,7 +27726,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 427 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -15213,7 +27748,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 428 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -15223,7 +27758,7 @@ $export($export.S, 'Math', { RAD_PER_DEG: 180 / Math.PI });
 
 
 /***/ }),
-/* 429 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
@@ -15238,17 +27773,17 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 430 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { scale: __webpack_require__(183) });
+$export($export.S, 'Math', { scale: __webpack_require__(194) });
 
 
 /***/ }),
-/* 431 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -15270,7 +27805,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 432 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // http://jfbastien.github.io/papers/Math.signbit.html
@@ -15283,17 +27818,17 @@ $export($export.S, 'Math', { signbit: function signbit(x) {
 
 
 /***/ }),
-/* 433 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // https://github.com/tc39/proposal-promise-finally
 
 var $export = __webpack_require__(0);
-var core = __webpack_require__(32);
+var core = __webpack_require__(33);
 var global = __webpack_require__(2);
-var speciesConstructor = __webpack_require__(74);
-var promiseResolve = __webpack_require__(170);
+var speciesConstructor = __webpack_require__(77);
+var promiseResolve = __webpack_require__(181);
 
 $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
   var C = speciesConstructor(this, core.Promise || global.Promise);
@@ -15310,15 +27845,15 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 
 
 /***/ }),
-/* 434 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-promise-try
 var $export = __webpack_require__(0);
-var newPromiseCapability = __webpack_require__(127);
-var perform = __webpack_require__(169);
+var newPromiseCapability = __webpack_require__(135);
+var perform = __webpack_require__(180);
 
 $export($export.S, 'Promise', { 'try': function (callbackfn) {
   var promiseCapability = newPromiseCapability.f(this);
@@ -15329,10 +27864,10 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 
 
 /***/ }),
-/* 435 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -15343,10 +27878,10 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
 
 
 /***/ }),
-/* 436 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -15364,12 +27899,12 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 437 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
-var getPrototypeOf = __webpack_require__(27);
+var getPrototypeOf = __webpack_require__(29);
 var ordinaryHasOwnMetadata = metadata.has;
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -15387,14 +27922,14 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
 
 
 /***/ }),
-/* 438 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Set = __webpack_require__(173);
-var from = __webpack_require__(182);
-var metadata = __webpack_require__(42);
+var Set = __webpack_require__(184);
+var from = __webpack_require__(193);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
-var getPrototypeOf = __webpack_require__(27);
+var getPrototypeOf = __webpack_require__(29);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
 
@@ -15412,10 +27947,10 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
 
 
 /***/ }),
-/* 439 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -15427,10 +27962,10 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 440 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -15441,12 +27976,12 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
 
 
 /***/ }),
-/* 441 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
-var getPrototypeOf = __webpack_require__(27);
+var getPrototypeOf = __webpack_require__(29);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
 
@@ -15463,10 +27998,10 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
 
 
 /***/ }),
-/* 442 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(42);
+var metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -15478,12 +28013,12 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 443 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $metadata = __webpack_require__(42);
+var $metadata = __webpack_require__(43);
 var anObject = __webpack_require__(1);
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 var toMetaKey = $metadata.key;
 var ordinaryDefineOwnMetadata = $metadata.set;
 
@@ -15499,14 +28034,14 @@ $metadata.exp({ metadata: function metadata(metadataKey, metadataValue) {
 
 
 /***/ }),
-/* 444 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export = __webpack_require__(0);
-var microtask = __webpack_require__(126)();
+var microtask = __webpack_require__(134)();
 var process = __webpack_require__(2).process;
-var isNode = __webpack_require__(34)(process) == 'process';
+var isNode = __webpack_require__(35)(process) == 'process';
 
 $export($export.G, {
   asap: function asap(fn) {
@@ -15517,7 +28052,7 @@ $export($export.G, {
 
 
 /***/ }),
-/* 445 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15525,15 +28060,15 @@ $export($export.G, {
 // https://github.com/zenparsing/es-observable
 var $export = __webpack_require__(0);
 var global = __webpack_require__(2);
-var core = __webpack_require__(32);
-var microtask = __webpack_require__(126)();
+var core = __webpack_require__(33);
+var microtask = __webpack_require__(134)();
 var OBSERVABLE = __webpack_require__(6)('observable');
-var aFunction = __webpack_require__(15);
+var aFunction = __webpack_require__(16);
 var anObject = __webpack_require__(1);
-var anInstance = __webpack_require__(55);
-var redefineAll = __webpack_require__(57);
-var hide = __webpack_require__(17);
-var forOf = __webpack_require__(56);
+var anInstance = __webpack_require__(58);
+var redefineAll = __webpack_require__(60);
+var hide = __webpack_require__(18);
+var forOf = __webpack_require__(59);
 var RETURN = forOf.RETURN;
 
 var getMethod = function (fn) {
@@ -15719,17 +28254,17 @@ hide($Observable.prototype, OBSERVABLE, function () { return this; });
 
 $export($export.G, { Observable: $Observable });
 
-__webpack_require__(54)('Observable');
+__webpack_require__(57)('Observable');
 
 
 /***/ }),
-/* 446 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // ie9- setTimeout & setInterval additional parameters fix
 var global = __webpack_require__(2);
 var $export = __webpack_require__(0);
-var userAgent = __webpack_require__(92);
+var userAgent = __webpack_require__(97);
 var slice = [].slice;
 var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
 var wrap = function (set) {
@@ -15749,11 +28284,11 @@ $export($export.G + $export.B + $export.F * MSIE, {
 
 
 /***/ }),
-/* 447 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(0);
-var $task = __webpack_require__(125);
+var $task = __webpack_require__(133);
 $export($export.G + $export.B, {
   setImmediate: $task.set,
   clearImmediate: $task.clear
@@ -15761,15 +28296,15 @@ $export($export.G + $export.B, {
 
 
 /***/ }),
-/* 448 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $iterators = __webpack_require__(122);
-var getKeys = __webpack_require__(50);
-var redefine = __webpack_require__(18);
+var $iterators = __webpack_require__(130);
+var getKeys = __webpack_require__(53);
+var redefine = __webpack_require__(19);
 var global = __webpack_require__(2);
-var hide = __webpack_require__(17);
-var Iterators = __webpack_require__(66);
+var hide = __webpack_require__(18);
+var Iterators = __webpack_require__(69);
 var wks = __webpack_require__(6);
 var ITERATOR = wks('iterator');
 var TO_STRING_TAG = wks('toStringTag');
@@ -15825,7 +28360,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 
 /***/ }),
-/* 449 */
+/* 476 */
 /***/ (function(module, exports) {
 
 /**
@@ -16567,26 +29102,26 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 
 /***/ }),
-/* 450 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(451);
-module.exports = __webpack_require__(32).RegExp.escape;
+__webpack_require__(478);
+module.exports = __webpack_require__(33).RegExp.escape;
 
 
 /***/ }),
-/* 451 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(0);
-var $re = __webpack_require__(452)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+var $re = __webpack_require__(479)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', { escape: function escape(it) { return $re(it); } });
 
 
 /***/ }),
-/* 452 */
+/* 479 */
 /***/ (function(module, exports) {
 
 module.exports = function (regExp, replace) {
@@ -16600,23 +29135,23 @@ module.exports = function (regExp, replace) {
 
 
 /***/ }),
-/* 453 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _electron = __webpack_require__(59);
+var _electron = __webpack_require__(62);
 
-var _debug = __webpack_require__(454);
+var _debug = __webpack_require__(481);
 
 var _debug2 = _interopRequireDefault(_debug);
 
-var _appRemote = __webpack_require__(455);
+var _appRemote = __webpack_require__(482);
 
 var _appRemote2 = _interopRequireDefault(_appRemote);
 
-var _lang = __webpack_require__(530);
+var _lang = __webpack_require__(568);
 
 var _lang2 = _interopRequireDefault(_lang);
 
@@ -16624,23 +29159,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var fs = __webpack_require__(533);
-var os = __webpack_require__(144);
+var fs = __webpack_require__(571);
+var os = __webpack_require__(155);
 
 _electron.app.commandLine.appendSwitch("ignore-certificate-errors");
 
 _appRemote2.default.init(__dirname);
 
 if (true) {
-	var sourceMapSupport = __webpack_require__(562); // eslint-disable-line
+	var sourceMapSupport = __webpack_require__(600); // eslint-disable-line
 	sourceMapSupport.install();
 }
 
 if (_debug2.default && _debug2.default !== "production") {
-	__webpack_require__(570)(); // eslint-disable-line global-require
+	__webpack_require__(608)(); // eslint-disable-line global-require
 	var path = __webpack_require__(4); // eslint-disable-line
 	var p = path.join(__dirname, '..', 'app', 'node_modules'); // eslint-disable-line
-	__webpack_require__(241).globalPaths.push(p); // eslint-disable-line
+	__webpack_require__(267).globalPaths.push(p); // eslint-disable-line
 }
 
 // Quit when all windows are closed.
@@ -16685,7 +29220,7 @@ var installExtensions = function () {
 							break;
 						}
 
-						installer = __webpack_require__(583); // eslint-disable-line global-require
+						installer = __webpack_require__(620); // eslint-disable-line global-require
 
 						extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
 						forceDownload = !!Object({"NODE_ENV":"production"}).UPGRADE_EXTENSIONS;
@@ -16933,7 +29468,7 @@ if (_debug2.default) {
 }
 
 /***/ }),
-/* 454 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17163,7 +29698,7 @@ exports.default = global.DEBUG;
 module.exports = exports['default'];
 
 /***/ }),
-/* 455 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17179,15 +29714,15 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _fs = __webpack_require__(28);
+var _fs = __webpack_require__(21);
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _electron = __webpack_require__(59);
+var _electron = __webpack_require__(62);
 
 var _electron2 = _interopRequireDefault(_electron);
 
-var _underscore = __webpack_require__(456);
+var _underscore = __webpack_require__(483);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -17195,18 +29730,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var metadata = __webpack_require__(529);
+var metadata = __webpack_require__(556);
 
-var _require = __webpack_require__(59),
+var _require = __webpack_require__(62),
     shell = _require.shell;
 
-var exec = __webpack_require__(232).exec;
+var exec = __webpack_require__(243).exec;
+var easemob = __webpack_require__(557);
 var IS_MAC_OSX = process.platform === "darwin";
 var IS_DEV = "production" === "development";
 var HOT_DEV_SERVER = "http://localhost:3000";
+var emclient = null;
 if (false) {
 	console.error("AppRemote must run in main process.");
 }
+
+easemob.getEMClientInstance = function (chatConfigs) {
+	if (!emclient) {
+		console.log("main process create new emclient");
+		emclient = new easemob.EMClient(chatConfigs);
+	}
+	emclient.logout();
+	return emclient;
+};
+
+_electron.app.easemob = easemob;
 
 var AppRemote = function () {
 	function AppRemote() {
@@ -17293,7 +29841,6 @@ var AppRemote = function () {
 
 		_electron.ipcMain.on("syncPrivateServerConfig", function (event, data) {
 			var config = me.getPrivateConfig();
-			console.log("syncPrivateServerConfig", config);
 			me.mainWindow.webContents.send("privateServerConfig", config);
 			event.returnValue = config;
 		});
@@ -17467,9 +30014,18 @@ var AppRemote = function () {
 				show: false,
 				frame: true,
 				titleBarStyle: "hidden",
-				webPreferences: { webSecurity: false, nodeIntegration: true },
+				webPreferences: {
+					webSecurity: false,
+					nodeIntegration: true,
+					contextIsolation: false,
+					enableRemoteModule: true
+				},
 				thickFrame: true,
-				showAfterLoad: true
+				showAfterLoad: true,
+				trafficLightPosition: {
+					x: 10,
+					y: 16
+				}
 			};
 
 			if (false) {
@@ -17639,14 +30195,14 @@ exports.default = app;
 module.exports = exports["default"];
 
 /***/ }),
-/* 456 */
+/* 483 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_default_js__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_default_js__ = __webpack_require__(484);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return __WEBPACK_IMPORTED_MODULE_0__index_default_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(137);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return __WEBPACK_IMPORTED_MODULE_1__index_js__["VERSION"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "restArguments", function() { return __WEBPACK_IMPORTED_MODULE_1__index_js__["restArguments"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "isObject", function() { return __WEBPACK_IMPORTED_MODULE_1__index_js__["isObject"]; });
@@ -17813,11 +30369,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 457 */
+/* 484 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(137);
 // Default Export
 // ==============
 // In this module, we mix our bundled exports into the `_` object and export
@@ -17848,7 +30404,7 @@ _._ = _;
 
 
 /***/ }),
-/* 458 */
+/* 485 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17860,7 +30416,7 @@ function isNull(obj) {
 
 
 /***/ }),
-/* 459 */
+/* 486 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17872,57 +30428,57 @@ function isElement(obj) {
 
 
 /***/ }),
-/* 460 */
+/* 487 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('Date'));
 
 
 /***/ }),
-/* 461 */
+/* 488 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('RegExp'));
 
 
 /***/ }),
-/* 462 */
+/* 489 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('Error'));
 
 
 /***/ }),
-/* 463 */
+/* 490 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('Object'));
 
 
 /***/ }),
-/* 464 */
+/* 491 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isFinite;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol_js__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol_js__ = __webpack_require__(198);
 
 
 
@@ -17933,12 +30489,12 @@ function isFinite(obj) {
 
 
 /***/ }),
-/* 465 */
+/* 492 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createSizePropertyCheck_js__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getByteLength_js__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createSizePropertyCheck_js__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getByteLength_js__ = __webpack_require__(141);
 
 
 
@@ -17948,16 +30504,16 @@ function isFinite(obj) {
 
 
 /***/ }),
-/* 466 */
+/* 493 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isEmpty;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isString_js__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArguments_js__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isString_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArguments_js__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__keys_js__ = __webpack_require__(14);
 
 
 
@@ -17979,21 +30535,21 @@ function isEmpty(obj) {
 
 
 /***/ }),
-/* 467 */
+/* 494 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isEqual;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getByteLength_js__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isTypedArray_js__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stringTagBug_js__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isDataView_js__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__keys_js__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__has_js__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__toBufferView_js__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getByteLength_js__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isTypedArray_js__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stringTagBug_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isDataView_js__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__keys_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__has_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__toBufferView_js__ = __webpack_require__(495);
 
 
 
@@ -18135,12 +30691,12 @@ function isEqual(a, b) {
 
 
 /***/ }),
-/* 468 */
+/* 495 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toBufferView;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getByteLength_js__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getByteLength_js__ = __webpack_require__(141);
 
 
 // Internal function to wrap or shallow-copy an ArrayBuffer,
@@ -18155,13 +30711,13 @@ function toBufferView(bufferSource) {
 
 
 /***/ }),
-/* 469 */
+/* 496 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(142);
 
 
 
@@ -18170,13 +30726,13 @@ function toBufferView(bufferSource) {
 
 
 /***/ }),
-/* 470 */
+/* 497 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(142);
 
 
 
@@ -18185,13 +30741,13 @@ function toBufferView(bufferSource) {
 
 
 /***/ }),
-/* 471 */
+/* 498 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stringTagBug_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methodFingerprint_js__ = __webpack_require__(142);
 
 
 
@@ -18200,23 +30756,23 @@ function toBufferView(bufferSource) {
 
 
 /***/ }),
-/* 472 */
+/* 499 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tagTester_js__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_0__tagTester_js__["a" /* default */])('WeakSet'));
 
 
 /***/ }),
-/* 473 */
+/* 500 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = pairs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__keys_js__ = __webpack_require__(14);
 
 
 // Convert an object into a list of `[key, value]` pairs.
@@ -18233,13 +30789,13 @@ function pairs(obj) {
 
 
 /***/ }),
-/* 474 */
+/* 501 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = create;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate_js__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__extendOwn_js__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate_js__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__extendOwn_js__ = __webpack_require__(144);
 
 
 
@@ -18254,14 +30810,14 @@ function create(prototype, props) {
 
 
 /***/ }),
-/* 475 */
+/* 502 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = clone;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__extend_js__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject_js__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__extend_js__ = __webpack_require__(209);
 
 
 
@@ -18274,7 +30830,7 @@ function clone(obj) {
 
 
 /***/ }),
-/* 476 */
+/* 503 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18289,13 +30845,13 @@ function tap(obj, interceptor) {
 
 
 /***/ }),
-/* 477 */
+/* 504 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = has;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__has_js__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__has_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(80);
 
 
 
@@ -18315,13 +30871,13 @@ function has(obj, path) {
 
 
 /***/ }),
-/* 478 */
+/* 505 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = mapObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(14);
 
 
 
@@ -18341,13 +30897,13 @@ function mapObject(obj, iteratee, context) {
 
 
 /***/ }),
-/* 479 */
+/* 506 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = propertyOf;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get_js__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get_js__ = __webpack_require__(212);
 
 
 
@@ -18361,12 +30917,12 @@ function propertyOf(obj) {
 
 
 /***/ }),
-/* 480 */
+/* 507 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = times;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__optimizeCb_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__optimizeCb_js__ = __webpack_require__(81);
 
 
 // Run a function **n** times.
@@ -18379,12 +30935,12 @@ function times(n, iteratee, context) {
 
 
 /***/ }),
-/* 481 */
+/* 508 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createEscaper_js__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__escapeMap_js__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createEscaper_js__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__escapeMap_js__ = __webpack_require__(219);
 
 
 
@@ -18393,12 +30949,12 @@ function times(n, iteratee, context) {
 
 
 /***/ }),
-/* 482 */
+/* 509 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createEscaper_js__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unescapeMap_js__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createEscaper_js__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unescapeMap_js__ = __webpack_require__(510);
 
 
 
@@ -18407,12 +30963,12 @@ function times(n, iteratee, context) {
 
 
 /***/ }),
-/* 483 */
+/* 510 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__invert_js__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__escapeMap_js__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__invert_js__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__escapeMap_js__ = __webpack_require__(219);
 
 
 
@@ -18421,14 +30977,14 @@ function times(n, iteratee, context) {
 
 
 /***/ }),
-/* 484 */
+/* 511 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = template;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__defaults_js__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__templateSettings_js__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__defaults_js__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__templateSettings_js__ = __webpack_require__(220);
 
 
 
@@ -18533,13 +31089,13 @@ function template(text, settings, oldSettings) {
 
 
 /***/ }),
-/* 485 */
+/* 512 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = result;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPath_js__ = __webpack_require__(80);
 
 
 
@@ -18565,7 +31121,7 @@ function result(obj, path, fallback) {
 
 
 /***/ }),
-/* 486 */
+/* 513 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18580,12 +31136,12 @@ function uniqueId(prefix) {
 
 
 /***/ }),
-/* 487 */
+/* 514 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = chain;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
 
 
 // Start chaining a wrapped Underscore object.
@@ -18597,13 +31153,13 @@ function chain(obj) {
 
 
 /***/ }),
-/* 488 */
+/* 515 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flatten_js__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bind_js__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__flatten_js__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bind_js__ = __webpack_require__(222);
 
 
 
@@ -18624,12 +31180,12 @@ function chain(obj) {
 
 
 /***/ }),
-/* 489 */
+/* 516 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = memoize;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__has_js__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__has_js__ = __webpack_require__(48);
 
 
 // Memoize an expensive function by storing its results.
@@ -18646,13 +31202,13 @@ function memoize(func, hasher) {
 
 
 /***/ }),
-/* 490 */
+/* 517 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__delay_js__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__underscore_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__delay_js__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__underscore_js__ = __webpack_require__(23);
 
 
 
@@ -18663,12 +31219,12 @@ function memoize(func, hasher) {
 
 
 /***/ }),
-/* 491 */
+/* 518 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = throttle;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__now_js__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__now_js__ = __webpack_require__(148);
 
 
 // Returns a function, that, when invoked, will only be triggered at most once
@@ -18719,13 +31275,13 @@ function throttle(func, wait, options) {
 
 
 /***/ }),
-/* 492 */
+/* 519 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = debounce;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__now_js__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__now_js__ = __webpack_require__(148);
 
 
 
@@ -18769,12 +31325,12 @@ function debounce(func, wait, immediate) {
 
 
 /***/ }),
-/* 493 */
+/* 520 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = wrap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(104);
 
 
 // Returns the first function passed as an argument to the second,
@@ -18786,7 +31342,7 @@ function wrap(func, wrapper) {
 
 
 /***/ }),
-/* 494 */
+/* 521 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18806,7 +31362,7 @@ function compose() {
 
 
 /***/ }),
-/* 495 */
+/* 522 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18822,12 +31378,12 @@ function after(times, func) {
 
 
 /***/ }),
-/* 496 */
+/* 523 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__before_js__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_js__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__before_js__ = __webpack_require__(224);
 
 
 
@@ -18837,12 +31393,12 @@ function after(times, func) {
 
 
 /***/ }),
-/* 497 */
+/* 524 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findLastIndex_js__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createIndexFinder_js__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findLastIndex_js__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createIndexFinder_js__ = __webpack_require__(230);
 
 
 
@@ -18852,13 +31408,13 @@ function after(times, func) {
 
 
 /***/ }),
-/* 498 */
+/* 525 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = findWhere;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_js__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher_js__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_js__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher_js__ = __webpack_require__(103);
 
 
 
@@ -18870,11 +31426,11 @@ function findWhere(obj, attrs) {
 
 
 /***/ }),
-/* 499 */
+/* 526 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createReduce_js__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createReduce_js__ = __webpack_require__(232);
 
 
 // **Reduce** builds up a single result from a list of values, aka `inject`,
@@ -18883,11 +31439,11 @@ function findWhere(obj, attrs) {
 
 
 /***/ }),
-/* 500 */
+/* 527 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createReduce_js__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createReduce_js__ = __webpack_require__(232);
 
 
 // The right-associative version of reduce, also known as `foldr`.
@@ -18895,14 +31451,14 @@ function findWhere(obj, attrs) {
 
 
 /***/ }),
-/* 501 */
+/* 528 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = reject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__negate_js__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__negate_js__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(17);
 
 
 
@@ -18914,14 +31470,14 @@ function reject(obj, predicate, context) {
 
 
 /***/ }),
-/* 502 */
+/* 529 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = every;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(14);
 
 
 
@@ -18940,14 +31496,14 @@ function every(obj, predicate, context) {
 
 
 /***/ }),
-/* 503 */
+/* 530 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = some;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys_js__ = __webpack_require__(14);
 
 
 
@@ -18966,15 +31522,15 @@ function some(obj, predicate, context) {
 
 
 /***/ }),
-/* 504 */
+/* 531 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deepGet_js__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toPath_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map_js__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deepGet_js__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toPath_js__ = __webpack_require__(80);
 
 
 
@@ -19006,13 +31562,13 @@ function some(obj, predicate, context) {
 
 
 /***/ }),
-/* 505 */
+/* 532 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = where;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher_js__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher_js__ = __webpack_require__(103);
 
 
 
@@ -19024,15 +31580,15 @@ function where(obj, attrs) {
 
 
 /***/ }),
-/* 506 */
+/* 533 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = min;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__values_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__each_js__ = __webpack_require__(65);
 
 
 
@@ -19065,12 +31621,12 @@ function min(obj, iteratee, context) {
 
 
 /***/ }),
-/* 507 */
+/* 534 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = shuffle;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sample_js__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sample_js__ = __webpack_require__(234);
 
 
 // Shuffle a collection.
@@ -19080,14 +31636,14 @@ function shuffle(obj) {
 
 
 /***/ }),
-/* 508 */
+/* 535 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = sortBy;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pluck_js__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cb_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pluck_js__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map_js__ = __webpack_require__(72);
 
 
 
@@ -19115,12 +31671,12 @@ function sortBy(obj, iteratee, context) {
 
 
 /***/ }),
-/* 509 */
+/* 536 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(48);
 
 
 
@@ -19132,11 +31688,11 @@ function sortBy(obj, iteratee, context) {
 
 
 /***/ }),
-/* 510 */
+/* 537 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(105);
 
 
 // Indexes the object's values by a criterion, similar to `_.groupBy`, but for
@@ -19147,12 +31703,12 @@ function sortBy(obj, iteratee, context) {
 
 
 /***/ }),
-/* 511 */
+/* 538 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__has_js__ = __webpack_require__(48);
 
 
 
@@ -19165,11 +31721,11 @@ function sortBy(obj, iteratee, context) {
 
 
 /***/ }),
-/* 512 */
+/* 539 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__group_js__ = __webpack_require__(105);
 
 
 // Split a collection into two arrays: one whose elements all pass the given
@@ -19180,13 +31736,13 @@ function sortBy(obj, iteratee, context) {
 
 
 /***/ }),
-/* 513 */
+/* 540 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = size;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike_js__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys_js__ = __webpack_require__(14);
 
 
 
@@ -19198,7 +31754,7 @@ function size(obj) {
 
 
 /***/ }),
-/* 514 */
+/* 541 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19211,17 +31767,17 @@ function keyInObj(value, key, obj) {
 
 
 /***/ }),
-/* 515 */
+/* 542 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__negate_js__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_js__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__flatten_js__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__contains_js__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pick_js__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__negate_js__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_js__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__flatten_js__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__contains_js__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pick_js__ = __webpack_require__(236);
 
 
 
@@ -19247,12 +31803,12 @@ function keyInObj(value, key, obj) {
 
 
 /***/ }),
-/* 516 */
+/* 543 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = first;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__initial_js__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__initial_js__ = __webpack_require__(237);
 
 
 // Get the first element of an array. Passing **n** will return the first N
@@ -19265,12 +31821,12 @@ function first(array, n, guard) {
 
 
 /***/ }),
-/* 517 */
+/* 544 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = last;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest_js__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest_js__ = __webpack_require__(238);
 
 
 // Get the last element of an array. Passing **n** will return the last N
@@ -19283,12 +31839,12 @@ function last(array, n, guard) {
 
 
 /***/ }),
-/* 518 */
+/* 545 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = compact;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__filter_js__ = __webpack_require__(82);
 
 
 // Trim out all falsy values from an array.
@@ -19298,12 +31854,12 @@ function compact(array) {
 
 
 /***/ }),
-/* 519 */
+/* 546 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = flatten;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__flatten_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__flatten_js__ = __webpack_require__(71);
 
 
 // Flatten out an array, either recursively (by default), or up to `depth`.
@@ -19314,12 +31870,12 @@ function flatten(array, depth) {
 
 
 /***/ }),
-/* 520 */
+/* 547 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__difference_js__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__difference_js__ = __webpack_require__(239);
 
 
 
@@ -19330,13 +31886,13 @@ function flatten(array, depth) {
 
 
 /***/ }),
-/* 521 */
+/* 548 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uniq_js__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__flatten_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uniq_js__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__flatten_js__ = __webpack_require__(71);
 
 
 
@@ -19349,13 +31905,13 @@ function flatten(array, depth) {
 
 
 /***/ }),
-/* 522 */
+/* 549 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = intersection;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contains_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contains_js__ = __webpack_require__(83);
 
 
 
@@ -19378,12 +31934,12 @@ function intersection(array) {
 
 
 /***/ }),
-/* 523 */
+/* 550 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip_js__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__restArguments_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip_js__ = __webpack_require__(241);
 
 
 
@@ -19393,12 +31949,12 @@ function intersection(array) {
 
 
 /***/ }),
-/* 524 */
+/* 551 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = object;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength_js__ = __webpack_require__(31);
 
 
 // Converts lists into objects. Pass either a single array of `[key, value]`
@@ -19418,7 +31974,7 @@ function object(list, values) {
 
 
 /***/ }),
-/* 525 */
+/* 552 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19447,7 +32003,7 @@ function range(start, stop, step) {
 
 
 /***/ }),
-/* 526 */
+/* 553 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19469,16 +32025,16 @@ function chunk(array, count) {
 
 
 /***/ }),
-/* 527 */
+/* 554 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = mixin;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__functions_js__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__functions_js__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__chainResult_js__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__chainResult_js__ = __webpack_require__(242);
 
 
 
@@ -19500,14 +32056,14 @@ function mixin(obj) {
 
 
 /***/ }),
-/* 528 */
+/* 555 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__underscore_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__each_js__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setup_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chainResult_js__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chainResult_js__ = __webpack_require__(242);
 
 
 
@@ -19542,13 +32098,1690 @@ Object(__WEBPACK_IMPORTED_MODULE_1__each_js__["a" /* default */])(['concat', 'jo
 
 
 /***/ }),
-/* 529 */
+/* 556 */
 /***/ (function(module, exports) {
 
 module.exports = {"name":"DesktopDemo","productName":"IM-SDK桌面端Demo","version":"3.8.0","description":"IM-SDK桌面端Demo","main":"./main.js","author":"","company":"北京易掌云峰科技有限公司","license":"ISC","repository":{"type":"git","url":"https://github.com/easemob/sdkdemoapp_windows.git"}}
 
 /***/ }),
-/* 530 */
+/* 557 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var easemobNode = __webpack_require__(9);
+var EMCmdMessageBody = __webpack_require__(244);
+var EMCustomMessageBody = __webpack_require__(245);
+var EMFileMessageBody = __webpack_require__(246);
+
+var _require = __webpack_require__(247),
+    EMImageSize = _require.EMImageSize,
+    EMImageMessageBody = _require.EMImageMessageBody;
+
+var EMLocationMessageBody = __webpack_require__(248);
+var EMTextMessageBody = __webpack_require__(249);
+
+var _require2 = __webpack_require__(250),
+    EMVideoSize = _require2.EMVideoSize,
+    EMVideoMessageBody = _require2.EMVideoMessageBody;
+
+var EMVoiceMessageBody = __webpack_require__(251);
+var EMMessage = __webpack_require__(84);
+var EMCallback = __webpack_require__(252);
+var EMChatConfig = __webpack_require__(253);
+var EMChatManager = __webpack_require__(255);
+var EMChatManagerListener = __webpack_require__(560);
+var EMChatroom = __webpack_require__(108);
+var EMChatroomManager = __webpack_require__(256);
+var EMChatroomManagerListener = __webpack_require__(561);
+var EMConnectionListener = __webpack_require__(562);
+var EMContactListener = __webpack_require__(563);
+var EMContactManager = __webpack_require__(257);
+var EMConversation = __webpack_require__(152);
+
+var _require3 = __webpack_require__(106),
+    EMStringCursorResult = _require3.EMStringCursorResult,
+    EMCursorResult = _require3.EMCursorResult,
+    EMPageResult = _require3.EMPageResult;
+
+var EMError = __webpack_require__(44);
+var EMGroup = __webpack_require__(107);
+var EMGroupManager = __webpack_require__(258);
+var EMGroupManagerListener = __webpack_require__(564);
+var EMMucSetting = __webpack_require__(153);
+var EMMucSharedFile = __webpack_require__(154);
+var EMMultiDevicesListener = __webpack_require__(565);
+var EMClient = __webpack_require__(566);
+var EMLog = __webpack_require__(567);
+var EMChatPrivateConfigs = __webpack_require__(254);
+
+/**chat type.
+ * {
+ * SINGLE = 0,    // One-to-one chat
+ * GROUP = 1,     // Group chat
+ * CHATROOM = 2   // Chatroom chat
+ * }
+ */
+function createSendMessage(from, to, body, chatType) {
+  return new EMMessage(easemobNode.createSendMessage(from, to, body._body, chatType));
+}
+
+function createReceiveMessage(from, to, body, chatType, msgId) {
+  return new EMMessage(easemobNode.createReceiveMessage(from, to, body._body, chatType, msgId));
+}
+
+module.exports = {
+  EMCmdMessageBody: EMCmdMessageBody,
+  EMFileMessageBody: EMFileMessageBody,
+  EMImageSize: EMImageSize,
+  EMImageMessageBody: EMImageMessageBody,
+  EMLocationMessageBody: EMLocationMessageBody,
+  EMTextMessageBody: EMTextMessageBody,
+  EMVideoSize: EMVideoSize,
+  EMVideoMessageBody: EMVideoMessageBody,
+  EMVoiceMessageBody: EMVoiceMessageBody,
+  EMCustomMessageBody: EMCustomMessageBody,
+  EMMessage: EMMessage,
+  EMCallback: EMCallback,
+  EMChatConfig: EMChatConfig,
+  EMChatManager: EMChatManager,
+  EMChatManagerListener: EMChatManagerListener,
+  EMChatroom: EMChatroom,
+  EMChatroomManager: EMChatroomManager,
+  EMChatroomManagerListener: EMChatroomManagerListener,
+  EMConnectionListener: EMConnectionListener,
+  EMContactListener: EMContactListener,
+  EMContactManager: EMContactManager,
+  EMConversation: EMConversation,
+  EMStringCursorResult: EMStringCursorResult,
+  EMCursorResult: EMCursorResult,
+  EMPageResult: EMPageResult,
+  EMError: EMError,
+  EMGroup: EMGroup,
+  EMGroupManager: EMGroupManager,
+  EMGroupManagerListener: EMGroupManagerListener,
+  EMMucSetting: EMMucSetting,
+  EMMucSharedFile: EMMucSharedFile,
+  EMMultiDevicesListener: EMMultiDevicesListener,
+  EMClient: EMClient,
+  createSendMessage: createSendMessage,
+  createReceiveMessage: createReceiveMessage,
+  EMLog: EMLog,
+  EMChatPrivateConfigs: EMChatPrivateConfigs
+};
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = require("../addon/easemobWin.node");
+
+/***/ }),
+/* 559 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = require("../addon/easemobMac.node");
+
+/***/ }),
+/* 560 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+var EMError = __webpack_require__(44);
+var EMMessage = __webpack_require__(84);
+var EMConversation = __webpack_require__(152);
+
+//EMChatManagerListener object callback interface number.
+var emChatManagerListenerCount = 8;
+
+/**
+ * 创建消息列表
+ * @param {Array} array 消息数组
+ * @return {Array} 消息数组
+ */
+
+function createEMMessageList(array) {
+  var messageList = new Array(array.length);
+  for (var i = 0; i < array.length; i++) {
+    messageList[i] = new EMMessage(array[i]);
+  }
+  return messageList;
+}
+
+/**
+ * 创建会话列表
+ * @param {Array} array 会话数组
+ * @return {Array} 会话数组
+ */
+function createEMConversationList(array) {
+  var conversationList = new Array(array.length);
+  for (var i = 0; i < array.length; i++) {
+    conversationList[i] = new EMConversation(array[i]);
+  }
+  return conversationList;
+}
+
+/**
+ * EMChatManagerListener constructor.
+ * @constructor
+ */
+function EMChatManagerListener() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emChatManagerListenerCount);
+  self._listener = new easemobNode.EMChatManagerListener();
+  self._listener.onReceiveMessages = function (messages) {
+    self._eventEmitter.emit('onReceiveMessages', createEMMessageList(messages));
+  };
+  self._listener.onReceiveCmdMessages = function (messages) {
+    self._eventEmitter.emit('onReceiveCmdMessages', createEMMessageList(messages));
+  };
+  self._listener.onMessageStatusChanged = function (message, error) {
+    self._eventEmitter.emit('onMessageStatusChanged', new EMMessage(message), new EMError(error));
+  };
+  self._listener.onMessageAttachmentsStatusChanged = function (message, error) {
+    self._eventEmitter.emit('onMessageAttachmentsStatusChanged', new EMMessage(message), new EMError(error));
+  };
+  self._listener.onReceiveHasReadAcks = function (messages) {
+    self._eventEmitter.emit('onReceiveHasReadAcks', createEMMessageList(messages));
+  };
+  self._listener.onReceiveHasDeliveredAcks = function (messages) {
+    self._eventEmitter.emit('onReceiveHasDeliveredAcks', createEMMessageList(messages));
+  };
+  self._listener.onReceiveRecallMessages = function (messages) {
+    self._eventEmitter.emit('onReceiveRecallMessages', createEMMessageList(messages));
+  };
+  self._listener.onUpdateConversationList = function (conversations) {
+    self._eventEmitter.emit('onUpdateConversationList', createEMConversationList(conversations));
+  };
+}
+
+/**
+ * Callback user when receive a list of messages from remote peer.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onReceiveMessages = function (callback) {
+  this._eventEmitter.on('onReceiveMessages', callback);
+};
+
+/**
+ * @function EMChatManagerListener~ReceiveMessages
+ * @param {Array} messages EMMessage array.
+ * @return {void}
+ */
+
+/**
+ * Callback user when receive a list of command messages from remote peer.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onReceiveCmdMessages = function (callback) {
+  this._eventEmitter.on('onReceiveCmdMessages', callback);
+};
+
+/**
+ * Callback user when send message successed or failed.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onMessageStatusChanged = function (callback) {
+  this._eventEmitter.on('onMessageStatusChanged', callback);
+};
+
+/**
+ * Callback user when attachment download status changed.
+ * @param {EMChatManagerListener~MessageAttachmentsStatusChanged} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onMessageAttachmentsStatusChanged = function (callback) {
+  this._eventEmitter.on('onMessageAttachmentsStatusChanged', callback);
+};
+
+/**
+ * @function EMChatManagerListener~MessageAttachmentsStatusChanged
+ * @param {EMMessage} message EMMessage.
+ * @param {EMError} error EMError
+ * @return {void}
+ */
+
+/**
+ * Callback user when receive read ack for messages.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onReceiveHasReadAcks = function (callback) {
+  this._eventEmitter.on('onReceiveHasReadAcks', callback);
+};
+
+/**
+ * Callback user when receive delivery successed ack for messages.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onReceiveHasDeliveredAcks = function (callback) {
+  this._eventEmitter.on('onReceiveHasDeliveredAcks', callback);
+};
+
+/**
+ * Callback user when receive recall for messages.
+ * @param {EMChatManagerListener~ReceiveMessages} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onReceiveRecallMessages = function (callback) {
+  this._eventEmitter.on('onReceiveRecallMessages', callback);
+};
+
+/**
+ * Callback user when conversation list are changed.
+ * @param {EMChatManagerListener~ConversationList} callback 回调函数
+ * @return {void}
+ */
+EMChatManagerListener.prototype.onUpdateConversationList = function (callback) {
+  this._eventEmitter.on('onUpdateConversationList', callback);
+};
+
+/**
+ * @function EMChatManagerListener~ConversationList
+ * @param {Array} conversations EMConversation array.
+ * @return {void}
+ */
+
+module.exports = EMChatManagerListener;
+
+/***/ }),
+/* 561 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+var EMChatroom = __webpack_require__(108);
+
+//EMChatroomManagerListener object callback interface number.
+var emChatroomManagerListenerCount = 9;
+
+/**
+ * Easemob EMChatroomManagerListener implementation.
+ */
+
+/**
+ * EMChatroomManagerListener constructor.
+ * @constructor
+ */
+function EMChatroomManagerListener() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emChatroomManagerListenerCount);
+  self._listener = new easemobNode.EMChatroomManagerListener();
+  self._listener.onLeaveChatroom = function (chatroom, reason) {
+    self._eventEmitter.emit('onLeaveChatroom', new EMChatroom(chatroom), reason);
+  };
+  self._listener.onMemberJoinedChatroom = function (chatroom, member) {
+    self._eventEmitter.emit('onMemberJoinedChatroom', new EMChatroom(chatroom), member);
+  };
+  self._listener.onMemberLeftChatroom = function (chatroom, member) {
+    self._eventEmitter.emit('onMemberLeftChatroom', new EMChatroom(chatroom), member);
+  };
+  self._listener.onAddMutesFromChatroom = function (chatroom, mutes, muteExpire) {
+    self._eventEmitter.emit('onAddMutesFromChatroom', new EMChatroom(chatroom), mutes, muteExpire);
+  };
+  self._listener.onRemoveMutesFromChatroom = function (chatroom, mutes) {
+    self._eventEmitter.emit('onRemoveMutesFromChatroom', new EMChatroom(chatroom), mutes);
+  };
+  self._listener.onAddAdminFromChatroom = function (chatroom, admin) {
+    self._eventEmitter.emit('onAddAdminFromChatroom', new EMChatroom(chatroom), admin);
+  };
+  self._listener.onRemoveAdminFromChatroom = function (chatroom, admin) {
+    self._eventEmitter.emit('onRemoveAdminFromChatroom', new EMChatroom(chatroom), admin);
+  };
+  self._listener.onAssignOwnerFromChatroom = function (chatroom, newOwner, oldOwner) {
+    self._eventEmitter.onAssignOwnerFromChatroom('onAssignOwnerFromChatroom', new EMChatroom(chatroom), newOwner, oldOwner);
+  };
+  self._listener.onUpdateAnnouncementFromChatroom = function (chatroom, announcement) {
+    self._eventEmitter.onUpdateAnnouncementFromChatroom('onUpdateAnnouncementFromChatroom', new EMChatroom(chatroom), announcement);
+  };
+}
+
+/**
+ * Callback user when user is kicked out from a chatroom or the chatroom is destroyed.
+ * @param {EMChatroomManagerListener~onLeaveChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onLeaveChatroom = function (callback) {
+  this._eventEmitter.on('onLeaveChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onLeaveChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} reason 退出原因
+ * @return {void}
+ */
+
+/**
+ * Callback user when a user join the chatroom.
+ * @param {EMChatroomManagerListener~onMemberJoinedChatroomCallback} callback
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onMemberJoinedChatroom = function (callback) {
+  this._eventEmitter.on('onMemberJoinedChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onMemberJoinedChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} member 加入的成员ID
+ * @return {void}
+ */
+
+/**
+ * Callback user when a user leave the chatroom.
+ * @param {EMChatroomManagerListener~onMemberLeftChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onMemberLeftChatroom = function (callback) {
+  this._eventEmitter.on('onMemberLeftChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onMemberLeftChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} member 离开的成员ID
+ * @return {void}
+ */
+
+/**
+ * Callback user when user add to chat room mute list.
+ * @param {EMChatroomManagerListener~onAddMutesFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onAddMutesFromChatroom = function (callback) {
+  this._eventEmitter.on('onAddMutesFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onAddMutesFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {Array} mutes String mute array.
+ * @param {Number} muteExpire 禁言时长
+ * @return {void}
+ */
+
+/**
+ * Callback user when user remove from chat room mute list.
+ * @param {EMChatroomManagerListener~onRemoveMutesFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onRemoveMutesFromChatroom = function (callback) {
+  this._eventEmitter.on('onRemoveMutesFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onRemoveMutesFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {Array} mutes String mute array.
+ * @return {void}
+ */
+
+/**
+ * Callback user when user promote to admin.
+ * @param {EMChatroomManagerListener~onAddAdminFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onAddAdminFromChatroom = function (callback) {
+  this._eventEmitter.on('onAddAdminFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onAddAdminFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} admin 管理员ID
+ * @return {void}
+ */
+
+/**
+ * Callback user when user cancel admin.
+ * @param {EMChatroomManagerListener~onRemoveAdminFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onRemoveAdminFromChatroom = function (callback) {
+  this._eventEmitter.on('onRemoveAdminFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onRemoveAdminFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} admin 管理员ID
+ * @return {void}
+ */
+
+/**
+ * Callback user when promote to chatroom owner.
+ * @param {EMChatroomManagerListener~onAssignOwnerFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onAssignOwnerFromChatroom = function (callback) {
+  this._eventEmitter.on('onAssignOwnerFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onAssignOwnerFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} newOwner 新群主
+ * @param {String} oldOwner 旧群主
+ * @return {void}
+ */
+
+/**
+ * Callback user when chatroom's announcement change.
+ * @param {EMChatroomManagerListener~onUpdateAnnouncementFromChatroomCallback} callback 回调函数
+ * @return {void}
+ */
+EMChatroomManagerListener.prototype.onUpdateAnnouncementFromChatroom = function (callback) {
+  this._eventEmitter.on('onUpdateAnnouncementFromChatroom', callback);
+};
+
+/**
+ * @function EMChatroomManagerListener~onUpdateAnnouncementFromChatroomCallback
+ * @param {EMChatroom} chatroom 聊天室对象
+ * @param {String} announcement 公告内容
+ * @return {void}
+ */
+
+module.exports = EMChatroomManagerListener;
+
+/***/ }),
+/* 562 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+var EMError = __webpack_require__(44);
+
+//EMConnectionListener object callback interface number.
+var emConnectionListenerCount = 3;
+
+/**
+ * Easemob EMConnectionListener implementation.
+ */
+
+/**
+ * EMConnectionListener constructor.
+ * @constructor
+ */
+function EMConnectionListener() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emConnectionListenerCount);
+  self._listener = new easemobNode.EMConnectionListener();
+  self._listener.onConnect = function () {
+    self._eventEmitter.emit('onConnect');
+  };
+  self._listener.onDisconnect = function (error) {
+    self._eventEmitter.emit('onDisconnect', new EMError(error));
+  };
+}
+
+/**
+ * Callback user when sdk connect to the server.
+ * @param {EMConnectionListener~onConnectCallback} callback 回调函数
+ * @return {void}
+ */
+EMConnectionListener.prototype.onConnect = function (callback) {
+  this._eventEmitter.on('onConnect', callback);
+};
+
+/**
+ * @function EMConnectionListener~onConnectCallback
+ * @return {void}
+ */
+
+/**
+ * Callback user when sdk disconnect from the server.
+ * @param {EMConnectionListener~onDisconnectCallback} callback 回调函数
+ * @return {void}
+ */
+EMConnectionListener.prototype.onDisconnect = function (callback) {
+  this._eventEmitter.on('onDisconnect', callback);
+};
+
+/**
+ * @function EMConnectionListener~onDisconnectCallback
+ * @param {EMError} error 断开连接结果
+ * @return {void}
+ */
+
+module.exports = EMConnectionListener;
+
+/***/ }),
+/* 563 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+
+//EMContactListener object callback interface number.
+var emContactListenerCount = 5;
+
+/**
+ * Easemob EMContactListener implementation.
+ */
+
+/**
+ * EMContactListener constructor.
+ * @constructor
+ */
+function EMContactListener() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emContactListenerCount);
+  self._listener = new easemobNode.EMContactListener();
+  self._listener.onContactAdded = function (username) {
+    self._eventEmitter.emit('onContactAdded', username);
+  };
+  self._listener.onContactDeleted = function (username) {
+    self._eventEmitter.emit('onContactDeleted', username);
+  };
+  self._listener.onContactInvited = function (username, reason) {
+    self._eventEmitter.emit('onContactInvited', username, reason);
+  };
+  self._listener.onContactAgreed = function (username) {
+    self._eventEmitter.emit('onContactAgreed', username);
+  };
+  self._listener.onContactRefused = function (username) {
+    self._eventEmitter.emit('onContactRefused', username);
+  };
+}
+
+/**
+ * callback function called when contact added.
+ * @param {EMContactListener~onContactAddedCallback} callback 回调函数
+ * @return {void}
+ */
+EMContactListener.prototype.onContactAdded = function (callback) {
+  this._eventEmitter.on('onContactAdded', callback);
+};
+
+/**
+ * @function EMContactListener~onContactAddedCallback
+ * @param {String} username 用户ID
+ * @return {void}
+ */
+
+/**
+ * called when contact deleted.
+ * @param {EMContactListener~onContactDeletedCallback} callback 回调函数
+ * @return {void}
+ */
+EMContactListener.prototype.onContactDeleted = function (callback) {
+  this._eventEmitter.on('onContactDeleted', callback);
+};
+
+/**
+ * @function EMContactListener~onContactDeletedCallback
+ * @param {String} username 好友ID
+ * @return {void}
+ */
+
+/**
+ * called when user be invited by contact to be friend.
+ * @param {EMContactListener~onContactInvitedCallback} callback 回调函数
+ * @return {void}
+ */
+EMContactListener.prototype.onContactInvited = function (callback) {
+  this._eventEmitter.on('onContactInvited', callback);
+};
+
+/**
+ * @function EMContactListener~onContactInvitedCallback
+ * @param {String} username 好友ID
+ * @param {String} reason 添加原因
+ * @return {void}
+ */
+
+/**
+ * called when user invite contact to be friend, and contact has accepted the invitation.
+ * @param {EMContactListener~onContactAgreedCallback} callback 回调函数
+ * @return {void}
+ */
+EMContactListener.prototype.onContactAgreed = function (callback) {
+  this._eventEmitter.on('onContactAgreed', callback);
+};
+
+/**
+ * @function EMContactListener~onContactAgreedCallback
+ * @param {String} username 好友ID
+ * @return {void}
+ */
+
+/**
+ * called when user invite contact to be friend, and contact has declined the invitation.
+ * @param {EMContactListener~onContactRefusedCallback} callback 回调函数
+ * @return {void}
+ */
+EMContactListener.prototype.onContactRefused = function (callback) {
+  this._eventEmitter.on('onContactRefused', callback);
+};
+
+/**
+ * @function EMContactListener~onContactRefusedCallback
+ * @param {String} username 用户ID
+ * @return {void}
+ */
+
+module.exports = EMContactListener;
+
+/***/ }),
+/* 564 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+var EMGroup = __webpack_require__(107);
+
+//EMGroupManagerListener object callback interface number.
+var emGroupManagerListenerCount = 19;
+
+/**
+ * Easemob EMGroupManagerListener implementation.
+ */
+
+/**
+ * EMGroupManagerListener constructor.
+ * @constructor
+ * @param {Object} manager
+ */
+function EMGroupManagerListener(manager) {
+  var self = this;
+  self._manager = manager;
+  self._eventEmitter = new EventEmitter();
+  self._eventEmitter.setMaxListeners(emGroupManagerListenerCount);
+  self._listener = new easemobNode.EMGroupManagerListener();
+  self._listener.onReceiveInviteFromGroup = function (groupId, inviter, inviteMessage) {
+    self._eventEmitter.emit('onReceiveInviteFromGroup', groupId, inviter, inviteMessage);
+  };
+  self._listener.onReceiveInviteAcceptionFromGroup = function (groupId, invitee) {
+    self._eventEmitter.emit('onReceiveInviteAcceptionFromGroup', groupId, invitee);
+  };
+  self._listener.onReceiveInviteDeclineFromGroup = function (groupId, invitee, reason) {
+    self._eventEmitter.emit('onReceiveInviteDeclineFromGroup', groupId, invitee, reason);
+  };
+  self._listener.onAutoAcceptInvitationFromGroup = function (groupId, inviter, inviteMessage) {
+    self._eventEmitter.emit('onAutoAcceptInvitationFromGroup', groupId, inviter, inviteMessage);
+  };
+  self._listener.onLeaveGroup = function (groupId, reason) {
+    self._eventEmitter.emit('onLeaveGroup', groupId, reason);
+  };
+  self._listener.onReceiveJoinGroupApplication = function (groupId, from, message) {
+    self._eventEmitter.emit('onReceiveJoinGroupApplication', groupId, from, message);
+  };
+  self._listener.onReceiveAcceptionFromGroup = function (groupId) {
+    self._eventEmitter.emit('onReceiveAcceptionFromGroup', groupId);
+  };
+  self._listener.onReceiveRejectionFromGroup = function (groupId, reason) {
+    self._eventEmitter.emit('onReceiveRejectionFromGroup', groupId, reason);
+  };
+  self._listener.onUpdateMyGroupList = function (list) {
+    var groupList = new Array(list.length);
+    for (var i = 0; i < list.length; i++) {
+      groupList[i] = self._manager.groupWithId(list[i]);
+    }
+    self._eventEmitter.emit('onUpdateMyGroupList', groupList);
+  };
+  self._listener.onAddMutesFromGroup = function (groupId, mutes, muteExpire) {
+    self._eventEmitter.emit('onAddMutesFromGroup', groupId, mutes, muteExpire);
+  };
+  self._listener.onRemoveMutesFromGroup = function (groupId, mutes) {
+    self._eventEmitter.emit('onRemoveMutesFromGroup', groupId, mutes);
+  };
+  self._listener.onAddAdminFromGroup = function (groupId, admin) {
+    self._eventEmitter.emit('onAddAdminFromGroup', groupId, admin);
+  };
+  self._listener.onRemoveAdminFromGroup = function (groupId, admin) {
+    self._eventEmitter.emit('onRemoveAdminFromGroup', groupId, admin);
+  };
+  self._listener.onAssignOwnerFromGroup = function (groupId, newOwner, oldOwner) {
+    self._eventEmitter.emit('onAssignOwnerFromGroup', groupId, newOwner, oldOwner);
+  };
+  self._listener.onMemberJoinedGroup = function (groupId, member) {
+    self._eventEmitter.emit('onMemberJoinedGroup', groupId, member);
+  };
+  self._listener.onMemberLeftGroup = function (groupId, member) {
+    self._eventEmitter.emit('onMemberLeftGroup', groupId, member);
+  };
+  self._listener.onUpdateAnnouncementFromGroup = function (groupId, announcement) {
+    self._eventEmitter.emit('onUpdateAnnouncementFromGroup', groupId, announcement);
+  };
+  self._listener.onUploadSharedFileFromGroup = function (groupId, sharedFile) {
+    self._eventEmitter.emit('onUploadSharedFileFromGroup', groupId, sharedFile);
+  };
+  self._listener.onDeleteSharedFileFromGroup = function (groupId, fileId) {
+    self._eventEmitter.emit('onDeleteSharedFileFromGroup', groupId, fileId);
+  };
+}
+
+/**
+ * Callback user when user is invited to a group.
+ * Note: User can accept or decline the invitation.
+ * @param {EMGroupManagerListener~onReceiveInviteFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveInviteFromGroup = function (callback) {
+  this._eventEmitter.on('onReceiveInviteFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveInviteFromGroupCallback
+ * @param {String} groupId
+ * @param {String} inviter
+ * @param {String} inviteMessage
+ * @return {void}
+ */
+
+/**
+ * Callback user when the user accept to join the group.
+ * @param {EMGroupManagerListener~onReceiveInviteAcceptionFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveInviteAcceptionFromGroup = function (callback) {
+  this._eventEmitter.on('onReceiveInviteAcceptionFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveInviteAcceptionFromGroupCallback
+ * @param {String} groupId
+ * @param {String} invitee
+ * @return {void}
+ */
+
+/**
+ * Callback user when the user decline to join the group.
+ * @param {EMGroupManagerListener~onReceiveInviteDeclineFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveInviteDeclineFromGroup = function (callback) {
+  this._eventEmitter.on('onReceiveInviteDeclineFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveInviteDeclineFromGroupCallback
+ * @param {String} groupId
+ * @param {String} invitee
+ * @param {String} reason
+ * @return {void}
+ */
+
+/**
+ * Callback user when user is invited to a group.
+ * Note: User has been added to the group when received this callback.
+ * @param {EMGroupManagerListener~onAutoAcceptInvitationFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onAutoAcceptInvitationFromGroup = function (callback) {
+  this._eventEmitter.on('onAutoAcceptInvitationFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onAutoAcceptInvitationFromGroupCallback
+ * @param {String} groupId
+ * @param {String} invitee
+ * @param {String} inviteMessage
+ * @return {void}
+ */
+
+/**
+ * Callback user when user is kicked out from a group or the group is destroyed.
+ * @param {EMGroupManagerListener~onLeaveGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onLeaveGroup = function (callback) {
+  this._eventEmitter.on('onLeaveGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onLeaveGroupCallback
+ * @param {String} groupId
+ * @param {String} reason
+ * @return {void}
+ */
+
+/**
+ * Callback user when receive a join group application.
+ * @param {EMGroupManagerListener~onReceiveJoinGroupApplicationCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveJoinGroupApplication = function (callback) {
+  this._eventEmitter.on('onReceiveJoinGroupApplication', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveJoinGroupApplicationCallback
+ * @param {String} groupId
+ * @param {String} from
+ * @param {String} message
+ * @return {void}
+ */
+
+/**
+ * Callback user when receive owner's approval.
+ * @param {EMGroupManagerListener~onReceiveAcceptionFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveAcceptionFromGroup = function (callback) {
+  this._eventEmitter.on('onReceiveAcceptionFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveAcceptionFromGroupCallback
+ * @param {String} groupId
+ * @return {void}
+ */
+
+/**
+ * Callback user when receive group owner's rejection.
+ * @param {EMGroupManagerListener~onReceiveRejectionFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onReceiveRejectionFromGroup = function (callback) {
+  this._eventEmitter.on('onReceiveRejectionFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onReceiveRejectionFromGroupCallback
+ * @param {String} groupId
+ * @param {String} reason
+ * @return {void}
+ */
+
+/**
+ * Callback user when login user's group list is updated.
+ * @param {EMGroupManagerListener~onUpdateMyGroupListCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onUpdateMyGroupList = function (callback) {
+  this._eventEmitter.on('onUpdateMyGroupList', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onUpdateMyGroupListCallback
+ * @param {Array} list. EMGroup array.
+ * @return {void}
+ */
+
+/**
+ * Callback user when user add to group mute list.
+ * @param {EMGroupManagerListener~onAddMutesFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onAddMutesFromGroup = function (callback) {
+  this._eventEmitter.on('onAddMutesFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onAddMutesFromGroupCallback
+ * @param {String} groupId
+ * @param {Array} mutes. String mute array.
+ * @param {Number} muteExpire
+ * @return {void}
+ */
+
+/**
+ * Callback user when user remove from group mute list.
+ * @param {EMGroupManagerListener~onRemoveMutesFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onRemoveMutesFromGroup = function (callback) {
+  this._eventEmitter.on('onRemoveMutesFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onRemoveMutesFromGroupCallback
+ * @param {String} groupId
+ * @param {Array} mutes. String mute array.
+ * @return {void}
+ */
+
+/**
+ * Callback user when promote to group admin.
+ * @param {EMGroupManagerListener~onAddAdminFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onAddAdminFromGroup = function (callback) {
+  this._eventEmitter.on('onAddAdminFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onAddAdminFromGroupCallback
+ * @param {String} groupId
+ * @param {String} admin
+ * @return {void}
+ */
+
+/**
+ * Callback user when cancel admin.
+ * @param {EMGroupManagerListener~onRemoveAdminFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onRemoveAdminFromGroup = function (callback) {
+  this._eventEmitter.on('onRemoveAdminFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onRemoveAdminFromGroupCallback
+ * @param {String} groupId
+ * @param {String} admin
+ * @return {void}
+ */
+
+/**
+ * Callback user when promote to group owner.
+ * @param {EMGroupManagerListener~onAssignOwnerFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onAssignOwnerFromGroup = function (callback) {
+  this._eventEmitter.on('onAssignOwnerFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onAssignOwnerFromGroupCallback
+ * @param {String} groupId
+ * @param {String} newOwner
+ * @param {String} oldOwner
+ * @return {void}
+ */
+
+/**
+ * Callback user when a user join the group.
+ * @param {EMGroupManagerListener~onMemberJoinedGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onMemberJoinedGroup = function (callback) {
+  this._eventEmitter.on('onMemberJoinedGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onMemberJoinedGroupCallback
+ * @param {String} groupId
+ * @param {String} Owner
+ * @return {void}
+ */
+
+/**
+ * Callback user when a user leave the group.
+ * @param {EMGroupManagerListener~onMemberLeftGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onMemberLeftGroup = function (callback) {
+  this._eventEmitter.on('onMemberLeftGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onMemberLeftGroupCallback
+ * @param {String} groupId
+ * @param {String} Owner
+ * @return {void}
+ */
+
+/**
+ * Callback user when update group announcement.
+ * @param {EMGroupManagerListener~onUpdateAnnouncementFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onUpdateAnnouncementFromGroup = function (callback) {
+  this._eventEmitter.on('onUpdateAnnouncementFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onUpdateAnnouncementFromGroupCallback
+ * @param {String} groupId
+ * @param {String} announcement
+ * @return {void}
+ */
+
+/**
+ * Callback user when group member upload share file.
+ * @param {EMGroupManagerListener~onUploadSharedFileFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onUploadSharedFileFromGroup = function (callback) {
+  this._eventEmitter.on('onUploadSharedFileFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onUploadSharedFileFromGroupCallback
+ * @param {String} groupId
+ * @param {EMMucSharedFile} sharedFile
+ * @return {void}
+ */
+
+/**
+ * Callback user when group admin or owner or file uploader delete share file.
+ * @param {EMGroupManagerListener~onDeleteSharedFileFromGroupCallback} callback
+ * @return {void}
+ */
+EMGroupManagerListener.prototype.onDeleteSharedFileFromGroup = function (callback) {
+  this._eventEmitter.on('onDeleteSharedFileFromGroup', callback);
+};
+
+/**
+ * @function EMGroupManagerListener~onDeleteSharedFileFromGroupCallback
+ * @param {String} groupId
+ * @param {String} fileId
+ * @return {void}
+ */
+
+module.exports = EMGroupManagerListener;
+
+/***/ }),
+/* 565 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var EventEmitter = __webpack_require__(49).EventEmitter;
+var easemobNode = __webpack_require__(9);
+
+//EMMultiDevicesListener object callback interface number.
+var emMultiDevicesListenerCount = 2;
+
+/**
+ * Easemob EMMultiDevicesListener implementation.
+ */
+
+/**
+ * EMMultiDevicesListener constructor.
+ * @constructor
+ */
+function EMMultiDevicesListener() {
+  var self = this;
+  self._eventEmitter = new EventEmitter();
+  self._listener = new easemobNode.EMMultiDevicesListener();
+  self._eventEmitter.setMaxListeners(emMultiDevicesListenerCount);
+  self._listener.onContactMultiDevicesEvent = function (operation, target, ext) {
+    self._eventEmitter.emit('onContactMultiDevicesEvent', operation, target, ext);
+  };
+  self._listener.onGroupMultiDevicesEvent = function (operation, target, usernames) {
+    self._eventEmitter.emit('onGroupMultiDevicesEvent', operation, target, usernames);
+  };
+}
+
+/**
+ * callback function called when contact added.
+ * @param {EMMultiDevicesListener~onContactMultiDevicesEventCallback} callback 回调函数
+ * @return {void}
+ */
+EMMultiDevicesListener.prototype.onContactMultiDevicesEvent = function (callback) {
+  this._eventEmitter.on('onContactMultiDevicesEvent', callback);
+};
+
+/**
+ * @function EMMultiDevicesListener~onContactMultiDevicesEventCallback
+ * @param {Number} operation 操作类型
+ * @param {String} target 目标机器
+ * @param {String} ext 扩展信息
+ * @return {void}
+ */
+
+/**
+ * callback function called when contact added.
+ * @param {EMMultiDevicesListener~onGroupMultiDevicesEventCallback} callback
+ * @return {void}
+ */
+EMMultiDevicesListener.prototype.onGroupMultiDevicesEvent = function (callback) {
+  this._eventEmitter.on('onGroupMultiDevicesEvent', callback);
+};
+
+/**
+ * @function EMMultiDevicesListener~onGroupMultiDevicesEventCallback
+ * @param {Number} operation 操作类型
+ * @param {String} target 目标机器
+ * @param {Array} usernames. String username array.
+ * @return {void}
+ */
+
+module.exports = EMMultiDevicesListener;
+
+/***/ }),
+/* 566 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var easemobNode = __webpack_require__(9);
+var EMError = __webpack_require__(44);
+var EMChatConfigs = __webpack_require__(253);
+var EMContactManager = __webpack_require__(257);
+var EMChatManager = __webpack_require__(255);
+var EMGroupManager = __webpack_require__(258);
+var EMChatroomManager = __webpack_require__(256);
+var async = __webpack_require__(85);
+var fs = __webpack_require__(21);
+/**
+ * Easemob EMClient implementation.
+ */
+
+/**
+ * EMClient constructor.
+ * @constructor
+ * @param {Object} chatConfigs EMChatConfigs
+ */
+function EMClient(chatConfigs, autoLogin) {
+  chatConfigs.setSdkVersion("3.8.4");
+  console.log(process.platform);
+  chatConfigs.setOs(4);
+  chatConfigs.setClientResource("desktop");
+  this._emclient = easemobNode.createEMClient(chatConfigs._chatConfigs);
+  if (autoLogin) {
+    console.log("autologin");
+    var _emclient = this._emclient;
+    // 异步读取
+    var configs = new EMChatConfigs(_emclient.getChatConfigs());
+    fs.readFile(configs.getWorkPath() + '/easemobkey.json', function (err, data) {
+      console.log("filedata:" + data);
+      if (err) {
+        console.error(err);
+      } else {
+        var info = JSON.parse(data);
+        if (info.username && info.password) {
+          var ret = new EMError(_emclient.login(info.username, info.password));
+          if (ret.errorCode == 0) console.log("autologin success");else console.log("autologin fail:" + ret.description);
+        }
+      }
+    });
+  }
+}
+
+/**
+ * Login with username and password.
+ * @param {String} username 用户ID
+ * @param {String} password 密码
+ * @return {Object} 登录结果
+ */
+EMClient.prototype.login = function (username, password) {
+  var f = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var error, info, configs;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              error = new EMError(_emclient.login(username, password));
+              info = { username: username, password: password };
+              configs = new EMChatConfigs(_emclient.getChatConfigs());
+
+              fs.writeFile(configs.getWorkPath() + "/easemobkey.json", JSON.stringify(info), function (err) {
+                if (err) console.log(err);
+              });
+              return _context.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context['catch'](0);
+
+              console.log(_context.t0);
+
+            case 11:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0, 8]]);
+    }));
+
+    return function f() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _emclient = this._emclient;
+
+  return f();
+};
+
+/**
+ * Login with username and token.
+ * @param {String} username 用户名
+ * @param {String} token token
+ * @return {Object} 登录结果
+ */
+EMClient.prototype.loginWithToken = function (username, token) {
+  var f = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              error = new EMError(_emclient.loginWithToken(username, token));
+              return _context2.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 5:
+              _context2.prev = 5;
+              _context2.t0 = _context2['catch'](0);
+
+              console.log(_context2.t0);
+
+            case 8:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[0, 5]]);
+    }));
+
+    return function f() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var _emclient = this._emclient;
+
+  return f();
+};
+
+/**
+ * Logout current user.
+ * @return {Object} 登出结果
+ */
+EMClient.prototype.logout = function () {
+  var f = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      var configs;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+
+              _emclient.logout();
+              configs = new EMChatConfigs(_emclient.getChatConfigs());
+
+              fs.unlink(configs.getWorkPath() + "/easemobkey.json", function (err) {
+                if (err) {
+                  return console.error(err);
+                }
+              });
+              return _context3.abrupt('return', {
+                code: 0,
+                description: ""
+              });
+
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3['catch'](0);
+
+              console.log(_context3.t0);
+
+            case 10:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[0, 7]]);
+    }));
+
+    return function f() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var _emclient = this._emclient;
+
+  return f();
+};
+
+/**
+ * Logout current user.
+ * @return {Object} {loginUser,loginPassword,loginToken}
+ */
+EMClient.prototype.getLoginInfo = function () {
+  var logininfo = this._emclient.getLoginInfo();
+  return {
+    loginUser: logininfo.loginUser(),
+    loginPassword: logininfo.loginPassword(),
+    loginToken: logininfo.loginToken()
+  };
+};
+
+/**
+ * change appkey only when user not logged in.
+ * @param {String} appKey 修改后的appkey
+ * @return {Object} {code,description}修改结果
+ */
+EMClient.prototype.changeAppkey = function (appKey) {
+  var error = new EMError(this._emclient.changeAppkey(appKey));
+  return {
+    code: error.errorCode,
+    description: error.description
+  };
+};
+
+/**
+ * register connection listener.
+ * @param {EMConnectionListener} listener 网络连接的回调监听对象
+ * @return {void}
+ */
+EMClient.prototype.addConnectionListener = function (listener) {
+  this._emclient.addConnectionListener(listener._listener);
+};
+
+/**
+ * remove connection listener.
+ * @param {EMConnectionListener} listener 网络连接的回调监听对象
+ * @return {void}
+ */
+EMClient.prototype.removeConnectionListener = function (listener) {
+  this._emclient.removeConnectionListener(listener._listener);
+};
+
+/**
+ * Register a new account with user name and password.
+ * @param {String} username 用户名
+ * @param {String} password 密码
+ * @return {Object} {code,description}注册结果
+ */
+EMClient.prototype.createAccount = function (username, password) {
+  var f = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+      var error;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              error = new EMError(_emclient.createAccount(username, password));
+              return _context4.abrupt('return', {
+                code: error.errorCode,
+                description: error.description
+              });
+
+            case 5:
+              _context4.prev = 5;
+              _context4.t0 = _context4['catch'](0);
+
+              console.log(_context4.t0);
+
+            case 8:
+            case 'end':
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this, [[0, 5]]);
+    }));
+
+    return function f() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var _emclient = this._emclient;
+
+  return f();
+};
+
+/**
+ * get the chat configs.
+ * @return {EMChatConfigs} 返回配置信息
+ */
+EMClient.prototype.getChatConfigs = function () {
+  return new EMChatConfigs(this._emclient.getChatConfigs());
+};
+
+/**
+ * Get chat manager to handle the message operation.
+ * @return {EMChatManager} 返回会话管理对象
+ */
+EMClient.prototype.getChatManager = function () {
+  return new EMChatManager(this._emclient.getChatManager());
+};
+
+/**
+ * Get contact manager to manage the contacts.
+ * @return {EMContactManager} 返回好友管理对象
+ */
+EMClient.prototype.getContactManager = function () {
+  return new EMContactManager(this._emclient.getContactManager());
+};
+
+/**
+ * Get group manager to manage the group.
+ * @return {EMGroupManager}返回群组管理对象
+ */
+EMClient.prototype.getGroupManager = function () {
+  return new EMGroupManager(this._emclient.getGroupManager());
+};
+
+/**
+ * Get chatroom manager to manage the chatroom.
+ * @return {EMChatroomManager} 返回聊天室管理对象
+ */
+EMClient.prototype.getChatroomManager = function () {
+  return new EMChatroomManager(this._emclient.getChatroomManager());
+};
+
+/**
+ * register multi devices listener.
+ * @param {EMMultiDevicesListener} listener 多设备回调监听对象
+ * @return {void}
+ */
+EMClient.prototype.addMultiDevicesListener = function (listener) {
+  this._emclient.addMultiDevicesListener(listener._listener);
+};
+
+/**
+ * remove register multi devices listener.
+ * @param {EMMultiDevicesListener} listener 多设备回调监听对象
+ * @return {void}
+ */
+EMClient.prototype.removeMultiDevicesListener = function (listener) {
+  this._emclient.removeMultiDevicesListener(listener._listener);
+};
+
+/**
+ * clear all register multi devices listener.
+ * @return {void}
+ */
+EMClient.prototype.clearAllMultiDevicesListeners = function () {
+  this._emclient.clearAllMultiDevicesListeners();
+};
+
+/**
+ * get all logged in devices. return an array of EMDeviceInfo.
+ * EMDeviceInfo.resource device resource.
+ * EMDeviceInfo.deviceUUID device uuid.
+ * EMDeviceInfo.deviceName device name.
+ * @param {String} username 用户ID
+ * @param {String} password 用户名密码
+ * @return {Array} EMDeviceInfo
+ */
+EMClient.prototype.getLoggedInDevicesFromServer = function (username, password) {
+  var error = new EMError();
+  return this._emclient.getLoggedInDevicesFromServer(username, password, error._error);
+};
+
+/**
+ * Forced to logout the specified logged in device.
+ * @param {String} username 用户ID
+ * @param {String} password 用户密码
+ * @param {String} resource 用户客户端resource
+ * @return {void}
+ */
+EMClient.prototype.kickDevice = function (username, password, resource) {
+  var error = new EMError();
+  this._emclient.kickDevice(username, password, resource, error._error);
+};
+
+/**
+ * Forced to logout all logged in device.
+ * @param {String} username 用户ID
+ * @param {String} password 用户密码
+ * @return {void}
+ */
+EMClient.prototype.kickAllDevices = function (username, password) {
+  var error = new EMError();
+  this._emclient.kickAllDevices(username, password, error._error);
+};
+
+/**
+ * call this method to notify SDK the network change.
+ * @param {Number} to 新的网络连接类型
+ * @param {Bool} forceReconnect 是否强制重连
+ * @return {void}
+ * {
+ * NONE = 0
+ * CABLE = 1,
+ * WIFI = 2,
+ * MOBILE = 3
+ * }
+ */
+EMClient.prototype.onNetworkChanged = function (to, forceReconnect) {
+  this._emclient.onNetworkChanged(to, forceReconnect);
+};
+
+/**
+ * reconnect client.
+ * @return {void}
+ */
+EMClient.prototype.reconnect = function () {
+  this._emclient.reconnect();
+};
+
+/**
+ * disconnect client.
+ * @return {void}
+ */
+EMClient.prototype.disconnect = function () {
+  this._emclient.disconnect();
+};
+
+module.exports = EMClient;
+
+/***/ }),
+/* 567 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var easemobNode = __webpack_require__(9);
+var log = new easemobNode.EMLog();
+
+/**
+ * EMLog constructor.
+ * @constructor
+ * @param {Object} manager
+ */
+function EMLog() {
+  this._isDisplayOnConsole = false;
+  /**
+   * output log
+   * @param {String} info 日志信息
+   */
+  this.Log = function (info) {
+    if (this._isDisplayOnConsole) console.log(info);
+    log.Log(info);
+  };
+  /**
+   * output Debug log
+   * @param {String} info 日志信息
+   */
+  this.Debug = function (info) {
+    if (this._isDisplayOnConsole) console.log(info);
+    log.Debug(info);
+  };
+  /**
+   * output Warn log
+   * @param {String} info 日志信息
+   */
+  this.Warn = function (info) {
+    if (this._isDisplayOnConsole) console.log(info);
+    log.Warn(info);
+  };
+  /**
+   * output Error log
+   * @param {String} info 日志信息
+   */
+  this.Error = function (info) {
+    if (this._isDisplayOnConsole) console.log(info);
+    log.Error(info);
+  };
+  /**
+   * set log level
+   * @param {Number} level 日志等级
+   */
+  this.setLogLevel = function (level) {
+    log.setLogLevel(level);
+  };
+  /**
+   * get log level
+   * @return {Number} 返回日志等级
+   */
+  this.getLogLevel = function (level) {
+    return log.getLogLevel();
+  };
+  /**
+   * set weather display on console
+   * @param {Bool} isDisplayOnConsole 日志是否输出到控制台
+   */
+  this.setIsDisplayOnConsole = function (isDisplayOnConsole) {
+    this._isDisplayOnConsole = isDisplayOnConsole;
+  };
+  /**
+   * get weather display on console
+   * @return {Bool} 返回日志是否输出到控制台
+   */
+  this.getIsDisplayOnConsole = function () {
+    return this._isDisplayOnConsole;
+  };
+  /**
+   * 添加日志回调
+   * @param {function} callback 日志回调函数
+   */
+  this.addLogCallback = function (callback) {
+    log.addLogCallback(callback);
+  };
+  /**
+   * 删除日志回调
+   * @param {function} callback 日志回调函数
+   */
+  this.removeLogCallback = function (callback) {
+    log.removeLogCallback(callback);
+  };
+}
+
+module.exports = EMLog;
+
+/***/ }),
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19558,11 +33791,11 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _zhCn = __webpack_require__(531);
+var _zhCn = __webpack_require__(569);
 
 var _zhCn2 = _interopRequireDefault(_zhCn);
 
-var _stringHelper = __webpack_require__(532);
+var _stringHelper = __webpack_require__(570);
 
 var _stringHelper2 = _interopRequireDefault(_stringHelper);
 
@@ -19662,13 +33895,13 @@ exports.default = lang;
 module.exports = exports["default"];
 
 /***/ }),
-/* 531 */
+/* 569 */
 /***/ (function(module, exports) {
 
 module.exports = {"app.title":"环信","login.btn.label":"登录","register.btn.label":"注册","login.account.hint":"用户名","login.password.label":"密码","login.nickName.label":"昵称","login.account.required":"用户名不能为空!","login.password.required":"密码不能为空!","login.nickName.required":"昵称不能为空!","common.search":"搜索","common.confirm":"确定","common.cancel":"取消","common.about":"关于","common.open":"打开","common.close":"关闭","common.exit":"退出","common.setting":"设置","common.save":"保存","common.rename":"重命名","common.selectAll":"全选","common.selectInverse":"反选","common.refresh":"刷新","common.remove":"移除","common.delete":"删除","common.download":"下载","common.settings":"设置","common.copyrightFormat":"版权所有 ©️ {year} {name}","common.comfirmQuiteIM":"是否立即关闭窗口并退出？","common.exitIM":"立即退出","common.waiting":"正在操作，请稍后…","common.loading":"正在加载，请稍后…","common.clickShowMoreFormat":"还有 {0} 项…","common.copyCode":"复制代码","common.copy":"复制","common.copied":"已复制","common.openLink":"打开链接","common.copyLink":"复制链接","common.copyText":"复制文本","common.copyFormat":"复制 “{0}”","common.shareMenu":"共享…","common.required":"必填项","common.requiredField.format":"【{0}】为必填项","common.littlexx":"小环信","common.littlexxSubname":"通知中心","common.viewDetail":"查看详情","menu.about":"关于","menu.hideCurrentWindow":"隐藏当前窗口","menu.hideOtherWindows":"隐藏其他窗口","menu.showAllWindows":"显示所有窗口","menu.quit":"退出","menu.help":"帮助","menu.issues":"问题反馈","menu.website":"官方网站","menu.project":"项目","menu.community":"社区讨论","menu.edit":"编辑","menu.undo":"撤销","menu.redo":"重做","menu.cut":"剪切","menu.copy":"复制","menu.copyImage":"复制图片","menu.paste":"粘贴","menu.selectAll":"选择所有","menu.view":"查看","menu.reload":"刷新","menu.toggleFullscreen":"切换全屏","menu.toggleDeveloperTool":"切换开发者工具","menu.window":"窗口","menu.minimize":"最小化","menu.close":"关闭","menu.bringAllToFront":"全部置于顶层","menu.image.view":"查看","menu.image.copy":"复制","menu.image.saveAs":"另存为","menu.image.open":"打开","time.today":"今天","time.yestoday":"昨天","time.oneWeek":"最近一周","time.oneMonth":"一个月内","time.threeMonth":"三个月内","time.halfYear":"半年内","time.oneYear":"一年内","time.twoYear":"两年内","time.all":"所有时间","time.format.full":"yyyy年M月d日","time.format.month":"M月d日","time.format.day":"d日","pager.prev":"上一页","pager.next":"下一页","file.download":"下载","file.uploadFailed":"上传失败","file.downloadFailed":"下载失败","file.fileSavedAt.format":"文件已保存至 {0}","file.open":"打开","file.openFolder":"打开文件夹","file.title.format":"文件：{0}","file.image.title":"图片","file.downloading":"正在下载…","file.uploading":"正在上传…","file.loading":"正在加载…","file.sending":"正在发送…","notification.receviedMessages.format":"收到 {0} 条新消息。","notification.memberSays.format":"{0} 说：","notification.memberSaysInGroup.format":"{0} 在 {1} 说：","error.UNSUPPORT_VERSION":"此服务器版本不受支持。","error.WRONG_CONNECT":"无法连接到服务器，请检查网络连接是否通畅。","error.LOGIN_FAILED":"暂时无法登录到服务器。","error.WRONG_ACCOUNT":"账号或密码错误。","error.WRONG_DATA":"服务器返回的数据不正确。","error.WRONG_STATUS":"服务器操作失败。","error.SOCKET_CLOSE":"服务器连接已断开，请重新登录。","error.SOCKET_ERROR":"服务器连接失败，发生了未知错误。","error.SOCKET_TIMEOUT":"服务器连接超时。","error.NET_OFFLINE":"互联网连接已断开。","error.KICKOFF":"当前账号已在其他地方登录。如果不是本人操作，请及时修改密码","error.USER_DATA_PATH_DENY":"暂时无法使用用户目录，请重试。","error.USER_DENY_ATTACT_UPLOAD":"你没有权限上传文件到服务器，请联系管理员。","error.IMAGE_NOT_FIND":"无法打开图片，找不到图片或图片已损坏。位置 {0}。","error.UPLOAD_FILE_IS_TOO_LARGE":"文件上传失败，只支持发送小于 {0} 的文件","error.CANNOT_HANDLE_IMAGE":"无法处理此图片。","error.SERVER_DISABLED_UPLOAD":"文件上传失败，因为服务器禁止了文件上传功能","error.TIMEOUT":"网络连接超时。","error.SERVER_IS_BUSY":"服务器正忙，请稍后重试。","error.STATUS_401":"需要提供正确的用户和密码。","error.USER_INFO_REQUIRED":"用户信息不可用。","error.SOCKET_AbnormalClosure":"与服务器的连接意外终止。","error.Unauthorized":"用户验证失败，用户名或密码不正确。","error.SERVER_VERSION_UNKNOWN":"未知的服务器版本。","error.SERVER_VERSION_NOT_SUPPORT":"当前客户端（{0}）不支持所连接服务器版本 {1}，需要服务器版本为 {2} 以上。","error.SERVER_VERSION_NOT_SUPPORT_IN_BROWSER":"浏览器端（{0}）不支持所连接服务器版本 {1}，需要服务器版本为 {2} 以上。","error.RANZHI_SERVER_NOTSET":"没有找到然之服务器设置。","error.COMMON_ERROR":"操作失败，请稍后重试。","login.serverUrl.label":"服务器","login.serverUrl.hint":"https://xuanxuan.chat","login.account.label":"账号","login.btn.logining":"正在登录…","login.swapUser":"切换用户","login.signed":"今日已签到","login.retry":"重新登录","login.rememberPassword":"记住密码","login.autoLogin":"自动登录","login.autoConnet.wait":"你已离线，{0} 秒后自动登录。","login.autoConnet.connecting":"正在尝试重新登录…","login.autoConnet.faildAndWait":"登录失败，{0} 秒后重新尝试。","login.autoConnet.conectIM":"立即重试","login.autoConnet.logout":"注销","login.autoConnet.errorDetail":"了解详情","login.nonSecurity.confirm":"即将通过 http 协议非安全模式连接到服务器 {0}，这样可能泄露你的关键信息。是否继续？","login.nonSecurity.detail":"环信与服务器的通信支持全程加密，如果要启用安全加密功能，请联系管理员开启 https 支持。非安全模式仅适合测试时使用。","login.nonSecurity.btn":"继续使用非安全模式连接","chats.create.label":"新建聊天…","chats.drapNDropFileMessage":"拖放文件或图片到此处来发送","chats.search.recents":"搜索","chats.search.groups":"搜索讨论组","chats.search.contacts":"搜索联系人","chats.menu.switchView":"切换视图","chats.menu.groupType.normal":"平铺（默认）","chats.menu.groupType.category":"自定义分组","chats.menu.groupType.role":"按角色分组","chats.menu.groupType.dept":"按部门分组","chats.menu.group.other":"其他","chats.menu.group.stared":"已收藏","chats.menu.group.default":"默认组","chats.menu.group.current":"当前","chats.menu.group.rename":"重命名组","chats.menu.group.renameTip":"重命名分组","chats.menu.group.add":"添加到分组","chats.menu.group.delete":"删除分组","chats.menu.group.deleted":"已删除","chats.menu.group.create":"新建分组","chats.menu.group.addExist":"添加到已有分组","chats.menu.group.noCategoryToAdd":"没有分组可供添加","chats.menu.group.createTip":"输入新建分组名称","chats.menu.group.existsTip":"此分组已存在，请使用一个不同的分组名称。","chats.menu.group.requiredNewName":"请输入新建分组名称。","chats.menu.group.delete.confirm.format":"确定删除分组【{0}】？","chats.menu.group.delete.tip.format":"删除后会将原组内的会话移到默认分组【{0}】中。","chats.menu.group.dismissed":"已解散","chats.history.title":"消息记录","chats.history.group.contacts":"联系人","chats.history.group.groups":"讨论组","chats.history.selectChatTip":"请从左侧选择一个聊天会话。","chats.history.fetchFromServer":"从云端同步此会话的消息记录","chats.history.fetchAllFromServer":"从云端同步所有消息记录","chats.history.fetchAll":"云端同步","chats.history.selectFetchTime":"选择要同步的时间范围","chats.history.sync.slow":"慢","chats.history.sync.fast":"快","chats.history.fetchingMessages":"正在同步…","chats.history.fetchFinish":"即将完成","chats.history.noMessages":"该会话在本地没有消息，你可以尝试从云端下载本地没有的消息。","chats.history.localChat":"这个会话没有消息。","chats.history.search.placeholder":"搜索消息记录","chats.history.search.type.contacts":"联系人","chats.history.search.type.groups":"讨论组","chats.history.search.type.choosed":"选中聊天","chats.history.search.type.all":"所有聊天","chats.history.searching":"正在搜索…","chats.history.searching.format":"正在 “{0}” 中搜索…","chats.history.search.result.format":"共找到 {0} 个结果","chats.history.search.result.selectTip":"点击结果查看聊天内容上下文","chats.history.search.result.toMany":"搜索结果过多，建议增加搜索条件和关键字来缩小搜索范围。多个关键字使用空格分隔。","chats.history.search.result.notShow.format":"有 {0} 项结果没有显示。","chats.chat.search.result.format":"在 “{0}” 中找到 {1} 个结果","chat.groupName.format":"{0}（{1}人）","chat.systemGroup.name":"系统","chat.all":"所有","chat.deleted":"已删除","chat.deletedOne2OneTip":"对方账号已被从系统移除，你无法在此发送消息。","chat.inviteMembersJoinChat.format":"{0} 邀请了 {1} 加入了会话。","chat.createNewChat.format":"{0} 创建了讨论组 {1}。","chat.inviteAndCreateNewChat.format":"{0} 邀请你并创建了新的讨论组 {0}，点击讨论组名称，立即加入讨论吧。","chat.membersCount.format":"{0}人","chat.tempChat.name":"临时会话","chat.group.name":"讨论组","chat.rename.title":"重命名讨论组","chat.rename.newTitle":"新的讨论组名称","chat.rename.newTitleRequired":"需要填写新的讨论组名称。","chat.rename.someRenameGroup.format":"{0} 将讨论组名称更改为 {1}。","chat.public.label":"公开","chat.public.setPublic":"设为公开","chat.public.setPrivate":"设为私密","chat.create.title":"新建聊天","chat.create.join":"加入","chat.create.chatWith.format":"和 “{0}” 开聊","chat.create.group.format":"创建 {0} 人讨论组","chat.create.chatTypeTip":"选择一种聊天类型","chat.create.chatType.normal":"联系人或多人讨论组","chat.create.chatType.public":"公开讨论组","chat.create.groupsTip":"选择参与会话的联系人","chat.create.mustInclueYourself":"新聊天会话必须包含自己。","chat.create.newChatNameTip":"为新讨论组起名…","chat.create.joinGroupTip":"选择一个公开讨论组","chat.create.joinGroup.format":"加入 “{0}”","chat.invite.title":"邀请参与聊天的联系人","chat.invite":"邀请","chat.invite.choosed":"已选择","chat.invite.removeAll":"清除所有","chat.exit.message":"{0} 退出了当前讨论组。","chat.join.message":"我加入了讨论组。","chat.kickOffFromGroup":"从讨论组移除","chat.kickOffFromGroup.confirm":"确定从讨论组移除成员 {0}？","chat.committers.setCommitters":"设置白名单","chat.committers.setCommittersFormat":"设置会话【{0}】的白名单","chat.committers.committersSettingTip":"通过设置白名单来决定哪些人可以在该会话中发言。","chat.committers.type.all":"所有人","chat.committers.type.admins":"仅管理员","chat.committers.type.whitelist":"仅指定的成员","chat.committers.blocked":"已禁言","chat.committers.blockedTip":"该会话设置为只读，暂时你无法发送消息。","chat.role.admin":"管理员","chat.group.exit":"退出讨论组","chat.group.exitConfirm":"确定退出讨论组【{0}】？","chat.group.dismiss":"解散","chat.group.dismissed":"已解散","chat.group.dismissConfirm":"是否解散讨论组【{0}】？","chat.group.dismiss.message":"{0} 解散了讨论组。","chat.group.dismissTip":"当前讨论组已被解散，无法再发送消息，但仍然可以在 {0} 之前浏览消息记录。","chat.toolbor.star":"收藏","chat.toolbor.unstar":"取消收藏","chat.toolbor.invite":"邀请其他人","chat.toolbor.history":"消息记录","chat.toolbor.sidebar":"打开侧边栏","chat.toolbor.more":"更多","chat.sendbox.toolbar.send":"发送消息","chat.sendbox.toolbar.emoticon":"表情","chat.sendbox.toolbar.image":"图片","chat.sendbox.toolbar.file":"文件","chat.sendbox.toolbar.captureScreen":"截取屏幕","chat.sendbox.toolbar.setFontSize":"设置字体大小","chat.sendbox.toolbar.tips":"小技巧","chat.sendbox.toolbar.previewDraft":"预览草稿","chat.sendbox.placeholder.sendMessage":"发送消息","chat.sendbox.placeholder.memberIsOffline":"发送消息（{0}现在不在线，你发送的消息将在对方下次上线时送达）","chat.atHim":"@她/他","chat.atHim.f":"@她","chat.atHim.m":"@他","chat.sendMessage":"发送消息","chat.fontSize.current.format":"当前 {0}","chat.fontSize.resetDefault":"恢复默认","chat.message.atAll":"所有人","chat.message.copy":"复制消息内容","chat.message.copyMarkdown":"复制 Markdown","chat.noMoreMessage":"没有更多消息","chat.sidebar.tab.profile.label":"资料","chat.sidebar.tab.peoples.label":"成员","chat.sidebar.tab.files.label":"文件","chat.sidebar.tab.files.noFilesHere":"还没有人分享文件","chat.sidebar.tab.files.loading":"正在查找文件…","chat.sidebar.close":"关闭侧边栏","chat.message.resend":"重新发送","todo.create":"创建待办","todo.edit":"编辑待办","todo.label.name":"名称","todo.label.desc":"描述","todo.input.desc.hint":"支持 Markdown","todo.label.date":"日期","todo.label.pri":"优先级","todo.label.begin":"开始时间","todo.label.end":"结束时间","todo.createSuccess":"待办已添加。","todo.beginAndEndBothRequired":"起始时间和结束时间必须同时填写完整，如果不设定时间请全部留空。","todo.beginMustBeforeEnd":"结束时间必须晚于起始时间。","navbar.chats.label":"最近聊天","navbar.contacts.label":"联系人","navbar.groups.label":"讨论组","navbar.exts.label":"扩展应用","exts.home.label":"应用","exts.home.desc":"浏览和管理我的应用。","exts.extensions.label":"扩展","exts.extensions.desc":"管理我的扩展，包括应用、主题和插件。","exts.themes.label":"主题","exts.themes.desc":"浏览我安装的主题，更换当前使用的主题外观。","exts.files.label":"文件","exts.files.desc":"管理我在聊天中发送和接收的文件。","exts.firefoxSend.label":"火狐传送","exts.firefoxSend.desc":"帮助你发送大文件给任何人","exts.appNotFound.format":"没有找到你要打开的应用（{0}）。","exts.appNoView":"无法显示此应用。","exts.installWarning":"即将安装扩展【{0}】，此扩展有权访问你的账号信息及全部聊天数据，请确保所安装的扩展来源安全。是否继续安装？","exts.continuneInsatll":"继续安装","ext.home.appsCount.format":"共 {0} 个应用","ext.home.findAppsCount.format":"找到 {0} 个应用","ext.home.manageInExtensionsApp":"在扩展中管理","ext.home.addMoreApps":"添加更多应用","ext.app.open":"打开","ext.app.about":"关于","ext.app.openInBrowser":"在浏览器中打开","ext.app.close":"关闭","ext.app.refresh":"刷新","ext.app.goBack":"后退","ext.app.goForward":"前进","ext.app.openDevTools":"开发者工具","ext.themes.count.format":"共 {0} 个主题","ext.themes.default":"默认主题","ext.themes.inside":"内置主题","ext.themes.current":"当前","ext.extensions.all":"全部","ext.extensions.apps":"应用","ext.extensions.plugins":"插件","ext.extensions.themes":"主题","ext.extensions.installExtension":"安装扩展","ext.extensions.installLocalExtension":"安装本地扩展","ext.extensions.installLocalExtTip":"选择一个 .xext 扩展文件进行安装","ext.extensions.installDevExtension":"从本地目录加载开发中的扩展","ext.extensions.installConfirm":"从本地目录加载开发中的扩展","ext.extensions.installed":"已安装","ext.extensions.searchResult":"搜索结果","ext.extensions.moreActions":"更多操作","ext.extensions.developing":"开发中","ext.extensions.reload":"重新载入","ext.extensions.reloadFinish":"扩展已重新载入完成","ext.extensions.showFolder":"打开文件位置","ext.extension.pkgHasError":"此扩展配置文件（package.json）中包含有错误：","ext.extension.loadPath":"加载位置","ext.extension.installTime":"安装时间","ext.extension.updateTime":"更新时间","ext.extension.loadTime":"模块加载耗时","ext.extension.needRestart":"需要重启","ext.extension.needRestartTip":"此扩展刚刚安装或者发生更改，需要重新启动程序后生效","ext.extensions.needRestartTip.format":"有 {0} 个扩展需要重启环信后生效。","ext.extensions.restart":"重启环信","ext.disable":"禁用","ext.enable":"启用","ext.disabled":"已禁用","ext.files.all":"全部","ext.files.docs":"文档","ext.files.images":"图片","ext.files.programs":"程序","ext.files.others":"其他","ext.files.findCount.format":"找到 {0} 个文件","ext.files.findToMany.format":"共找到 {0} 个文件，已显示 {1} 个，还有 {2} 个没有显示；请增加更多的检索条件，缩小显示的结果数目。","ext.type.app":"应用","ext.type.plugin":"插件","ext.type.theme":"主题","ext.author":"作者","ext.publisher":"发布者","ext.publisher.format":"由 {0} 发布","ext.homepage":"官方网站","ext.license":"许可证","ext.repository":"代码库","ext.bugs":"问题反馈","ext.uninstall":"卸载","ext.install":"安装","ext.openApp":"打开应用","ext.buildIn":"内置扩展","ext.cannotUninstallBuidIn":"内置扩展无法卸载","ext.uninstallConfirm.format":"确定卸载扩展 【{0}】？","ext.installSuccess.format":"扩展 【{0}】 安装成功。","ext.installFail":"安装失败。","ext.uninstallSuccess.format":"扩展 【{0}】 已卸载","ext.overrideInstall.format":"你已安装有相同名称的扩展【{0}】（版本为 {1}），当前即将安装的【{2}】版本为 {3}，如果继续将会覆盖原来的版本。是否继续？","ext.updateInstall.format":"是否将扩展【{0}】从版本 {1} 升级到 {2}？","error.EXT_NAME_ALREADY_INSTALLED":"已安装有相同名称的扩展。","error.EXT_NOT_FOUND":"此扩展没有安装。","error.EXT_UNZIP_ERROR":"读取扩展文件时出错。","error.EXT_NOT_EXT_SOURCE":"所选目标是有效的 xext 文件或者 package.json 文件。","error.THEME_HAS_NO_CSS_FILE":"所选的主题没有找到可用的 CSS 样式文件。","usermenu.openProfile":"个人资料","usermenu.changePassword":"修改密码","usermenu.about":"关于","usermenu.setting":"设置","usermenu.logout":"注销","usermenu.exit":"退出","user.changePassword.heading":"修改密码","user.changePassword.newPassword":"新密码","user.changePassword.newPasswordRepeat":"重复新密码","user.changePassword.btn.confirm":"更改密码","user.changePassword.inputRequired":"需要填写“{0}”","user.changePassword.passwordNotSame":"两次填写的密码不一样","user.changePassword.notChanged":"新密码与旧密码相同","user.changePassword.denySimplePassword":"密码太简单，应该至少包含6个以上（包括）字符","user.changePassword.failed":"密码更改失败。","user.changePassword.success":"密码修改成功。","member.status.unverified":"未登录","member.status.disconnect":"掉线了","member.status.logined":"登录成功","member.status.online":"在线","member.status.busy":"忙碌","member.status.away":"离开","member.status.offline":"离线","member.gender.f":"女","member.gender.m":"男","member.him":"他/她","member.him.f":"她","member.him.m":"他","member.role.dev":"研发","member.role.po":"产品经理","member.role.pm":"项目经理","member.role.qa":"测试","member.role.qd":"测试经理","member.role.market":"市场","member.role.sale":"销售","member.role.office":"行政","member.profile.sendMessage":"开聊","member.profile.contactInfo":"联系方式","member.profile.phone":"电话","member.profile.email":"邮箱","member.profile.mobile":"手机","member.profile.site":"网站","member.profile.view":"查看资料","setting.section.chats":"聊天","setting.section.notification":"通知","setting.section.navigation":"导航","setting.section.windows":"窗口","setting.section.hotkeys":"快捷键","setting.chats.showMeOnMenu":"在联系人列表上显示我自己","setting.chats.sendHDEmoticon":"当消息只包含一个表情符时直接发送高清表情","setting.chats.showMessageTip":"在消息发送框工具栏显示消息框小技巧按钮","setting.chats.enableSearchInEmojionePicker":"表情面板启用搜索（重新载入后生效）","setting.chats.enableAnimate":"启用动画效果","setting.notification.enableSoundNotification":"启用声音提醒","setting.notification.muteOnUserIsBusy":"当用户状态为忙碌时不使用声音提醒","setting.notification.onNeed":"收到新消息时","setting.notification.onWindowBlur":"收到新消息且窗口失去焦点时","setting.notification.onWindowHide":"收到新消息且窗口隐藏时","setting.notification.playSoundCondition":"播放声音时机：","setting.notification.flashTrayIcon":"启用通知栏图标提醒","setting.notification.flashTrayIconCondition":"闪烁通知栏图标：","setting.notification.enableWindowNotification":"启用弹窗通知","setting.notification.windowNotificationCondition":"弹窗通知时机：","setting.notification.safeWindowNotificationTip":"不在弹窗上显示消息具体内容","setting.navigation.navbarShowRecents":"在导航上显示最近会话","setting.navigation.onlyShowNoticeCountOnRecents":"仅仅在最近会话标签上显示未读消息数目","setting.navigation.showAvatarOnBottom":"将用户头像显示在导航底部","setting.windows.hideWindowOnBlur":"窗口失去焦点时自动最小化窗口","setting.windows.removeFromTaskbarOnHide":"最小化窗口时不在任务栏显示","setting.windows.onClickCloseButton":"当点击窗口关闭按钮时","setting.windows.askEveryTime":"每次询问我操作","setting.windows.minimizeMainWindow":"最小化窗口到通知栏","setting.windows.quitApp":"关闭窗口并退出应用","setting.hotkeys.globalCaptureScreen":"全局截图快捷键","setting.btn.reset":"重置为默认设置","setting.message.reset":"已重置为默认，保存后生效。","emoji.category.people":"表情与人物","emoji.category.nature":"动物与自然","emoji.category.food":"食物与饮料","emoji.category.activity":"活动","emoji.category.travel":"旅行与地点","emoji.category.objects":"物体","emoji.category.symbols":"符号","emoji.category.flags":"旗帜","dialog.fileSaveTo":"保存文件","dialog.openFile":"打开文件","dialog.appClose.title":"你要做什么？","dialog.appClose.rememberOption":"记住我的选择，不再询问","dialog.appClose.minimizeMainWindow":"最小化窗口","dialog.appClose.quitApp":"关闭并退出","dialog.appClose.cancelAction":"取消本次操作","dialog.reloadWindowConfirm":"确定重新启动环信？","dialog.reloadWindowConfirmTip":"这将注销当前登录的用户并需要重新登录。","imageCutter.captureScreen":"截取屏幕","imageCutter.hideCurrentWindowAndCaptureScreen":"隐藏当前窗口并截图","imageCutter.setGlobalHotkey":"设置截图全局快捷键","debug.inspectElement":"审查元素"}
 
 /***/ }),
-/* 532 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19774,36 +34007,36 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 533 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const assign = __webpack_require__(534)
+const assign = __webpack_require__(572)
 
 const fs = {}
 
 // Export graceful-fs:
-assign(fs, __webpack_require__(233))
+assign(fs, __webpack_require__(259))
 // Export extra methods:
-assign(fs, __webpack_require__(540))
-assign(fs, __webpack_require__(236))
-assign(fs, __webpack_require__(31))
-assign(fs, __webpack_require__(101))
-assign(fs, __webpack_require__(548))
-assign(fs, __webpack_require__(552))
-assign(fs, __webpack_require__(553))
-assign(fs, __webpack_require__(554))
-assign(fs, __webpack_require__(555))
-assign(fs, __webpack_require__(561))
-assign(fs, __webpack_require__(47))
+assign(fs, __webpack_require__(578))
+assign(fs, __webpack_require__(262))
+assign(fs, __webpack_require__(32))
+assign(fs, __webpack_require__(109))
+assign(fs, __webpack_require__(586))
+assign(fs, __webpack_require__(590))
+assign(fs, __webpack_require__(591))
+assign(fs, __webpack_require__(592))
+assign(fs, __webpack_require__(593))
+assign(fs, __webpack_require__(599))
+assign(fs, __webpack_require__(50))
 
 module.exports = fs
 
 
 /***/ }),
-/* 534 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19826,10 +34059,10 @@ module.exports = assign
 
 
 /***/ }),
-/* 535 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constants = __webpack_require__(536)
+var constants = __webpack_require__(574)
 
 var origCwd = process.cwd
 var cwd = null
@@ -20187,16 +34420,16 @@ function patch (fs) {
 
 
 /***/ }),
-/* 536 */
+/* 574 */
 /***/ (function(module, exports) {
 
 module.exports = require("constants");
 
 /***/ }),
-/* 537 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stream = __webpack_require__(538).Stream
+var Stream = __webpack_require__(576).Stream
 
 module.exports = legacy
 
@@ -20317,13 +34550,13 @@ function legacy (fs) {
 
 
 /***/ }),
-/* 538 */
+/* 576 */
 /***/ (function(module, exports) {
 
 module.exports = require("stream");
 
 /***/ }),
-/* 539 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20353,27 +34586,27 @@ function clone (obj) {
 
 
 /***/ }),
-/* 540 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const u = __webpack_require__(23).fromCallback
+const u = __webpack_require__(25).fromCallback
 module.exports = {
-  copy: u(__webpack_require__(541))
+  copy: u(__webpack_require__(579))
 }
 
 
 /***/ }),
-/* 541 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const ncp = __webpack_require__(234)
-const mkdir = __webpack_require__(31)
-const pathExists = __webpack_require__(47).pathExists
+const ncp = __webpack_require__(260)
+const mkdir = __webpack_require__(32)
+const pathExists = __webpack_require__(50).pathExists
 
 function copy (src, dest, options, callback) {
   if (typeof options === 'function' && !callback) {
@@ -20424,14 +34657,14 @@ module.exports = copy
 
 
 /***/ }),
-/* 542 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
-const os = __webpack_require__(144)
+const fs = __webpack_require__(13)
+const os = __webpack_require__(155)
 const path = __webpack_require__(4)
 
 // HFS, ext{2,3}, FAT do not, Node.js v0.10 does not
@@ -20503,15 +34736,15 @@ module.exports = {
 
 
 /***/ }),
-/* 543 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const invalidWin32Path = __webpack_require__(235).invalidWin32Path
+const invalidWin32Path = __webpack_require__(261).invalidWin32Path
 
 const o777 = parseInt('0777', 8)
 
@@ -20573,15 +34806,15 @@ module.exports = mkdirs
 
 
 /***/ }),
-/* 544 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const invalidWin32Path = __webpack_require__(235).invalidWin32Path
+const invalidWin32Path = __webpack_require__(261).invalidWin32Path
 
 const o777 = parseInt('0777', 8)
 
@@ -20639,16 +34872,16 @@ module.exports = mkdirsSync
 
 
 /***/ }),
-/* 545 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const copyFileSync = __webpack_require__(546)
-const mkdir = __webpack_require__(31)
+const copyFileSync = __webpack_require__(584)
+const mkdir = __webpack_require__(32)
 
 function copySync (src, dest, options) {
   if (typeof options === 'function' || options instanceof RegExp) {
@@ -20708,16 +34941,16 @@ module.exports = copySync
 
 
 /***/ }),
-/* 546 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 
 const BUF_LENGTH = 64 * 1024
-const _buff = __webpack_require__(237)(BUF_LENGTH)
+const _buff = __webpack_require__(263)(BUF_LENGTH)
 
 function copyFileSync (srcFile, destFile, options) {
   const overwrite = options.overwrite
@@ -20756,15 +34989,15 @@ module.exports = copyFileSync
 
 
 /***/ }),
-/* 547 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const assert = __webpack_require__(82)
+const assert = __webpack_require__(87)
 
 const isWindows = (process.platform === 'win32')
 
@@ -21077,17 +35310,17 @@ rimraf.sync = rimrafSync
 
 
 /***/ }),
-/* 548 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
-const jsonFile = __webpack_require__(145)
+const u = __webpack_require__(25).fromCallback
+const jsonFile = __webpack_require__(156)
 
-jsonFile.outputJson = u(__webpack_require__(550))
-jsonFile.outputJsonSync = __webpack_require__(551)
+jsonFile.outputJson = u(__webpack_require__(588))
+jsonFile.outputJsonSync = __webpack_require__(589)
 // aliases
 jsonFile.outputJSON = jsonFile.outputJson
 jsonFile.outputJSONSync = jsonFile.outputJsonSync
@@ -21100,14 +35333,14 @@ module.exports = jsonFile
 
 
 /***/ }),
-/* 549 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _fs
 try {
-  _fs = __webpack_require__(12)
+  _fs = __webpack_require__(13)
 } catch (_) {
-  _fs = __webpack_require__(28)
+  _fs = __webpack_require__(21)
 }
 
 function readFile (file, options, callback) {
@@ -21240,16 +35473,16 @@ module.exports = jsonfile
 
 
 /***/ }),
-/* 550 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 const path = __webpack_require__(4)
-const mkdir = __webpack_require__(31)
-const pathExists = __webpack_require__(47).pathExists
-const jsonFile = __webpack_require__(145)
+const mkdir = __webpack_require__(32)
+const pathExists = __webpack_require__(50).pathExists
+const jsonFile = __webpack_require__(156)
 
 function outputJson (file, data, options, callback) {
   if (typeof options === 'function') {
@@ -21274,16 +35507,16 @@ module.exports = outputJson
 
 
 /***/ }),
-/* 551 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const mkdir = __webpack_require__(31)
-const jsonFile = __webpack_require__(145)
+const mkdir = __webpack_require__(32)
+const jsonFile = __webpack_require__(156)
 
 function outputJsonSync (file, data, options) {
   const dir = path.dirname(file)
@@ -21299,7 +35532,7 @@ module.exports = outputJsonSync
 
 
 /***/ }),
-/* 552 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21311,12 +35544,12 @@ module.exports = outputJsonSync
 
 // this needs a cleanup
 
-const u = __webpack_require__(23).fromCallback
-const fs = __webpack_require__(12)
-const ncp = __webpack_require__(234)
+const u = __webpack_require__(25).fromCallback
+const fs = __webpack_require__(13)
+const ncp = __webpack_require__(260)
 const path = __webpack_require__(4)
-const remove = __webpack_require__(101).remove
-const mkdirp = __webpack_require__(31).mkdirs
+const remove = __webpack_require__(109).remove
+const mkdirp = __webpack_require__(32).mkdirs
 
 function move (src, dest, options, callback) {
   if (typeof options === 'function') {
@@ -21476,18 +35709,18 @@ module.exports = {
 
 
 /***/ }),
-/* 553 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const copySync = __webpack_require__(236).copySync
-const removeSync = __webpack_require__(101).removeSync
-const mkdirpSync = __webpack_require__(31).mkdirsSync
-const buffer = __webpack_require__(237)
+const copySync = __webpack_require__(262).copySync
+const removeSync = __webpack_require__(109).removeSync
+const mkdirpSync = __webpack_require__(32).mkdirsSync
+const buffer = __webpack_require__(263)
 
 function moveSync (src, dest, options) {
   options = options || {}
@@ -21601,17 +35834,17 @@ module.exports = {
 
 
 /***/ }),
-/* 554 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
-const fs = __webpack_require__(28)
+const u = __webpack_require__(25).fromCallback
+const fs = __webpack_require__(21)
 const path = __webpack_require__(4)
-const mkdir = __webpack_require__(31)
-const remove = __webpack_require__(101)
+const mkdir = __webpack_require__(32)
+const remove = __webpack_require__(109)
 
 const emptyDir = u(function emptyDir (dir, callback) {
   callback = callback || function () {}
@@ -21656,15 +35889,15 @@ module.exports = {
 
 
 /***/ }),
-/* 555 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const file = __webpack_require__(556)
-const link = __webpack_require__(557)
-const symlink = __webpack_require__(558)
+const file = __webpack_require__(594)
+const link = __webpack_require__(595)
+const symlink = __webpack_require__(596)
 
 module.exports = {
   // file
@@ -21686,17 +35919,17 @@ module.exports = {
 
 
 /***/ }),
-/* 556 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
+const u = __webpack_require__(25).fromCallback
 const path = __webpack_require__(4)
-const fs = __webpack_require__(12)
-const mkdir = __webpack_require__(31)
-const pathExists = __webpack_require__(47).pathExists
+const fs = __webpack_require__(13)
+const mkdir = __webpack_require__(32)
+const pathExists = __webpack_require__(50).pathExists
 
 function createFile (file, callback) {
   function makeFile () {
@@ -21742,17 +35975,17 @@ module.exports = {
 
 
 /***/ }),
-/* 557 */
+/* 595 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
+const u = __webpack_require__(25).fromCallback
 const path = __webpack_require__(4)
-const fs = __webpack_require__(12)
-const mkdir = __webpack_require__(31)
-const pathExists = __webpack_require__(47).pathExists
+const fs = __webpack_require__(13)
+const mkdir = __webpack_require__(32)
+const pathExists = __webpack_require__(50).pathExists
 
 function createLink (srcpath, dstpath, callback) {
   function makeLink (srcpath, dstpath) {
@@ -21810,28 +36043,28 @@ module.exports = {
 
 
 /***/ }),
-/* 558 */
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
+const u = __webpack_require__(25).fromCallback
 const path = __webpack_require__(4)
-const fs = __webpack_require__(12)
-const _mkdirs = __webpack_require__(31)
+const fs = __webpack_require__(13)
+const _mkdirs = __webpack_require__(32)
 const mkdirs = _mkdirs.mkdirs
 const mkdirsSync = _mkdirs.mkdirsSync
 
-const _symlinkPaths = __webpack_require__(559)
+const _symlinkPaths = __webpack_require__(597)
 const symlinkPaths = _symlinkPaths.symlinkPaths
 const symlinkPathsSync = _symlinkPaths.symlinkPathsSync
 
-const _symlinkType = __webpack_require__(560)
+const _symlinkType = __webpack_require__(598)
 const symlinkType = _symlinkType.symlinkType
 const symlinkTypeSync = _symlinkType.symlinkTypeSync
 
-const pathExists = __webpack_require__(47).pathExists
+const pathExists = __webpack_require__(50).pathExists
 
 function createSymlink (srcpath, dstpath, type, callback) {
   callback = (typeof type === 'function') ? type : callback
@@ -21883,15 +36116,15 @@ module.exports = {
 
 
 /***/ }),
-/* 559 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 const path = __webpack_require__(4)
-const fs = __webpack_require__(12)
-const pathExists = __webpack_require__(47).pathExists
+const fs = __webpack_require__(13)
+const pathExists = __webpack_require__(50).pathExists
 
 /**
  * Function that returns two types of paths, one relative to symlink, and one
@@ -21989,13 +36222,13 @@ module.exports = {
 
 
 /***/ }),
-/* 560 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const fs = __webpack_require__(12)
+const fs = __webpack_require__(13)
 
 function symlinkType (srcpath, type, callback) {
   callback = (typeof type === 'function') ? type : callback
@@ -22027,17 +36260,17 @@ module.exports = {
 
 
 /***/ }),
-/* 561 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-const u = __webpack_require__(23).fromCallback
-const fs = __webpack_require__(12)
+const u = __webpack_require__(25).fromCallback
+const fs = __webpack_require__(13)
 const path = __webpack_require__(4)
-const mkdir = __webpack_require__(31)
-const pathExists = __webpack_require__(47).pathExists
+const mkdir = __webpack_require__(32)
+const pathExists = __webpack_require__(50).pathExists
 
 function outputFile (file, data, encoding, callback) {
   if (typeof encoding === 'function') {
@@ -22074,15 +36307,15 @@ module.exports = {
 
 
 /***/ }),
-/* 562 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SourceMapConsumer = __webpack_require__(563).SourceMapConsumer;
+var SourceMapConsumer = __webpack_require__(601).SourceMapConsumer;
 var path = __webpack_require__(4);
 
 var fs;
 try {
-  fs = __webpack_require__(28);
+  fs = __webpack_require__(21);
   if (!fs.existsSync || !fs.readFileSync) {
     // fs doesn't have all methods we need
     fs = null;
@@ -22558,7 +36791,7 @@ exports.install = function(options) {
   if (options.hookRequire && !isInBrowser()) {
     var Module;
     try {
-      Module = __webpack_require__(241);
+      Module = __webpack_require__(267);
     } catch (err) {
       // NOP: Loading in catch block to convert webpack error to warning.
     }
@@ -22607,7 +36840,7 @@ exports.install = function(options) {
 
 
 /***/ }),
-/* 563 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -22615,13 +36848,13 @@ exports.install = function(options) {
  * Licensed under the New BSD license. See LICENSE.txt or:
  * http://opensource.org/licenses/BSD-3-Clause
  */
-exports.SourceMapGenerator = __webpack_require__(238).SourceMapGenerator;
-exports.SourceMapConsumer = __webpack_require__(566).SourceMapConsumer;
-exports.SourceNode = __webpack_require__(569).SourceNode;
+exports.SourceMapGenerator = __webpack_require__(264).SourceMapGenerator;
+exports.SourceMapConsumer = __webpack_require__(604).SourceMapConsumer;
+exports.SourceNode = __webpack_require__(607).SourceNode;
 
 
 /***/ }),
-/* 564 */
+/* 602 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22694,7 +36927,7 @@ exports.decode = function (charCode) {
 
 
 /***/ }),
-/* 565 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22704,7 +36937,7 @@ exports.decode = function (charCode) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(83);
+var util = __webpack_require__(88);
 
 /**
  * Determine whether mappingB is after mappingA with respect to generated
@@ -22779,7 +37012,7 @@ exports.MappingList = MappingList;
 
 
 /***/ }),
-/* 566 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22789,11 +37022,11 @@ exports.MappingList = MappingList;
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var util = __webpack_require__(83);
-var binarySearch = __webpack_require__(567);
-var ArraySet = __webpack_require__(240).ArraySet;
-var base64VLQ = __webpack_require__(239);
-var quickSort = __webpack_require__(568).quickSort;
+var util = __webpack_require__(88);
+var binarySearch = __webpack_require__(605);
+var ArraySet = __webpack_require__(266).ArraySet;
+var base64VLQ = __webpack_require__(265);
+var quickSort = __webpack_require__(606).quickSort;
 
 function SourceMapConsumer(aSourceMap) {
   var sourceMap = aSourceMap;
@@ -23867,7 +38100,7 @@ exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
 
 
 /***/ }),
-/* 567 */
+/* 605 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -23984,7 +38217,7 @@ exports.search = function search(aNeedle, aHaystack, aCompare, aBias) {
 
 
 /***/ }),
-/* 568 */
+/* 606 */
 /***/ (function(module, exports) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -24104,7 +38337,7 @@ exports.quickSort = function (ary, comparator) {
 
 
 /***/ }),
-/* 569 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -24114,8 +38347,8 @@ exports.quickSort = function (ary, comparator) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var SourceMapGenerator = __webpack_require__(238).SourceMapGenerator;
-var util = __webpack_require__(83);
+var SourceMapGenerator = __webpack_require__(264).SourceMapGenerator;
+var util = __webpack_require__(88);
 
 // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
 // operating systems these days (capturing the result).
@@ -24523,14 +38756,14 @@ exports.SourceNode = SourceNode;
 
 
 /***/ }),
-/* 570 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const electron = __webpack_require__(59);
-const localShortcut = __webpack_require__(571);
-const isDev = __webpack_require__(582);
+const electron = __webpack_require__(62);
+const localShortcut = __webpack_require__(609);
+const isDev = __webpack_require__(619);
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -24627,16 +38860,16 @@ module.exports.openDevTools = openDevTools;
 
 
 /***/ }),
-/* 571 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const {app, BrowserWindow} = __webpack_require__(59);
-const isAccelerator = __webpack_require__(572);
-const equals = __webpack_require__(573);
-const {toKeyEvent} = __webpack_require__(574);
-const _debug = __webpack_require__(575);
+const {app, BrowserWindow} = __webpack_require__(62);
+const isAccelerator = __webpack_require__(610);
+const equals = __webpack_require__(611);
+const {toKeyEvent} = __webpack_require__(612);
+const _debug = __webpack_require__(613);
 
 const debug = _debug('electron-localshortcut');
 
@@ -24958,7 +39191,7 @@ module.exports = {
 
 
 /***/ }),
-/* 572 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24986,7 +39219,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 573 */
+/* 611 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25032,7 +39265,7 @@ module.exports = areEqual;
 
 
 /***/ }),
-/* 574 */
+/* 612 */
 /***/ (function(module, exports) {
 
 const modifiers = /^(CommandOrControl|CmdOrCtrl|Command|Cmd|Control|Ctrl|AltGr|Option|Alt|Shift|Super)/i;
@@ -25330,7 +39563,7 @@ module.exports = {
 
 
 /***/ }),
-/* 575 */
+/* 613 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -25339,14 +39572,14 @@ module.exports = {
  */
 
 if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
-	module.exports = __webpack_require__(576);
+	module.exports = __webpack_require__(614);
 } else {
-	module.exports = __webpack_require__(578);
+	module.exports = __webpack_require__(616);
 }
 
 
 /***/ }),
-/* 576 */
+/* 614 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-env browser */
@@ -25603,7 +39836,7 @@ function localstorage() {
 	}
 }
 
-module.exports = __webpack_require__(242)(exports);
+module.exports = __webpack_require__(268)(exports);
 
 const {formatters} = module.exports;
 
@@ -25621,7 +39854,7 @@ formatters.j = function (v) {
 
 
 /***/ }),
-/* 577 */
+/* 615 */
 /***/ (function(module, exports) {
 
 /**
@@ -25789,15 +40022,15 @@ function plural(ms, msAbs, n, name) {
 
 
 /***/ }),
-/* 578 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-const tty = __webpack_require__(579);
-const util = __webpack_require__(81);
+const tty = __webpack_require__(269);
+const util = __webpack_require__(86);
 
 /**
  * This is the Node.js implementation of `debug()`.
@@ -25823,7 +40056,7 @@ exports.colors = [6, 2, 3, 4, 5, 1];
 try {
 	// Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
 	// eslint-disable-next-line import/no-extraneous-dependencies
-	const supportsColor = __webpack_require__(580);
+	const supportsColor = __webpack_require__(617);
 
 	if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
 		exports.colors = [
@@ -26031,7 +40264,7 @@ function init(debug) {
 	}
 }
 
-module.exports = __webpack_require__(242)(exports);
+module.exports = __webpack_require__(268)(exports);
 
 const {formatters} = module.exports;
 
@@ -26058,35 +40291,38 @@ formatters.O = function (v) {
 
 
 /***/ }),
-/* 579 */
-/***/ (function(module, exports) {
-
-module.exports = require("tty");
-
-/***/ }),
-/* 580 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const os = __webpack_require__(144);
-const hasFlag = __webpack_require__(581);
+const os = __webpack_require__(155);
+const tty = __webpack_require__(269);
+const hasFlag = __webpack_require__(618);
 
-const env = Object({"NODE_ENV":"production"});
+const {env} = process;
 
 let forceColor;
 if (hasFlag('no-color') ||
 	hasFlag('no-colors') ||
-	hasFlag('color=false')) {
-	forceColor = false;
+	hasFlag('color=false') ||
+	hasFlag('color=never')) {
+	forceColor = 0;
 } else if (hasFlag('color') ||
 	hasFlag('colors') ||
 	hasFlag('color=true') ||
 	hasFlag('color=always')) {
-	forceColor = true;
+	forceColor = 1;
 }
+
 if ('FORCE_COLOR' in env) {
-	forceColor = env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
+	if (env.FORCE_COLOR === 'true') {
+		forceColor = 1;
+	} else if (env.FORCE_COLOR === 'false') {
+		forceColor = 0;
+	} else {
+		forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
+	}
 }
 
 function translateLevel(level) {
@@ -26102,8 +40338,8 @@ function translateLevel(level) {
 	};
 }
 
-function supportsColor(stream) {
-	if (forceColor === false) {
+function supportsColor(haveStream, streamIsTTY) {
+	if (forceColor === 0) {
 		return 0;
 	}
 
@@ -26117,22 +40353,21 @@ function supportsColor(stream) {
 		return 2;
 	}
 
-	if (stream && !stream.isTTY && forceColor !== true) {
+	if (haveStream && !streamIsTTY && forceColor === undefined) {
 		return 0;
 	}
 
-	const min = forceColor ? 1 : 0;
+	const min = forceColor || 0;
+
+	if (env.TERM === 'dumb') {
+		return min;
+	}
 
 	if (process.platform === 'win32') {
-		// Node.js 7.5.0 is the first version of Node.js to include a patch to
-		// libuv that enables 256 color output on Windows. Anything earlier and it
-		// won't work. However, here we target Node.js 8 at minimum as it is an LTS
-		// release, and Node.js 7 is not. Windows 10 build 10586 is the first Windows
-		// release that supports 256 colors. Windows 10 build 14931 is the first release
-		// that supports 16m/TrueColor.
+		// Windows 10 build 10586 is the first Windows release that supports 256 colors.
+		// Windows 10 build 14931 is the first release that supports 16m/TrueColor.
 		const osRelease = os.release().split('.');
 		if (
-			Number(process.versions.node.split('.')[0]) >= 8 &&
 			Number(osRelease[0]) >= 10 &&
 			Number(osRelease[2]) >= 10586
 		) {
@@ -26143,7 +40378,7 @@ function supportsColor(stream) {
 	}
 
 	if ('CI' in env) {
-		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
+		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI', 'GITHUB_ACTIONS', 'BUILDKITE'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
 			return 1;
 		}
 
@@ -26182,42 +40417,38 @@ function supportsColor(stream) {
 		return 1;
 	}
 
-	if (env.TERM === 'dumb') {
-		return min;
-	}
-
 	return min;
 }
 
 function getSupportLevel(stream) {
-	const level = supportsColor(stream);
+	const level = supportsColor(stream, stream && stream.isTTY);
 	return translateLevel(level);
 }
 
 module.exports = {
 	supportsColor: getSupportLevel,
-	stdout: getSupportLevel(process.stdout),
-	stderr: getSupportLevel(process.stderr)
+	stdout: translateLevel(supportsColor(true, tty.isatty(1))),
+	stderr: translateLevel(supportsColor(true, tty.isatty(2)))
 };
 
 
 /***/ }),
-/* 581 */
+/* 618 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-module.exports = (flag, argv) => {
-	argv = argv || process.argv;
+
+module.exports = (flag, argv = process.argv) => {
 	const prefix = flag.startsWith('-') ? '' : (flag.length === 1 ? '-' : '--');
-	const pos = argv.indexOf(prefix + flag);
-	const terminatorPos = argv.indexOf('--');
-	return pos !== -1 && (terminatorPos === -1 ? true : pos < terminatorPos);
+	const position = argv.indexOf(prefix + flag);
+	const terminatorPosition = argv.indexOf('--');
+	return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
 };
 
 
 /***/ }),
-/* 582 */
+/* 619 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26229,7 +40460,7 @@ module.exports = isEnvSet ? getFromEnv : (process.defaultApp || /node_modules[\\
 
 
 /***/ }),
-/* 583 */
+/* 620 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26242,11 +40473,11 @@ exports.MOBX_DEVTOOLS = exports.APOLLO_DEVELOPER_TOOLS = exports.CYCLEJS_DEVTOOL
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _electron = __webpack_require__(59);
+var _electron = __webpack_require__(62);
 
 var _electron2 = _interopRequireDefault(_electron);
 
-var _fs = __webpack_require__(28);
+var _fs = __webpack_require__(21);
 
 var _fs2 = _interopRequireDefault(_fs);
 
@@ -26254,15 +40485,15 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _semver = __webpack_require__(584);
+var _semver = __webpack_require__(621);
 
 var _semver2 = _interopRequireDefault(_semver);
 
-var _downloadChromeExtension = __webpack_require__(585);
+var _downloadChromeExtension = __webpack_require__(622);
 
 var _downloadChromeExtension2 = _interopRequireDefault(_downloadChromeExtension);
 
-var _utils = __webpack_require__(249);
+var _utils = __webpack_require__(276);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26365,7 +40596,7 @@ var MOBX_DEVTOOLS = exports.MOBX_DEVTOOLS = {
 };
 
 /***/ }),
-/* 584 */
+/* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = SemVer
@@ -27854,7 +42085,7 @@ function coerce (version) {
 
 
 /***/ }),
-/* 585 */
+/* 622 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27864,7 +42095,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _fs = __webpack_require__(28);
+var _fs = __webpack_require__(21);
 
 var _fs2 = _interopRequireDefault(_fs);
 
@@ -27872,15 +42103,15 @@ var _path = __webpack_require__(4);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _rimraf = __webpack_require__(586);
+var _rimraf = __webpack_require__(623);
 
 var _rimraf2 = _interopRequireDefault(_rimraf);
 
-var _crossUnzip = __webpack_require__(596);
+var _crossUnzip = __webpack_require__(632);
 
 var _crossUnzip2 = _interopRequireDefault(_crossUnzip);
 
-var _utils = __webpack_require__(249);
+var _utils = __webpack_require__(276);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27925,18 +42156,18 @@ var downloadChromeExtension = function downloadChromeExtension(chromeStoreID, fo
 exports.default = downloadChromeExtension;
 
 /***/ }),
-/* 586 */
+/* 623 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = rimraf
 rimraf.sync = rimrafSync
 
-var assert = __webpack_require__(82)
+var assert = __webpack_require__(87)
 var path = __webpack_require__(4)
-var fs = __webpack_require__(28)
+var fs = __webpack_require__(21)
 var glob = undefined
 try {
-  glob = __webpack_require__(244)
+  glob = __webpack_require__(271)
 } catch (_err) {
   // treat glob as optional.
 }
@@ -28303,7 +42534,7 @@ function rmkidsSync (p, options) {
 
 
 /***/ }),
-/* 587 */
+/* 624 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -28329,7 +42560,7 @@ function rmkidsSync (p, options) {
 
 var pathModule = __webpack_require__(4);
 var isWindows = process.platform === 'win32';
-var fs = __webpack_require__(28);
+var fs = __webpack_require__(21);
 
 // JavaScript implementation of realpath, ported from node pre-v6
 
@@ -28612,11 +42843,11 @@ exports.realpath = function realpath(p, cache, cb) {
 
 
 /***/ }),
-/* 588 */
+/* 625 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var concatMap = __webpack_require__(589);
-var balanced = __webpack_require__(590);
+var concatMap = __webpack_require__(626);
+var balanced = __webpack_require__(627);
 
 module.exports = expandTop;
 
@@ -28819,7 +43050,7 @@ function expand(str, isTop) {
 
 
 /***/ }),
-/* 589 */
+/* 626 */
 /***/ (function(module, exports) {
 
 module.exports = function (xs, fn) {
@@ -28838,7 +43069,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 590 */
+/* 627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28907,22 +43138,22 @@ function range(a, b, str) {
 
 
 /***/ }),
-/* 591 */
+/* 628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
-  var util = __webpack_require__(81);
+  var util = __webpack_require__(86);
   /* istanbul ignore next */
   if (typeof util.inherits !== 'function') throw '';
   module.exports = util.inherits;
 } catch (e) {
   /* istanbul ignore next */
-  module.exports = __webpack_require__(592);
+  module.exports = __webpack_require__(629);
 }
 
 
 /***/ }),
-/* 592 */
+/* 629 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -28955,27 +43186,21 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 593 */
-/***/ (function(module, exports) {
-
-module.exports = require("events");
-
-/***/ }),
-/* 594 */
+/* 630 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = globSync
 globSync.GlobSync = GlobSync
 
-var rp = __webpack_require__(245)
-var minimatch = __webpack_require__(146)
+var rp = __webpack_require__(272)
+var minimatch = __webpack_require__(157)
 var Minimatch = minimatch.Minimatch
-var Glob = __webpack_require__(244).Glob
-var util = __webpack_require__(81)
+var Glob = __webpack_require__(271).Glob
+var util = __webpack_require__(86)
 var path = __webpack_require__(4)
-var assert = __webpack_require__(82)
-var isAbsolute = __webpack_require__(147)
-var common = __webpack_require__(246)
+var assert = __webpack_require__(87)
+var isAbsolute = __webpack_require__(158)
+var common = __webpack_require__(273)
 var setopts = common.setopts
 var ownProp = common.ownProp
 var childrenIgnored = common.childrenIgnored
@@ -29453,12 +43678,12 @@ GlobSync.prototype._makeAbs = function (f) {
 
 
 /***/ }),
-/* 595 */
+/* 631 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wrappy = __webpack_require__(247)
+var wrappy = __webpack_require__(274)
 var reqs = Object.create(null)
-var once = __webpack_require__(248)
+var once = __webpack_require__(275)
 
 module.exports = wrappy(inflight)
 
@@ -29513,12 +43738,12 @@ function slice (args) {
 
 
 /***/ }),
-/* 596 */
+/* 632 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var spawn = __webpack_require__(232).spawn
+var spawn = __webpack_require__(243).spawn
 var slice = Array.prototype.slice
 
 var unzip = process.platform === 'win32' ? forWin32 : forUnix
@@ -29529,7 +43754,7 @@ module.exports = unzip
 
 // https://github.com/fritx/win-7zip
 function forWin32 (inPath, outPath, callback) {
-  var _7z = __webpack_require__(597)['7z']
+  var _7z = __webpack_require__(633)['7z']
 
   // very 奇葩
   // eg. 7z x archive.zip -oc:\Doc
@@ -29572,11 +43797,11 @@ function onceify (fn) {
 
 
 /***/ }),
-/* 597 */
+/* 633 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var resolve = __webpack_require__(4).resolve
-var bin = __webpack_require__(598).bin
+var bin = __webpack_require__(634).bin
 
 module.exports = map_obj(bin, function(v){
   return resolve(__dirname, v)
@@ -29591,13 +43816,13 @@ function map_obj(obj, fn){
 
 
 /***/ }),
-/* 598 */
+/* 634 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["7zip@0.0.6","/Users/tee/Documents/easemob/sdkdemoapp_windows"]],"_development":true,"_from":"7zip@0.0.6","_id":"7zip@0.0.6","_inBundle":false,"_integrity":"sha512-ns8vKbKhIQm338AeWo/YdDSWil3pldwCMoyR2npoM2qDAzF8Vuko8BtDxpNt/wE15SXOh5K5WbjSLR4kTOAHLA==","_location":"/7zip","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"7zip@0.0.6","name":"7zip","escapedName":"7zip","rawSpec":"0.0.6","saveSpec":null,"fetchSpec":"0.0.6"},"_requiredBy":["/electron-devtools-installer"],"_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz","_spec":"0.0.6","_where":"/Users/tee/Documents/easemob/sdkdemoapp_windows","bin":{"7z":"7zip-lite/7z.exe"},"bugs":{"url":"https://github.com/fritx/win-7zip/issues"},"description":"7zip Windows Package via Node.js","homepage":"https://github.com/fritx/win-7zip#readme","keywords":["7z","7zip","7-zip","windows","install"],"license":"GNU LGPL","main":"index.js","name":"7zip","repository":{"type":"git","url":"git+ssh://git@github.com/fritx/win-7zip.git"},"scripts":{"test":"mocha"},"version":"0.0.6"}
+module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Wed Dec 14 2022 11:14:55 GMT+0800 (中国标准时间)","_from":"7zip@0.0.6","_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz"}
 
 /***/ }),
-/* 599 */
+/* 635 */
 /***/ (function(module, exports) {
 
 module.exports = require("https");

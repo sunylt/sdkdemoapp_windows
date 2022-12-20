@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import * as actionCreators from "@/stores/actions";
 import { connect } from "react-redux";
 import HeadImageView from "@/views/common/head_image";
-import { Modal } from "antd";
+import { Modal, Switch } from "antd";
 
 class MemberSettingView extends PureComponent {
 	constructor(props){
@@ -33,6 +33,13 @@ class MemberSettingView extends PureComponent {
 		this.handleCancelClearMessages();
 	}
 
+	handleSetTop = (checked) => {
+		const extField = this.conversation.extField();
+		const ext = extField ? JSON.parse(extField) : {};
+		ext.isTop = checked;
+		this.conversation.setExtField(JSON.stringify(ext));
+	}
+
 	handleCancelClearMessages(){
 		this.setState({
 			messageClearVisible: false
@@ -40,21 +47,25 @@ class MemberSettingView extends PureComponent {
 	}
 
 	render(){
-		const { selectConversationId, allMembersInfo } = this.props;
-		console.log("selectConversationId:" + selectConversationId);
-		console.log("allMembersInfo:" + allMembersInfo);
-		const memberInfo = allMembersInfo[selectConversationId];
-		console.log("memberInfo:" + memberInfo);
+		const { selectConversationId, allMembersInfo, globals } = this.props;
+		const conversation = globals.chatManager.conversationWithType(selectConversationId, 0);
+		const ext = conversation.extField() ? JSON.parse(conversation.extField()) : {};
+		this.conversation = conversation;
+		// console.log("selectConversationId:" + selectConversationId);
+		// console.log("allMembersInfo:" + allMembersInfo);
+		// const memberInfo = allMembersInfo[selectConversationId];
+		// console.log("memberInfo:" + memberInfo);
 		return (
 			<div>
 				<div className="member-info">
 					<div className="avatar-name">
 						<div className="member-name">
-							{ selectConversationId}
+							{ ext.name || selectConversationId}
 						</div>
 					</div>
 					<div className="info">
 						<div><span>用户:</span><span className="ellipsis infos">{ selectConversationId }</span></div>
+						<div>会话置顶 <Switch defaultChecked={ !!ext.isTop } onChange={ this.handleSetTop } style={ { top: "12px", left: "10px" } } /></div>
 						<div className="operate-member" onClick={ this.handleClearRecord }>清空聊天记录</div>
 					</div>
 				</div>

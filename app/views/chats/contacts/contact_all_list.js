@@ -8,6 +8,7 @@ import HeadImageView from "@/views/common/head_image";
 import _ from "underscore";
 import api from "@/api";
 import { utils } from "@/utils/utils";
+import AvatarImage from "./AvatarImage";
 const Search = Input.Search;
 var latest = utils.latestFunc();
 
@@ -23,10 +24,10 @@ class ContactView extends PureComponent {
 	handleOnChange(e, item){
 		const { selectMembersAction, cancelMembersAction  } = this.props;
 		if(e.target.checked){
-			selectMembersAction({"easemobName":item});
+			selectMembersAction(item);
 		}
 		else{
-			cancelMembersAction(item);
+			cancelMembersAction(item.userName);
 		}
 	}
 
@@ -47,7 +48,7 @@ class ContactView extends PureComponent {
 	}
 
 	//
-	showCheckbox(memberInfo){
+	renderCheckbox(memberInfo){
 		const {
 			selectMemberData = [],	// 编辑时选择的人
 			groupMemberData = [],	// 这个群固定的人，不能编辑
@@ -59,7 +60,7 @@ class ContactView extends PureComponent {
 		_.map(selectMemberData.concat(groupMemberData), function(member){
 			selectMemberEasemobnameData.push(member);
 		});
-		isSelected = selectMemberEasemobnameData.indexOf(memberInfo);
+		isSelected = selectMemberEasemobnameData.indexOf(memberInfo.userName);
 		isEditSelector = _.filter(groupMemberData, function(item){
 			return item == memberInfo;
 		});
@@ -78,23 +79,23 @@ class ContactView extends PureComponent {
 	}
 
 	render(){
-		const { allContacts } = this.props;
-		var concatList = allContacts.contacts;
+		const { allUsers } = this.props;
+		console.log("all list alluser", allUsers);
+		// var concatList = allContacts.contacts;
 		return (
 			<div>
 				<div className="member-list">
 					<Menu>
 						{
-							_.map(concatList, (item) => {
+							_.map(allUsers, (item) => {
+								const { id, name, userName } = item;
 								return (
-									<Menu.Item key={ item }>
+									<Menu.Item key={ id }>
+										{this.renderCheckbox(item)}
 										<div className="avatar-name">
-											<HeadImageView imgUrl={ item.image } />
-											{item}
+											<AvatarImage name={ name } />
+											{name || userName}
 										</div>
-										{
-											this.showCheckbox(item)
-										}
 									</Menu.Item>
 								);
 							})
@@ -113,6 +114,7 @@ const mapStateToProps = state => ({
 	searchMembers: state.searchMemberOfCreateGroup,
 	allMembersInfo: state.allMembersInfo,
 	allContacts: state.allContacts,
+	allUsers: state.org.allUsers,
 	membersOfCreateGroup: state.membersOfCreateGroup
 });
 export default connect(mapStateToProps, actionCreators)(ContactView);

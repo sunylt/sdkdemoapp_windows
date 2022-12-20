@@ -18,7 +18,9 @@ class GroupTabView extends Component {
 		const { selectConversationId } = this.props;
 		return (
 			<div className="group-tab" key={ selectConversationId }>
-				<Tabs
+				<GroupMembersView />
+				<GroupSettingView />
+				{/* <Tabs
 					defaultActiveKey="members"
 					size="default"
 					tabBarStyle={ { borderBottom: "1px sold #f6f6f6" } }
@@ -29,7 +31,7 @@ class GroupTabView extends Component {
 					<TabPane tab={ <Icon type="setting" /> } key="setting">
 						<GroupSettingView />
 					</TabPane>
-				</Tabs>
+				</Tabs> */}
 				{/* <div><Icon type="user" /></div> */}
 			</div>
 		);

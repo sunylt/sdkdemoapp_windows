@@ -6,18 +6,19 @@ import { Icon, Modal, Input, Button, Form, Switch } from "antd";
 import HeadImageView from "@/views/common/head_image";
 import MenuList from "../contacts/contact_all_list";
 import _ from "underscore";
+import AvatarImage from "../contacts/AvatarImage";
+import { Select } from "antd";
 const EventEmitter = require('events').EventEmitter;
 var gEventEmiter = new EventEmitter();
-
-
-class HorizontalLoginForm extends PureComponent {
+class HorizontalForm extends PureComponent {
 	constructor(props){
 		super(props);
 		this.state = {
 			groupName: "",
 			description: "",
 			createGroupButtonState: false,
-			allowMemberInvited:false
+			allowMemberInvited: false,
+			isPublicGroup: false,
 		};
 		this.handleChangeGroupName = this.handleChangeGroupName.bind(this);
 		this.handleChangeDesc = this.handleChangeDesc.bind(this);
@@ -54,66 +55,105 @@ class HorizontalLoginForm extends PureComponent {
 	handleChangeInvite(checked){
 		this.setState({
 			allowMemberInvited: checked
-		})
+		});
+		this.props.form.setFieldsValue({ allowMemberInvited: checked });
+	}
+
+	handleSetPublic = (checked) => {
+		this.setState({
+			isPublicGroup: checked
+		});
+		this.props.form.setFieldsValue({ isPublicGroup: checked });
 	}
 
 	render(){
-		const { getFieldDecorator,setFieldsValue } = this.props.form;
+		const { getFieldDecorator, setFieldsValue } = this.props.form;
 		const { membersIdOfCreateGroup } = this.props.reduxProps;
 		const { createGroup } = this.props;
 		return (
 			<Form
-				onSubmit={
-					(e) => {
-						e.preventDefault();
-						createGroup(this.state.groupName, this.state.description,this.state.allowMemberInvited);
-						setFieldsValue({
-							groupName: "",
-							groupDescription: ""
-						});
-						this.setState({
-							"groupName":"",
-							"description":"",
-							allowMemberInvited:false
-						})
-					}
-				}
+				labelCol={ { span: 4 } }
+				wrapperCol={ { span: 20 } }
+				// onSubmit={
+				// 	(e) => {
+				// 		e.preventDefault();
+				// 		createGroup(this.state.groupName, this.state.description,this.state.allowMemberInvited);
+				// 		setFieldsValue({
+				// 			groupName: "",
+				// 			groupDescription: ""
+				// 		});
+				// 		this.setState({
+				// 			"groupName":"",
+				// 			"description":"",
+				// 			allowMemberInvited:false
+				// 		})
+				// 	}
+				// }
 				className="login-form"
 			>
-				<FormItem>
+				<FormItem label="名称">
 					{/* <span>群名称</span> */}
 					{getFieldDecorator("groupName", {
-						rules: [{ max: 20, message: "群名称最多为 20 个字" } ],
+						rules: [{ required: true, message: "群名称不能为空" }, { max: 20, message: "群名称最多为 20 个字" } ],
 					})(
 						<Input
 							// prefix={ <Icon type="user"style={ { color: "rgba(0,0,0,.25)" } } /> }
-							placeholder="群名称"
+							placeholder="请输入群名称"
 							onChange={ this.handleChangeGroupName }
 						/>
 					)}
 				</FormItem>
-				<FormItem>
+				<FormItem label="简介">
 					{/* <span>群描述</span> */}
-					{getFieldDecorator("groupDescription",{})(
-					<Input
+					{getFieldDecorator("groupDescription", {})(
+						<Input
 						// prefix={ <Icon type="lock" style={ { color: "rgba(0,0,0,.25)" } } /> }
-						placeholder="群描述"
-						onChange={ this.handleChangeDesc }
-					/>
+							placeholder="请输入群描述"
+							onChange={ this.handleChangeDesc }
+						/>
 					)}
 				</FormItem>
 
-				<FormItem>
-					<span>允许群成员邀请</span>
-					<Switch
-					    id="allowMemberInvited"
-						checkedChildren="开"
-						unCheckedChildren="关"
-						checked={ this.state.allowMemberInvited }
-						onChange={ this.handleChangeInvite }
-					/>
+				<FormItem label="群组人数">
+					{getFieldDecorator("groupMembersCount", {
+						initialValue: 100
+					})(
+						<Select>
+							<Select.Option value={ 100 }>100 人</Select.Option>
+							<Select.Option value={ 200 }>200 人</Select.Option>
+							<Select.Option value={ 300 }>300 人</Select.Option>
+						</Select>
+					)}
 				</FormItem>
-				<FormItem>
+				
+				<FormItem style={ { marginBottom: 0 } } wrapperCol={ { offset: 4 } }>
+					{getFieldDecorator("isPublicGroup", {
+						initialValue: false
+					})(
+						<Switch
+							id="isPublicGroup"
+							checked={ this.state.isPublicGroup }
+							onChange={ this.handleSetPublic }
+						/>
+					)}
+					<span className="switch-label">公开群组</span>
+				</FormItem>
+				<FormItem wrapperCol={ { offset: 4 } }>
+					{getFieldDecorator("allowMemberInvited", {
+						initialValue: false
+					})(
+						<Switch
+							id="allowMemberInvited"
+							checked={ this.state.allowMemberInvited }
+							onChange={ this.handleChangeInvite }
+						/>
+					)}
+					<span className="switch-label">允许群成员邀请</span>
+				</FormItem>
+				<FormItem label="群组成员">
+					{ this.props.children }
+				</FormItem>
+				{/* <FormItem>
 					<Button
 						type="primary"
 						htmlType="submit"
@@ -122,13 +162,13 @@ class HorizontalLoginForm extends PureComponent {
 					>
 						确定
 					</Button>
-				</FormItem>
+				</FormItem> */}
 			</Form>
 		);
 	}
 }
 const FormItem = Form.Item;
-const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
+const WrappedHorizontalForm = Form.create()(HorizontalForm);
 class CreateGroupView extends PureComponent {
 	constructor(props){
 		super(props);
@@ -216,7 +256,7 @@ class CreateGroupView extends PureComponent {
 	}
 
 	// 创建群组时除了自己应该至少选 2 人，否则去单聊
-	createGroup(groupName, description,allowMemberInvited){
+	createGroup(groupName, description, allowMemberInvited, isPublic, maxMembersCount){
 		const {
 			membersId,
 			membersIdArray,
@@ -236,47 +276,58 @@ class CreateGroupView extends PureComponent {
 		var extInfo;
 		var selectMember;
 		var username;
-		if(membersIdArray.length == 1){
-			setNotice("当前选择的群成员为2人，自动进入单聊", "success");
-			selectMember = allMembersInfo[membersIdArray[0]];
-			conversation = globals.chatManager.conversationWithType(membersIdArray[0], 0);
-			messages = conversation.loadMoreMessagesByMsgId("", 20,0);
-			conversationOfSelect(membersIdArray[0]);
-			msgsOfConversation({ id: membersIdArray[0], msgs: messages, conversation });
-			cancelCreateGroupAction();
-			this.setState({
-				visible: false,
-			});
-			setSelectConvType(0);
-			return;
+		var setting;
+		var groupManager = globals.groupManager;
+
+		console.log("create selected members>>", membersIdArray);
+		if(membersIdArray.length == 0){
+			setNotice("创建群需要至少 2 名成员", "fail");
 		}
-		else if(membersIdArray.length >= 500){
-			setNotice("当前选择的群成员已超过 500 人", "fail");
+		else if(membersIdArray.length >= maxMembersCount){
+			setNotice(`当前选择的群成员已超过 ${maxMembersCount} 人`, "fail");
 		}
 		else{
+			
 			username = userInfo.user.realName || userInfo.user.username || userInfo.user.easemobName;
 			groupName = groupName ? groupName.substring(0, 20) : `${username},${membersName}`.substring(0, 20);
 			description = description ? description.substring(0, 100) : "";
-			var groupManager = globals.groupManager;
+			
+			/**  
+     * 实例化区群组设置
+     * param style 组类型,Number,0为私有群，只有群主可以邀请成员加入，1为私有群，成员也可以邀请成员加入，2为公开群，但申请入群需要群主同意，3为公开群，成员可以随意申请加入
+     * param maxUserCount 最大成员数,Number，最大200
+     * param inviteNeedConfirm 邀请是否需要确认，Bool
+     * param extension 扩展信息，String
+     * return 返回组设置对象
+     */
+			// EMMucSetting(style, maxUserCount, inviteNeedConfirm, extension)
+			// 调用方法如下：
+			
+			// var setting = new easemob.EMMucSetting(1, 20, false, "test");
 			// 组设置，4个参数分别为组类型（0,1,2,3），最大成员数，邀请是否需要确认，扩展信息
-			var setting = new globals.easemob.EMMucSetting(allowMemberInvited?1:0, 5000, false, "test");
+			setting = new globals.easemob.EMMucSetting(allowMemberInvited?1:0, maxMembersCount, false, "test");
 			console.log("membersIdArray:" + membersIdArray);
 			console.log("membersId:" + membersId);
-			groupManager.createGroup(groupName,description,"welcome message",setting,membersIdArray).then((res)=>{
+			groupManager.createGroup(groupName, description, "welcome message", setting, membersIdArray).then((res) => {
 				console.log(res, 2);
-				if(res.code == 0)
-				{
+				if(res.code == 0){
 					let group = res.data;
-					let conversation = globals.chatManager.conversationWithType(group.groupId(),1);
-					//createGroup({"easemobGroupId":group.groupId(),"convesation":conversation});
-					createAGroup({easemobGroupId:group.groupId(),conversation});
+					let conversation = globals.chatManager.conversationWithType(group.groupId(), 1);
+					// createGroup({"easemobGroupId":group.groupId(),"convesation":conversation});
+					createAGroup({ easemobGroupId: group.groupId(), conversation });
 					setSelectConvType(1);
-					console.log("createGroup success:" + group.groupId());
-				}else
-					console.log("createGroup fail!errorDescription:" + res.description);
-				cancelCreateGroupAction();
+					console.log(`createGroup success:${group.groupId()}`);
+					cancelCreateGroupAction();
+					this.setState({
+						visible: false,
+					});
+				}
+				else{
+					setNotice(`创建群失败，原因: ${res.description}`, "fail");
+					// cancelCreateGroupAction();
+				}
 			});
-			console.log(3);
+			// console.log(3);
 			/*,(group,err) => {
 				if(err.errorCode == 0)
 				{
@@ -290,10 +341,6 @@ class CreateGroupView extends PureComponent {
 				cancelCreateGroupAction();
 				
 			});*/
-			cancelCreateGroupAction();
-			this.setState({
-					visible: false,
-				});
 		}
 
 
@@ -301,7 +348,18 @@ class CreateGroupView extends PureComponent {
 
 	handleCancleSelectMember(item){
 		const { cancelMembersAction } = this.props;
-		cancelMembersAction(item);
+		cancelMembersAction(item.userName);
+	}
+
+	handleCreateGroup = () => {
+		const { form } = this.wform.props;
+		form.validateFields((errors, values) => {
+			if(!errors){
+				console.log(form, values);
+				const { groupName, groupDescription, groupMembersCount, isPublicGroup, allowMemberInvited } = values;
+				this.createGroup(groupName, groupDescription, allowMemberInvited, isPublicGroup, groupMembersCount);
+			}
+		});
 	}
 
 	render(){
@@ -310,73 +368,77 @@ class CreateGroupView extends PureComponent {
 			selectConversationId,
 			selectMember,
 			membersIdOfCreateGroup,
+			membersOfCreateGroup,
 			allMembersInfo
 		} = this.props;
 		const { previewVisible, previewImage, fileList } = this.state;
-		var groupMemberInfoData = userInfo ? (selectMember ? [userInfo.user].concat(selectMember) : [userInfo.user]) : [];
-		var groupMemberIds = _.pluck(groupMemberInfoData, "easemobName");
+		var groupMemberInfoData = userInfo.userData ? (selectMember ? [userInfo.userData].concat(selectMember) : [userInfo.userData]) : [];
+		var groupMemberIds = _.pluck(groupMemberInfoData, "userName");
 		var memberInfoOfGroup;
 		return (
-			<div>
-				{/* <div className="add-members" onClick={ this.handleCreatGroup }>
-					<Icon type="plus-square-o" />
-				</div> */}
+			<React.Fragment>
+				<div className="button-add" onClick={ this.handleCreatGroup }>
+					<Icon type="plus" />
+				</div>
 				{userInfo ? 
 					<Modal
-						title="新建群"
+						title="创建群组"
 						visible={ this.state.visible }
+						onOk={ this.handleCreateGroup }
 						onCancel={ this.handleCancel }
-						mask={ false }
-						footer={ null }
-						style={ { top: 0 } }
-						width={ 700 }
+						// mask={ false }
+						// footer={ null }
+						style={ { top: 50 } }
+						cancelText="取消"
+						okText="创建"
+						width={ 660 }
 					>
 						<div className="oa-group">
-							<div className="oa-group-setting oa-group-create-setting">
-								<div>当前已选择{ membersIdOfCreateGroup.length + 1}人</div>
-								<div className="selected-members-container">
-									<div className="select-member" >
-										<HeadImageView imgUrl={ "" }></HeadImageView>
-										<div className="member-name">{ userInfo && userInfo.user.easemobName }</div>
-									</div>
-									{
-										_.map(membersIdOfCreateGroup, (member) => {
-											memberInfoOfGroup = allMembersInfo[member];
-											return (
-												<div className="select-member" key={ member }>
-													<HeadImageView imgUrl={ memberInfoOfGroup ? memberInfoOfGroup.image : "" }></HeadImageView>
-													<div className="member-name">
-														{
-															memberInfoOfGroup
-																? memberInfoOfGroup.realName || memberInfoOfGroup.username || memberInfoOfGroup.easemobName
-																: member
-														}
-													</div>
-													{
-														member == selectConversationId
-															? null
-															: <div className="cancel-member" onClick={ () => { this.handleCancleSelectMember(member);  } }>
-																<Icon type="close" />
+							<WrappedHorizontalForm wrappedComponentRef={ (form) => { this.wform = form; } } reduxProps={ this.props } createGroup={ this.createGroup }>
+								<div className="members-container">
+									<div className="oa-group-setting oa-group-create-setting">
+										<div style={ { paddingTop: "5px" } }>已选 { membersIdOfCreateGroup.length + 1} 人</div>
+										<div className="selected-members-container">
+											<div className="select-member" >
+												<AvatarImage name={ userInfo.userData.name || userInfo.userData.userName } />
+												<div className="member-name">{ userInfo.userData.name || userInfo.userData.userName }</div>
+											</div>
+											{
+												_.map(membersOfCreateGroup, (member) => {
+													// memberInfoOfGroup = allMembersInfo[member];
+													return (
+														<div className="select-member" key={ member.id }>
+															{/* <HeadImageView imgUrl={ memberInfoOfGroup ? memberInfoOfGroup.image : "" }></HeadImageView> */}
+															<AvatarImage name={ member.name } />
+															<div className="member-name">
+																{ member.name }
 															</div>
-													}
+															{
+																member.userName == selectConversationId
+																	? null
+																	: <div className="cancel-member" onClick={ () => { this.handleCancleSelectMember(member);  } }>
+																		<Icon type="close" />
+																	</div>
+															}
 
-												</div>
-											);
-										})
-									}
+														</div>
+													);
+												})
+											}
+										</div>
+									</div>
+									<div className="oa-group-member">
+										<MenuList
+											selectMemberData={ membersIdOfCreateGroup }
+											groupMemberData={ groupMemberIds }
+										/>
+									</div>
 								</div>
-								<WrappedHorizontalLoginForm reduxProps={ this.props } createGroup={ this.createGroup } />
-							</div>
-							<div className="oa-group-member">
-								<MenuList
-									selectMemberData={ membersIdOfCreateGroup }
-									groupMemberData={ groupMemberIds }
-								/>
-							</div>
+							</WrappedHorizontalForm>
 						</div>
 					</Modal> : null
 				}
-			</div>
+			</React.Fragment>
 		);
 
 	}
@@ -389,7 +451,7 @@ const mapStateToProps = state => ({
 	membersId: selectors.membersIdOfGroup(state),
 	membersName: selectors.membersNameOfGroup(state),
 	userInfo: state.userInfo,
-	// membersOfCreateGroup: state.membersOfCreateGroup,
+	membersOfCreateGroup: state.membersOfCreateGroup,
 	membersIdArray: selectors.membersIdArray(state),
 	membersIdOfCreateGroup: selectors.createGroupMembersIdArray(state),
 });

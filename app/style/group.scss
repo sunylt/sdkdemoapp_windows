@@ -1,11 +1,22 @@
 
 .oa-group{
 	display: flex;
+	flex-direction: column;
+	.ant-row{
+		margin-bottom: 10px;
+	}
+	.switch-label{
+		padding-left: 8px;
+	}
+	.members-container{
+		overflow: hidden;
+		zoom: 1;
+		border: 1px solid #E5E6EB;
+	}
 	.oa-group-setting{
-		width: 450px;
-		padding-right: 15px;
+		width: 50%;
+		float: right;
 		box-sizing: border-box;
-		border-right: 1px solid #dfe3e9;
 		.group-info{
 			overflow: hidden;
 			.group-avatar{
@@ -35,19 +46,24 @@
 		}
 	}
 	.oa-group-member{
+		float: left;
+		width: 50%;
 		.member-list{
-			width: 250px;
-			height: 540px;
+			width: 90%;
+			height: 290px;
 			overflow-y: auto;
+			.ant-menu{
+				border-right: none;
+			}
 			li{
-				height: 50px;
-				line-height: 50px;
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
+				// justify-content: space-between;
 				.avatar-name {
 					height: 40px;
 					display: flex;
+					align-items: center;
+					margin-left: 10px;
 					.member-img{
 						width: 40px;
 						height: 40px;
@@ -60,7 +76,7 @@
 
 	.oa-group-create-setting{
 		.selected-members-container{
-			height: 320px;
+			height: 245px;
 		}
 		.ant-switch{
 			margin-left: 20px;

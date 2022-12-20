@@ -218,6 +218,7 @@ class GroupSettingView extends Component {
 		} = this.props;
 		const { previewVisible, previewImage, fileList } = this.state;
 		var group = globals.groupManager.groupWithId(selectConversationId);
+		const isOwner = group.groupOwner() === userInfo.user.easemobName;
 		// 如果是群主，才能修改昵称和头像
 		if(group.groupOwner() === userInfo.user.easemobName){
 			return (
@@ -323,14 +324,112 @@ class GroupSettingView extends Component {
 	}
 
 	render(){
+		const {
+			selectConversationId,
+			userInfo,
+			globals,
+		} = this.props;
+		const { previewVisible, previewImage, fileList } = this.state;
+		var group = globals.groupManager.groupWithId(selectConversationId);
+		const isOwner = group.groupOwner() === userInfo.user.easemobName;
+
 		return (
-			<div className="group-tab">
+			<React.Fragment>
+				<div className="info">
+					<div className="operate-member operate-switch">
+						<span>群名称</span>
+						<span className="item-content">{group.groupSubject()}</span>
+						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+					</div>
+					<div className="operate-member operate-switch">
+						<span>群公告</span>
+						<span className="item-content">{group.groupAnnouncement() || "暂无公告"}</span>
+						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+					</div>
+					<div className="operate-member operate-switch">
+						<span>群介绍</span>
+						<span className="item-content">{group.groupDescription()}</span>
+						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+					</div>
+				</div>
 
-				{
-					this.showGroupInfo()
-				}
+				<div className="info">
+					<div className="operate-member operate-switch">
+						<span>置顶聊天</span>
+						<Switch
+							defaultChecked={ false }
+							onChange={ () => {} }
+						/>
+					</div>
+					<div className="operate-member operate-switch">
+						<span>消息免打扰</span>
+						<Switch
+							defaultChecked={ false }
+							onChange={ () => {} }
+						/>
+					</div>
+					<div className="operate-member operate-switch">
+						<span>屏蔽群聊</span>
+						<Switch
+							defaultChecked={ group.isMessageBlocked() }
+							onChange={ this.handleChangeMessageFrom }
+						/>
+					</div>
+					<div className="operate-member">
+						<span className="text-button" onClick={ this.handleClearRecord }>清空聊天记录</span>
+					</div>
+				</div>
 
-			</div>
+				<div className="info">
+					{!isOwner ?
+						<div className="operate-member">
+							<span className="text-button" onClick={ this.handleExitGroupDialog }>退出群组</span>
+						</div>
+						:
+						<div  className="operate-member">
+							<span className="text-button" onClick={ this.handleDestoryGroupDialog }>解散群组</span>
+						</div>
+					}
+				</div>
+
+				
+				<Modal
+					title="解散群组"
+					visible={ this.state.destoryGroupDialogVisible }
+					onOk={ this.handleDissolveGroup }
+					onCancel={ this.handleCancelDestoryGrop }
+				>
+					<div>
+						确定要解散群组吗？
+					</div>
+				</Modal>
+
+				<Modal
+					title="清空聊天记录"
+					visible={ this.state.messageClearVisible }
+					onOk={ this.handleClearMessage }
+					onCancel={ this.handleCancelClearMessages }
+				>
+					<div>
+						确定要清空聊天记录吗？
+					</div>
+					<div>
+						您的聊天记录清空后将无法找回，请确定是否要清空聊天记录
+					</div>
+				</Modal>
+				{/* 退出群组确认框 */}
+				<Modal
+					title="退出群组"
+					visible={ this.state.exitGroupDialogVisible }
+					onOk={ this.handleExitGroup }
+					onCancel={ this.handleCancelExitGroup }
+				>
+					<div>
+						确定要退出群组吗？
+					</div>
+				</Modal>
+				{/* {this.showGroupInfo()} */}
+			</React.Fragment>
 		);
 
 	}

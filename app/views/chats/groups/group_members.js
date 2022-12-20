@@ -7,6 +7,7 @@ import _ from "underscore";
 import HeadImageView from "@/views/common/head_image";
 import MenuList from "../contacts/contact_all_list";
 import ContactGroupMemberView from "../contacts/contact_group_member_list";
+import AvatarImage from "../contacts/AvatarImage";
 var count = 0;
 
 class GroupMembersView extends Component {
@@ -42,6 +43,7 @@ class GroupMembersView extends Component {
 
 		this.easemob = globals.easemob;
 		this.groupManager = globals.groupManager;
+		this.groupId = selectConversationId;
 		// var me = this;
 		// var timer = setTimeout(function(){
 		// 	me.group = me.groupManager.fetchGroupSpecification(selectConversationId, me.error);
@@ -428,13 +430,34 @@ class GroupMembersView extends Component {
 
 	}
 
+	componentDidMount(){
+		console.log("group_members did mount");
+		this.groupManager.fetchGroupSharedFiles(this.groupId, 1, 20).then((res) => {
+			if(res.code == "0" && res.data && res.data.length){
+				console.log("files>>>", res.data);
+				this.setState({
+					fileList: res.data
+				});
+			}
+			else{
+				this.setState({
+					fileList: []
+				});
+			}
+		}, (error) => {
+			console.error("files fetch error", error);
+		});
+	}
+
 	render(){
 		const {
 			userInfo,
 			selectConversationId,
 			allMembersInfo,
+			allUsers,
 			globals
 		} = this.props;
+		const { fileList } = this.state;
 		// 是否为群主
 		var group = globals.groupManager.groupWithId(selectConversationId);
 		var owner = group.groupOwner();
@@ -449,8 +472,8 @@ class GroupMembersView extends Component {
 		let type = group.groupSetting().style();
 		console.log("type:" + type);
 		return (
-			<div className="oa-main-list oa-conversation-list conversation-group-list">
-				{
+			<React.Fragment>
+				{/* {
 					// 创建群时开放允许普通成员邀请成员开关，则普通成员也可添加成员
 					(type && type == 1) || (owner == userInfo.user.easemobName || adminMembers.indexOf(userInfo.user.easemobName) >= 0)
 						? <div className="operate-members" onClick={ this.handleShowAddDialog }>
@@ -471,40 +494,49 @@ class GroupMembersView extends Component {
 				}
 				{
 					this.showRemoveGroupMember()
-				}
-				<Menu
+				} */}
+				<div className="group-info-header">
+					<AvatarImage name="群" />
+					<h3>{group.groupSubject()}</h3>
+					<p>{group.groupDescription()}</p>
+				</div>
+				<h4>群成员（{group.groupMembersCount()}）人</h4>
+				<ul
 					style={ { border: "none" } }
 					mode="inline"
-					onSelect={ this.handleSelect }
-					onClick={ this.handleClick }
+					// onSelect={ this.handleSelect }
+					// onClick={ this.handleClick }
+					className="group-member-list"
 				>
 					{
 						_.map([owner].concat(adminMembers).concat(members), (member) => {
-							console.log("groupMember:"+member);
-							memberInfoOfGroup = allMembersInfo[member];
+							
+							memberInfoOfGroup = allUsers[member];
 							return (
-								<Menu.Item key={ member }>
+								<li key={ memberInfoOfGroup.userName }>
 									<div className="avatar-name">
-										<HeadImageView
-											imgUrl={ memberInfoOfGroup ? memberInfoOfGroup.image : "" }
-										/>
+										<AvatarImage name={ memberInfoOfGroup.name } />
 										<div className="item-top">
-											<span className="ellipsis item-name">
-												{
-													member
-												}
+											<span className="ellipsis item-name" title={ memberInfoOfGroup.name }>
+												{memberInfoOfGroup.name}
 											</span>
 										</div>
 									</div>
 									{
 										this.showMemberInfo(member)
 									}
-								</Menu.Item>
+								</li>
 							);
 						})
 					}
-				</Menu>
-			</div>
+				</ul>
+				<div className="group-share-files">
+					<h4>群文件<span><Icon type="download" /><Icon type="delete" /></span></h4>
+					<div className="file-list">
+						{fileList.length ? fileList.map(file => <div key={ file.fileId() }><Icon type="file" />{file.fileName() || file.fileId()}</div>) : "暂无群文件"}
+					</div>
+				</div>
+			</React.Fragment>
 		);
 
 
@@ -517,6 +549,7 @@ const mapStateToProps = state => ({
 	selectConversationId: state.selectConversationId,
 	allMembersInfo: state.allMembersInfo,
 	userInfo: state.userInfo,
+	allUsers: state.org.allUsers,
 	addMembers: selectors.getAddMembers(state),
 	removeMembers: selectors.getRemoveMembers(state),
 	membersIdOfEditGroup: selectors.membersIdArray(state),

@@ -24,7 +24,7 @@ class Navbar extends Component {
 		let url = ROUTES.chats.recents.__;
 		this.handleClickNav = this.handleClickNav.bind(this);
 		navbarItems.forEach((item, index) => {
-			console.log(item);
+			// console.log(item);
 			if(window.location.hash.indexOf(item.to) > -1){
 				url = item.to;
 			}

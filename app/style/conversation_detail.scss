@@ -21,6 +21,7 @@
 		// flex: 3 1 400px;
 		width: 100%;
     .chat-primary{
+			position: relative;
       display: flex;
       flex-direction: row;
       height: calc(100% - 56px);
@@ -33,29 +34,129 @@
       width: 100%;
 		}
     .chat-aside{
+			position: absolute;
       width: 0;
+			right: 0;
       height: 100%;
 			transition: width 0.3s linear;
 			overflow: hidden;
+			background-color: #fff;
+			box-shadow: -10px 10px 10px rgba($color: #4e4d4d, $alpha: 0.1);
     }
 		.show-card{
-			width: 300px;	
+			width: 400px;
 		}
 	}
 	.operate-member {
-		cursor: pointer;
+		position: relative;
+		.item-content{
+			color: #86909C;
+			width: 260px;
+			margin-right: 20px;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	overflow: hidden;
+			text-align: right;
+			cursor: pointer;
+		}
+		.anticon{
+			position: absolute;
+			right: 10px;
+    	top: 17px;
+			color: #87909c;
+			cursor: pointer;
+		}
 	}
 	.group-tab{
 		// flex: 1 1 200px;
-		width: 230px;
-		>div{
-			width: 100%;
-			height: 100%;
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+		// >div{
+		// 	width: 100%;
+		// 	height: 100%;
+		// }
+
+		.group-info-header{
+			overflow: hidden;
+			zoom: 1;
+			padding: 15px;
+			.user-avatar{
+				float: left;
+			}
+			h3{
+				padding-left: 44px;
+				margin: 0;
+			}
+			p{
+				padding-left: 44px;
+				color: #86909C;
+			}
+		}
+
+		h4{
+			padding: 10px 15px;
+			span{
+				float: right;
+				.anticon{
+					margin-left: 10px;
+					cursor: pointer;
+					:hover{
+						color: #009eec;
+					}
+				}
+			}
+		}
+		.group-member-list{
+			padding: 10px;
+			overflow: hidden;
+			zoom: 1;
+			li{
+				float: left;
+				width: 47px;
+				margin: 5px 5px 0;
+				position: relative;
+				text-align: center;
+				.user-avatar{
+					margin-right: 0;
+				}
+				.item-name{
+					display: block;
+				}
+				.member-operate{
+					position: absolute;
+					top: -8px;
+					right: 0;
+					.anticon{
+						padding: 2px;
+						background-color: red;
+						color: #fff;
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+
+		.group-member-list{
+			
+	
+		}
+		.group-share-files{
+			.file-list{
+				padding: 0 15px;
+				max-height: 200px;
+				overflow-y: auto;
+				>div{
+					height: 24px;
+					line-height: 24px;
+				}
+			}
 		}
 		.oa-main-list{
 			height: calc(100% - 60px);
 			// height: 100%;
 			overflow-y: auto;
+			border-right: none;
 			>ul{
 				height: auto;
 				overflow-y: hidden;
@@ -72,6 +173,9 @@
 			.info{
 				width: 100%;
 			}
+		}
+		.group-info-header{
+
 		}
 	}
 	.member-info{
@@ -108,7 +212,7 @@
 			background: #f3f5f7;
 			height: 48px;
 			line-height: 48px;
-			padding: 0 10px;
+			padding: 0 10px 0 15px;
 			border-bottom: 1px solid #eee;
 		}
 	}
@@ -124,13 +228,18 @@
 	}
 	>ul{
     background-color: #fff !important;
+		border-right: none;
 		>li {
+			width: 100% !important;
 			display: flex;
 			align-items: center;
 			color: #555;
 			padding: 5px 10px!important;
 			height: auto!important;
 			line-height: 30px!important;
+			&:first-child{
+				margin-top: 0;
+			}
 			&::after{
 				border: none !important;
 			}
@@ -177,7 +286,7 @@
     background-color: #f4f4f4;
 	}
 	&::-webkit-scrollbar-thumb {
-    background-color: #999;
+    background-color: #d1cece;
     border-radius: 3px;
 	}
 	// 通知类消息

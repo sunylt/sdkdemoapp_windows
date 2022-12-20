@@ -121,7 +121,7 @@ class RtcView extends React.Component {
 		}
 		this.props.setRtcStatus(0);
 		this.props.setRtcData({});
-		ipcRenderer.send("closeRtcWindow");
+		ipcRenderer.send("close-rtc-window");
 	}
 
 	// handleDestroyRoom = () => {
@@ -151,10 +151,13 @@ class RtcView extends React.Component {
 		// const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
 		// rtc.init({ userId: easemobName, rtcAppId, rtcAppKey, rtcServer });
 		// rtc.render(document.querySelector(".rtc-meeting-view"));
-		ipcRenderer.on("leaveRtcRoom", this.handleLeaveRoom);
+		ipcRenderer.on("leave-rtc-room", this.handleLeaveRoom);
+	}
+	componentWillUnmount(){
+		ipcRenderer.removeAllListeners("leave-rtc-room");
 	}
 	render(){
-		console.log("rtc-view>>>", this.props);
+		// console.log("rtc-view>>>", this.props);
 		const { rtcInfo } = this.props;
 		// const { voff, aoff } = this.state;
 		return (

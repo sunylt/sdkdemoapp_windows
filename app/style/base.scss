@@ -1,6 +1,7 @@
 
 body{
 	user-select: none;
+	overflow: hidden;
 	>.page{
 		height: 100%;
 		>div {
@@ -33,6 +34,10 @@ body{
 
 	p{
 		margin-bottom: 0;
+	}
+
+	.text-button{
+		cursor: pointer;
 	}
 
 }
