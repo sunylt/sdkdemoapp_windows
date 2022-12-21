@@ -112,8 +112,7 @@ class AppRemote {
 			event.returnValue = config;
 		});
 
-		ipcMain.on("initRtcWindow", (event, data) => {
-			console.log(me.rtcWindow);
+		ipcMain.on("rtc-init-window", (event, data) => {
 			if(!me.rtcWindow || me.rtcWindow.isDestroyed()){
 				console.log("create  new rtc window.");
 				this.createRtcWindow(data);
@@ -171,9 +170,10 @@ class AppRemote {
 			minimizable: true,
 			// title: "音视频通话",
 			webPreferences: {
-				nodeIntegration: true,
-				// enableRemoteModule: true,
 				webSecurity: false,
+				nodeIntegration: true,
+				contextIsolation: false,
+				enableRemoteModule: true,
 				// preload: path.join(app.getAppPath(), '/dist/preLoad.js'), // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
 			}
 		});

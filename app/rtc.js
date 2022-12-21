@@ -92,7 +92,6 @@ toolbar.video.addEventListener("click", (e) => {
 
 toolbar.iconfontphone.addEventListener("click", () => {
 	rtcHelper.leaveRoom();
-	mainWindow.webContents.send("leave-rtc-room");
 	isCalling = false;
 });
 

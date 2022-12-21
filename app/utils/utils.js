@@ -18,19 +18,19 @@ const utils = {
 		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
 		return new Promise((resolve, reject) => {
 			try{
-				const { winId, isNew } = ipcRenderer.sendSync("initRtcWindow");
+				const { winId, isNew } = ipcRenderer.sendSync("rtc-init-window");
 				const rtcWindow = remote.BrowserWindow.fromId(winId);
+				const winReady = () => {
+					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+					rtcWindow.show();
+					resolve(rtcWindow);
+				};
 
-				rtcWindow.webContents.once("did-finish-load", () => {
-					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
-					rtcWindow.show();
-					resolve(rtcWindow);
-				});
-				
-				if(!isNew){
-					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
-					rtcWindow.show();
-					resolve(rtcWindow);
+				if(isNew){
+					rtcWindow && rtcWindow.webContents.once("did-finish-load", winReady);
+				}
+				else{
+					winReady();
 				}
 
 				if(!winId){
