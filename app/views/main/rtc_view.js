@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "@/stores/actions";
 import { utils } from "../../utils/utils";
 import { ipcRenderer } from "electron";
+import _ from "underscore";
 
 class RtcView extends React.Component {
 
@@ -110,7 +111,7 @@ class RtcView extends React.Component {
 
 	handleLeaveRoom = () => {
 		const { status, data } = this.props.rtcInfo;
-		
+
 		if(status == 1){
 			this.sendTextMsg(data.invitee, data.chatType, "取消音视频", {
 				conferenceNotice: 4,
