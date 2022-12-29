@@ -500,7 +500,7 @@ class GroupMembersView extends Component {
 					<h3>{group.groupSubject()}</h3>
 					<p>{group.groupDescription()}</p>
 				</div>
-				<h4>群成员（{group.groupMembersCount()}）人</h4>
+				<h4>群成员（{group.groupMembersCount()}）</h4>
 				<ul
 					style={ { border: "none" } }
 					mode="inline"
