@@ -173,7 +173,7 @@ export const messages = (state = {}, { type, payload = {} }) => {
 	// 删除消息
 	case "app/deleteMessage":
 		payload.messages.splice(payload.messages.indexOf(payload.deleteMsg), 1);
-		return _.extend({}, state, { [payload.id]: payload.messages });zz
+		return _.extend({}, state, { [payload.id]: payload.messages });
 	default:
 		return state;
 
