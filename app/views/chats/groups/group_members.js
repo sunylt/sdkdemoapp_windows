@@ -8,6 +8,7 @@ import HeadImageView from "@/views/common/head_image";
 import MenuList from "../contacts/contact_all_list";
 import ContactGroupMemberView from "../contacts/contact_group_member_list";
 import AvatarImage from "../contacts/AvatarImage";
+import { remote } from "electron";
 var count = 0;
 
 class GroupMembersView extends Component {
@@ -430,6 +431,56 @@ class GroupMembersView extends Component {
 
 	}
 
+	handleUpload = () => {
+		remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+			title: "上传群文件"
+		}).then((result) => {
+			console.log(result);
+			if(!result.canceled && result.filePaths.length){
+				const filePath = result.filePaths[0];
+				
+				const emUploadCallback = new remote.app.easemob.EMCallback();
+
+				emUploadCallback.onSuccess(() => {
+					console.log("upload emCallback call back success");
+					return true;
+				});
+    
+				emUploadCallback.onFail((error) => {
+					console.log("upload emCallback call back fail");
+					console.log(error.description);
+					console.log(error.errorCode);
+					return true;
+				});
+				
+				emUploadCallback.onProgress((progress) => {
+					if(progress >= 98){
+						console.log(`upload call back progress ${progress}`);
+					}
+				});
+
+				/**
+     * 上传群文件
+     * param groupId 群组ID，输入参数，String
+     * param filepath 文件路径，输入参数，String
+     * param emUploadCallback 设置回调，输入
+     * 返回Promise对象，response参数为SharedFileResult
+     */
+				this.groupManager.uploadGroupSharedFile(this.groupId, filePath, emUploadCallback).then((res) => {
+					if(res.code == 0 && res.data){
+						const fileList = this.state.fileList;
+						fileList.push(res.data);
+						this.setState({
+							fileList
+						});
+					}
+				}, () => {
+					
+				});
+			}
+		});
+	}
+
 	componentDidMount(){
 		console.log("group_members did mount");
 		this.groupManager.fetchGroupSharedFiles(this.groupId, 1, 20).then((res) => {
@@ -533,7 +584,15 @@ class GroupMembersView extends Component {
 				<div className="group-share-files">
 					<h4>群文件<span><Icon type="download" /><Icon type="delete" /></span></h4>
 					<div className="file-list">
-						{fileList.length ? fileList.map(file => <div key={ file.fileId() }><Icon type="file" />{file.fileName() || file.fileId()}</div>) : "暂无群文件"}
+						{
+							fileList.map(file => (
+								<div key={ file.fileId() } title={ file.fileName() || file.fileId() }>
+									<Icon type="file" />
+									<span>{file.fileName() || file.fileId()}</span>
+								</div>
+							))
+						}
+						<div className="btn-upload" onClick={ this.handleUpload }><Icon type="upload" /><span>上传</span></div>
 					</div>
 				</div>
 			</React.Fragment>

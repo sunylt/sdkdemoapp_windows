@@ -111,6 +111,16 @@
 			padding: 10px;
 			overflow: hidden;
 			zoom: 1;
+			max-height: 130px;
+			overflow-y: scroll;
+			&::-webkit-scrollbar{
+				width: 4px;
+				background-color: #f4f4f4;
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: #d1cece;
+				border-radius: 2px;
+			}
 			li{
 				float: left;
 				width: 47px;
@@ -136,20 +146,44 @@
 				}
 			}
 		}
-
-		.group-member-list{
-			
-	
-		}
 		.group-share-files{
 			.file-list{
 				padding: 0 15px;
-				max-height: 200px;
+				max-height: 100px;
 				overflow-y: auto;
-				>div{
-					height: 24px;
-					line-height: 24px;
+				zoom: 1;
+				&::-webkit-scrollbar{
+					width: 4px;
+					background-color: #f4f4f4;
 				}
+				&::-webkit-scrollbar-thumb {
+					background-color: #d1cece;
+					border-radius: 2px;
+				}
+				>div{
+					height: 54px;
+					line-height: 24px;
+					float: left;
+					width: 54px;
+					text-align: center;
+					margin: 0 10px;
+					.anticon{
+						font-size: 20px;
+					}
+					span{
+						display: block;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+			}
+			.btn-upload{
+				border: 1px solid #E5E6EB;
+				background-color: #F2F3F5;
+				display: inline-block;
+    		padding: 0 10px;
+				cursor: pointer;
 			}
 		}
 		.oa-main-list{
@@ -237,6 +271,7 @@
 			padding: 5px 10px!important;
 			height: auto!important;
 			line-height: 30px!important;
+			padding-right: 0!important;
 			&:first-child{
 				margin-top: 0;
 			}
@@ -256,13 +291,18 @@
         }
       }
 
-			>div{
+			.info-chat{
 				width: calc(100% - 50px);
-				max-width: 174px;
+				padding-right: 15px;
 				.item-top{
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
+					.time{
+						font-size: 12px;
+						color: #b6b6b6;
+						zoom: 0.8;
+					}
 				}
 				.item-name{
 					margin-right: 3px;
@@ -280,7 +320,7 @@
 	height: calc(100% - 150px);
 	overflow-y: auto;
 	flex: 2 1 450px;
-  background-color: #f4f4f4;
+  // background-color: #f4f4f4;
   &::-webkit-scrollbar{
 		width: 6px;
     background-color: #f4f4f4;
@@ -323,8 +363,8 @@
 			.message-info{
 				position: relative;
 				display: inline-block;
-				background: #24BDB9;
-				color: #fff;
+				background: #CCE0FF;
+				color: #000;
 				// padding: 10px;
 				border-radius: 4px;
 				word-break: break-all;
@@ -390,8 +430,7 @@
 		}
 		.left{
 			.message-info{
-				background: #f3f5f7;
-				color: #405e7a;
+				background: #F2F3F5;
 			}
 		}
 	}

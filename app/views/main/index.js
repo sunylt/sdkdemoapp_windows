@@ -394,74 +394,59 @@ class MainView extends PureComponent {
 			// 	logout();
 			// }
 
-		this.emclient.login( userInfo.user.easemobName, userInfo.user.easemobPwd).then((res) => {
-			console.log('loginCode', res);
-			// 获取好友列表
-			this.contactManager.getContactsFromServer().then(res => {
-				var res = this.contactManager.allContacts();
-				res.data.map((item) => {
-					console.log(item);
-				})
-				res.code == 0 && setAllContacts({contacts:res.data});
-			});
+			this.emclient.login(userInfo.user.easemobName, userInfo.user.easemobPwd).then((res) => {
+				console.log('loginCode', res);
+				// 获取好友列表
+				// this.contactManager.getContactsFromServer().then((res) => {
+				// 	var res = this.contactManager.allContacts();
+				// 	res.data.map((item) => {
+				// 		console.log(item);
+				// 	});
+				// 	res.code == 0 && setAllContacts({ contacts: res.data });
+				// });
 		
 
-		// 获取用户所在的组
+				// 获取用户所在的组
 		
-			this.groupManager.fetchAllMyGroups().then(res => {
-				let allGroup = this.groupManager.allMyGroups().data;
-				let allGroups = [];
-				allGroup.map((group) => {
-				allGroups.push(group.groupId());
-			});
-			setGroupChats({allGroups});
+				this.groupManager.fetchAllMyGroups().then((res) => {
+					let allGroup = this.groupManager.allMyGroups().data;
+					let allGroups = [];
+					allGroup.map((group) => {
+						allGroups.push(group.groupId());
+					});
+					setGroupChats({ allGroups });
+				});
 
+				// this.chatManager.getConversations();// 获取缓存中的会话列表
 		
-		});
-
-		// this.chatManager.getConversations();// 获取缓存中的会话列表
-		
-		let conversationType = 0;
-		this.chatManager.getConversations().map((item) => {
-			var msgObj = {};
-			var unReadMsgMsgId = [];
-			conversationType = item.conversationType();
-			if(conversationType == 1)
-			{
-				let curgroup = this.groupManager.groupWithId(item.conversationId());
-				if(curgroup.groupSubject() == "")
-				{
-					this.chatManager.removeConversation(item.conversationId());
-					return;
-				}
-			}
-			//conversation = this.chatManager.conversationWithType(item.conversationId(), conversationType);
-			let unreadNum = item.unreadMessagesCount();
-			messages = item.loadMoreMessagesByMsgId("", unreadNum>20?unreadNum:20,0);
-			messages.map((msg) => {
-				msgObj[msg.msgId()] = msg.isRead();
-			});
-			_.map(msgObj, (msg, key) => {
-				!msg && unReadMsgMsgId.push(key);
-			});
-			unReadMsgCountAction({ id: item.conversationId(), unReadMsg: unReadMsgMsgId });
-			initConversationsActiton({ id: item.conversationId(), msgs: messages, "conversation":item });
-		});
+				let conversationType = 0;
+				this.chatManager.getConversations().map((item) => {
+					var msgObj = {};
+					var unReadMsgMsgId = [];
+					conversationType = item.conversationType();
+					if(conversationType == 1){
+						let curgroup = this.groupManager.groupWithId(item.conversationId());
+						if(curgroup.groupSubject() == "")
+						{
+							this.chatManager.removeConversation(item.conversationId());
+							return;
+						}
+					}
+					// conversation = this.chatManager.conversationWithType(item.conversationId(), conversationType);
+					let unreadNum = item.unreadMessagesCount();
+					messages = item.loadMoreMessagesByMsgId("", unreadNum>20?unreadNum:20,0);
+					messages.map((msg) => {
+						msgObj[msg.msgId()] = msg.isRead();
+					});
+					_.map(msgObj, (msg, key) => {
+						!msg && unReadMsgMsgId.push(key);
+					});
+					unReadMsgCountAction({ id: item.conversationId(), unReadMsg: unReadMsgMsgId });
+					initConversationsActiton({ id: item.conversationId(), msgs: messages, conversation: item });
+				});
 
 				fetchTopOrg(userInfo.user.easemobName)
 				.then((res) => {
-					// if(res.entities){
-					// 	res.entities.forEach((orgItem) => {
-					// 		const { topOrg, userOrgs } = orgItem;
-					// 		setUserOrg({ topOrg, userOrgs });
-					// 		fetchChildOrg(topOrg.id, true).then(res => {
-					// 			console.log("allll>>", res);
-					// 		});
-					// 		fetchOrgUser(topOrg.id).then(res => {
-					// 			console.log("usersss>", res);
-					// 		})
-					// 	});
-					// }
 					if(res.entities.length){
 						const { topOrg, userOrgs } = res.entities[0];
 						setUserOrg({ topOrg, userOrgs });
@@ -502,14 +487,14 @@ class MainView extends PureComponent {
 				})
 				.catch(error => console.log("fetchOrg error.", error));
 
-		if(res.code != 0){
-			this.props.history.push('/index');
-			setNotice(`登录失败，${res.code == "202" ? "用户名或密码错误" : res.description}`,'fail');
-			this.emclient.logout();
-			logout();
-			return false;
-		}
-	});
+				if(res.code != 0){
+					this.props.history.push("/index");
+					setNotice(`登录失败，${res.code == "202" ? "用户名或密码错误" : res.description}`, "fail");
+					this.emclient.logout();
+					logout();
+					return false;
+				}
+			});
 		}
 		else{
 			this.props.history.push("/index");

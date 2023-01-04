@@ -80,8 +80,18 @@ export const getAtMembersOfGroup = (state) => {
 
 // 按最后一条消息的时间排序
 export const conversationsSort = (state) => {
-	var conversations = _.values(state.conversations);
-	console.log(conversations)
-	return _.sortBy(conversations, "sortTime").reverse();
+	const conversations = _.values(state.conversations);
+	const res = _.sortBy(conversations, "sortTime").reverse();
+	const a = [], b = [];
+	_.each(res, function(value){
+		const ext = value.extField() ? JSON.parse(value.extField()) : {};
+		if(ext.isTop){
+			a.push(value);
+		}
+		else{
+			b.push(value);
+		}
+	});
+	return a.concat(b);
 
 };

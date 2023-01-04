@@ -34,10 +34,12 @@ class MemberSettingView extends PureComponent {
 	}
 
 	handleSetTop = (checked) => {
+		const { setTop } = this.props;
 		const extField = this.conversation.extField();
 		const ext = extField ? JSON.parse(extField) : {};
 		ext.isTop = checked;
 		this.conversation.setExtField(JSON.stringify(ext));
+		setTop({ id: this.conversation.conversationId(), top: !!checked });
 	}
 
 	handleCancelClearMessages(){

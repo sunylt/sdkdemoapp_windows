@@ -72,6 +72,10 @@ export const sendMsg = payload => ({
 	type: "app/sendMsg",
 	payload
 });
+export const setTop = payload => ({
+	type: "app/setTop",
+	payload
+});
 export const receiveMsgAction = payload => ({
 	type: "app/receiveMsg",
 	payload

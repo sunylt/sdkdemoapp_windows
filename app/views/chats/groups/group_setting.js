@@ -10,8 +10,8 @@ var _const = require("@/views/common/domain");
 class GroupSettingView extends Component {
 	constructor(props){
 		super(props);
-		const { selectConversationId,globals } = this.props;
-		var group = globals.groupManager.groupWithId(selectConversationId);
+		const { selectConversationId, globals } = this.props;
+		const group = globals.groupManager.groupWithId(selectConversationId);
 		this.state = {
 			chatName: group.groupSubject(),
 			avatarUrl: "",
@@ -26,9 +26,12 @@ class GroupSettingView extends Component {
 				}
 			],
 
+			groupAnnouncement: "",
 			messageClearVisible: false,
 			destoryGroupDialogVisible: false,
-			exitGroupDialogVisible: false
+			exitGroupDialogVisible: false,
+			showEditBox: false,
+			editData: {}
 		};
 		// this.messageFromValue = emGroup.isMessageBlocked();
 		// this.handleOpenChange = this.handleOpenChange.bind(this);
@@ -49,6 +52,7 @@ class GroupSettingView extends Component {
 
 		this.handleCancelExitGroup = this.handleCancelExitGroup.bind(this);
 		this.handleExitGroupDialog = this.handleExitGroupDialog.bind(this);
+		this.group = group;
 	}
 
 	// 解散群组
@@ -323,6 +327,70 @@ class GroupSettingView extends Component {
 		);
 	}
 
+	handleEditGroupData = (title, type, content) => {
+		this.setState({
+			showEditBox: true,
+			editData: {
+				title,
+				type,
+				content,
+			}
+		});
+	}
+
+	handleChangeTextArea = (e) => {
+		const editData = this.state.editData;
+		editData.content = e.target.value;
+		this.setState(editData);
+	}
+
+	handleSaveEditData = () => {
+		const {
+			selectConversationId,
+			globals,
+		} = this.props;
+		const { type, content } = this.state.editData;
+		console.log(globals.groupManager);
+		if(type == 1){
+			globals.groupManager.changeGroupSubject(selectConversationId, content);
+		}
+		else if(type == 2){
+			globals.groupManager.updateGroupAnnouncement(selectConversationId, content).then((res) =>{
+				console.log("群公告完成更新>>", content);
+			},
+			(error) => {});
+		}
+		else if(type == 3){
+			globals.groupManager.changeGroupDescription(selectConversationId, content);
+		}
+		this.setState({
+			showEditBox: false
+		});
+	}
+
+	handleSetTop = (checked) => {
+		const { setTop } = this.props;
+		const extField = this.conversation.extField();
+		const ext = extField ? JSON.parse(extField) : {};
+		ext.isTop = checked;
+		this.conversation.setExtField(JSON.stringify(ext));
+		setTop({ id: this.conversation.conversationId(), top: !!checked });
+	}
+
+	componentDidMount(){
+		const {
+			selectConversationId,
+			globals,
+		} = this.props;
+		globals.groupManager.fetchGroupAnnouncement(selectConversationId).then((res) => {
+			if(res && res.code == 0){
+				this.setState({
+					groupAnnouncement: res.data
+				});
+			}
+		}, () => {});
+	}
+
 	render(){
 		const {
 			selectConversationId,
@@ -330,26 +398,33 @@ class GroupSettingView extends Component {
 			globals,
 		} = this.props;
 		const { previewVisible, previewImage, fileList } = this.state;
-		var group = globals.groupManager.groupWithId(selectConversationId);
+		const group = globals.groupManager.groupWithId(selectConversationId);
+		const conversation = globals.chatManager.conversationWithType(selectConversationId, 1);
 		const isOwner = group.groupOwner() === userInfo.user.easemobName;
+		const subject = group.groupSubject();
+		const annc = group.groupAnnouncement();
+		const desc = group.groupDescription();
+		const ext = conversation.extField() ? JSON.parse(conversation.extField()) : {};
 
+		this.conversation = conversation;
+		
 		return (
 			<React.Fragment>
 				<div className="info">
 					<div className="operate-member operate-switch">
 						<span>群名称</span>
-						<span className="item-content">{group.groupSubject()}</span>
-						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+						<span className="item-content">{subject}</span>
+						<Icon type={ isOwner ? "edit" : "right" } onClick={ () => this.handleEditGroupData("群名称", "1", subject) } />
 					</div>
 					<div className="operate-member operate-switch">
 						<span>群公告</span>
-						<span className="item-content">{group.groupAnnouncement() || "暂无公告"}</span>
-						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+						<span className="item-content">{annc}</span>
+						<Icon type={ isOwner ? "edit" : "right" } onClick={ () => this.handleEditGroupData("群公告", "2", annc) } />
 					</div>
 					<div className="operate-member operate-switch">
 						<span>群介绍</span>
-						<span className="item-content">{group.groupDescription()}</span>
-						{isOwner ? <Icon type="edit" /> : <Icon type="right" />}
+						<span className="item-content">{desc}</span>
+						<Icon type={ isOwner ? "edit" : "right" } onClick={ () => this.handleEditGroupData("群介绍", "3", desc) } />
 					</div>
 				</div>
 
@@ -357,8 +432,8 @@ class GroupSettingView extends Component {
 					<div className="operate-member operate-switch">
 						<span>置顶聊天</span>
 						<Switch
-							defaultChecked={ false }
-							onChange={ () => {} }
+							defaultChecked={ !!ext.isTop }
+							onChange={ this.handleSetTop }
 						/>
 					</div>
 					<div className="operate-member operate-switch">
@@ -391,6 +466,15 @@ class GroupSettingView extends Component {
 						</div>
 					}
 				</div>
+
+				<Modal
+					title={ this.state.editData.title }
+					visible={ this.state.showEditBox }
+					onCancel={ () => this.setState({ showEditBox: false }) }
+					onOk={ this.handleSaveEditData }
+				>
+					<Input.TextArea value={ this.state.editData.content } onChange={ this.handleChangeTextArea } disabled={ !isOwner }></Input.TextArea>
+				</Modal>
 
 				
 				<Modal

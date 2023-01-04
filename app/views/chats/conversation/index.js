@@ -14,7 +14,7 @@ import moment from "moment";
 class ConversationView extends PureComponent {
 
   state = {
-  	showCard: true
+  	showCard: false
   }
 
   showInfo(){

@@ -162,7 +162,6 @@ class ConversationListView extends Component {
 			globals
 		} = this.props;
 		var groupManager = globals.groupManager;
-		console.log("selectconvkey:" + selectConversationId);
 		return (
 			<Menu
 				mode="inline"
@@ -180,11 +179,15 @@ class ConversationListView extends Component {
 						let param = conversationId + conversationType;
 						const ext = item.extField() ? JSON.parse(item.extField()) : {};
 						return (
-							//key传参为会话id+会话类型
-							<Menu.Item 
-							key={ param}>
-								<HeadImageView/>
-								<div onContextMenu={ e => this.handleContextMenu(e, item.conversationId()) }>
+							// key传参为会话id+会话类型
+							<Menu.Item key={ param }>
+								<Badge
+									count={ item.conversationId() == selectConversationId ?
+										0 : (unReadMessageCount[item.conversationId()] || []).length }
+								>
+									<HeadImageView />
+								</Badge>
+								<div className="info-chat" onContextMenu={ e => this.handleContextMenu(e, item.conversationId()) }>
 									<div className="item-top">
 										<span className="ellipsis item-name">
 											{/* { selectGroup ? selectGroup.chatName : selectMember.realName } */}
@@ -194,15 +197,15 @@ class ConversationListView extends Component {
 													: (ext.name || ext.userid || item.conversationId())
 											}
 										</span>
-										{/* <span>{this.showTime(item.latestMessage())}</span> */}
+										<span className="time">{this.showTime(item.latestMessage())}</span>
 										{/* 未读消息数 */}
-										<Badge
+										{/* <Badge
 											count={
 												item.conversationId() == selectConversationId
 													? 0
 													: (unReadMessageCount[item.conversationId()] || []).length
 											}
-										/>
+										/> */}
 									</div>
 									<div className="ellipsis item-last-msg">
 										{/* // 这个会话里有人 @ 我 */}
