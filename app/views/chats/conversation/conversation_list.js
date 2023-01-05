@@ -115,8 +115,8 @@ class ConversationListView extends Component {
 
 	// 最后一条消息的时间，今天: 具体时间  其他时间：日期  没有最后一条消息则时间为空
 	showTime(latestMessage){
-		var dateTime = latestMessage.timestamp();
-		if(latestMessage.bodies()){
+		var dateTime = latestMessage && latestMessage.msgId() ? latestMessage.timestamp() : "";
+		if(dateTime && latestMessage.bodies()){
 			const today = moment().format("YY/MM/DD");
 			const dateOfLastMsg = moment(dateTime).format("YY/MM/DD");
 			if(dateOfLastMsg == today){
