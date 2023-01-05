@@ -136,7 +136,7 @@ class HorizontalForm extends PureComponent {
 							onChange={ this.handleSetPublic }
 						/>
 					)}
-					<span className="switch-label">公开群组</span>
+					<span className="switch-label">公开群组<em>其他用户不能查找到此群</em></span>
 				</FormItem>
 				<FormItem wrapperCol={ { offset: 4 } }>
 					{getFieldDecorator("allowMemberInvited", {
@@ -148,7 +148,7 @@ class HorizontalForm extends PureComponent {
 							onChange={ this.handleChangeInvite }
 						/>
 					)}
-					<span className="switch-label">允许群成员邀请</span>
+					<span className="switch-label">群成员邀请权限<em>只允许群主邀请用户进群</em></span>
 				</FormItem>
 				<FormItem label="群组成员">
 					{ this.props.children }
@@ -278,6 +278,7 @@ class CreateGroupView extends PureComponent {
 		var username;
 		var setting;
 		var groupManager = globals.groupManager;
+		var style;
 
 		console.log("create selected members>>", membersIdArray);
 		if(membersIdArray.length == 0){
@@ -305,9 +306,15 @@ class CreateGroupView extends PureComponent {
 			
 			// var setting = new easemob.EMMucSetting(1, 20, false, "test");
 			// 组设置，4个参数分别为组类型（0,1,2,3），最大成员数，邀请是否需要确认，扩展信息
-			setting = new globals.easemob.EMMucSetting(allowMemberInvited?1:0, maxMembersCount, false, "test");
-			console.log("membersIdArray:" + membersIdArray);
-			console.log("membersId:" + membersId);
+			if(isPublic){
+				style = allowMemberInvited ? 2 : 3;
+			}
+			else{
+				style = allowMemberInvited ? 1 : 0;
+			}
+			setting = new globals.easemob.EMMucSetting(style, maxMembersCount, true, "test");
+			console.log(`membersIdArray:${membersIdArray}`);
+			console.log(`membersId:${membersId}`);
 			groupManager.createGroup(groupName, description, "welcome message", setting, membersIdArray).then((res) => {
 				console.log(res, 2);
 				if(res.code == 0){

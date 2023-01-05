@@ -90,7 +90,7 @@ class GroupList extends Component {
 			console.log(group);
 			return (
 				<li key={ groupId } onClick={ () =>  this.handleClick(groupId) }>
-					<AvatarImage name={ "G" } />
+					<AvatarImage name={ "群" } />
 					<div className="item-top">
 						<span className="ellipsis item-name">{ group.groupSubject() }</span>
 						<p>{group.groupDescription()}</p>
