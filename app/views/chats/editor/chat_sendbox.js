@@ -195,6 +195,20 @@ class ChatSendBoxView extends PureComponent {
 		}
 	}
 
+	handleSendMessage = () => {
+		var textMsgBody;
+		const { globals } = this.props;
+		const msg = this.input.resizableTextArea.textArea.value;
+
+		if(msg && msg.trim()){
+			textMsgBody = new globals.easemob.EMTextMessageBody(msg);
+			this.sendMsg(textMsgBody);
+			setTimeout(() => {
+				this.input.resizableTextArea.textArea.value = "";
+			}, 100);
+		}
+	}
+
 	// 发送消息
 	sendMsg(msg, conversationId, cfr, ext){
 		var {
@@ -454,7 +468,7 @@ class ChatSendBoxView extends PureComponent {
 					id="chatSendbox"
 					// onKeyDown={ this.handleKeyDown }
 				/>
-				<Button type="primary" className="btn-send">发 送</Button>
+				<Button type="primary" className="btn-send" onClick={ this.handleSendMessage }>发 送</Button>
 				<Modal
 					title="发送图片"
 					visible={ this.state.visible }

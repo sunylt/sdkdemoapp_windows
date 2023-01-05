@@ -582,7 +582,7 @@ class GroupMembersView extends Component {
 					}
 				</ul>
 				<div className="group-share-files">
-					<h4>群文件<span><Icon type="download" /><Icon type="delete" /></span></h4>
+					<h4>共享文件<span><Icon type="download" /><Icon type="delete" /></span></h4>
 					<div className="file-list">
 						{
 							fileList.map(file => (
