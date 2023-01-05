@@ -292,7 +292,7 @@ class AppRemote {
 			backgroundColor: "#465d78",
 			show: DEBUG,
 			frame: true,
-			titleBarStyle: "hidden",
+			titleBarStyle: IS_MAC_OSX ? "hidden" : "default",
 			webPreferences: {
 				webSecurity: false,
 				nodeIntegration: true,
@@ -323,7 +323,6 @@ class AppRemote {
 		// 	throw new Error(`The window with name '${name}' has already be created.`);
 		// }
 		this.mainWindow = browserWindow;
-		browserWindow.webContents.openDevTools();
 
 		browserWindow.on("enter-full-screen", () => {
 			browserWindow.webContents.send("full-screen-event", {  result: true });
