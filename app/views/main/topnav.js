@@ -17,10 +17,15 @@ import AvatarImage from "../chats/contacts/AvatarImage";
 import DataBase from "../../utils/db";
 import { withRouter } from "react-router-dom";
 import CreateGroupView from "../chats/groups/group_create";
+import { Tabs } from "antd";
 var _const = require("@/views/common/domain");
 const { ipcRenderer } = require("electron");
 const FormItem = Form.Item;
+const { TabPane } = Tabs;
 
+function parseKw(str, kw){
+	return str.replace(kw, `<em>${kw}</em>`);
+}
 
 // class FormInput extends Component {
 
@@ -86,7 +91,7 @@ class TopNav extends Component {
 		this.handlePreviewAvatar = this.handlePreviewAvatar.bind(this);
 		this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
 		this.handleCancelAvatar = this.handleCancelAvatar.bind(this);
-		const { userInfo } = this.props;
+		const { userInfo,  allGroupChats, globals} = this.props;
 		this.state = {
 			visible: false,
 			previewVisible: false,
@@ -99,8 +104,20 @@ class TopNav extends Component {
 					url: ""
 				}
 			],
+			users: [],
+			groups: [],
+			kw: "",
 			showUserProfile: false
 		};
+		const allGroups = allGroupChats.allGroups || [];
+		this.allGroups = allGroups.map((groupId) => {
+			const groupManager = globals.groupManager;
+			const group = groupManager.groupWithId(groupId);
+			return {
+				id: groupId,
+				name: group.groupSubject()
+			};
+		});
 	}
 
 	handlePreviewAvatar(file){
@@ -198,6 +215,20 @@ class TopNav extends Component {
 		localStorage.clear();
 	}
 
+	handleSearch = (e) => {
+		const { allUsers } = this.props;
+		const allGroups = this.allGroups;
+		const kw = e.target.value.trim();
+		if(kw.length){
+			const users = Object.values(allUsers).filter(item => item.name.includes(kw) || item.userName.includes(kw));
+			const groups = allGroups.filter(group => group.id.includes(kw) || group.name.includes(kw));
+			this.setState({ users, groups, kw });
+		}
+		else{
+			this.setState({ users: [], groups: [], kw: "" });
+		}
+	}
+
 	imgUrl(imgUrl){
 		// const { imgUrl } = this.props;
 		if(!imgUrl){
@@ -225,6 +256,7 @@ class TopNav extends Component {
 	}
 
 	render(){
+		const { users, groups, kw } = this.state;
 		const { userInfo, userData } = this.props;
 		// const { previewVisible, previewImage, fileList } = this.state;
 		const realName = userData.name || userData.userName;
@@ -245,6 +277,20 @@ class TopNav extends Component {
 		// 		</Menu.Item> */}
 		// 	</Menu>
 		// );
+		const userListView = users.map(user => (
+			<li key={ user.userName }>
+				<AvatarImage name={ user.name } />
+				<h5 dangerouslySetInnerHTML={ {__html: parseKw(user.name || user.userName, kw)} } />
+				<p dangerouslySetInnerHTML={ {__html: "用户ID：" + parseKw(`${user.userName}`, kw)} }  />
+			</li>
+		));
+		const groupListView = groups.map(group => (
+			<li key={ group.id }>
+				<AvatarImage name="群" />
+				<h5 dangerouslySetInnerHTML={ {__html: parseKw(group.name, kw)} } />
+				<p dangerouslySetInnerHTML={ {__html: "群ID：" + parseKw(`${group.id}`, kw)} }  />
+			</li>
+		));
 		return (
 			<div className="nav-user">
 				<div className="user-profile">
@@ -264,9 +310,39 @@ class TopNav extends Component {
 						prefix={ <Icon type="search" /> }
 						// suffix={suffix}
 						// value={userName}
-						// onChange={this.onChangeUserName}
+						onChange={ this.handleSearch }
 						// ref={node => this.userNameInput = node}
 					/>
+					<div className="search-result" style={ { display: userListView.length || groupListView.length ? "block" : "none" } }>
+						<Tabs defaultActiveKey="1" onChange={ () => {} }>
+							<TabPane tab="综合" key="1">
+								<div className="search-result-list">
+									{ userListView.length ? <h4>联系人</h4> : null }
+									<ul>
+										{ userListView }
+									</ul>
+									{ groupListView.length ? <h4>我的群组</h4> : null }
+									<ul>
+										{ groupListView }
+									</ul>
+								</div>
+							</TabPane>
+							<TabPane tab="联系人" key="2">
+								<div className="search-result-list">
+									<ul>
+										{ userListView }
+									</ul>
+								</div>
+							</TabPane>
+							<TabPane tab="群组" key="3">
+								<div className="search-result-list">
+									<ul>
+										{ groupListView }
+									</ul>
+								</div>
+							</TabPane>
+						</Tabs>
+					</div>
 				</div>
 				{/* <div className="button-add">
 					<Icon type="plus" />
@@ -280,6 +356,8 @@ class TopNav extends Component {
 const mapStateToProps = state => ({
 	allUnReadMsgCount: selectors.allUnReadMsgCount(state),
 	userInfo: state.userInfo,
-	globals: state.globals
+	globals: state.globals,
+	allUsers: state.org.allUsers,
+	allGroupChats: state.allGroupChats
 });
 export default withRouter(connect(mapStateToProps, actionCreators)(TopNav));
