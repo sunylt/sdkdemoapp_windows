@@ -36,8 +36,10 @@ class HorizontalForm extends PureComponent {
 			groupName: "",
 			description: "",
 			createGroupButtonState: false,
-			allowMemberInvited:false
-		})
+			isPublicGroup: false,
+			allowMemberInvited: false
+		});
+		this.props.form.resetFields();
 	}
 	handleChangeGroupName(e){
 		this.setState({
@@ -328,6 +330,7 @@ class CreateGroupView extends PureComponent {
 					this.setState({
 						visible: false,
 					});
+					gEventEmiter.emit("cancelcreategroup");
 				}
 				else{
 					setNotice(`创建群失败，原因: ${res.description}`, "fail");
