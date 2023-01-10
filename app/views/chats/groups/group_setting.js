@@ -481,6 +481,8 @@ class GroupSettingView extends Component {
 					visible={ this.state.showEditBox }
 					onCancel={ () => this.setState({ showEditBox: false }) }
 					onOk={ this.handleSaveEditData }
+					okText="确定"
+					cancelText="取消"
 				>
 					<Input.TextArea value={ this.state.editData.content } onChange={ this.handleChangeTextArea } disabled={ !isOwner }></Input.TextArea>
 				</Modal>
@@ -491,6 +493,8 @@ class GroupSettingView extends Component {
 					visible={ this.state.destoryGroupDialogVisible }
 					onOk={ this.handleDissolveGroup }
 					onCancel={ this.handleCancelDestoryGrop }
+					okText="确定"
+					cancelText="取消"
 				>
 					<div>
 						确定要解散群组吗？
