@@ -245,7 +245,12 @@ class ConversationDetailView extends Component {
 										<div className="message-from">
 											{/* <span>{ item.from() }</span> */}
 										</div>
-										<div className="message-info" onClick={ this.handleClickUrl } onContextMenu={ e => this.handleContextMenu(e, item) } >
+										<div
+											className="message-info"
+											onClick={ this.handleClickUrl }
+											onContextMenu={ e => this.handleContextMenu(e, item) }
+											title={ moment(item.timestamp()).format("YYYY年MM月DD日 HH时mm分ss秒") }
+										>
 											{ this.renderMsg(msg, item) }
 										</div>
 									</div>
