@@ -481,6 +481,54 @@ class GroupMembersView extends Component {
 		});
 	}
 
+	handleDownloadFile = (fileId, fileName) => {
+		const { setNotice } = this.props;
+
+		var emDownloadCallback = new remote.app.easemob.EMCallback();
+
+		// 下载成功
+		emDownloadCallback.onSuccess(() => {
+			console.log("download emCallback call back success");
+			setNotice(`${fileName} 下载完成`);
+			return true;
+		});
+		// 下载失败
+		emDownloadCallback.onFail((error) => {
+			console.log("download emCallback call back fail");
+			console.log(error.description);
+			setNotice(`${fileName}下载失败,${error.description}`);
+			console.log(error.errorCode);
+			return true;
+		});
+		// 下载进度
+		emDownloadCallback.onProgress((progress) => {
+			if(progress >= 98){
+			}
+		});
+
+		remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
+			title: "保存文件",
+			defaultPath: fileName
+		}).then(({ canceled, filePath }) => {
+			if(!canceled && filePath){
+				this.groupManager.downloadGroupSharedFile(this.groupId, filePath, fileId, emDownloadCallback);
+			}
+		});
+
+	}
+
+	handleDeleteFile = (fileId) => {
+		this.groupManager.deleteGroupSharedFile(this.groupId, fileId).then((res) =>{
+			const files = this.state.fileList;
+			const deletedFileIndex = files.findIndex(file => file.fileId() === fileId);
+			files.splice(deletedFileIndex, 1);
+			this.setState({
+				fileList: files
+			});
+		},
+		() => {});
+	}
+
 	componentDidMount(){
 		console.log("group_members did mount");
 		this.groupManager.fetchGroupSharedFiles(this.groupId, 1, 20).then((res) => {
@@ -582,13 +630,17 @@ class GroupMembersView extends Component {
 					}
 				</ul>
 				<div className="group-share-files">
-					<h4>共享文件<span><Icon type="download" /><Icon type="delete" /></span></h4>
+					<h4>共享文件</h4>
 					<div className="file-list">
 						{
 							fileList.map(file => (
 								<div key={ file.fileId() } title={ file.fileName() || file.fileId() }>
 									<Icon type="file" />
 									<span>{file.fileName() || file.fileId()}</span>
+									<div className="file-opt">
+										<Icon type="download" title="下载" onClick={ () => this.handleDownloadFile(file.fileId(), file.fileName()) } />
+										<Icon type="delete" title="删除" onClick={ () => this.handleDeleteFile(file.fileId()) } />
+									</div>
 								</div>
 							))
 						}
