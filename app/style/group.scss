@@ -57,6 +57,13 @@
 			width: 90%;
 			height: 290px;
 			overflow-y: auto;
+			>div{
+				padding: 0 10px;
+			}
+			.check-all{
+				background-color: #F2F3F5;
+				padding-left: 16px;
+			}
 			.ant-menu{
 				border-right: none;
 			}

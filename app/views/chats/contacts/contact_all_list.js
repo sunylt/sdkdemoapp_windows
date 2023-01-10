@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "@/stores/actions";
 import * as selectors from "@/stores/selectors";
-import { Menu, Checkbox, Input } from "antd";
+import { Menu, Checkbox, Input, Icon } from "antd";
 import HeadImageView from "@/views/common/head_image";
 import _ from "underscore";
 import api from "@/api";
@@ -19,6 +19,9 @@ class ContactView extends PureComponent {
 		this.handleOnChange = this.handleOnChange.bind(this);
 		this.handleChangeSearchVal = this.handleChangeSearchVal.bind(this);
 		this.searchValue = "";
+		this.state = {
+			searchResult: []
+		};
 	}
 
 	handleOnChange(e, item){
@@ -78,16 +81,42 @@ class ContactView extends PureComponent {
 		);
 	}
 
+	handleSearch = (e) => {
+		const val = e.target.value.trim();
+		if(val){
+			const result = Object.values(this.props.allUsers).filter(user => user.name.includes(val));
+			this.setState({
+				searchResult: result
+			});
+		}
+		else{
+			this.setState({
+				searchResult: []
+			});
+		}
+	}
+
 	render(){
 		const { allUsers } = this.props;
+		const { searchResult } = this.state;
 		console.log("all list alluser", allUsers);
+		const listUsers = searchResult.length ? searchResult : allUsers;
 		// var concatList = allContacts.contacts;
 		return (
 			<div>
 				<div className="member-list">
+					<div className="search-user">
+						<Input
+							placeholder="搜索"
+							prefix={ <Icon type="search" /> }
+							onChange={ this.handleSearch }
+						/>
+					</div>
+					{/* <div><span className="user-icon"><Icon type="user" /></span>我的好友</div>
+					<div className="check-all"><Checkbox>全选</Checkbox></div> */}
 					<Menu>
 						{
-							_.map(allUsers, (item) => {
+							_.map(listUsers, (item) => {
 								const { id, name, userName } = item;
 								return (
 									<Menu.Item key={ id }>
