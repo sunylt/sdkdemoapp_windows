@@ -379,6 +379,13 @@ class GroupSettingView extends Component {
 		setTop({ id: this.conversation.conversationId(), top: !!checked });
 	}
 
+	handleSetMuted = (checked) => {
+		const extField = this.conversation.extField();
+		const ext = extField ? JSON.parse(extField) : {};
+		ext.muted = checked;
+		this.conversation.setExtField(JSON.stringify(ext));
+	}
+
 	componentDidMount(){
 		const {
 			selectConversationId,
@@ -441,8 +448,8 @@ class GroupSettingView extends Component {
 					<div className="operate-member operate-switch">
 						<span>消息免打扰</span>
 						<Switch
-							defaultChecked={ false }
-							onChange={ () => {} }
+							defaultChecked={ !!ext.muted }
+							onChange={ this.handleSetMuted }
 						/>
 					</div>
 					<div className="operate-member operate-switch">
