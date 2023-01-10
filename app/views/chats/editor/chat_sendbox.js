@@ -192,6 +192,7 @@ class ChatSendBoxView extends PureComponent {
 			setTimeout(() => {
 				this.input.resizableTextArea.textArea.value = "";
 			}, 100);
+			this.setState({ value: "" });
 		}
 	}
 
@@ -206,6 +207,7 @@ class ChatSendBoxView extends PureComponent {
 			setTimeout(() => {
 				this.input.resizableTextArea.textArea.value = "";
 			}, 100);
+			this.setState({ value: "" });
 		}
 	}
 
@@ -466,6 +468,7 @@ class ChatSendBoxView extends PureComponent {
 					autoFocus={ "autoFocus" }
 					onPaste={ this.handlePaste }
 					id="chatSendbox"
+					value={ this.state.value }
 					// onKeyDown={ this.handleKeyDown }
 				/>
 				<Button type="primary" className="btn-send" onClick={ this.handleSendMessage }>发 送</Button>
