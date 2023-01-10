@@ -304,6 +304,8 @@ class GroupSettingView extends Component {
 					visible={ this.state.messageClearVisible }
 					onOk={ this.handleClearMessage }
 					onCancel={ this.handleCancelClearMessages }
+					okText="确定"
+					cancelText="取消"
 				>
 					<div>
 						确定要清空聊天记录吗？
@@ -493,6 +495,8 @@ class GroupSettingView extends Component {
 					visible={ this.state.messageClearVisible }
 					onOk={ this.handleClearMessage }
 					onCancel={ this.handleCancelClearMessages }
+					okText="确定"
+					cancelText="取消"
 				>
 					<div>
 						确定要清空聊天记录吗？

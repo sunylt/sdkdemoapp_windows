@@ -390,12 +390,13 @@ class CreateGroupView extends PureComponent {
 				<div className="button-add" onClick={ this.handleCreatGroup }>
 					<Icon type="plus" />
 				</div>
-				{userInfo ? 
+				{userInfo ?
 					<Modal
 						title="创建群组"
 						visible={ this.state.visible }
 						onOk={ this.handleCreateGroup }
 						onCancel={ this.handleCancel }
+						maskClosable={ false }
 						// mask={ false }
 						// footer={ null }
 						style={ { top: 50 } }

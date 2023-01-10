@@ -77,6 +77,8 @@ class MemberSettingView extends PureComponent {
 					visible={ this.state.messageClearVisible }
 					onOk={ this.handleClearMessage }
 					onCancel={ this.handleCancelClearMessages }
+					okText="确定"
+					cancelText="取消"
 				>
 					<div>
 						确定要删除这些聊天记录吗？
