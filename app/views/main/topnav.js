@@ -8,7 +8,8 @@ import {
 	Button,
 	Form,
 	Input,
-	Upload
+	Upload,
+	Checkbox
 } from "antd";
 import * as actionCreators from "@/stores/actions";
 import * as selectors from "@/stores/selectors";
@@ -107,7 +108,8 @@ class TopNav extends Component {
 			users: [],
 			groups: [],
 			kw: "",
-			showUserProfile: false
+			showUserProfile: false,
+			showSettings: false,
 		};
 		const allGroups = allGroupChats.allGroups || [];
 		this.allGroups = allGroups.map((groupId) => {
@@ -201,7 +203,19 @@ class TopNav extends Component {
 	}
 
 	handleShowSettings = () => {
+		this.setState({
+			showUserProfile: false,
+			showSettings: true
+		});
+	}
 
+	handleSaveSettings = (opt, value) => {
+		const { userInfo } = this.props;
+		const key = `${userInfo.user.easemobName}_settings`;
+		const appSettings = localStorage.getItem(key);
+		const settings = appSettings ? JSON.parse(appSettings) : {};
+		settings[opt] = value;
+		localStorage.setItem(key, JSON.stringify(settings));
 	}
 
 	handleLogout = () => {
@@ -256,10 +270,12 @@ class TopNav extends Component {
 	}
 
 	render(){
-		const { users, groups, kw } = this.state;
+		const { users, groups, kw, showSettings } = this.state;
 		const { userInfo, userData } = this.props;
 		// const { previewVisible, previewImage, fileList } = this.state;
 		const realName = userData.name || userData.userName;
+		const appSettings = localStorage.getItem(`${userInfo.user.easemobName}_settings`);
+		const settings = appSettings ? JSON.parse(appSettings) : {};
 		// const menu = (
 		// 	<Menu onClick={ this.handleClick } style={ { width: 100 } }>
 		// 		<Menu.Item key="personal">
@@ -299,8 +315,8 @@ class TopNav extends Component {
 						<AvatarImage name={ realName } />
 						<h4>{ realName }</h4>
 						<p>用户ID：{ userData.userName }</p>
-						<Button className="btn-settings">偏好设置</Button>
-						<Button className="btn-logout" onClick={ this.handleLogout }>退出登陆</Button>
+						<Button className="btn-settings" onClick={ this.handleShowSettings }>偏好设置</Button>
+						<Button className="btn-logout" onClick={ this.handleLogout }>退出登录</Button>
 					</div>
 				</div>
 	
@@ -347,6 +363,29 @@ class TopNav extends Component {
 				{/* <div className="button-add">
 					<Icon type="plus" />
 				</div> */}
+				<Modal
+					title="偏好设置"
+					visible={ showSettings }
+					onCancel={ () => this.setState({ showSettings: false }) }
+					className="app-settings"
+					footer={ false }
+					maskClosable={ false }
+				>
+					<h4>通用</h4>
+					<ul>
+						<li><Checkbox defaultChecked={ !!settings.showInputStatus } onChange={ e => this.handleSaveSettings("showInputStatus", e.target.checked) }>显示输入状态</Checkbox></li>
+					</ul>
+					<h4>群组设置</h4>
+					<ul>
+						<li><Checkbox defaultChecked={ !!settings.removeChatDataWhenExitGroup } onChange={ e => this.handleSaveSettings("removeChatDataWhenExitGroup", e.target.checked) }>退出群组时删除聊天数据</Checkbox></li>
+						<li><Checkbox defaultChecked={ !!settings.autoAcceptGroupInvitee } onChange={ e => this.handleSaveSettings("autoAcceptGroupInvitee", e.target.checked) }>自动同意群组加群邀请</Checkbox></li>
+					</ul>
+					<h4>新消息提醒</h4>
+					<ul>
+						<li><Checkbox defaultChecked={ !!settings.newMessageNotify } onChange={ e => this.handleSaveSettings("newMessageNotify", e.target.checked) }>新消息通知</Checkbox></li>
+						<li><Checkbox defaultChecked={ !!settings.newMessageSound } onChange={ e => this.handleSaveSettings("newMessageSound", e.target.checked) }>声音</Checkbox></li>
+					</ul>
+				</Modal>
 				<CreateGroupView />
 			</div>
 		);

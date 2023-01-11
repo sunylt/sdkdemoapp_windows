@@ -49,9 +49,10 @@ class MemberSettingView extends PureComponent {
 	}
 
 	render(){
-		const { selectConversationId, allMembersInfo, globals } = this.props;
+		const { selectConversationId, allUsers, globals } = this.props;
 		const conversation = globals.chatManager.conversationWithType(selectConversationId, 0);
 		const ext = conversation.extField() ? JSON.parse(conversation.extField()) : {};
+		const userInfo = allUsers[selectConversationId] || {};
 		this.conversation = conversation;
 		// console.log("selectConversationId:" + selectConversationId);
 		// console.log("allMembersInfo:" + allMembersInfo);
@@ -62,7 +63,7 @@ class MemberSettingView extends PureComponent {
 				<div className="member-info">
 					<div className="avatar-name">
 						<div className="member-name">
-							{ ext.name || selectConversationId}
+							{ ext.name || userInfo.name || selectConversationId}
 						</div>
 					</div>
 					<div className="info">
@@ -95,6 +96,7 @@ class MemberSettingView extends PureComponent {
 const mapStateToProps = state => ({
 	globals: state.globals,
 	selectConversationId: state.selectConversationId,
-	allMembersInfo: state.allMembersInfo
+	allMembersInfo: state.allMembersInfo,
+	allUsers: state.org.allUsers
 });
 export default connect(mapStateToProps, actionCreators)(MemberSettingView);

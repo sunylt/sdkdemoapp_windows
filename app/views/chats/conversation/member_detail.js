@@ -16,13 +16,14 @@ class MemberDetailView extends PureComponent {
 	}
 
 	render(){
-		const { selectConversationId, allMembersInfo,isSelectCovGroup,globals } = this.props;
+		const { selectConversationId, allMembersInfo, isSelectCovGroup, globals, allUsers } = this.props;
 		const selectMember = allMembersInfo[selectConversationId];
 		const selectGroup = isSelectCovGroup;
 		//var groupMembers = selectGroup ? [selectGroup.owner].concat(selectGroup.adminMembers).concat(selectGroup.members) : [];
 		let isGroup = isSelectCovGroup == 1;
 		let conversation = globals.chatManager.conversationWithType(selectConversationId, isGroup ? 1 : 0);
 		let name;
+		const userInfo = allUsers[selectConversationId] || {};
 		console.log("isGroup:" + isGroup + "    isSelectCovGroup:" + isSelectCovGroup);
 		console.log("selectConversationId:" + selectConversationId);
 		var lenth;
@@ -47,7 +48,7 @@ class MemberDetailView extends PureComponent {
 		}
 		else{
 			const ext = conversation.extField() ? JSON.parse(conversation.extField()) : {};
-			name = ext.name || selectConversationId;
+			name = ext.name || userInfo.name || selectConversationId;
 		}
 		// console.log("name:" + name, conversation);
 		return (
@@ -78,6 +79,7 @@ const mapStateToProps = state => ({
 	isSelectCovGroup:state.isSelectCovGroup,
 	globals: state.globals,
 	selectConversationId: state.selectConversationId,
-	allMembersInfo: state.allMembersInfo
+	allMembersInfo: state.allMembersInfo,
+	allUsers: state.org.allUsers
 });
 export default  withRouter(connect(mapStateToProps, actionCreators)(MemberDetailView));

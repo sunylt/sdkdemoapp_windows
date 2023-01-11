@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actionCreators from "@/stores/actions";
-import { Menu, Badge } from "antd";
+import { Menu, Badge, Icon } from "antd";
 import { ipcRenderer } from "electron";
 import moment from "moment";
 import HeadImageView from "../../common/head_image";
@@ -159,7 +159,8 @@ class ConversationListView extends Component {
 			groupAtMsgs,
 			allContacts,
 			isSelectCovGroup,
-			globals
+			globals,
+			allUsers
 		} = this.props;
 		var groupManager = globals.groupManager;
 		return (
@@ -178,6 +179,7 @@ class ConversationListView extends Component {
 						const selectMember = conversationId == 0;
 						let param = conversationId + conversationType;
 						const ext = item.extField() ? JSON.parse(item.extField()) : {};
+						const userInfo = allUsers[conversationId] || {};
 						return (
 							// key传参为会话id+会话类型
 							<Menu.Item key={ param }>
@@ -193,8 +195,8 @@ class ConversationListView extends Component {
 											{/* { selectGroup ? selectGroup.chatName : selectMember.realName } */}
 											{
 												selectGroup
-													? `${groupManager.groupWithId(conversationId).groupSubject()}(群)`
-													: (ext.name || ext.userid || item.conversationId())
+													? `${groupManager.groupWithId(conversationId).groupSubject()}`
+													: (ext.name || ext.userid || userInfo.name || conversationId)
 											}
 										</span>
 										<span className="time">{this.showTime(item.latestMessage())}</span>
@@ -216,6 +218,12 @@ class ConversationListView extends Component {
 										}
 										{ this.latestMessage(item.conversationId(), selectGroup) }
 									</div>
+						
+									<span className="top-icon">
+										{ext.isTop && <Icon type="vertical-align-top" />}
+										{ext.muted && <Icon type="bell" />}
+									</span>
+							
 								</div>
 							</Menu.Item>
 						);
@@ -260,6 +268,7 @@ const mapStateToProps = state => ({
 	conversationsSort: selectors.conversationsSort(state),
 	groupAtMsgs: state.groupAtMsgs,
 	allContacts: state.allContacts,
-	isSelectCovGroup: state.isSelectCovGroup
+	isSelectCovGroup: state.isSelectCovGroup,
+	allUsers: state.org.allUsers
 });
 export default withRouter(connect(mapStateToProps, actionCreators)(ConversationListView));

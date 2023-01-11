@@ -149,7 +149,7 @@
 		.group-share-files{
 			.file-list{
 				padding: 0 15px;
-				max-height: 100px;
+				max-height: 110px;
 				overflow-y: auto;
 				zoom: 1;
 				&::-webkit-scrollbar{
@@ -164,9 +164,11 @@
 					height: 54px;
 					line-height: 24px;
 					float: left;
+					position: relative;
 					width: 54px;
 					text-align: center;
 					margin: 0 10px;
+					overflow: hidden;
 					.anticon{
 						font-size: 20px;
 					}
@@ -175,6 +177,25 @@
 						overflow: hidden;
 						text-overflow: ellipsis;
 						white-space: nowrap;
+					}
+					&:hover{
+						.file-opt{
+							top: 0 !important;
+						}
+					}
+				}
+				.file-opt{
+					position: absolute;
+					width: 100%;
+					top: -24px;
+					background-color: rgba(#000, 0.75);
+					border-radius: 3px;
+					transition: top 0.3s ease;
+					.anticon{
+						font-size: 14px;
+						margin: 0 3px;
+						color: #fff;
+						cursor: pointer;
 					}
 				}
 			}
@@ -298,6 +319,7 @@
 			.info-chat{
 				width: calc(100% - 50px);
 				padding-right: 15px;
+				position: relative;
 				.item-top{
 					display: flex;
 					justify-content: space-between;
@@ -306,6 +328,24 @@
 						font-size: 12px;
 						color: #b6b6b6;
 						zoom: 0.8;
+					}
+				}
+				.top-icon{
+					position: absolute;
+					right: 10px;
+					bottom: 16px;
+					color: #87909c;
+					.anticon{
+						font-size: 12px;
+						margin-right: 3px;
+					}
+					.anticon-bell{
+						&::after{
+							position: absolute;
+							content: "\\";
+							margin: 5px 0 0 -7px;
+    					zoom: 1.2;
+						}
 					}
 				}
 				.item-name{

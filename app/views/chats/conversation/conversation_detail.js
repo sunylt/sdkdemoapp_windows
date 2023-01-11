@@ -189,9 +189,10 @@ class ConversationDetailView extends Component {
 	}
 
 	showMemberInfo(item){
-		const { selectConversationId, userInfo,isSelectCovGroup } = this.props;
+		const { selectConversationId, userInfo,isSelectCovGroup, allUsers } = this.props;
 		if(isSelectCovGroup && item.from() != userInfo.user.easemobName){
-			return item.from();
+			const userInfo = allUsers[item.from()];
+			return `${userInfo.name || item.from()} `;
 		}
 		return "";
 	}
@@ -275,6 +276,7 @@ const mapStateToProps = state => ({
 	userInfo: state.userInfo,
 	globals: state.globals,
 	groupAtMsgs: state.groupAtMsgs,
-	isSelectCovGroup: state.isSelectCovGroup
+	isSelectCovGroup: state.isSelectCovGroup,
+	allUsers: state.org.allUsers
 });
 export default withRouter(connect(mapStateToProps, actionCreators)(ConversationDetailView));

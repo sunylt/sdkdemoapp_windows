@@ -232,6 +232,10 @@ export const conversations = (state = {}, { type, payload = {} }) => {
 		convers = _.clone(state);
 		convers[payload.id].isTop = payload.top;
 		return convers;
+	case "app/setMuted":
+		convers = _.clone(state);
+		convers[payload.id].muted = payload.muted;
+		return convers;
 	default:
 		return state;
 	}

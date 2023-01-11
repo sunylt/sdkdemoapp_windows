@@ -483,8 +483,7 @@ class GroupMembersView extends Component {
 
 	handleDownloadFile = (fileId, fileName) => {
 		const { setNotice } = this.props;
-
-		var emDownloadCallback = new remote.app.easemob.EMCallback();
+		const emDownloadCallback = new remote.app.easemob.EMCallback();
 
 		// 下载成功
 		emDownloadCallback.onSuccess(() => {
@@ -502,8 +501,6 @@ class GroupMembersView extends Component {
 		});
 		// 下载进度
 		emDownloadCallback.onProgress((progress) => {
-			if(progress >= 98){
-			}
 		});
 
 		remote.dialog.showSaveDialog(remote.getCurrentWindow(), {

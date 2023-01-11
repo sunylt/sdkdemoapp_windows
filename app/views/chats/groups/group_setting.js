@@ -380,10 +380,12 @@ class GroupSettingView extends Component {
 	}
 
 	handleSetMuted = (checked) => {
+		const { setMuted } = this.props;
 		const extField = this.conversation.extField();
 		const ext = extField ? JSON.parse(extField) : {};
 		ext.muted = checked;
 		this.conversation.setExtField(JSON.stringify(ext));
+		setMuted({ id: this.conversation.conversationId(), muted: !!checked });
 	}
 
 	componentDidMount(){

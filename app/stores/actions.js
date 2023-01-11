@@ -76,6 +76,10 @@ export const setTop = payload => ({
 	type: "app/setTop",
 	payload
 });
+export const setMuted = payload => ({
+	type: "app/setMuted",
+	payload
+});
 export const receiveMsgAction = payload => ({
 	type: "app/receiveMsg",
 	payload

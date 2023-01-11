@@ -95,6 +95,7 @@
 	.search-box{
 		width: 50%;
 		max-width: 500px;
+		position: relative;
 
 		.anticon-search{
 			color: #ffffff;
@@ -114,6 +115,44 @@
 				color: rgba(#ffffff, 0.5);
 			}
 		}
+		.search-result{
+			position: absolute;
+			width: 100%;
+			background-color: #fff;
+			box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.1);
+			border-radius: 0px 0px 8px 8px;
+			z-index: 100;
+			.search-result-list{
+				max-height: 400px;
+				overflow-y: auto;
+			}
+			h4{
+				padding: 0 15px;
+			}
+			ul{
+				padding: 0 15px 15px;
+				li{
+					overflow: hidden;
+					zoom: 1;
+					font-size: 12px;
+					padding: 5px;
+					&:hover{
+						background-color: #F7F8FA;
+					}
+					h5{
+						margin: 0;
+						font-size: 12px;
+					}
+					em{
+						font-style: normal;
+						color: #F54A45;
+					}
+					.user-avatar{
+						float: left;
+					}
+				}
+			}
+		}
 	}
 
 	.button-add{
@@ -127,6 +166,24 @@
 		&:hover{
 			background-color: #398de9;
 		}
+	}
+}
+
+.app-settings{
+	.ant-modal-header{
+		background-color: #e9eaed;
+	}
+	.ant-modal-content{
+		background-color: #eff0f2;
+	}
+	h4{
+		margin-top: 15px;
+		&:first-child{
+			margin-top: 0;
+		}
+	}
+	li{
+		padding: 5px 0;
 	}
 }
 
@@ -311,24 +368,24 @@
 	// 	display: none;
 	// }
 
-	.ant-tabs-nav-container{
-		display: flex !important;
-		justify-content: flex-end !important;
-		height: 56px !important;
-		line-height: 41px !important;
-		font-size: 25px !important;
-		display: flex !important;
-		justify-content: flex-end !important;
-	}
-	.ant-tabs-nav .ant-tabs-tab {
-		margin-right: 0 !important;
-	}
-	.ant-tabs-bar {
-		margin-bottom: 1px !important;
-	}
-	.ant-upload-list-item-info > span {
-		display: inline-block;
-	}
+	// .ant-tabs-nav-container{
+	// 	display: flex !important;
+	// 	justify-content: flex-end !important;
+	// 	height: 56px !important;
+	// 	line-height: 41px !important;
+	// 	font-size: 25px !important;
+	// 	display: flex !important;
+	// 	justify-content: flex-end !important;
+	// }
+	// .ant-tabs-nav .ant-tabs-tab {
+	// 	margin-right: 0 !important;
+	// }
+	// .ant-tabs-bar {
+	// 	margin-bottom: 1px !important;
+	// }
+	// .ant-upload-list-item-info > span {
+	// 	display: inline-block;
+	// }
 
 }
 

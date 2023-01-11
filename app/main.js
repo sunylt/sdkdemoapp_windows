@@ -29745,17 +29745,6 @@ if (false) {
 	console.error("AppRemote must run in main process.");
 }
 
-easemob.getEMClientInstance = function (chatConfigs) {
-	if (!emclient) {
-		console.log("main process create new emclient");
-		emclient = new easemob.EMClient(chatConfigs);
-	}
-	emclient.logout();
-	return emclient;
-};
-
-_electron.app.easemob = easemob;
-
 var AppRemote = function () {
 	function AppRemote() {
 		var _this = this;
@@ -29845,8 +29834,7 @@ var AppRemote = function () {
 			event.returnValue = config;
 		});
 
-		_electron.ipcMain.on("initRtcWindow", function (event, data) {
-			console.log(me.rtcWindow);
+		_electron.ipcMain.on("rtc-init-window", function (event, data) {
 			if (!me.rtcWindow || me.rtcWindow.isDestroyed()) {
 				console.log("create  new rtc window.");
 				_this.createRtcWindow(data);
@@ -29858,12 +29846,30 @@ var AppRemote = function () {
 
 			IS_DEV && me.rtcWindow.webContents.openDevTools();
 		});
-		_electron.ipcMain.on("closeRtcWindow", function () {
+		_electron.ipcMain.on("close-rtc-window", function () {
 			console.log("close rtc win");
 			if (me.rtcWindow) {
 				me.rtcWindow.hide();
 			}
 		});
+		easemob.getEMClientInstance = function (chatConfigs) {
+			if (!emclient) {
+				console.log("main process create new emclient");
+				emclient = new easemob.EMClient(chatConfigs);
+				var connectListener = new easemob.EMConnectionListener();
+				connectListener.onConnect(function () {
+					_this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
+				});
+				connectListener.onDisconnect(function (error) {
+					_this.mainWindow.webContents.send("emclient-connect-listener", { status: 0, error: error });
+				});
+				emclient.addConnectionListener(connectListener);
+			} else {
+				emclient.logout();
+			}
+			return emclient;
+		};
+		_electron.app.easemob = easemob;
 	}
 
 	_createClass(AppRemote, [{
@@ -29885,9 +29891,10 @@ var AppRemote = function () {
 				minimizable: true,
 				// title: "音视频通话",
 				webPreferences: {
+					webSecurity: false,
 					nodeIntegration: true,
-					// enableRemoteModule: true,
-					webSecurity: false
+					contextIsolation: false,
+					enableRemoteModule: true
 					// preload: path.join(app.getAppPath(), '/dist/preLoad.js'), // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
 				}
 			});
@@ -30013,7 +30020,7 @@ var AppRemote = function () {
 				backgroundColor: "#465d78",
 				show: false,
 				frame: true,
-				titleBarStyle: "hidden",
+				titleBarStyle: IS_MAC_OSX ? "hidden" : "default",
 				webPreferences: {
 					webSecurity: false,
 					nodeIntegration: true,
@@ -30024,7 +30031,7 @@ var AppRemote = function () {
 				showAfterLoad: true,
 				trafficLightPosition: {
 					x: 10,
-					y: 16
+					y: 18
 				}
 			};
 
@@ -30044,7 +30051,14 @@ var AppRemote = function () {
 			// 	throw new Error(`The window with name '${name}' has already be created.`);
 			// }
 			this.mainWindow = browserWindow;
-			browserWindow.webContents.openDevTools();
+
+			browserWindow.on("enter-full-screen", function () {
+				browserWindow.webContents.send("full-screen-event", { result: true });
+			});
+
+			browserWindow.on("leave-full-screen", function () {
+				browserWindow.webContents.send("full-screen-event", { result: false });
+			});
 
 			browserWindow.on("close", function (event) {
 				// dock 上右键退出，ElectronApp.quitting = true
@@ -43819,7 +43833,7 @@ function map_obj(obj, fn){
 /* 634 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Wed Dec 14 2022 11:14:55 GMT+0800 (中国标准时间)","_from":"7zip@0.0.6","_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz"}
+module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","__npminstall_done":"Mon Jan 09 2023 10:26:00 GMT+0800 (中国标准时间)","_from":"7zip@0.0.6","_resolved":"https://registry.npmmirror.com/7zip/-/7zip-0.0.6.tgz"}
 
 /***/ }),
 /* 635 */
