@@ -990,7 +990,8 @@ class MainView extends PureComponent {
 			unReadMsgCountAction,
 			rtcInfo,
 			setRtcStatus,
-			setRtcData
+			setRtcData,
+			setNotice
 		} = this.props;
 		var conversation;
 		var conversationType;
@@ -1025,8 +1026,10 @@ class MainView extends PureComponent {
 				if(msgExt.conferenceNotice){
 					if(msgExt.conferenceNotice == 1){ // 收到新的音视频邀请
 						if(rtcInfo.status == 0){ // 无音视频通话才处理
-							setRtcStatus(3);
-							setRtcData({ ...msgExt, from: message.conversationId() });
+							if(message.from() !== userInfo.user.easemobName){
+								setRtcStatus(3);
+								setRtcData({ ...msgExt, from: message.conversationId() });
+							}
 						}
 						else{
 							// todo 通知对方当前在忙
@@ -1034,7 +1037,13 @@ class MainView extends PureComponent {
 						}
 					}
 					else if(msgExt.conferenceNotice == 2){ // 被邀请人同意加入
-						setRtcStatus(2);
+						if(message.from() !== userInfo.user.easemobName){
+							setRtcStatus(2);
+						}
+						else{
+							setRtcStatus(0);
+							setNotice("已在其它设备接听");
+						}
 					}
 					else if(msgExt.conferenceNotice == 3){ // 被邀请人拒绝加入
 						setRtcStatus(0);
