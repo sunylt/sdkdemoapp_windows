@@ -398,11 +398,16 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	handleVideoCall = () => {
-		const { userInfo, allUsers } = this.props;
+		const { userInfo, allUsers, rtcInfo, setNotice } = this.props;
 		const { user, userData } = userInfo;
 		const { easemobName } = user;
 		const { globals, selectConversationId } = this.props;
 		const roomId = `room_${parseInt((Math.random() * 1e6), 10)}`;
+
+		if(rtcInfo.status !== 0){
+			setNotice("当前有在进行的通话或邀请，无法发起音视频", "fail");
+			return;
+		}
 
 		const success = () => {
 			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
@@ -516,6 +521,7 @@ const mapStateToProps = state => ({
 	networkStatus: state.networkConnection,
 	conversations: state.conversations,
 	allUsers: state.org.allUsers,
+	rtcInfo: state.rtcInfo
 	// memberInfo: state.memberInfo
 });
 export default connect(mapStateToProps, actionCreators)(ChatSendBoxView);
