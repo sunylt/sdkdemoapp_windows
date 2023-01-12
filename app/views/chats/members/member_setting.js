@@ -8,6 +8,7 @@ class MemberSettingView extends PureComponent {
 	constructor(props){
 		super(props);
 		this.state = {
+			checked: false,
 			messageClearVisible: false
 		};
 		this.handleClearRecord = this.handleClearRecord.bind(this);
@@ -40,12 +41,22 @@ class MemberSettingView extends PureComponent {
 		ext.isTop = checked;
 		this.conversation.setExtField(JSON.stringify(ext));
 		setTop({ id: this.conversation.conversationId(), top: !!checked });
+		this.setState({ checked });
 	}
 
 	handleCancelClearMessages(){
 		this.setState({
 			messageClearVisible: false
 		});
+	}
+
+	static getDerivedStateFromProps({ selectConversationId, globals }, state){
+		const conversation = globals.chatManager.conversationWithType(selectConversationId, 0);
+		const ext = conversation.extField() ? JSON.parse(conversation.extField()) : {};
+		return {
+			checked: !!ext.isTop,
+			messageClearVisible: state.messageClearVisible
+		};
 	}
 
 	render(){
@@ -68,7 +79,7 @@ class MemberSettingView extends PureComponent {
 					</div>
 					<div className="info">
 						<div><span>用户:</span><span className="ellipsis infos">{ selectConversationId }</span></div>
-						<div>会话置顶 <Switch defaultChecked={ !!ext.isTop } onChange={ this.handleSetTop } style={ { top: "12px", left: "10px" } } /></div>
+						<div>会话置顶 <Switch checked={ this.state.checked } onChange={ this.handleSetTop } style={ { top: "12px", left: "10px" } } /></div>
 						<div className="operate-member" onClick={ this.handleClearRecord }>清空聊天记录</div>
 					</div>
 				</div>
