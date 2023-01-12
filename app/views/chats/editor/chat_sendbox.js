@@ -398,7 +398,7 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	handleVideoCall = () => {
-		const { userInfo, allUsers, rtcInfo, setNotice } = this.props;
+		const { userInfo, allUsers, rtcInfo, setNotice, isSelectCovGroup } = this.props;
 		const { user, userData } = userInfo;
 		const { easemobName } = user;
 		const { globals, selectConversationId } = this.props;
@@ -409,8 +409,13 @@ class ChatSendBoxView extends PureComponent {
 			return;
 		}
 
+		if(isSelectCovGroup){
+			setNotice("群视频会议暂不可用", "fail");
+			return;
+		}
+
 		const success = () => {
-			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
+			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请你加入会议");
 			this.props.setRtcStatus(1);
 			this.props.setRtcData({
 				invitee: selectConversationId,

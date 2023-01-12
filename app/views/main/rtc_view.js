@@ -89,10 +89,6 @@ class RtcView extends React.Component {
 	}
 
 	handleAccept = ({ from, conferenceId, isGroupChat }) => {
-		// rtc.joinRoom(conferenceId).then(() => {
-		// 	this.props.setRtcStatus(2);
-		// 	this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
-		// });
 		const me = this;
 		const { userInfo, globals } = this.props;
 		const loginInfo = globals.emclient.getLoginInfo();
@@ -107,7 +103,7 @@ class RtcView extends React.Component {
 			rtcWin.webContents.send("rtc-join-room", { roomId: conferenceId });
 			ipcRenderer.once("rtcJoinRoomSuccess", () => {
 				me.props.setRtcStatus(2);
-				me.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", {
+				me.sendTextMsg(from, isGroupChat ? 1 : 0, "已加入会议", {
 					conferenceNotice: 2
 				});
 			});
@@ -117,7 +113,7 @@ class RtcView extends React.Component {
 	handleRefuse = ({ from, isGroupChat }) => {
 		const { data } = this.props.rtcInfo;
 		this.props.setRtcStatus(0);
-		this.sendTextMsg(from, isGroupChat ? 1 : 0, "拒绝视频邀请", {
+		this.sendTextMsg(from, isGroupChat ? 1 : 0, "拒绝加入会议", {
 			conferenceNotice: 3,
 			conferenceId: data.conferenceId
 		});
@@ -127,7 +123,7 @@ class RtcView extends React.Component {
 		const { status, data } = this.props.rtcInfo;
 
 		if(status == 1){
-			this.sendTextMsg(data.invitee, data.chatType, "取消音视频", {
+			this.sendTextMsg(data.invitee, data.chatType, "会议已取消", {
 				conferenceNotice: 4,
 				conferenceId: data.conferenceId,
 				isGroupChat: !!data.chatType,
