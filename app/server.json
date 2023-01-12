@@ -4,7 +4,7 @@
   "restServer": "http://58.23.152.29:31002",
   "appKey": "easemob-demo#chatdemoui",
   "usePrivateConfig": true,
-	"rtcServer": "https://private-preview-media.easemob.com",
-	"rtcAppKey": "Y25Sak9nbnVlN1pLv3Bm5FCJBquhPsL5csn06k3AOlQ",
-	"rtcAppId": "827212690214645824"
+	"rtcServer": "http://58.23.152.29:31002",
+	"rtcAppKey": "",
+	"rtcAppId": ""
  }

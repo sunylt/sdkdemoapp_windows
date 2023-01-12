@@ -7,6 +7,7 @@ export default {
 	rtcAppId: "",
 	rtcAppKey: "",
 	userId: "",
+	userName: "", // 用户真实姓名
 	userSig: "",
 	localStream: null,
 	localSharedDesktopStream: null,
@@ -29,8 +30,8 @@ export default {
 		var root = this.root || document;
 		return root.querySelector(selector);
 	},
-	init({ rtcAppId, rtcAppKey, userId, rtcServer, userSig }){
-		if(this._isInited){
+	init({ rtcAppId, rtcAppKey, userId, userName, rtcServer, userSig, imAppKey, imToken }){
+		if(this._isInited && userId === this.userId){
 			return;
 		}
 		this.rtcServer = rtcServer;
@@ -38,6 +39,9 @@ export default {
 		this.rtcAppKey = rtcAppKey;
 		this.userId = userId;
 		this.userSig = userSig;
+		this.userName = userName;
+		this.imAppKey = imAppKey;
+		this.imToken = imToken;
 		this.initRtcSDK();
 		this._isInited = true;
 	},
@@ -48,7 +52,11 @@ export default {
 		return userSig;
 	},
 	async fetchUserSigByIM(){
-
+		const { rtcServer, userId, imAppKey, imToken } = this;
+		const [orgName, appName] = imAppKey.split("#");
+		const response = await fetch(`${rtcServer}/emedia/get_usersig_for_im?orgName=${orgName}&appName=${appName}&restDomain=${rtcServer}&userId=${userId}&token=${imToken}`).then(res => res.json());
+		this.userSig = response.userSig;
+		this.rtcAppId = response.sdkAppId;
 	},
 	async getTicket(roomId){
 		const { rtcServer, rtcAppId, userSig, userId } = this;
@@ -91,10 +99,14 @@ export default {
 		this.currentMainScreenItem = item;
 	},
 	pushStream(constaints = {}, success = () => {}, fail = () => {}){
+		const { userName } = this;
 		const _pubS = new this.service.AVPubstream({
 			constaints: Object.assign({ audio: true, video: true }, constaints),
 			aoff: 0,
-			voff: 0
+			voff: 0,
+			ext: {
+				nickname: userName
+			},
 		});
 		this.service.openUserMedia(_pubS).then(
 			() => this.service.push(_pubS, stream => success(stream), error => fail(error)),
@@ -107,13 +119,16 @@ export default {
 				reject({ msg: "roomId error" });
 				return;
 			}
-			if(!this.userSig){
+			if(!this.userSig && this.rtcAppId && this.rtcAppKey){
 				this.userSig = await this._fetchUserSig(this.userId);
+			}
+			else{
+				await this.fetchUserSigByIM();
 			}
 			const result = await this.getTicket(roomId);
 			if(result && result.ticket){
 				try{
-					this.service.setup(result.ticket, this.userExtInfo || {});
+					this.service.setup(result.ticket, this.userExtInfo || { nickname: this.userName });
 					this.service.join(
 						() => this.pushStream(constaints, resolve, reject),
 						error => reject(error)
@@ -134,6 +149,9 @@ export default {
 		}
 	},
 	initRtcSDK(){
+		if(this.service){
+			return;
+		}
 		const me = this;
 		const emedia = window.emedia = new EmediaSDK({
 			config: {
@@ -177,7 +195,7 @@ export default {
 	// 流的增加，仅用于统计人数，不处理流
 	onAddStream(stream){
 		console.log(`stream add >>>> `, stream);
-		const nickname = stream.owner.ext.nickname || stream.owner.name;
+		const nickname = (stream.ext && stream.ext.nickname) || stream.owner.ext.nickname || stream.owner.name;
 		this.createMiniPlayer(stream.id, `${nickname}${stream.type ? "的桌面" : ""}`);
 		if(stream.located() && stream.type == 0){
 			this.swithVideoToMain(stream.id);
@@ -226,6 +244,7 @@ export default {
 		return false;
 	},
 	shareDesktopToggle(){
+		const { userName } = this;
 		if(navigator.userAgent.includes("Mobile")) return;
 
 		// 无开启的会议
@@ -242,7 +261,9 @@ export default {
 			voff: 0,
 			aoff: 1,
 			isAgentShare: true,
-			ext: {},
+			ext: {
+				nickname: userName
+			},
 			screenOptions: ["screen", "window", "tab"]
 		});
 

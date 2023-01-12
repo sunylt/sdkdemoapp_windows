@@ -398,9 +398,11 @@ class ChatSendBoxView extends PureComponent {
 	}
 
 	handleVideoCall = () => {
-		const { easemobName } = this.props.userInfo.user;
+		const { userInfo, allUsers } = this.props;
+		const { user, userData } = userInfo;
+		const { easemobName } = user;
 		const { globals, selectConversationId } = this.props;
-		const roomId = `rtc_room_${easemobName}_${+new Date()}`;
+		const roomId = `room_${parseInt((Math.random() * 1e6), 10)}`;
 
 		const success = () => {
 			const textMsgBody = new globals.easemob.EMTextMessageBody("邀请您进行音视频通话");
@@ -409,7 +411,7 @@ class ChatSendBoxView extends PureComponent {
 				invitee: selectConversationId,
 				chatType: this.props.isSelectCovGroup,
 				conferenceId: roomId,
-				fromNickName: easemobName
+				fromNickName: userData.name || easemobName
 			});
 
 			this.sendMsg(textMsgBody, "", "", {
@@ -417,14 +419,21 @@ class ChatSendBoxView extends PureComponent {
 				conferenceId: roomId, // String类型,会议roomId;
 				isGroupChat: false, // boolean类型true/false；
 				isVideoOff: false, // boolean类型true/false；
-				fromNickName: easemobName, // String类型，邀请人昵称；
+				fromNickName: userData.name || easemobName, // String类型，邀请人昵称；
 				conversationId: easemobName
 			});
 		};
-
-		utils.initRtcWindow(easemobName).then((rtcWin) => {
+		const loginInfo = globals.emclient.getLoginInfo();
+		const chatConfig = globals.emclient.getChatConfigs();
+		
+		utils.initRtcWindow({
+			userId: easemobName,
+			userName: userData.name,
+			imAppKey: chatConfig.getAppKey(),
+			imToken: loginInfo.loginToken
+		}).then((rtcWin) => {
 			console.log(`**initRtcWindow**`, rtcWin);
-			rtcWin.webContents.send("joinRoom", { roomId, invitee: selectConversationId });
+			rtcWin.webContents.send("rtc-join-room", { roomId, invitee: allUsers[selectConversationId] ? allUsers[selectConversationId].name : selectConversationId });
 			ipcRenderer.once("rtcInviteJoinSuccess", success);
 		});
 		
@@ -505,7 +514,8 @@ const mapStateToProps = state => ({
 	// userInfo: state.userInfo,
 	// memberInfo: selectors.getGroupMembers(state),
 	networkStatus: state.networkConnection,
-	conversations: state.conversations
+	conversations: state.conversations,
+	allUsers: state.org.allUsers,
 	// memberInfo: state.memberInfo
 });
 export default connect(mapStateToProps, actionCreators)(ChatSendBoxView);

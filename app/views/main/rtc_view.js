@@ -94,19 +94,33 @@ class RtcView extends React.Component {
 		// 	this.sendTextMsg(conversationId, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
 		// });
 		const me = this;
-		const { easemobName } = this.props.userInfo.user;
-		utils.initRtcWindow(easemobName).then((rtcWin) => {
-			rtcWin.webContents.send("joinRoom", { roomId: conferenceId });
+		const { userInfo, globals } = this.props;
+		const loginInfo = globals.emclient.getLoginInfo();
+		const chatConfig = globals.emclient.getChatConfigs();
+		
+		utils.initRtcWindow({
+			userId: userInfo.user.easemobName,
+			userName: userInfo.userData.name,
+			imAppKey: chatConfig.getAppKey(),
+			imToken: loginInfo.loginToken
+		}).then((rtcWin) => {
+			rtcWin.webContents.send("rtc-join-room", { roomId: conferenceId });
 			ipcRenderer.once("rtcJoinRoomSuccess", () => {
 				me.props.setRtcStatus(2);
-				me.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", { conferenceNotice: 2 });
+				me.sendTextMsg(from, isGroupChat ? 1 : 0, "已接受视频邀请", {
+					conferenceNotice: 2
+				});
 			});
 		});
 	}
 
 	handleRefuse = ({ from, isGroupChat }) => {
+		const { data } = this.props.rtcInfo;
 		this.props.setRtcStatus(0);
-		this.sendTextMsg(from, isGroupChat ? 1 : 0, "拒绝视频邀请", { conferenceNotice: 3 });
+		this.sendTextMsg(from, isGroupChat ? 1 : 0, "拒绝视频邀请", {
+			conferenceNotice: 3,
+			conferenceId: data.conferenceId
+		});
 	}
 
 	handleLeaveRoom = () => {
@@ -152,10 +166,10 @@ class RtcView extends React.Component {
 		// const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
 		// rtc.init({ userId: easemobName, rtcAppId, rtcAppKey, rtcServer });
 		// rtc.render(document.querySelector(".rtc-meeting-view"));
-		ipcRenderer.on("leave-rtc-room", this.handleLeaveRoom);
+		ipcRenderer.on("rtc-clear-data", this.handleLeaveRoom);
 	}
 	componentWillUnmount(){
-		ipcRenderer.removeAllListeners("leave-rtc-room");
+		ipcRenderer.removeAllListeners("rtc-clear-data");
 	}
 	render(){
 		// console.log("rtc-view>>>", this.props);

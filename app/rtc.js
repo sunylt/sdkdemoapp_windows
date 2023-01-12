@@ -27,17 +27,17 @@ const initToolbar = () => {
 
 const toolbar = initToolbar();
 
-ipcRenderer.on("rtcInitData", (event, data) => {
-	console.log("rtcInitData", data);
+ipcRenderer.on("rtc-init-data", (event, data) => {
+	console.log("rtc-init-data", data);
 	rtcHelper.init(data);
 });
 
-ipcRenderer.on("leaveRoom", () => {
+ipcRenderer.on("rtc-leave-room", () => {
 	console.log("leaveRoom");
 	rtcHelper.leaveRoom();
 });
 
-ipcRenderer.on("joinRoom", (event, { roomId, invitee }) => {
+ipcRenderer.on("rtc-join-room", (event, { roomId, invitee }) => {
 	if(isCalling){
 		return;
 	}
@@ -76,7 +76,7 @@ rtcHelper.on("exit", () => {
 	isCalling = false;
 	toolbar.video.className = "iconfont icon-video";
 	toolbar.audio.className = "iconfont icon-audio";
-	mainWindow.webContents.send("leave-rtc-room");
+	mainWindow.webContents.send("rtc-clear-data");
 	tip.style.display = "none";
 });
 

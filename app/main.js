@@ -29899,9 +29899,6 @@ var AppRemote = function () {
 				}
 			});
 
-			// me.rtcWindow.webContents.on("did-finish-load", () => {
-			// 	me.rtcWindow.webContents.send("rtcInitData", data);
-			// });
 			me.rtcWindow.loadURL(IS_DEV ? HOT_DEV_SERVER + "/rtc.html" : "file://" + this.entryPath + "/rtc.html");
 		}
 

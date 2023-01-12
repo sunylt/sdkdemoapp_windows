@@ -13,7 +13,7 @@ const utils = {
 	getServerConfig(){
 		return this._privateConfig;
 	},
-	initRtcWindow(userId){
+	initRtcWindow({ userId, userName, imAppKey, imToken }){
 		
 		const { rtcAppId, rtcAppKey, rtcServer } = utils.getServerConfig();
 		return new Promise((resolve, reject) => {
@@ -21,7 +21,7 @@ const utils = {
 				const { winId, isNew } = ipcRenderer.sendSync("rtc-init-window");
 				const rtcWindow = remote.BrowserWindow.fromId(winId);
 				const winReady = () => {
-					rtcWindow.webContents.send("rtcInitData", { userId, rtcAppId, rtcAppKey, rtcServer });
+					rtcWindow.webContents.send("rtc-init-data", { userId, userName, rtcAppId, rtcAppKey, rtcServer, imAppKey, imToken });
 					rtcWindow.show();
 					resolve(rtcWindow);
 				};
