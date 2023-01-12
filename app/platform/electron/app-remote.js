@@ -128,7 +128,7 @@ class AppRemote {
 		});
 		ipcMain.on("close-rtc-window", () => {
 			console.log("close rtc win");
-			if(me.rtcWindow){
+			if(me.rtcWindow && !me.rtcWindow.isDestroyed()){
 				me.rtcWindow.hide();
 			}
 		});
@@ -179,6 +179,11 @@ class AppRemote {
 		});
 
 		me.rtcWindow.loadURL(IS_DEV ? `${HOT_DEV_SERVER}/rtc.html` : `file://${this.entryPath}/rtc.html`);
+
+		me.rtcWindow.on("closed", () => {
+			console.log("rtc window is closed");
+			me.mainWindow.webContents.send("rtc-window-closed");
+		});
 	
 	}
 
