@@ -1044,6 +1044,11 @@ class MainView extends PureComponent {
 					}
 					else if(msgExt.conferenceNotice == 4){ // 邀请人取消发起音视频
 						if(msgExt.conferenceId === rtcInfo.data.conferenceId){
+							if(rtcInfo.status == 2){ // 已经接起就再结束掉当前音视频（我接起，对方还没入会又取消）
+								utils.initRtcWindow({}).then((rtcWin) => {
+									rtcWin.webContents.send("rtc-leave-room");
+								});
+							}
 							setRtcStatus(0);
 							setRtcData({});
 						}
