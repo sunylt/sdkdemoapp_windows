@@ -1134,7 +1134,7 @@ class MainView extends PureComponent {
 	componentDidMount(){
 		ipcRenderer.removeAllListeners("emclient-connect-listener");
 		ipcRenderer.on("emclient-connect-listener", (event, { status, error }) => {
-			console.error("EMClientCS", status, error);
+			console.log("emclient-connect-listener", status, error);
 		});
 	}
 
