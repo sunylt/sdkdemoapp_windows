@@ -403,6 +403,7 @@ class ChatSendBoxView extends PureComponent {
 		const { easemobName } = user;
 		const { globals, selectConversationId } = this.props;
 		const roomId = `room_${parseInt((Math.random() * 1e6), 10)}`;
+		// const TIME = 10000;
 
 		if(rtcInfo.status !== 0){
 			setNotice("当前有在进行的通话或邀请，无法发起音视频", "fail");
@@ -432,6 +433,21 @@ class ChatSendBoxView extends PureComponent {
 				fromNickName: userData.name || easemobName, // String类型，邀请人昵称；
 				conversationId: easemobName
 			});
+
+			// 需要取消邀请或者会议开始的时候清除掉
+			// window.rtc_timer = setTimeout(() => {
+			// 	console.log("rtc_timer", rtcInfo);
+			// 	if(rtcInfo.status == 1){ // 1 还是呼叫状态
+			// 		const textMsg = new globals.easemob.EMTextMessageBody("会议已超时");
+			// 		this.props.setRtcStatus(0);
+			// 		this.props.setRtcData({});
+			// 		this.sendMsg(textMsg, "", "", {
+			// 			conferenceNotice: 6,
+			// 			conferenceId: roomId
+			// 		});
+			// 		utils.initRtcWindow({}).then(window => window.webContents.send("rtc-leave-room"));
+			// 	}
+			// }, TIME);
 		};
 		const loginInfo = globals.emclient.getLoginInfo();
 		const chatConfig = globals.emclient.getChatConfigs();

@@ -1047,9 +1047,11 @@ class MainView extends PureComponent {
 					}
 					else if(msgExt.conferenceNotice == 3){ // 被邀请人拒绝加入
 						setRtcStatus(0);
-						utils.initRtcWindow({}).then((rtcWin) => {
-							rtcWin.webContents.send("rtc-leave-room");
-						});
+						if(rtcInfo.status == 1){ // 自己发起的会议
+							utils.initRtcWindow({}).then((rtcWin) => {
+								rtcWin.webContents.send("rtc-leave-room");
+							});
+						}
 					}
 					else if(msgExt.conferenceNotice == 4){ // 邀请人取消发起音视频
 						if(msgExt.conferenceId === rtcInfo.data.conferenceId){
@@ -1061,6 +1063,11 @@ class MainView extends PureComponent {
 							setRtcStatus(0);
 							setRtcData({});
 						}
+					}
+					else if(msgExt.conferenceNotice == 6){
+						setRtcStatus(0);
+						setRtcData({});
+						setNotice("超时未接听", "fail");
 					}
 				}
 				break;

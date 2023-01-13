@@ -166,9 +166,9 @@ class LoginView extends PureComponent {
 							<h4>请扫码登录</h4>
 							<canvas id="c-qrcode" style={ { display: qrCodeStat > 0 ? "none" : "initial" } }></canvas>
 							{qrCode && qrCodeStat <= 0 && expireTime >= +new Date() ? <div className="scan-info"><span className="ico-phone"></span><br />打开手机客户端<br />消息-右上角 + 号扫一扫</div> : ""}
-							{qrCodeStat == 1 && <div className="scan-success"><span className="ico-phone"></span><p>扫码成功<br />请在手机上<em>确认登录</em></p><span className="cancel-login" onClick={ () => this.updateQRCode() }>取消登录</span></div>}
-							{qrCodeStat == 3 && <div>已取消登录操作 <span onClick={ () => this.updateQRCode() }>刷新</span></div>}
-							{isExpired && <div>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></div>}
+							{qrCodeStat == 1 ? <div className="scan-success"><span className="ico-phone"></span><p>扫码成功<br />请在手机上<em>确认登录</em></p><span className="cancel-login" onClick={ () => this.updateQRCode() }>取消登录</span></div> : null}
+							{qrCodeStat == 3 ? <div>已取消登录操作 <span onClick={ () => this.updateQRCode() }>刷新</span></div> : null}
+							{isExpired ? <div>二维码已过期，请<span onClick={ () => this.updateQRCode() }>刷新</span></div> : null}
 						</section>
 					</div>
 				</div>
