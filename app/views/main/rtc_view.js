@@ -7,6 +7,8 @@ import _ from "underscore";
 
 class RtcView extends React.Component {
 
+	inviteeTimeout = false; // 标记是否是超时挂断
+
 	state = {
 		aoff: false,
 		voff: false,
@@ -121,10 +123,12 @@ class RtcView extends React.Component {
 
 	handleLeaveRoom = (closeRtcWindow) => {
 		const { status, data } = this.props.rtcInfo;
+		const isTimeout = this.inviteeTimeout;
 
 		if(status == 1){
-			this.sendTextMsg(data.invitee, data.chatType, "会议已取消", {
-				conferenceNotice: 4,
+			this.sendTextMsg(data.invitee, data.chatType, isTimeout ? "会议已超时" : "会议已取消", {
+				// eslint-disable-next-line no-magic-numbers
+				conferenceNotice: isTimeout ? 6 : 4,
 				conferenceId: data.conferenceId,
 				isGroupChat: !!data.chatType,
 				fromNickName: data.fromNickName
@@ -164,10 +168,14 @@ class RtcView extends React.Component {
 		// rtc.render(document.querySelector(".rtc-meeting-view"));
 		ipcRenderer.on("rtc-clear-data", () => this.handleLeaveRoom(true));
 		ipcRenderer.on("rtc-window-closed", () => this.handleLeaveRoom(false));
+		ipcRenderer.on("rtc-invitee-timeout", () => {
+			this.inviteeTimeout = true;
+		});
 	}
 	componentWillUnmount(){
 		ipcRenderer.removeAllListeners("rtc-clear-data");
 		ipcRenderer.removeAllListeners("rtc-window-closed");
+		ipcRenderer.removeAllListeners("rtc-invitee-timeout");
 	}
 	render(){
 		// console.log("rtc-view>>>", this.props);

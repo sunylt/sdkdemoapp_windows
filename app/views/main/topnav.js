@@ -19,6 +19,7 @@ import DataBase from "../../utils/db";
 import { withRouter } from "react-router-dom";
 import CreateGroupView from "../chats/groups/group_create";
 import { Tabs } from "antd";
+import routes from "../common/routes";
 var _const = require("@/views/common/domain");
 const { ipcRenderer } = require("electron");
 const FormItem = Form.Item;
@@ -110,6 +111,7 @@ class TopNav extends Component {
 			kw: "",
 			showUserProfile: false,
 			showSettings: false,
+			showSearchList: false,
 		};
 		const allGroups = allGroupChats.allGroups || [];
 		this.allGroups = allGroups.map((groupId) => {
@@ -261,6 +263,65 @@ class TopNav extends Component {
 		});
 	}
 
+	handleInputFocus = () => {
+		this.setState({
+			showSearchList: true
+		});
+	}
+
+	handleInputBlur = () => {
+		this.setState({
+			showSearchList: false
+		});
+	}
+
+	handleOpenChat = ({ userName, name }) => {
+		const {
+			globals,
+			msgsOfConversation,
+			conversationOfSelect,
+			selectNavAction,
+			setSelectConvType,
+			history
+		} = this.props;
+		const conversation = globals.chatManager.conversationWithType(userName, 0);
+		const messages = conversation.loadMoreMessagesByMsgId("", 20, 0);
+		const extInfo = {
+			userid: userName,
+			name
+		};
+		// // 设置扩展消息
+		conversation.setExtField(JSON.stringify(extInfo));
+		conversationOfSelect(userName);
+		msgsOfConversation({ id: userName, msgs: messages, conversation });
+		setSelectConvType(0);
+		selectNavAction(routes.chats.recents.__);
+		history.push(routes.chats.recents.__);
+		this.setState({
+			showSearchList: false
+		});
+	}
+
+	handleOpenGroupChat = (groupId) => {
+		const { chatManager } = this.props.globals;
+		const { selectOfGroup, conversationOfSelect, msgsOfConversation, selectNavAction, setSelectConvType, history } = this.props;
+		const  conversation = chatManager.conversationWithType(groupId, 1);
+		const messages = conversation.loadMoreMessagesByMsgId("", 20, 0);
+
+
+		conversationOfSelect(groupId);
+		msgsOfConversation({ id: groupId, msgs: messages, conversation });
+		selectOfGroup({
+			easemobGroupId: groupId
+		});
+		setSelectConvType(1);
+		selectNavAction(routes.chats.recents.__);
+		history.push(routes.chats.recents.__);
+		this.setState({
+			showSearchList: false
+		});
+	}
+
 	componentDidMount(){
 		document.body.addEventListener("click", () => {
 			this.setState({
@@ -270,7 +331,7 @@ class TopNav extends Component {
 	}
 
 	render(){
-		const { users, groups, kw, showSettings } = this.state;
+		const { users, groups, kw, showSettings, showSearchList } = this.state;
 		const { userInfo, userData } = this.props;
 		// const { previewVisible, previewImage, fileList } = this.state;
 		const realName = userData.name || userData.userName;
@@ -294,14 +355,14 @@ class TopNav extends Component {
 		// 	</Menu>
 		// );
 		const userListView = users.map(user => (
-			<li key={ user.userName }>
+			<li key={ user.userName } onClick={ () => this.handleOpenChat(user) }>
 				<AvatarImage name={ user.name } />
 				<h5 dangerouslySetInnerHTML={ {__html: parseKw(user.name || user.userName, kw)} } />
 				<p dangerouslySetInnerHTML={ {__html: "用户ID：" + parseKw(`${user.userName}`, kw)} }  />
 			</li>
 		));
 		const groupListView = groups.map(group => (
-			<li key={ group.id }>
+			<li key={ group.id } onClick={ () => this.handleOpenGroupChat(group.id) }>
 				<AvatarImage name="群" />
 				<h5 dangerouslySetInnerHTML={ {__html: parseKw(group.name, kw)} } />
 				<p dangerouslySetInnerHTML={ {__html: "群ID：" + parseKw(`${group.id}`, kw)} }  />
@@ -323,13 +384,16 @@ class TopNav extends Component {
 				<div className="search-box">
 					<Input
 						placeholder="输入内容查询"
+						allowClear={ true }
 						prefix={ <Icon type="search" /> }
+						onFocus={ this.handleInputFocus }
+						// onBlur={ this.handleInputBlur }
 						// suffix={suffix}
 						// value={userName}
 						onChange={ this.handleSearch }
 						// ref={node => this.userNameInput = node}
 					/>
-					<div className="search-result" style={ { display: userListView.length || groupListView.length ? "block" : "none" } }>
+					<div className="search-result" style={ { display: showSearchList && (userListView.length || groupListView.length) ? "block" : "none" } }>
 						<Tabs defaultActiveKey="1" onChange={ () => {} }>
 							<TabPane tab="综合" key="1">
 								<div className="search-result-list">

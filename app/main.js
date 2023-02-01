@@ -29848,15 +29848,26 @@ var AppRemote = function () {
 		});
 		_electron.ipcMain.on("close-rtc-window", function () {
 			console.log("close rtc win");
-			if (me.rtcWindow) {
+			if (me.rtcWindow && !me.rtcWindow.isDestroyed()) {
 				me.rtcWindow.hide();
 			}
 		});
-		easemob.getEMClientInstance = function (chatConfigs) {
+		easemob.createEMClient = function (_ref) {
+			var resourcePath = _ref.resourcePath,
+			    workPath = _ref.workPath,
+			    appKey = _ref.appKey,
+			    deviceId = _ref.deviceId;
+
 			if (!emclient) {
-				console.log("main process create new emclient");
-				emclient = new easemob.EMClient(chatConfigs);
+				console.log("Create new emclient");
+				console.log("resourcePath>>>", resourcePath);
+				console.log("workPath>>>", workPath);
+				console.log("appKey>>>", appKey);
+				console.log("deviceId>>>", deviceId);
+				var chatConfigs = new easemob.EMChatConfig(resourcePath, workPath, appKey, deviceId);
 				var connectListener = new easemob.EMConnectionListener();
+				// chatConfigs.setDeleteMessageAsExitGroup(true);
+				emclient = new easemob.EMClient(chatConfigs);
 				connectListener.onConnect(function () {
 					_this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
 				});
@@ -29865,6 +29876,7 @@ var AppRemote = function () {
 				});
 				emclient.addConnectionListener(connectListener);
 			} else {
+				console.log(JSON.stringify(emclient.getLoginInfo()));
 				emclient.logout();
 			}
 			return emclient;
@@ -29900,6 +29912,11 @@ var AppRemote = function () {
 			});
 
 			me.rtcWindow.loadURL(IS_DEV ? HOT_DEV_SERVER + "/rtc.html" : "file://" + this.entryPath + "/rtc.html");
+
+			me.rtcWindow.on("closed", function () {
+				console.log("rtc window is closed");
+				me.mainWindow.webContents.send("rtc-window-closed");
+			});
 		}
 
 		// eslint-disable-next-line class-methods-use-this

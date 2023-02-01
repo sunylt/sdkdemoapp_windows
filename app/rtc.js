@@ -8,6 +8,7 @@ const tip = document.getElementById("rtc-invitee-tip");
 const txt = "正在邀请 $invitee 进行视频通话";
 let userCount = 0;
 let isCalling = false;
+let timer = null;
 
 const initToolbar = () => {
 	const toolbar = document.createElement("div");
@@ -46,6 +47,14 @@ ipcRenderer.on("rtc-join-room", (event, { roomId, invitee }) => {
 		if(invitee){
 			tip.innerText = txt.replace("$invitee", invitee);
 			tip.style.display = "block";
+			timer = setTimeout(() => {
+				if(userCount === 0){
+					mainWindow.webContents.send("rtc-invitee-timeout");
+					rtcHelper.leaveRoom();
+					timer = null;
+				}
+			// eslint-disable-next-line no-magic-numbers
+			}, 60 * 1000);
 		}
 		mainWindow.webContents.send(invitee ? "rtcInviteJoinSuccess" : "rtcJoinRoomSuccess");
 	})
@@ -62,6 +71,10 @@ ipcRenderer.on("rtc-join-room", (event, { roomId, invitee }) => {
 rtcHelper.on("addMember", () => {
 	userCount++;
 	tip.style.display = "none";
+	if(timer){
+		clearTimeout(timer);
+		timer = null;
+	}
 });
 
 rtcHelper.on("removeMember", () => {
@@ -93,6 +106,10 @@ toolbar.video.addEventListener("click", (e) => {
 toolbar.iconfontphone.addEventListener("click", () => {
 	rtcHelper.leaveRoom();
 	isCalling = false;
+	if(timer){
+		clearTimeout(timer);
+		timer = null;
+	}
 });
 
 rtcHelper.render(app);

@@ -20,6 +20,7 @@ class ContactView extends PureComponent {
 		this.handleChangeSearchVal = this.handleChangeSearchVal.bind(this);
 		this.searchValue = "";
 		this.state = {
+			kw: "",
 			searchResult: []
 		};
 	}
@@ -86,11 +87,13 @@ class ContactView extends PureComponent {
 		if(val){
 			const result = Object.values(this.props.allUsers).filter(user => user.name.includes(val));
 			this.setState({
+				kw: val,
 				searchResult: result
 			});
 		}
 		else{
 			this.setState({
+				kw: "",
 				searchResult: []
 			});
 		}
@@ -98,9 +101,9 @@ class ContactView extends PureComponent {
 
 	render(){
 		const { allUsers } = this.props;
-		const { searchResult } = this.state;
+		const { searchResult, kw } = this.state;
 		console.log("all list alluser", allUsers);
-		const listUsers = searchResult.length ? searchResult : allUsers;
+		const listUsers = kw ? searchResult : allUsers;
 		// var concatList = allContacts.contacts;
 		return (
 			<div>

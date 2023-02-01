@@ -132,11 +132,17 @@ class AppRemote {
 				me.rtcWindow.hide();
 			}
 		});
-		easemob.getEMClientInstance = (chatConfigs) => {
+		easemob.createEMClient = ({ resourcePath, workPath, appKey, deviceId }) => {
 			if(!emclient){
-				console.log("main process create new emclient");
-				emclient = new easemob.EMClient(chatConfigs);
+				console.log("Create new emclient");
+				console.log("resourcePath>>>", resourcePath);
+				console.log("workPath>>>", workPath);
+				console.log("appKey>>>", appKey);
+				console.log("deviceId>>>", deviceId);
+				const chatConfigs = new easemob.EMChatConfig(resourcePath, workPath, appKey, deviceId);
 				const connectListener = new easemob.EMConnectionListener();
+				// chatConfigs.setDeleteMessageAsExitGroup(true);
+				emclient = new easemob.EMClient(chatConfigs);
 				connectListener.onConnect(() => {
 					this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
 				});
@@ -146,6 +152,7 @@ class AppRemote {
 				emclient.addConnectionListener(connectListener);
 			}
 			else{
+				console.log(JSON.stringify(emclient.getLoginInfo()));
 				emclient.logout();
 			}
 			return emclient;

@@ -42,17 +42,16 @@ class RosterListView extends PureComponent {
 		const { userName, name } = this.state.selectedUser;
 		const {
 			globals,
-			selectMember,
 			msgsOfConversation,
 			conversationOfSelect,
 			selectNavAction,
 			setSelectConvType
 		} = this.props;
-		var conversation = globals.chatManager.conversationWithType(userName, 0);
-		var messages = conversation.loadMoreMessagesByMsgId("", 20,0);
-		var extInfo = {
+		const conversation = globals.chatManager.conversationWithType(userName, 0);
+		const messages = conversation.loadMoreMessagesByMsgId("", 20, 0);
+		const extInfo = {
 			userid: userName,
-			name: name
+			name
 		};
 		// // 设置扩展消息
 		conversation.setExtField(JSON.stringify(extInfo));

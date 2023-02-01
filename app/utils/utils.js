@@ -52,17 +52,19 @@ const utils = {
 		};
 	},
 	initEmclient(config){
+		console.log("init emclient >>>>");
 		const _privateConfig = config ? config : privateServerConfig;
-		this._privateConfig = _privateConfig;
-		let userInfo = {
-				"user":{
-					"id":1,
-					"os":"PC",
-					"appkey":"easemob-demo#easeim",
-					"tenantId":9,
-					"image":""
-				}
-			};
+		const userInfo = {
+			user: {
+				id: 1,
+				os: "PC",
+				appkey: "easemob-demo#easeim",
+				tenantId: 9,
+				image: ""
+			}
+		};
+		const appKey = _privateConfig.usePrivateConfig ? _privateConfig.appKey : (userInfo && userInfo.user.appkey);
+	
 		fs.ensureDir(`${configDir}/easemob`, function(err){
 			console.log(err);
 		});
@@ -81,22 +83,40 @@ const utils = {
 		fs.ensureDir(`${configDir}/easemob/pasteImage`, function(err){
 			console.log(err);
 		});
-		const appKey = _privateConfig.usePrivateConfig ? _privateConfig.appKey : (userInfo && userInfo.user.appkey);
-		this.chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
-		this.chatConfigs.setDeleteMessageAsExitGroup(true);
-		const emclient = easemob.getEMClientInstance(this.chatConfigs);
-		console.warn("util init emclient", emclient, _privateConfig);
+		
+		this._privateConfig = _privateConfig;
+		// this.emclient = easemob.createEMClient({
+		// 	resourcePath: `${configDir}/easemob-desktop`,
+		// 	workPath: `${configDir}/easemob-desktop`,
+		// 	appKey,
+		// 	deviceId: 0
+		// });
+
+		const chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
+		// const connectListener = new easemob.EMConnectionListener();
+		chatConfigs.setDeleteMessageAsExitGroup(true);
+		this.emclient = new easemob.EMClient(chatConfigs);
+		// connectListener.onConnect(() => {
+		// 	 this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
+		// });
+		// connectListener.onDisconnect((error) => {
+		// 	 this.mainWindow.webContents.send("emclient-connect-listener", { status: 0, error });
+		// });
+		// this.emclient.addConnectionListener(connectListener);
+		
+		// 配置私有化服务
 		if(Object.keys(_privateConfig).length && _privateConfig.usePrivateConfig){
-			console.warn("use private config", _privateConfig);
-			let config = emclient.getChatConfigs();
-			let privateconfigs = config.privateConfigs();
+			const config = this.emclient.getChatConfigs();
+			const privateconfigs = config.privateConfigs();
+			
 			privateconfigs.enableDns = false;
 			privateconfigs.chatServer = _privateConfig.chatServer;
 			privateconfigs.chatPort = _privateConfig.chatPort;
 			privateconfigs.restServer = _privateConfig.restServer;
 		}
 		// privateconfigs.resolverServer = "http://192.168.1.101:5002";
-		return emclient;
+		console.log(this.emclient);
+		return this.emclient;
 	}
 };
 
