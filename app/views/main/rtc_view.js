@@ -94,12 +94,12 @@ class RtcView extends React.Component {
 		const me = this;
 		const { userInfo, globals } = this.props;
 		const loginInfo = globals.emclient.getLoginInfo();
-		const chatConfig = globals.emclient.getChatConfigs();
+		const privateConfig = utils.getServerConfig();
 		
 		utils.initRtcWindow({
 			userId: userInfo.user.easemobName,
 			userName: userInfo.userData.name,
-			imAppKey: chatConfig.getAppKey(),
+			imAppKey: userInfo.user.appkey || privateConfig.appKey,
 			imToken: loginInfo.loginToken
 		}).then((rtcWin) => {
 			rtcWin.webContents.send("rtc-join-room", { roomId: conferenceId });

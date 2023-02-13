@@ -365,6 +365,14 @@ class MainView extends PureComponent {
 				}, 1);
 			});
 
+			this.groupListener.onUploadSharedFileFromGroup((groupId, sharedFile) => {
+				console.log("onUploadSharedFileFromGroup>>>", groupId, sharedFile);
+			});
+
+			this.groupListener.onDeleteSharedFileFromGroup((groupId, fileId) => {
+				console.log("onDeleteSharedFileFromGroup", groupId, fileId);
+			});
+
 			// 多设备监听
 			this.multiDevicesListener = new easemob.EMMultiDevicesListener();
 			this.multiDevicesListener.onContactMultiDevicesEvent((operation, target, ext) => {
@@ -1019,7 +1027,7 @@ class MainView extends PureComponent {
 			console.log("type:" + msg.type());
 			switch(msg.type()){
 			case 0:
-				console.log("new txt message>>", message.from(), message.conversationId(), message.ext(), msg);
+				console.log("new txt message>>", message.from(), message.conversationId(), message.ext(), message);
 				const msgExt = Object.fromEntries(message.ext().map(item => [item.attr, item.value]));
 				console.log("new ext message", msgExt);
 				msgExt.conferenceNotice = message.getAttribute("conferenceNotice"); // value 是int ext()读取不到

@@ -400,7 +400,7 @@ class ChatSendBoxView extends PureComponent {
 	handleVideoCall = () => {
 		const { userInfo, allUsers, rtcInfo, setNotice, isSelectCovGroup } = this.props;
 		const { user, userData } = userInfo;
-		const { easemobName } = user;
+		const { easemobName, appkey } = user;
 		const { globals, selectConversationId } = this.props;
 		const roomId = `room_${parseInt((Math.random() * 1e6), 10)}`;
 		// const TIME = 10000;
@@ -433,29 +433,15 @@ class ChatSendBoxView extends PureComponent {
 				fromNickName: userData.name || easemobName, // String类型，邀请人昵称；
 				conversationId: easemobName
 			});
-
-			// 需要取消邀请或者会议开始的时候清除掉
-			// window.rtc_timer = setTimeout(() => {
-			// 	console.log("rtc_timer", rtcInfo);
-			// 	if(rtcInfo.status == 1){ // 1 还是呼叫状态
-			// 		const textMsg = new globals.easemob.EMTextMessageBody("会议已超时");
-			// 		this.props.setRtcStatus(0);
-			// 		this.props.setRtcData({});
-			// 		this.sendMsg(textMsg, "", "", {
-			// 			conferenceNotice: 6,
-			// 			conferenceId: roomId
-			// 		});
-			// 		utils.initRtcWindow({}).then(window => window.webContents.send("rtc-leave-room"));
-			// 	}
-			// }, TIME);
 		};
+		
 		const loginInfo = globals.emclient.getLoginInfo();
-		const chatConfig = globals.emclient.getChatConfigs();
+		const privateConfig = utils.getServerConfig();
 		
 		utils.initRtcWindow({
 			userId: easemobName,
 			userName: userData.name,
-			imAppKey: chatConfig.getAppKey(),
+			imAppKey: appkey || privateConfig.appKey,
 			imToken: loginInfo.loginToken
 		}).then((rtcWin) => {
 			console.log(`**initRtcWindow**`, rtcWin);

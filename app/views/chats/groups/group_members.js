@@ -526,9 +526,8 @@ class GroupMembersView extends Component {
 		() => {});
 	}
 
-	componentDidMount(){
-		console.log("group_members did mount");
-		this.groupManager.fetchGroupSharedFiles(this.groupId, 1, 20).then((res) => {
+	updateGroupSharedFiles(){
+		this.groupManager.fetchGroupSharedFiles(this.groupId, 1, 200).then((res) => {
 			if(res.code == "0" && res.data && res.data.length){
 				console.log("files>>>", res.data);
 				this.setState({
@@ -543,6 +542,15 @@ class GroupMembersView extends Component {
 		}, (error) => {
 			console.error("files fetch error", error);
 		});
+	}
+
+	componentDidMount(){
+		console.log("group_members did mount");
+		this.updateGroupSharedFiles();
+	}
+
+	componentWillUnmount(){
+		
 	}
 
 	render(){
