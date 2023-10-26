@@ -22,6 +22,18 @@
  }
 
 
+ {
+  "chatServer": "58.23.152.29",
+  "chatPort": 31000,
+  "restServer": "http://58.23.152.29:31002",
+  "appKey": "easemob-demo#chatdemoui",
+  "usePrivateConfig": true,
+	"rtcServer": "http://58.23.152.29:31002",
+	"rtcAppKey": "",
+	"rtcAppId": ""
+ }
+
+
 
 
  "chatServer": "58.23.152.29",

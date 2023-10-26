@@ -141,7 +141,8 @@ class AppRemote {
 				console.log("deviceId>>>", deviceId);
 				const chatConfigs = new easemob.EMChatConfig(resourcePath, workPath, appKey, deviceId);
 				const connectListener = new easemob.EMConnectionListener();
-				// chatConfigs.setDeleteMessageAsExitGroup(true);
+				chatConfigs.setDeleteMessageAsExitGroup(true);
+				chatConfigs.setDeviceName(`sdk_pc_${+new Date()}`);
 				emclient = new easemob.EMClient(chatConfigs);
 				connectListener.onConnect(() => {
 					this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
@@ -152,7 +153,7 @@ class AppRemote {
 				emclient.addConnectionListener(connectListener);
 			}
 			else{
-				console.log(JSON.stringify(emclient.getLoginInfo()));
+				console.log("emclient exist", JSON.stringify(emclient.getLoginInfo()));
 				emclient.logout();
 			}
 			return emclient;

@@ -23,10 +23,12 @@ class ImgPreview extends PureComponent {
 
 	urlExit(filePath){
 		const { remotePath } = this.props;
+		console.log("file>>>>", filePath, remotePath);
 		let path = localOrRemoteFile(filePath, remotePath);
-		if(!path.includes("http") && location.href.includes("http")){
-			path = `file://${path}`;
-		}
+		console.log("dist path>>", path);
+		// if(!path.includes("http") && location.href.includes("http")){
+		// 	path = `file://${path}`;
+		// }
 		return path;
 	}
 

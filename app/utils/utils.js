@@ -85,17 +85,18 @@ const utils = {
 		});
 		
 		this._privateConfig = _privateConfig;
-		// this.emclient = easemob.createEMClient({
-		// 	resourcePath: `${configDir}/easemob-desktop`,
-		// 	workPath: `${configDir}/easemob-desktop`,
-		// 	appKey,
-		// 	deviceId: 0
-		// });
+		this.emclient = easemob.createEMClient({
+			resourcePath: `${configDir}/easemob-desktop`,
+			workPath: `${configDir}/easemob-desktop`,
+			appKey,
+			deviceId: 0
+		});
 
-		const chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
+		// const chatConfigs = new easemob.EMChatConfig(`${configDir}/easemob-desktop`, `${configDir}/easemob-desktop`, appKey, 0);
 		// const connectListener = new easemob.EMConnectionListener();
-		chatConfigs.setDeleteMessageAsExitGroup(true);
-		this.emclient = new easemob.EMClient(chatConfigs);
+		// chatConfigs.setDeleteMessageAsExitGroup(true);
+		// chatConfigs.setDeviceName(`sdk_pc_${+new Date()}`);
+		// this.emclient = new easemob.EMClient(chatConfigs);
 		// connectListener.onConnect(() => {
 		// 	 this.mainWindow.webContents.send("emclient-connect-listener", { status: 1 });
 		// });

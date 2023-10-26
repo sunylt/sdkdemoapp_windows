@@ -382,6 +382,7 @@ class CreateGroupView extends PureComponent {
 			allMembersInfo
 		} = this.props;
 		const { previewVisible, previewImage, fileList } = this.state;
+		const name = userInfo.userData ? (userInfo.userData.name || userInfo.userData.userName) : userInfo.user.easemobName;
 		var groupMemberInfoData = userInfo.userData ? (selectMember ? [userInfo.userData].concat(selectMember) : [userInfo.userData]) : [];
 		var groupMemberIds = _.pluck(groupMemberInfoData, "userName");
 		var memberInfoOfGroup;
@@ -411,8 +412,8 @@ class CreateGroupView extends PureComponent {
 										<div style={ { paddingTop: "5px" } }>已选 { membersIdOfCreateGroup.length + 1} 人</div>
 										<div className="selected-members-container">
 											<div className="select-member" >
-												<AvatarImage name={ userInfo.userData.name || userInfo.userData.userName } />
-												<div className="member-name">{ userInfo.userData.name || userInfo.userData.userName }</div>
+												<AvatarImage name={ name } />
+												<div className="member-name">{ name }</div>
 											</div>
 											{
 												_.map(membersOfCreateGroup, (member) => {

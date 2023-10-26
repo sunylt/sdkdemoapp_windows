@@ -491,6 +491,10 @@ class MainView extends PureComponent {
 					}
 					else{
 						setUserOrg({ topOrg: {}, userOrgs: [] });
+						this.setState({
+							orgDataLoaded: true,
+							currentUserData: { name: "test" }
+						});
 					}
 				})
 				.catch(error => console.log("fetchOrg error.", error));

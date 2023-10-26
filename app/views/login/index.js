@@ -12,7 +12,7 @@ class LoginView extends PureComponent {
 	constructor(props){
 		super(props);
 		this.state = {
-			loginWithQrc: true,
+			loginWithQrc: false,
 			qrCode: "",
 			expireTime: 0,
 			qrCodeStat: 0, // 0无意义 1扫过 2登陆 -1过期 3手机端取消登陆

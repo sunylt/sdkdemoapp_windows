@@ -1,8 +1,8 @@
 {
-  "chatServer": "58.23.152.29",
-  "chatPort": 31000,
-  "restServer": "http://58.23.152.29:31002",
-  "appKey": "easemob-demo#chatdemoui",
+  "chatServer": "122.9.148.101",
+  "chatPort": 16717,
+  "restServer": "https://private-im.dt-craft.com",
+  "appKey": "yansongvip6test#demo",
   "usePrivateConfig": true,
 	"rtcServer": "http://58.23.152.29:31002",
 	"rtcAppKey": "",
