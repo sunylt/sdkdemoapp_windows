@@ -294,7 +294,7 @@ class AppRemote {
 		// 	throw new Error(`The window with name '${name}' has already be created.`);
 		// }
 		this.mainWindow = browserWindow;
-		browserWindow.webContents.openDevTools();
+		IS_DEV && browserWindow.webContents.openDevTools();
 
 		browserWindow.on("close", (event) => {
 			// dock 上右键退出，ElectronApp.quitting = true

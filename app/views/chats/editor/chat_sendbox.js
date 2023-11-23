@@ -438,9 +438,9 @@ class ChatSendBoxView extends PureComponent {
 					{/* 上传视频 */}
 					{/* <div title="名片" onClick={this.clickCard} ></div> */}
 					{/* <div title="视频"><Upload { ...uploadProps } data={ this.uploadVideoData } accept="video/*"><Icon type="video-camera" /></Upload></div> */}
-					<div title="视频通话" onClick={ this.handleVideoCall }>
+					{/* <div title="视频通话" onClick={ this.handleVideoCall }>
 						<Icon type="video-camera" />
-					</div>
+					</div> */}
 
 				</div>
 				<TextArea

@@ -218,7 +218,7 @@ module.exports = function (it) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return nonEnumerableProps; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MAX_ARRAY_INDEX; });
 // Current version.
-var VERSION = '1.13.4';
+var VERSION = '1.13.6';
 
 // Establish the root object, `window` (`self`) in the browser, `global`
 // on the server, or `this` in some virtual machines. We use `self`
@@ -4844,7 +4844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Named Exports
 // =============
 
-//     Underscore.js 1.13.4
+//     Underscore.js 1.13.6
 //     https://underscorejs.org
 //     (c) 2009-2022 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -17488,7 +17488,7 @@ var AppRemote = function () {
 			// 	throw new Error(`The window with name '${name}' has already be created.`);
 			// }
 			this.mainWindow = browserWindow;
-			browserWindow.webContents.openDevTools();
+			IS_DEV && browserWindow.webContents.openDevTools();
 
 			browserWindow.on("close", function (event) {
 				// dock 上右键退出，ElectronApp.quitting = true
